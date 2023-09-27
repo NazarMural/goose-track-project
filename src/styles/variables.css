@@ -1,0 +1,92 @@
+:root {
+--primary-text-color: #111111;
+--secondary-text-color: #343434;
+--invert-text-color: #FFFFFF;
+--accent-color: #3E85F3;
+
+--primary-bg-color: #FFFFFF;
+--page-bg-color: #F7F6F9;
+--auth-bg-color: #DCEBF7;
+ 
+/* button-styles */
+--btn-text-color: #FFFFFF;
+--btn-bg-color: #3E85F3;
+--btn-bg-hover: #2B78EF;
+
+/* form-styles */
+--input-border-color: #11111126;
+--input-border-color-focus: #111111;
+--error-color: #E74A3B;
+--success-color: #3CBC81;
+--user-label-color: #111111;
+--placeholder-color: #DCE3E5;
+--textarea-background: #F6F6F6;
+
+/* sidebar-styles */
+--sidebar-text-color: #34343480;
+--sidebar-bg-color: #FFFFFF;
+--sidebar-accent-color: #E3F3FF;
+
+/* review-styles */
+--star-color: #CEC9C1;
+--star-color-active: #FFAC33;
+--review-btn-cancel-color:#343434;
+--review-btn-cancel-bg: #E5EDFA;
+--icon-edit-color: #3E85F3;
+--icon-edit-color-active: #FFFFFF;
+--icon-edit-bg: #E3F3FF;
+--icon-edit-bg-active: #3E85F3;
+--icon-delete-color: #EA3D65;
+--icon-delete-bg:#EA3D6533;
+
+  /* calend-styles */
+--calend-high-color: #EA3D65;
+--calend-medium-color: #F3B249;
+--calend-low-color: #3E85F3;
+--calend-high-bg-color: #FFD2DD;
+--calend-medium-bg-color: #FCF0D4;
+--calend-low-bg-color: #CEEEFD;
+
+/* day-month-switch-styles */
+--switch-type-color: #3E85F3;
+--switch-type-color-active: #3E85F3;
+--switch-type-bg: #E3F3FF;
+--switch-type-bg-active: #CAE8FF;
+
+ /* tasks-styles */
+--task-priority-color: #F7F6F9;
+--task-priority-high-bg: #EA3D65;
+--task-priority-medium-bg: #F3B249;
+--task-priority-low-bg: #72C2F8;
+--add-task-bg: #E3F3FF;
+--task-btn-cancel: #EFEFEF;
+
+/* statistic-styles */
+--gradient-red:  linear-gradient(0deg, #FFD2DD 0%, rgba(255, 210, 221, 0.00) 96.87%);
+--gradient-blue: fill: linear-gradient(0deg, #3E85F3 0%, rgba(62, 133, 243, 0.00) 100%);
+}
+
+html[data-theme='dark'] {
+--primary-text-color: #FFFFFF;
+
+--primary-bg-color: #21222C;
+--page-bg-color: #171820;
+
+--sidebar-text-color: #FFFFFF;
+--sidebar-bg-color: #13151A;
+--sidebar-accent-color: #3E85F3;
+
+--star-color: #353647;
+--review-btn-cancel-color:#FFFFFF;
+--review-btn-cancel-bg: #21222C;
+--icon-edit-bg: #353647;
+
+--switch-type-color-active: #FFFFFF;
+--switch-type-bg: #21222C;
+--switch-type-bg-active: #3E85F3;
+
+--user-label-color: #FAFAFA4D;
+
+--add-task-bg: #3E85F3;
+}
+
