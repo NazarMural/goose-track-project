@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Form } from 'formik';
+import { Field, Form } from 'formik';
 
 import styled from '@emotion/styled';
 
@@ -38,10 +38,12 @@ export const FormStyled = styled(Form)`
   flex-direction: column;
   gap: 24px;
 `;
+
 export const Lable = styled.label`
   display: flex;
   flex-direction: column;
 `;
+
 export const LableText = styled.span`
   font-size: 12px;
   font-weight: 600;
@@ -55,16 +57,24 @@ export const LableText = styled.span`
   }
 `;
 
+export const FieldContainer = styled.div`
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+`;
+
 export const FieldStyled = styled(Field)`
+  display: block;
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
-
   padding: 14px;
   border: 1px solid;
-  border-color: #11111126;
+  border-color: ${({ errors, touched }) =>
+    touched ? (errors ? '#da1414;' : '#3CBC81;') : '#11111126'};
+
   border-radius: 8px;
-  margin-bottom: 8px;
+  width: fill-available;
 
   &:valid {
     background-color: var(--primary-bg-color) !important;
@@ -85,6 +95,22 @@ export const FieldStyled = styled(Field)`
   }
 `;
 
+export const IconStatus = styled.svg`
+  position: absolute;
+  fill: #3cbc81;
+  height: 22px;
+  width: 22px;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  ${mq[1]} {
+    height: 24px;
+    width: 24px;
+    right: 18px;
+  }
+`;
+
 export const Button = styled.button`
   font-size: 14px;
   font-weight: 600;
@@ -93,6 +119,7 @@ export const Button = styled.button`
   color: #ffffff;
 
   box-shadow: 4px 2px 16px 0px #88a5bf7a;
+  cursor: pointer;
 
   margin-top: 32px;
   padding: 14px 0;
@@ -103,22 +130,17 @@ export const Button = styled.button`
   &:hover {
     background-color: #2b78ef;
   }
-  ${mq[1]} {
-    font-size: 18px;
-    line-height: 24px;
-    padding: 16px 0;
-    margin-top: 48px;
-  }
 `;
 
 export const ButtonText = styled.span``;
 
 export const ButtonImg = styled.img``;
 
-export const ErrorMessageStyled = styled(ErrorMessage)`
+export const ErrorMessageText = styled.span`
   font-size: 12px;
   font-weight: 400;
   line-height: 14px;
-  color: #da1414;
+  color: ${({ error }) => (error ? '#da1414;' : '#3CBC81;')};
   margin-left: 15px;
+  margin-top: 8px;
 `;
