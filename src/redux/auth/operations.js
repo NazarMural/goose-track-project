@@ -16,10 +16,12 @@ const signUpOperation = createAsyncThunk(
   'auth/signup',
   async (credentials, thunkAPI) => {
     return await handleErrorAsyncOperation(async () => {
-      const { data } = await axios.post('/auth/register', credentials);
-      // setAuthHeader(data.token);
-      console.log(data);
-      return data;
+      // const { data } = await axios.post('/auth/register', credentials);
+      // // setAuthHeader(data.token);
+      // console.log(data);
+      // return data;
+      console.log('Cred: ', credentials);
+      return credentials;
     }, thunkAPI);
   }
 );
@@ -49,3 +51,10 @@ const updateUserDataOperation = createAsyncThunk(
   'auth/update',
   async (updateUserData, thunkAPI) => {}
 );
+
+export {
+  signUpOperation,
+  signInOperation,
+  refreshUserOperation,
+  updateUserDataOperation,
+};

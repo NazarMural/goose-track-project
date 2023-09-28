@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
+import { signUpOperation } from './operations';
+import { handleRegisterFulfilled } from 'utils/reduxActionHandlers/authActionHandlers/registerActionHandlers';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
@@ -25,7 +27,8 @@ const authPersistConfig = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: build => build.addCase('', (state, { payload }) => {}),
+  extraReducers: build =>
+    build.addCase(signUpOperation.fulfilled, handleRegisterFulfilled),
 });
 
 const authReducer = authSlice.reducer;
