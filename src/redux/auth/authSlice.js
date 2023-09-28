@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import { signUpOperation } from './operations';
-import { handleRegisterFulfilled } from 'utils/reduxActionHandlers/authActionHandlers/registerActionHandlers';
+import {
+  handleRegisterFulfilled,
+  handleRegisterRejected,
+} from 'utils/reduxActionHandlers/authActionHandlers/registerActionHandlers';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
@@ -16,6 +19,7 @@ const initialState = {
   },
   token: null,
   isLoggedIn: false,
+  isRefreshingUser: false
 };
 
 const authPersistConfig = {
@@ -28,7 +32,9 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: build =>
-    build.addCase(signUpOperation.fulfilled, handleRegisterFulfilled),
+    build
+      .addCase(signUpOperation.fulfilled, handleRegisterFulfilled)
+      .addCase(signUpOperation.rejected, handleRegisterRejected),
 });
 
 const authReducer = authSlice.reducer;

@@ -1,3 +1,3 @@
-export const handleRegisterRejected = (state, { payload }) => {
-  
+export const handleRegisterRejected = (_, { payload }) => {
+  console.log(`Error with code: ${payload.status}. ${payload.message}`);
 };
