@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { handleErrorAsyncOperation } from 'utils/handleErrorAsyncOperation';
+import { handleErrorAsyncOperation } from 'utils';
 
 axios.defaults.baseURL = 'https://goose-track-project-backend.onrender.com';
 
@@ -15,9 +15,10 @@ const clearAuthHeader = () => {
 const signUpOperation = createAsyncThunk(
   'auth/signup',
   async (credentials, thunkAPI) => {
-    return handleErrorAsyncOperation(async () => {
-      const { data } = axios.post('/auth/register', credentials);
-      setAuthHeader(data.token);
+    return await handleErrorAsyncOperation(async () => {
+      const { data } = await axios.post('/auth/register', credentials);
+      // setAuthHeader(data.token);
+      console.log(data);
       return data;
     }, thunkAPI);
   }
@@ -26,8 +27,8 @@ const signUpOperation = createAsyncThunk(
 const signInOperation = createAsyncThunk(
   'auth/signin',
   async (credentials, thunkAPI) => {
-    return handleErrorAsyncOperation(async () => {
-      const { data } = axios.post('/auth/login', credentials);
+    return await handleErrorAsyncOperation(async () => {
+      const { data } = await axios.post('/auth/login', credentials);
       setAuthHeader(data.token);
       return data;
     }, thunkAPI);

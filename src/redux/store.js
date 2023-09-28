@@ -8,6 +8,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { persistAuthReducer } from './auth/authSlice';
 
 const middleware = getDefaultMiddleware =>
   getDefaultMiddleware({
@@ -17,7 +18,9 @@ const middleware = getDefaultMiddleware =>
   });
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    auth: persistAuthReducer,
+  },
   middleware,
 });
 
