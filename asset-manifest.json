@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/goose-track-project/static/css/main.6fdc904f.css",
+    "main.css": "/goose-track-project/static/css/main.f6f0211f.css",
     "main.js": "/goose-track-project/static/js/main.07d3183d.js",
     "static/media/inter-v13-latin-600.ttf": "/goose-track-project/static/media/inter-v13-latin-600.384b75b993dde1c303d2.ttf",
     "static/media/inter-v13-latin-700.ttf": "/goose-track-project/static/media/inter-v13-latin-700.bf36ea94c87c881cde43.ttf",
@@ -11,11 +11,11 @@
     "static/media/inter-v13-latin-500.woff2": "/goose-track-project/static/media/inter-v13-latin-500.6629df60b0706dec8113.woff2",
     "static/media/inter-v13-latin-regular.woff2": "/goose-track-project/static/media/inter-v13-latin-regular.f1535355a7df553be385.woff2",
     "index.html": "/goose-track-project/index.html",
-    "main.6fdc904f.css.map": "/goose-track-project/static/css/main.6fdc904f.css.map",
+    "main.f6f0211f.css.map": "/goose-track-project/static/css/main.f6f0211f.css.map",
     "main.07d3183d.js.map": "/goose-track-project/static/js/main.07d3183d.js.map"
   },
   "entrypoints": [
-    "static/css/main.6fdc904f.css",
+    "static/css/main.f6f0211f.css",
     "static/js/main.07d3183d.js"
   ]
 }
