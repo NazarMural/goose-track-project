@@ -4,14 +4,13 @@ import storage from 'redux-persist/lib/storage';
 
 const initialState = {
   user: {
-    id: null,
+    _id: null,
     name: null,
     email: null,
     userAvatar: null,
     phone: null,
     skype: null,
     birthday: null,
-    role: null, // ?
   },
   token: null,
   isLoggedIn: false,
