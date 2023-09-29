@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { NavTitle, NavList } from './UserNav.styled';
 
 export const UserNavigation = () => {
@@ -6,9 +7,9 @@ export const UserNavigation = () => {
       <NavTitle>User panel</NavTitle>
       <nav>
         <NavList>
-          <li>My account</li>
-          <li>Calendar</li>
-          <li>Statistics</li>
+          <li><NavLink to="account">Account</NavLink></li>
+          <li><NavLink to="calendar">Calendar</NavLink></li>
+          <li><NavLink to="statistics">Statistics</NavLink></li>
         </NavList>
       </nav>
     </>

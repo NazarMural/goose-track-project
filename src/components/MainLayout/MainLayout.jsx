@@ -6,20 +6,22 @@
 
 import { Header } from 'components/Header/Header';
 import { SideBar } from 'components/SideBar/SideBar';
+import { Outlet } from 'react-router-dom';
 
-export const Layout = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
     <>
-      <Header /> 
+      <Header />
       <main>
         <SideBar></SideBar>
         {children}
-      </main>
-      <footer />
+        <Outlet/>
+      </main>      
     </>
   );
 };
 
+export default MainLayout;
 // export const Layout = ({ children }) => {
 //   const dispatch = useDispatch();
 //   const handleLogOut = () => {

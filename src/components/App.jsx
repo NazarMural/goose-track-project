@@ -1,8 +1,8 @@
-import { Layout } from './Layout/Layout';
+import MainLayout from './MainLayout/MainLayout';
 export const App = () => {
   return (
     <>
-      <Layout></Layout>
+      <MainLayout></MainLayout>
       React homework template
     </>
   );
