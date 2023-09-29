@@ -1,31 +1,49 @@
 import moment from 'moment';
 import { CalendarGrid, Cell, Day, WrapperDay } from './CalendarTable.styled';
+// import { useState } from 'react';
 
-// console.log(moment());
-window.moment = moment;
+const setDay = day => {
+  moment.updateLocale('en', { week: { dow: 1 } });
+  let currentDay;
+  if (!day) {
+    currentDay = moment();
+  } else {
+    currentDay = moment(day);
+  }
+  const startMonth = currentDay.clone().startOf('month'); // початок поточного місяця
+  const endMonth = currentDay.clone().endOf('month'); // кінець поточного місяця
 
-moment.updateLocale('en', { week: { dow: 1 } });
-const startDay = moment().startOf('month').startOf('week');
-const endDay = moment().endOf('month').endOf('week');
-const startMonth = moment().startOf('month');
-const endMonth = moment().endOf('month');
-console.log(startMonth);
-console.log(endMonth);
-const dayDifference = endDay.diff(startDay, 'days') + 1;
-console.log(dayDifference);
-const weeks = dayDifference / 7;
-console.log(weeks);
+  const startDay = startMonth.clone().startOf('week'); // перший день тижня, в якому починається поточний місяць
+  const endDay = endMonth.clone().endOf('week'); // останній день тижня, в якому закінчується поточний місяць
 
-// console.log(monthStart.format('YYYY-MM-DD'));
-// console.log(monthEnd.format('YYYY-MM-DD'));
+  const dayDifference = endDay.diff(startDay, 'days') + 1; // кількість днів, що відображаються на календарі (ячейки)
+  const weeks = dayDifference / 7; //кількість тижнів в місяці (рядки)
+
+  const startCalendar = startDay.clone().subtract(1, 'day');
+  const daysArray = [...Array(dayDifference)].map(() =>
+    startCalendar.add(1, 'day').clone()
+  );
+
+  const dates = {
+    startMonth,
+    endMonth,
+    startDay,
+    endDay,
+    dayDifference,
+    weeks,
+    daysArray,
+  };
+  return dates;
+};
 
 export const CalendarTable = () => {
-  const day = startDay.clone().subtract(1, 'day');
-  const daysArray = [...Array(dayDifference)].map(() =>
-    day.add(1, 'day').clone()
-  );
+  //   const [date, setDate] = useState(Date.now);
+  const { startMonth, endMonth, weeks, daysArray } = setDay();
+  //   const dateData = setDay(date);
+  //   console.log(dateData);
+
   const isCurrentDay = day => moment().isSame(day, 'day');
-  console.log(daysArray);
+
   return (
     <CalendarGrid rows={weeks}>
       {daysArray.map((dayItem, idx) => (
