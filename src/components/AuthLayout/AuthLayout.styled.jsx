@@ -2,9 +2,6 @@ import styled from '@emotion/styled';
 import { mq } from 'components/AuthForm/AuthForm.styled';
 import { Link } from 'react-router-dom';
 
-const backgroungImageUrl =
-  '/goose-track-project/images/registerPage_loginPage/';
-
 export const Layout = styled.div`
   height: 100%;
   width: 100%;
@@ -15,7 +12,7 @@ export const Layout = styled.div`
     &::after {
       content: '';
 
-      background-image: url(${backgroungImageUrl}${({ img }) => img});
+      background-image: url(${({ img }) => img});
       background-repeat: no-repeat;
       position: absolute;
       bottom: 0;
