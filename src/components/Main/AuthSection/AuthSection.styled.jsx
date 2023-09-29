@@ -33,7 +33,7 @@ export const AuthSectionContent = styled.div`
 //   /* Звичайне зображення */
 //   width: 100%;
 //   height: 100%;
-//   // srcset: url('../../../images/mainPage/desktop_GooseMainPage.png 1x');
+//   // srcset: url('../../../assets/images/mainPage/desktop_GooseMainPage.png 1x');
 // `;
 
 export const AuthSectionTitle = styled.h1`

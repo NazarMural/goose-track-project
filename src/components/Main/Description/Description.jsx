@@ -13,26 +13,26 @@ import {
   DescriptionInfo,
 } from './Description.styled';
 
-import CalendarMob from "../../../images/mainPage/mobile_calendar.png";
-import CalendarMob2x from '../../../images/mainPage/mobile_calendar@2x.png';
-import CalendarTab from '../../../images/mainPage/tablet_calendar.png';
-import CalendarTab2x from '../../../images/mainPage/tablet_calendar@2x.png';
-import CalendarDt from '../../../images/mainPage/desktop_calendar@2x.png';
-import CalendarDt2x from '../../../images/mainPage/desktop_calendar@2x.png';
+import CalendarMob from '../../../assets/images/mainPage/mobile_calendar.png';
+import CalendarMob2x from '../../../assets/images/mainPage/mobile_calendar@2x.png';
+import CalendarTab from '../../../assets/images/mainPage/tablet_calendar.png';
+import CalendarTab2x from '../../../assets/images/mainPage/tablet_calendar@2x.png';
+import CalendarDt from '../../../assets/images/mainPage/desktop_calendar@2x.png';
+import CalendarDt2x from '../../../assets/images/mainPage/desktop_calendar@2x.png';
 
-import SideBarMob from '../../../images/mainPage/mobile_sidebar.png';
-import SideBarMob2x from '../../../images/mainPage/mobile_sidebar@2x.png';
-import SideBarTab from '../../../images/mainPage/tablet_sidebar.png';
-import SideBarTab2x from '../../../images/mainPage/tablet_sidebar@2x.png';
-import SideBarDt from '../../../images/mainPage/desktop_sidebar.png';
-import SideBarDt2x from '../../../images/mainPage/desktop_sadebar@2x.png';
+import SideBarMob from '../../../assets/images/mainPage/mobile_sidebar.png';
+import SideBarMob2x from '../../../assets/images/mainPage/mobile_sidebar@2x.png';
+import SideBarTab from '../../../assets/images/mainPage/tablet_sidebar.png';
+import SideBarTab2x from '../../../assets/images/mainPage/tablet_sidebar@2x.png';
+import SideBarDt from '../../../assets/images/mainPage/desktop_sidebar.png';
+import SideBarDt2x from '../../../assets/images/mainPage/desktop_sadebar@2x.png';
 
-import TasksMob from '../../../images/mainPage/mobile_task_all.png';
-import TasksMob2x from '../../../images/mainPage/mobile_task_all@2x.png';
-import TasksTab from '../../../images/mainPage/tablet_task_all.png';
-import TasksTab2x from '../../../images/mainPage/tablet_task_all@2x.png';
-import TasksDt from '../../../images/mainPage/desktop_tasks_all.png';
-import TasksDt2x from '../../../images/mainPage/desktop_task_all@2x.png';
+import TasksMob from '../../../assets/images/mainPage/mobile_task_all.png';
+import TasksMob2x from '../../../assets/images/mainPage/mobile_task_all@2x.png';
+import TasksTab from '../../../assets/images/mainPage/tablet_task_all.png';
+import TasksTab2x from '../../../assets/images/mainPage/tablet_task_all@2x.png';
+import TasksDt from '../../../assets/images/mainPage/desktop_tasks_all.png';
+import TasksDt2x from '../../../assets/images/mainPage/desktop_task_all@2x.png';
 
 
 

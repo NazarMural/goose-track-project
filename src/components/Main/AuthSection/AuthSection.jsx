@@ -1,7 +1,7 @@
 import React from 'react';
 import MovingImage from './MovingImage';
 
-import sprite from '../../../images/icons/icons.svg';
+import sprite from '../../../assets/images/icons/icons.svg';
 
 import {
   AuthSectionContainer,
@@ -16,8 +16,8 @@ import {
   NavLinkButton,
 } from './AuthSection.styled';
 
-import desktopGooseMainPage from '../../../images//mainPage/desktop_GooseMainPage.png';
-import desktopGooseMainPage2x from '../../../images/mainPage/desktop_GooseMainPage@2x.png';
+import desktopGooseMainPage from '../../../assets/images/mainPage/desktop_GooseMainPage.png';
+import desktopGooseMainPage2x from '../../../assets/images/mainPage/desktop_GooseMainPage@2x.png';
 
 const AuthSection = () => {
   const isMobile = window.innerWidth <= 768;
