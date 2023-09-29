@@ -1,12 +1,8 @@
 import React from 'react';
+import { MainLayoutContainer } from './MainLayout.styled';
 
 const MainLayout = ({ children }) => {
-    return (
-        <div>
-            {children}
-        </div>
-    );
+  return <MainLayoutContainer>{children}</MainLayoutContainer>;
 };
 
 export default MainLayout;
-

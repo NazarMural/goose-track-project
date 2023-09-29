@@ -1,11 +1,19 @@
 import React from 'react';
-import sprite from '../../../images/icons/icons.svg';
+import { Link } from 'react-router-dom';
+import sprite from '../../../images/icons/icons.svg'; 
+
+
+
+// import sprite from '../../../images/icons/icons.svg';
 
 import {
   AuthSectionContainer,
+  AuthSectionContent,
   AuthSectionImage,
   AuthSectionImageImg,
-  IconDone,
+  AuthSectionTitle,
+  AuthSectionTitleItalic,
+  IconLogIn,
 } from './AuthSection.styled';
 
 import desktopGooseMainPage from '../../../images/mainPage/desktop_GooseMainPage.png';
@@ -14,18 +22,27 @@ import desktopGooseMainPage2x from '../../../images/mainPage/desktop_GooseMainPa
 const AuthSection = () => {
   return (
     <AuthSectionContainer>
-      <AuthSectionImage>
-        <AuthSectionImageImg
-          src={desktopGooseMainPage}
-          srcSet={`${desktopGooseMainPage} 1x, ${desktopGooseMainPage2x} 2x`}
-          alt="Гусак з пропозицією організувати життя та керувати роботою в команді"
-        />
-      </AuthSectionImage>
-      <h1>GooseTrack</h1>
-
-      <IconDone>
-        <use xlinkHref={`${sprite}#icon-Done`} width={40} height={40} />
-      </IconDone>
+      <AuthSectionContent>
+        <AuthSectionImage>
+          <AuthSectionImageImg
+            src={desktopGooseMainPage}
+            srcSet={`${desktopGooseMainPage} 1x, ${desktopGooseMainPage2x} 2x`}
+            alt="Гусак з пропозицією організувати життя та керувати роботою в команді"
+          />
+        </AuthSectionImage>
+        <AuthSectionTitle>
+          G<AuthSectionTitleItalic>oo</AuthSectionTitleItalic>seTrack
+        </AuthSectionTitle>
+        <div>
+          <Link to="/login">
+            Log in
+            <IconLogIn>
+              <use xlinkHref={`${sprite}#icon-log-out`} width={40} height={40} />
+            </IconLogIn>
+          </Link>
+          <Link to="/register">Sign up</Link>
+        </div>
+      </AuthSectionContent>
     </AuthSectionContainer>
   );
 };
