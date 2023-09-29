@@ -1,7 +1,3 @@
-import LoginPage from 'pages/LoginPage';
-import RegisterPage from 'pages/RegisterPage';
-import { Route, Routes } from 'react-router-dom';
-
 export const App = () => {
   return (
     <div
@@ -14,10 +10,7 @@ export const App = () => {
         color: '#010101',
       }}
     >
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-      </Routes>
+      React homework template
     </div>
   );
 };
