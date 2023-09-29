@@ -1,10 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
-import { signUpOperation } from './operations';
+import { signUpOperation, signInOperation, logOutOperation } from './operations';
 import {
   handleRegisterFulfilled,
   handleRegisterRejected,
-} from 'utils/reduxActionHandlers/authActionHandlers/registerActionHandlers';
+  handleLoginFulfilled,
+  handleLogoutFulfilled,
+  handleLoginRejected,
+  handleLogoutRejected,
+} from 'utils/reduxActionHandlers/authActionHandlers';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
@@ -19,7 +23,7 @@ const initialState = {
   },
   token: null,
   isLoggedIn: false,
-  isRefreshingUser: false
+  isRefreshingUser: false,
 };
 
 const authPersistConfig = {
@@ -34,12 +38,13 @@ const authSlice = createSlice({
   extraReducers: build =>
     build
       .addCase(signUpOperation.fulfilled, handleRegisterFulfilled)
-      .addCase(signUpOperation.rejected, handleRegisterRejected),
+      .addCase(signUpOperation.rejected, handleRegisterRejected)
+      .addCase(signInOperation.fulfilled, handleLoginFulfilled)
+      .addCase(signInOperation.rejected, handleLoginRejected)
+      .addCase(logOutOperation.fulfilled, handleLogoutFulfilled)
+      .addCase(logOutOperation.rejected, handleLogoutRejected),
 });
 
 const authReducer = authSlice.reducer;
 
-export const persistAuthReducer = persistReducer(
-  authPersistConfig,
-  authReducer
-);
+export const persistAuthReducer = persistReducer(authPersistConfig, authReducer);
