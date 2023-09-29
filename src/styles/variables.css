@@ -3,6 +3,8 @@
 --secondary-text-color: #343434;
 --invert-text-color: #FFFFFF;
 --accent-color: #3E85F3;
+--main-page-title: #171820;
+  --main-page-text-color: #111111E5;
 
 --primary-bg-color: #FFFFFF;
 --page-bg-color: #F7F6F9;
@@ -28,6 +30,7 @@
 --sidebar-accent-color: #E3F3FF;
 
 /* review-styles */
+--review-text-color: #111111B2;
 --star-color: #CEC9C1;
 --star-color-active: #FFAC33;
 --review-btn-cancel-color:#343434;
