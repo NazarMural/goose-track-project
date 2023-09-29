@@ -16,7 +16,7 @@ import {
   IconLogIn,
 } from './AuthSection.styled';
 
-import desktopGooseMainPage from '../../../images/mainPage/desktop_GooseMainPage.png';
+import desktopGooseMainPage from '../../../images//mainPage/desktop_GooseMainPage.png';
 import desktopGooseMainPage2x from '../../../images/mainPage/desktop_GooseMainPage@2x.png';
 
 const AuthSection = () => {
@@ -37,7 +37,7 @@ const AuthSection = () => {
           <Link to="/login">
             Log in
             <IconLogIn>
-              <use xlinkHref={`${sprite}#icon-log-out`} width={40} height={40} />
+              <use xlinkHref={`${sprite}#icon-log-in`} width={18} height={18} />
             </IconLogIn>
           </Link>
           <Link to="/register">Sign up</Link>

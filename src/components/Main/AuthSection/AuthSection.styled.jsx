@@ -75,6 +75,6 @@ export const IconDone = styled.svg`
 export const IconLogIn = styled.svg`
   
   
-  height: 40px;
-  width: 40px;
+  height: 18px;
+  width: 18px;
 `;

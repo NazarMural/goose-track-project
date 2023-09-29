@@ -1,25 +1,16 @@
 import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-
 const MainPage = lazy(() => import('../pages/MainPage'));
 
-const App = () => {
+export const App = () => {
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 };
 
 
-export default App;
