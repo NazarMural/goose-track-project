@@ -28,7 +28,7 @@ const signInOperation = createAsyncThunk('auth/signin', async (credentials, thun
 });
 
 const logOutOperation = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  await handleErrorAsyncOperation(async () => {
+  return await handleErrorAsyncOperation(async () => {
     await axios.post('/auth/logout');
     clearAuthHeader();
   }, thunkAPI);
@@ -39,7 +39,7 @@ const refreshUserOperation = createAsyncThunk('auth/refresh', async (_, thunkAPI
   const persistedToken = state.auth.token;
 
   if (persistedToken === null) {
-    return thunkAPI.rejectWithValue('Будь ласка увійдіть або зареєструйтеся!');
+    return thunkAPI.rejectWithValue({ status: 401, message: 'Будь ласка увійдіть або зареєструйтеся!' });
   }
 
   return await handleErrorAsyncOperation(async () => {
@@ -51,7 +51,7 @@ const refreshUserOperation = createAsyncThunk('auth/refresh', async (_, thunkAPI
 
 const updateUserDataOperation = createAsyncThunk('auth/update', async (updateUserData, thunkAPI) => {
   const state = thunkAPI.getState();
-  const userId = state.auth.user.id;
+  const userId = state.auth.user._id;
 
   return await handleErrorAsyncOperation(async () => {
     const { data } = await axios.patch(`/users/edit/${userId}`, updateUserData);
