@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgoose_track_project=self.webpackChunkgoose_track_project||[]).push([[496],{9496:function(e,t,c){e.exports=c.p+"static/media/desktop_calendar.397d4a8862f13d10638e.png"}}]);

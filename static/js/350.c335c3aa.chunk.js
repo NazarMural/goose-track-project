@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgoose_track_project=self.webpackChunkgoose_track_project||[]).push([[350],{3350:function(e,t,a){e.exports=a.p+"static/media/tablet_task_all.d3b521a384e14a4b6121.png"}}]);
