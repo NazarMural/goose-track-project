@@ -33,10 +33,9 @@ const signInOperation = createAsyncThunk(
   }
 );
 
-const logOutOperation = createAsyncThunk(
-  'auth/logout',
-  async (_, thunkAPI) => {}
-);
+const logOutOperation = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  clearAuthHeader();
+});
 
 const refreshUserOperation = createAsyncThunk(
   'auth/refresh',
@@ -53,4 +52,5 @@ export {
   signInOperation,
   refreshUserOperation,
   updateUserDataOperation,
+  logOutOperation,
 };
