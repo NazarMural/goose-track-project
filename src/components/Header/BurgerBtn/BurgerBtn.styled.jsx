@@ -1,21 +1,19 @@
 import styled from '@emotion/styled';
 
-export const ThemeBtn = styled.button`
+export const BurgerButtonEl = styled.button`
   display: block;
   /* box-sizing: content-box; */
-  align-items: center;
   /* align-items: center; */
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  /* padding: 0px; */
   padding: 0px;
   border: none;
   background-color: inherit;
   cursor: pointer;
+
   svg {
-    display: block;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 `;
-
-// export const Toggle = styled.svg``;

@@ -1,3 +1,5 @@
+import { LogoutButtonEl } from './LogoutBtn.styled';
+
 export const LogoutBtn = () => {
-  return <button type="button">Logout</button>;
+  return <LogoutButtonEl type="button">Logout</LogoutButtonEl>;
 };
