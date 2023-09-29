@@ -1,8 +1,16 @@
 import React from 'react';
-import { MainLayoutContainer } from './MainLayout.styled';
+import { NavLink, Outlet } from 'react-router-dom';
 
-const MainLayout = ({ children }) => {
-  return <MainLayoutContainer>{children}</MainLayoutContainer>;
+const MainLayout = () => {
+  return (
+    <div>
+      MainLayout
+      <NavLink to="account">Account</NavLink>
+      <NavLink to="calendar">Calendar</NavLink>
+      <NavLink to="statistics">Statistics</NavLink>
+      <Outlet />
+    </div>
+  );
 };
 
 export default MainLayout;
