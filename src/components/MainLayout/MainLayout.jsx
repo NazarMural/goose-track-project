@@ -22,6 +22,7 @@ const MainLayout = ({ children }) => {
 };
 
 export default MainLayout;
+
 // export const Layout = ({ children }) => {
 //   const dispatch = useDispatch();
 //   const handleLogOut = () => {
@@ -105,3 +106,4 @@ export default MainLayout;
 // export const selectUser = state => state.auth.user;
 
 // export const selectIsRefreshing = state => state.auth.isRefreshing;
+
