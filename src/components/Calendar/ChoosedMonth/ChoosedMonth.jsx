@@ -1,12 +1,16 @@
 import { CalendarTable } from './CalendarTable/CalendarTable';
 import { MonthCalendarHead } from './MonthCalendarHead/MonthCalendarHead';
-import { CalendarWrapper } from './ChoosedMonth.styled';
+import { CalendarWrapper, Container } from './ChoosedMonth.styled';
 
-export const ChoosedMonth = () => {
+const ChoosedMonth = () => {
   return (
     <CalendarWrapper>
-      <MonthCalendarHead />
-      <CalendarTable />
+      <Container>
+        <MonthCalendarHead />
+        <CalendarTable />
+      </Container>
     </CalendarWrapper>
   );
 };
+
+export default ChoosedMonth;

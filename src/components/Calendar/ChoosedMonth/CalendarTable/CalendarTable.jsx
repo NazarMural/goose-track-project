@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { CalendarGrid, Cell, Day, WrapperDay } from './CalendarTable.styled';
+import { TaskList } from '../TaskList/TaskList';
 // import { useState } from 'react';
 
 const setDay = day => {
@@ -66,6 +67,7 @@ export const CalendarTable = () => {
               {dayItem.format('D')}
             </Day>
           </WrapperDay>
+          <TaskList date={dayItem} />
         </Cell>
       ))}
     </CalendarGrid>
