@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
-import { mq } from 'components/AuthForm/AuthForm.styled';
 import { Link } from 'react-router-dom';
+import { desktop, min, tablet } from 'styles/media';
 
 export const Layout = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
 
   background-color: var(--auth-bg-color);
 
-  ${mq[2]} {
+  ${min(desktop)} {
     &::after {
       content: '';
 
@@ -44,7 +44,7 @@ export const LinkStyled = styled(Link)`
   box-shadow: 0px 47px 355px 0px #00000012;
   margin-top: 18px;
 
-  ${mq[1]} {
+  ${min(tablet)} {
     font-size: 18px;
     line-height: 24px;
 
