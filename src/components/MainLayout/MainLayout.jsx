@@ -3,20 +3,26 @@
 // import { NavLink } from 'react-router-dom';
 // import { logOut } from 'redux/auth/operations';
 // import css from './Layout.module.css';
-
+import { useState } from 'react';
 import { Header } from 'components/Header/Header';
 import { SideBar } from 'components/SideBar/SideBar';
 import { Outlet } from 'react-router-dom';
 
 const MainLayout = ({ children }) => {
+  const [showSideBar, setShowSideBar] = useState(false);
+  console.log(showSideBar);
+  const addSideBar = () => setShowSideBar(true);
+  const removeSideBar = () => setShowSideBar(false);
+
   return (
     <>
-      <Header />
+      <Header addSideBar={addSideBar} />
       <main>
-        <SideBar></SideBar>
+        {showSideBar && <SideBar removeSideBar={removeSideBar}></SideBar>}
+        {/* <SideBar></SideBar> */}
         {children}
-        <Outlet/>
-      </main>      
+        <Outlet />
+      </main>
     </>
   );
 };
@@ -106,4 +112,3 @@ export default MainLayout;
 // export const selectUser = state => state.auth.user;
 
 // export const selectIsRefreshing = state => state.auth.isRefreshing;
-

@@ -1,8 +1,9 @@
-import sprite from '../../../images/icons/icons.svg';
+import sprite from '../../../assets/images/icons/icons.svg';
 import { BurgerButtonEl } from './BurgerBtn.styled';
-export const BurgerBtn = () => {
+export const BurgerBtn = ({ addSideBar }) => {
+
   return (
-    <BurgerButtonEl type="button">
+    <BurgerButtonEl type="button" onClick={addSideBar}>
       <svg>
         <use xlinkHref={`${sprite}#icon-burger`} />
       </svg>

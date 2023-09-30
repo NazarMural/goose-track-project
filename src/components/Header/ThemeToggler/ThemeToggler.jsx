@@ -1,4 +1,4 @@
-import sprite from '../../../images/icons/icons.svg';
+import sprite from '../../../assets/images/icons/icons.svg';
 import { ThemeBtn } from './ThemeToggle.styled';
 
 export const ThemeToggler = () => {

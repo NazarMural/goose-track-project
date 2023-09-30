@@ -3,10 +3,10 @@ import { FeedbackBtn } from './FeedbackBtn.jsx/FeedbackBtn';
 import { ThemeToggler } from './ThemeToggler/ThemeToggler';
 import { UserInfo } from './UserInfo/UserInfo';
 import { HeaderSection } from './Header.styled';
-export const Header = () => {
+export const Header = ({ addSideBar }) => {
   return (
     <HeaderSection>
-      <BurgerBtn />
+      <BurgerBtn addSideBar={addSideBar} />
       <FeedbackBtn />
       <ThemeToggler />
       <UserInfo />

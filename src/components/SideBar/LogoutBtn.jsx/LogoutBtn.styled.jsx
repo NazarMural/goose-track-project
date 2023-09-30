@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const LogoutButtonEl = styled.button`
-  width: 141px;
-  height: 56px;
+  width: 131px;
+  height: 46px;
   flex-shrink: 0;
   border-radius: 16px;
   border: none;
