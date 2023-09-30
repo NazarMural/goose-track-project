@@ -15,26 +15,9 @@ export const AuthSectionContent = styled.div`
   flex-direction: column;
   margin: auto;
   align-items: center;
+  width: 100%;
 `;
 
-// export const AuthSectionImage = styled.picture`
-//   width: 142px;
-//   height: 142px;
-//   margin-left: auto;
-//   margin-right: auto;
-
-//   ${min(tablet)} {
-//     width: 150px;
-//     height: 149px;
-//   }
-// `;
-
-// export const AuthSectionImageImg = styled.img`
-//   /* Звичайне зображення */
-//   width: 100%;
-//   height: 100%;
-//   // srcset: url('../../../assets/images/mainPage/desktop_GooseMainPage.png 1x');
-// `;
 
 export const AuthSectionTitle = styled.h1`
   margin-top: 32px;
