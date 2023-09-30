@@ -3,12 +3,17 @@ import { MonthCalendarHead } from './MonthCalendarHead/MonthCalendarHead';
 import { CalendarWrapper, Container } from './ChoosedMonth.styled';
 
 const ChoosedMonth = () => {
+
+  const handleThemeClick = () => {
+    document.documentElement.classList.toggle('dark');
+  };
   return (
     <CalendarWrapper>
-      <Container>
+      {/* <Container> */}
+        <button onClick={handleThemeClick}>Change theme</button>
         <MonthCalendarHead />
         <CalendarTable />
-      </Container>
+      {/* </Container> */}
     </CalendarWrapper>
   );
 };

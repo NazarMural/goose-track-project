@@ -6,8 +6,7 @@ import sprite from '../../../assets/images/icons/icons.svg';
 import {
   AuthSectionContainer,
   AuthSectionContent,
-  // AuthSectionImage,
-  // AuthSectionImageImg,
+
   AuthSectionTitle,
   AuthSectionTitleItalic,
   IconLogIn,
@@ -25,13 +24,6 @@ const AuthSection = () => {
   return (
     <AuthSectionContainer>
       <AuthSectionContent>
-        {/* <AuthSectionImage>
-          <AuthSectionImageImg
-            src={desktopGooseMainPage}
-            srcSet={`${desktopGooseMainPage} 1x, ${desktopGooseMainPage2x} 2x`}
-            alt="Goose with a proposal to organize life and manage work in a team"
-          />
-        </AuthSectionImage> */}
         <MovingImage
           src={desktopGooseMainPage}
           srcSet={`${desktopGooseMainPage} 1x, ${desktopGooseMainPage2x} 2x`}
@@ -60,14 +52,7 @@ const AuthSection = () => {
         </AuthSectionLinks>
       </AuthSectionContent>
       <div>
-        {/* <MovingImage
-          src={desktopGooseMainPage}
-          srcSet={`${desktopGooseMainPage} 1x, ${desktopGooseMainPage2x} 2x`}
-          alt="Goose with a proposal to organize life and manage work in a team"
-          
-          width={imageSize} 
-          height={imageSize} 
-        /> */}
+       
       </div>
     </AuthSectionContainer>
   );

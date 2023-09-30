@@ -13,10 +13,12 @@ export const TaskList = ({ date }) => {
       {tasks
         .filter(task => !moment(task.date).diff(moment(date), 'day'))
         .map((task, idx) => (
-          <TaskItem key={idx} bg={`var(--calend-${task.priority}-bg-color)`}>
-            <TaskLink color={`var(--calend-${task.priority}-color)`}>
-              {task.title}
-            </TaskLink>
+          <TaskItem
+            key={idx}
+            bg={`var(--calend-${task.priority}-bg-color)`}
+            color={`var(--calend-${task.priority}-color)`}
+          >
+            <TaskLink>{task.title}</TaskLink>
           </TaskItem>
         ))}
     </List>
