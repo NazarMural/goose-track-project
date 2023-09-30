@@ -1,13 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import  AuthSection  from '../components/Main/AuthSection/AuthSection'; 
+import Description from '../components/Main/Description/Description'; 
+// import ReviewsSlider from '.components/ReviewsSlider'; 
+
 
 const MainPage = () => {
   return (
-    <div>
-      MainPage
-      <NavLink to="/register">Register</NavLink>
-      <NavLink to="/login">Login</NavLink>
-    </div>
+    <>
+      <AuthSection />
+      <Description />
+      {/*  <ReviewsSlider /> */}
+    </>
   );
 };
 

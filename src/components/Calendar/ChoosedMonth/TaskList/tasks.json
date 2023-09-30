@@ -1,0 +1,92 @@
+[
+  {
+    "title": "read",
+    "start": "09:00",
+    "end": "09:30",
+    "priority": "low",
+    "date": "2023-09-29",
+    "category": "to-do",
+    "owner": "test@email.com"
+  },
+  {
+    "title": "update",
+    "start": "09:00",
+    "end": "09:30",
+    "priority": "medium",
+    "date": "2023-09-29",
+    "category": "to-do",
+    "owner": "test@email.com"
+  },
+  {
+    "title": "create",
+    "start": "09:00",
+    "end": "09:30",
+    "priority": "high",
+    "date": "2023-09-29",
+    "category": "to-do",
+    "owner": "test@email.com"
+  },
+  {
+    "title": "read",
+    "start": "09:00",
+    "end": "09:30",
+    "priority": "low",
+    "date": "2023-09-29",
+    "category": "to-do",
+    "owner": "test@email.com"
+  },
+  {
+    "title": "learn",
+    "start": "09:00",
+    "end": "09:30",
+    "priority": "high",
+    "date": "2023-09-25",
+    "category": "in-progress",
+    "owner": "test@email.com"
+  },
+  {
+    "title": "to-do1",
+    "start": "09:00",
+    "end": "09:30",
+    "priority": "low",
+    "date": "2023-09-30",
+    "category": "in-progress",
+    "owner": "test@email.com"
+  },
+  {
+    "title": "to-do1",
+    "start": "09:00",
+    "end": "09:30",
+    "priority": "high",
+    "date": "2023-09-10",
+    "category": "done",
+    "owner": "test@email.com"
+  },
+  {
+    "title": "learn",
+    "start": "09:00",
+    "end": "09:30",
+    "priority": "high",
+    "date": "2023-09-14",
+    "category": "in-progress",
+    "owner": "test@email.com"
+  },
+  {
+    "title": "to-do1",
+    "start": "09:00",
+    "end": "09:30",
+    "priority": "low",
+    "date": "2023-09-14",
+    "category": "in-progress",
+    "owner": "test@email.com"
+  },
+  {
+    "title": "to-do1",
+    "start": "09:00",
+    "end": "09:30",
+    "priority": "high",
+    "date": "2023-09-14",
+    "category": "done",
+    "owner": "test@email.com"
+  }
+]
