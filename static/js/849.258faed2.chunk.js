@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkgoose_track_project=self.webpackChunkgoose_track_project||[]).push([[849],{3849:function(e,s,t){e.exports=t.p+"static/media/desktop_sadebar@2x.b4b29a3d2c2abff69806.png"}}]);

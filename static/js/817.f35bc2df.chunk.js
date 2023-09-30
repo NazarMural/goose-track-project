@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkgoose_track_project=self.webpackChunkgoose_track_project||[]).push([[817],{817:function(e,o,s){e.exports=s.p+"static/media/desktop_GooseMainPage@2x.a7796f690b3ba79983bd.png"}}]);

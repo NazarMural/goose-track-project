@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkgoose_track_project=self.webpackChunkgoose_track_project||[]).push([[809],{6913:function(e,t,a){e.exports=a.p+"static/media/mobile_task_all.c4300655e8af334a9313.png"}}]);
