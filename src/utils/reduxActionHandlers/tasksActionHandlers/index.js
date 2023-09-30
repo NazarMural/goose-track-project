@@ -1,7 +1,20 @@
-import { handleAddTaskFulfilled, handleAddTaskRejected } from "./addTask";
-import { handleDeleteTaskFulfilled, handleDeleteTaskRejected } from "./deleteTask";
-import { handleFetchTasksFulfilled, handleFetchTasksRejected } from "./fetchTasks";
-import { handleUpdateTaskFulfilled, handleUpdateTaskRejected } from "./updateTask";
+import { handleAddTaskFulfilled, handleAddTaskRejected, handleAddTaskPending } from './addTaskActionHandlers';
+import {
+  handleDeleteTaskFulfilled,
+  handleDeleteTaskRejected,
+  handleDeleteTaskPending,
+} from './deleteTaskActionHandlers';
+import {
+  handleFetchTasksFulfilled,
+  handleFetchTasksRejected,
+  handleFetchTasksPending,
+} from './fetchTasksActionHandlers';
+import {
+  handleUpdateTaskFulfilled,
+  handleUpdateTaskRejected,
+  handleUpdateTaskPending,
+} from './updateTaskActionHandlers';
+import { handleLogoutInTasksFulfilled } from './logoutActionHandlersInTasks/handleLogoutInTasksFulfilled';
 
 export {
   handleAddTaskFulfilled,
@@ -12,4 +25,9 @@ export {
   handleFetchTasksRejected,
   handleUpdateTaskFulfilled,
   handleUpdateTaskRejected,
+  handleAddTaskPending,
+  handleDeleteTaskPending,
+  handleFetchTasksPending,
+  handleUpdateTaskPending,
+  handleLogoutInTasksFulfilled,
 };
