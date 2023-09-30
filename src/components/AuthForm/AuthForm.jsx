@@ -1,8 +1,9 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button,
   ButtonIcon,
+  ButtonLoader,
   ButtonText,
   ContainerForm,
   ErrorMessageText,
@@ -15,9 +16,12 @@ import {
   Title,
 } from './AuthForm.styled';
 import { object, string } from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signInOperation, signUpOperation } from 'redux/auth/operations';
 import sprite from '../../assets/images/icons/icons.svg';
+import { selectIsAuthLoading, selectIsLoggedIn } from 'redux/auth/selectors';
+import { useNavigate } from 'react-router';
+import { Report } from 'notiflix';
 
 const SignUpSchema = object().shape({
   name: string().min(2).max(50).required(),
@@ -34,6 +38,14 @@ const LoginUpSchema = object().shape({
 });
 
 const AuthForm = ({ login }) => {
+  const isLoading = useSelector(selectIsAuthLoading);
+  const isLogIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isLogIn && navigate('/calendar/month/');
+  }, [isLogIn, navigate]);
+
   const dispatch = useDispatch();
   const {
     values,
@@ -53,23 +65,54 @@ const AuthForm = ({ login }) => {
   });
 
   async function onSubmit(data) {
-    try {
-      const { payload } = await dispatch(signUpOperation(data));
-      console.log(payload);
+    if (!login) {
+      const regRes = await dispatch(signUpOperation(data));
 
-      try {
-        const res = dispatch(
-          await signInOperation({ email: data.email, password: data.password })
-        );
-        console.log(res);
-      } catch (error) {
-        console.log(error);
+      if (regRes.payload.status) {
+        switch (regRes.payload.status) {
+          case 409:
+            Report.warning('Warning', 'This email in use!!!', 'Okay', {
+              backOverlayClickToClose: true,
+            });
+            break;
+
+          default:
+            Report.failure('Error', 'Server ERROR, please try again.', 'Okay', {
+              backOverlayClickToClose: true,
+            });
+            break;
+        }
+
         return;
       }
-    } catch (error) {
-      console.log(error);
+    }
+
+    const logInRes = await dispatch(
+      signInOperation({ email: data.email, password: data.password })
+    );
+
+    if (logInRes.payload.status) {
+      switch (logInRes.payload.status) {
+        case 401:
+          Report.warning(
+            'Warning',
+            'Password on email is not correct!',
+            'Okay',
+            {
+              backOverlayClickToClose: true,
+            }
+          );
+          break;
+
+        default:
+          Report.failure('Error', 'Server ERROR, please try again.', 'Okay', {
+            backOverlayClickToClose: true,
+          });
+          break;
+      }
       return;
     }
+
     resetForm();
   }
 
@@ -93,7 +136,7 @@ const AuthForm = ({ login }) => {
                 touched={touched.name}
               />
               {touched.name && (
-                <IconStatus>
+                <IconStatus error={errors.name}>
                   <use
                     xlinkHref={`${sprite}${
                       errors.name ? '#icon-error' : '#icon-done'
@@ -181,6 +224,7 @@ const AuthForm = ({ login }) => {
         </Lable>
 
         <Button type="submit">
+          {isLoading && <ButtonLoader />}
           <ButtonText>{login ? 'Log In' : 'Sign Up'}</ButtonText>
           <ButtonIcon>
             <use xlinkHref={`${sprite}${'#icon-log-in'}`} />
