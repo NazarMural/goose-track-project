@@ -10,8 +10,9 @@ export const DescriptionContainer = styled.div`
 export const DescriptionContent = styled.ul`
   display: flex;
   flex-direction: column;
-  padding: 64px 20px;
+  padding: 64px 20px 0;
   margin-top: 0;
+  margin-bottom: 0;
   background-color: var(--primary-bg-color);
 
   & > li:nth-of-type(2) > :first-of-type {
