@@ -18,7 +18,7 @@ import {
   handleRefreshUserRejected,
   handleUpdateUserFulfilled,
   handleUpdateUserRejected,
-  handleAuthActionPending
+  handleAuthActionPending,
 } from 'utils/reduxActionHandlers/authActionHandlers';
 import storage from 'redux-persist/lib/storage';
 
@@ -36,6 +36,7 @@ const initialState = {
   isLoggedIn: false,
   isRefreshingUser: false,
   isAuthLoading: false,
+  error: null,
 };
 
 const authPersistConfig = {
