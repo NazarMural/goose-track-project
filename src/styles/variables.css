@@ -3,6 +3,8 @@
 --secondary-text-color: #343434;
 --invert-text-color: #FFFFFF;
 --accent-color: #3E85F3;
+--main-page-title: #171820;
+  --main-page-text-color: #111111E5;
 
 --primary-bg-color: #FFFFFF;
 --page-bg-color: #F7F6F9;
@@ -28,6 +30,7 @@
 --sidebar-accent-color: #E3F3FF;
 
 /* review-styles */
+--review-text-color: #111111B2;
 --star-color: #CEC9C1;
 --star-color-active: #FFAC33;
 --review-btn-cancel-color:#343434;
@@ -46,6 +49,10 @@
 --calend-high-bg-color: #FFD2DD;
 --calend-medium-bg-color: #FCF0D4;
 --calend-low-bg-color: #CEEEFD;
+--calendar-grid-border: #dce3e580;
+  --cell-background: #ffffff;
+  --date-color: #343434;
+  --date-color-accent: #ffffff;
 
 /* day-month-switch-styles */
 --switch-type-color: #3E85F3;
@@ -81,6 +88,10 @@ html.dark {
 --review-btn-cancel-bg: #21222C;
 --icon-edit-bg: #353647;
 
+--cell-background: #22232D;
+  --calendar-grid-border: #FFFFFF26;
+  --date-color: #ffffff;
+  --date-color-accent: #22232D;
 --switch-type-color-active: #FFFFFF;
 --switch-type-bg: #21222C;
 --switch-type-bg-active: #3E85F3;
