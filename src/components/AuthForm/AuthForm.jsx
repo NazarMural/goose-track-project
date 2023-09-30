@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   ButtonIcon,
@@ -10,6 +10,7 @@ import {
   FieldContainer,
   FieldStyled,
   FormStyled,
+  IconShowHidePassword,
   IconStatus,
   Lable,
   LableText,
@@ -21,23 +22,35 @@ import { signInOperation, signUpOperation } from 'redux/auth/operations';
 import sprite from '../../assets/images/icons/icons.svg';
 import { selectIsAuthLoading, selectIsLoggedIn } from 'redux/auth/selectors';
 import { useNavigate } from 'react-router';
-import { Report } from 'notiflix';
+import { Notify } from 'notiflix';
 
 const SignUpSchema = object().shape({
-  name: string().min(2).max(50).required(),
+  name: string()
+    .min(2, 'This name must contain at least 2 characters')
+    .max(50, 'This name must contain a maximum of 50 characters')
+    .required('This field is required'),
 
-  email: string().email().required(),
+  email: string()
+    .email('This email is not correct')
+    .required('This field is required'),
 
-  password: string().required().min(6),
+  password: string()
+    .min(7, 'This password must contain at least 7 characters')
+    .required('This field is required'),
 });
 
 const LoginUpSchema = object().shape({
-  email: string().email().required(),
+  email: string()
+    .email('This email is not correct')
+    .required('This field is required'),
 
-  password: string().min(6).required(),
+  password: string()
+    .min(7, 'This password must contain at least 7 characters')
+    .required('This field is required'),
 });
 
 const AuthForm = ({ login }) => {
+  const [isShowPassword, setIsShowPassword] = useState(false);
   const isLoading = useSelector(selectIsAuthLoading);
   const isLogIn = useSelector(selectIsLoggedIn);
   const navigate = useNavigate();
@@ -71,15 +84,11 @@ const AuthForm = ({ login }) => {
       if (regRes.payload.status) {
         switch (regRes.payload.status) {
           case 409:
-            Report.warning('Warning', 'This email in use!!!', 'Okay', {
-              backOverlayClickToClose: true,
-            });
+            Notify.warning('This email in use!!!');
             break;
 
           default:
-            Report.failure('Error', 'Server ERROR, please try again.', 'Okay', {
-              backOverlayClickToClose: true,
-            });
+            Notify.failure('Server ERROR, please try again.');
             break;
         }
 
@@ -94,20 +103,12 @@ const AuthForm = ({ login }) => {
     if (logInRes.payload.status) {
       switch (logInRes.payload.status) {
         case 401:
-          Report.warning(
-            'Warning',
-            'Password on email is not correct!',
-            'Okay',
-            {
-              backOverlayClickToClose: true,
-            }
-          );
+          Notify.warning('Email or password is wrong!');
+
           break;
 
         default:
-          Report.failure('Error', 'Server ERROR, please try again.', 'Okay', {
-            backOverlayClickToClose: true,
-          });
+          Notify.failure('Server ERROR, please try again.');
           break;
       }
       return;
@@ -115,6 +116,10 @@ const AuthForm = ({ login }) => {
 
     resetForm();
   }
+
+  const togglePassword = () => {
+    isShowPassword ? setIsShowPassword(false) : setIsShowPassword(true);
+  };
 
   return (
     <ContainerForm>
@@ -148,7 +153,7 @@ const AuthForm = ({ login }) => {
 
             {touched.name &&
               (errors.name ? (
-                <ErrorMessageText error>This is an ERROR name</ErrorMessageText>
+                <ErrorMessageText error>{errors.name}</ErrorMessageText>
               ) : (
                 <ErrorMessageText>This is an CORRECT name</ErrorMessageText>
               ))}
@@ -171,7 +176,7 @@ const AuthForm = ({ login }) => {
               touched={touched.email}
             />
             {touched.email && (
-              <IconStatus>
+              <IconStatus error={errors.email}>
                 <use
                   xlinkHref={`${sprite}${
                     errors.email ? '#icon-error' : '#icon-done'
@@ -183,7 +188,7 @@ const AuthForm = ({ login }) => {
 
           {touched.email &&
             (errors.email ? (
-              <ErrorMessageText error>This is an ERROR email</ErrorMessageText>
+              <ErrorMessageText error>{errors.email}</ErrorMessageText>
             ) : (
               <ErrorMessageText>This is an CORRECT email</ErrorMessageText>
             ))}
@@ -196,14 +201,21 @@ const AuthForm = ({ login }) => {
               value={values.password}
               onBlur={handleBlur}
               onChange={handleChange}
-              type="password"
+              type={isShowPassword ? 'text' : 'password'}
               name="password"
               placeholder="Enter password"
               errors={errors.password}
               touched={touched.password}
             />
+            <IconShowHidePassword onClick={togglePassword}>
+              <use
+                xlinkHref={`${sprite}${
+                  isShowPassword ? '#icon-hide-password' : '#icon-show-password'
+                }`}
+              />
+            </IconShowHidePassword>
             {touched.password && (
-              <IconStatus>
+              <IconStatus error={errors.password}>
                 <use
                   xlinkHref={`${sprite}${
                     errors.password ? '#icon-error' : '#icon-done'
@@ -215,15 +227,13 @@ const AuthForm = ({ login }) => {
 
           {touched.password &&
             (errors.password ? (
-              <ErrorMessageText error>
-                This is an ERROR password
-              </ErrorMessageText>
+              <ErrorMessageText error>{errors.password}</ErrorMessageText>
             ) : (
               <ErrorMessageText>This is an CORRECT password</ErrorMessageText>
             ))}
         </Lable>
 
-        <Button type="submit">
+        <Button type="submit" disabled={isLoading}>
           {isLoading && <ButtonLoader />}
           <ButtonText>{login ? 'Log In' : 'Sign Up'}</ButtonText>
           <ButtonIcon>
