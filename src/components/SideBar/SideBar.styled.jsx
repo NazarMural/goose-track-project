@@ -5,6 +5,7 @@ export const SideBarContainer = styled.div`
   padding: 24px 24px;
   flex-direction: column;
   width: 241px;
+  background: #fff;
 `;
 
 export const TitleBox = styled.div`
@@ -30,5 +31,3 @@ export const TitleBox = styled.div`
     }
   }
 `;
-
-

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Header } from 'components/Header/Header';
 import { SideBar } from 'components/SideBar/SideBar';
 import { Outlet } from 'react-router-dom';
+import { MainLayoutContainer } from './MainLayout.styled';
 
 const MainLayout = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -15,7 +16,7 @@ const MainLayout = ({ children }) => {
   const removeSideBar = () => setShowSideBar(false);
 
   return (
-    <>
+    <MainLayoutContainer>
       <Header addSideBar={addSideBar} />
       <main>
         {showSideBar && <SideBar removeSideBar={removeSideBar}></SideBar>}
@@ -23,7 +24,7 @@ const MainLayout = ({ children }) => {
         {children}
         <Outlet />
       </main>
-    </>
+    </MainLayoutContainer>
   );
 };
 
