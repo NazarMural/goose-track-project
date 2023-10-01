@@ -15,6 +15,7 @@ import {
   handleUpdateTaskPending,
 } from './updateTaskActionHandlers';
 import { handleLogoutInTasksFulfilled } from './logoutActionHandlersInTasks/handleLogoutInTasksFulfilled';
+import { handleTasksActionPending } from './handleTasksActionPending';
 
 export {
   handleAddTaskFulfilled,
@@ -30,4 +31,5 @@ export {
   handleFetchTasksPending,
   handleUpdateTaskPending,
   handleLogoutInTasksFulfilled,
+  handleTasksActionPending,
 };

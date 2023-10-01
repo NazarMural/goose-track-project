@@ -14,12 +14,13 @@ import {
   handleUpdateTaskPending,
   handleLogoutInTasksFulfilled,
 } from 'utils/reduxActionHandlers/tasksActionHandlers';
-import { fetchTasks, addTask, deleteTask, updateTask } from './operations';
+import { fetchTasksOperation, addTaskOperation, deleteTaskOperation, updateTaskOperation } from './operations';
 import { logOutOperation } from 'redux/auth/operations';
 
 const initialState = {
   tasks: [],
   isTasksLoading: false,
+  isFetchingTasks: false,
   isAdding: false,
   isDeleting: false,
   isUpdating: false,
@@ -32,18 +33,18 @@ const tasksSlice = createSlice({
   initialState,
   extraReducers: builder =>
     builder
-      .addCase(fetchTasks.pending, handleFetchTasksPending)
-      .addCase(fetchTasks.fulfilled, handleFetchTasksFulfilled)
-      .addCase(fetchTasks.rejected, handleFetchTasksRejected)
-      .addCase(addTask.pending, handleAddTaskPending)
-      .addCase(addTask.fulfilled, handleAddTaskFulfilled)
-      .addCase(addTask.rejected, handleAddTaskRejected)
-      .addCase(deleteTask.pending, handleDeleteTaskPending)
-      .addCase(deleteTask.fulfilled, handleDeleteTaskFulfilled)
-      .addCase(deleteTask.rejected, handleDeleteTaskRejected)
-      .addCase(updateTask.pending, handleUpdateTaskPending)
-      .addCase(updateTask.fulfilled, handleUpdateTaskFulfilled)
-      .addCase(updateTask.rejected, handleUpdateTaskRejected)
+      .addCase(fetchTasksOperation.pending, handleFetchTasksPending)
+      .addCase(fetchTasksOperation.fulfilled, handleFetchTasksFulfilled)
+      .addCase(fetchTasksOperation.rejected, handleFetchTasksRejected)
+      .addCase(addTaskOperation.pending, handleAddTaskPending)
+      .addCase(addTaskOperation.fulfilled, handleAddTaskFulfilled)
+      .addCase(addTaskOperation.rejected, handleAddTaskRejected)
+      .addCase(deleteTaskOperation.pending, handleDeleteTaskPending)
+      .addCase(deleteTaskOperation.fulfilled, handleDeleteTaskFulfilled)
+      .addCase(deleteTaskOperation.rejected, handleDeleteTaskRejected)
+      .addCase(updateTaskOperation.pending, handleUpdateTaskPending)
+      .addCase(updateTaskOperation.fulfilled, handleUpdateTaskFulfilled)
+      .addCase(updateTaskOperation.rejected, handleUpdateTaskRejected)
       .addCase(logOutOperation.fulfilled, handleLogoutInTasksFulfilled),
 });
 
