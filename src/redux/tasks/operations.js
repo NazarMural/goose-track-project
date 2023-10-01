@@ -18,12 +18,13 @@ const addTask = createAsyncThunk('tasks/addTask', async (task, thunkAPI) => {
 
 const deleteTask = createAsyncThunk('tasks/deleteTask', async (taskId, thunkAPI) => {
   return await handleErrorAsyncOperation(async () => {
-    const { data } = await axios.delete(`/tasks/${taskId}`);
-    return data;
+    await axios.delete(`/tasks/${taskId}`);
+    return taskId;
   }, thunkAPI);
 });
 
 const updateTask = createAsyncThunk('tasks/updateTask', async ({ taskId, updateTaskData }, thunkAPI) => {
+  console.log('upd');
   return await handleErrorAsyncOperation(async () => {
     const { data } = await axios.patch(`/tasks/${taskId}`, updateTaskData);
     return data;

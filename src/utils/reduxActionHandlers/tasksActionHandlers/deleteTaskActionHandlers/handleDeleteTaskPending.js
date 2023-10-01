@@ -1,5 +1,5 @@
-export const handleDeleteTaskPending = (state, { payload }) => {
+export const handleDeleteTaskPending = (state, action) => {
   state.isTasksLoading = true;
   state.isDeleting = true;
-  state.currentTaskId = payload._id;
+  state.currentTaskId = action.meta.arg;
 };

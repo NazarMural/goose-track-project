@@ -1,5 +1,5 @@
-export const handleUpdateTaskPending = (state, { payload }) => {
+export const handleUpdateTaskPending = (state, action) => {
   state.isTasksLoading = true;
   state.isUpdating = true;
-  state.currentTaskId = payload._id;
+  state.currentTaskId = action.meta.arg.taskId;
 };

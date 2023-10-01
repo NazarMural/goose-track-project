@@ -1,5 +1,5 @@
 const selectTasks = state => state.tasks.tasks;
-const selectError = state => state.tasks.selectError;
+const selectError = state => state.tasks.error;
 const selectIsTasksLoading = state => state.tasks.isTasksLoading;
 const selectIsAdding = state => state.tasks.isAdding;
 const selectIsDeleting = state => state.tasks.isDeleting;
