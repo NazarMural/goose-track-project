@@ -1,7 +1,7 @@
 import { BurgerBtn } from './BurgerBtn/BurgerBtn';
 import { FeedbackBtn } from './FeedbackBtn.jsx/FeedbackBtn';
 import { UserInfo } from './UserInfo/UserInfo';
-import { HeaderSection, Thumb } from './Header.styled';
+import { HeaderSection } from './Header.styled';
 
 
 export const Header = ({ addSideBar, showSideBar }) => {
