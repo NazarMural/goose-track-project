@@ -1,5 +1,5 @@
-// import { useNavigate } from 'react-router-dom';
-// import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import {
     ErrorWrapper, 
     Content, 
@@ -8,7 +8,7 @@ import {
     Info, 
     Title, 
     Btn,
-} from './ErrorPage.styled';
+} from './NotFoundPage.styled';
 
 import desk404x1 from '../../assets/images/notFoundPage/desktop404.png';
 import desk404x2 from '../../assets/images/notFoundPage/desktop404@2x.png';
@@ -18,21 +18,21 @@ import mob404x1 from '../../assets/images/notFoundPage/mobile404.png';
 import mob404x2 from '../../assets/images/notFoundPage/mobile404@2x.png';
 
 const notFoundPage = () => {
-    // const navigate = useNavigate();
-    // const [countdown, setCountdown] = useState(10);
+    const navigate = useNavigate();
+    const [countdown, setCountdown] = useState(10);
 
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //     setCountdown((prevCountdown) => prevCountdown - 1);
-    //     }, 1000);
-    //     return () => clearInterval(timer);
-    // }, []);
+    useEffect(() => {
+        const timer = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
 
-    // useEffect(() => {
-    //     if (countdown === 0) {
-    //         navigate('/');
-    //     }
-    // }, [countdown, navigate]);
+    useEffect(() => {
+        if (countdown === 0) {
+            navigate('/');
+        }
+    }, [countdown, navigate]);
 
     return (
         <ErrorWrapper>
