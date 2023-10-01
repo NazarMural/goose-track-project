@@ -8,7 +8,7 @@ import { Header } from 'components/Header/Header';
 import { SideBar } from 'components/SideBar/SideBar';
 import { Outlet } from 'react-router-dom';
 import { MainLayoutContainer } from './MainLayout.styled';
-import { Container, Overlay } from './MainLayout.styled';
+import { Container } from './MainLayout.styled';
 
 const MainLayout = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState(false);
