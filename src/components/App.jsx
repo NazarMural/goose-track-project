@@ -1,3 +1,5 @@
+import { UserForm } from './Account/UserForm/UserForm';
+
 export const App = () => {
   return (
     <div
@@ -7,10 +9,11 @@ export const App = () => {
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: 40,
-        color: '#010101'
+        color: '#010101',
+        background: '#34343480',
       }}
     >
-      React homework template
+      <UserForm />
     </div>
   );
 };
