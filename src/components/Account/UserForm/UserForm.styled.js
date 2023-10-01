@@ -7,20 +7,50 @@ export const Container = styled.div`
   border-radius: 16px;
   background-color: var(--primary-bg-color);
 `;
-export const AvatarContainer = styled.div`
+export const UserContainer = styled.div`
   display: flex;
-  margin: 60px 0 44px;
+  margin-bottom: 44px;
   flex-direction: column;
   align-items: center;
 `;
-export const Avatar = styled.img`
+export const AvatarWrapper = styled.div`
+  position: relative;
   width: 124px;
   height: 124px;
   border-radius: 50%;
-  margin-bottom: 20px;
+  margin: 60px 0 20px;
   border: solid 2px var(--accent-color);
 `;
-export const AvatarName = styled.p`
+export const AddAvatarButton = styled.button`
+  position: absolute;
+  bottom: -8px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--accent-color);
+`;
+export const AddAvatar = styled.svg`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  fill: transparent;
+  stroke: var(--primary-bg-color);
+`;
+export const UserAvatar = styled.svg`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  fill: rgba(62, 133, 243, 0.18);
+`;
+export const UserName = styled.p`
   color: var(--secondary-text-color);
   font-family: Inter;
   font-size: 18px;
@@ -29,7 +59,7 @@ export const AvatarName = styled.p`
   line-height: 18px;
   margin: 0 0 8px 0;
 `;
-export const AvatarStatus = styled.p`
+export const UserStatus = styled.p`
   margin: 0;
   color: var(--secondary-text-color);
   font-family: Inter;
@@ -39,8 +69,8 @@ export const AvatarStatus = styled.p`
   line-height: 18px;
 `;
 export const AddUserForm = styled(Form)`
-  margin: 0 auto;
   position: relative;
+  margin: 0 auto;
   display: grid;
   height: 200px;
   grid-template: repeat(3, 1fr) / repeat(2, 1fr);
@@ -50,13 +80,7 @@ export const AddUserForm = styled(Form)`
 `;
 export const FormField = styled(Field)`
   ::-webkit-calendar-picker-indicator {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+    margin: 0 10px 0;
     cursor: pointer;
     opacity: 0;
   }
@@ -87,24 +111,24 @@ export const Label = styled.label`
 `;
 export const Button = styled.button`
   display: flex;
-  width: 262px;
-  height: 48px;
-  border: none;
-  padding: 10px 0px;
-
   justify-content: center;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
+  width: 262px;
+  height: 48px;
+  border: none;
+  padding: 10px 0px;
   border-radius: 16px;
-  color: #fff;
+  color: var(--primary-bg-color);
+  background-color: var(--btn-bg-color);
   text-align: center;
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 18px;
-  background-color: var(--btn-bg-color);
+
   &:hover {
     background-color: var(--btn-bg-hover);
   }
@@ -116,10 +140,17 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
-export const ChangeDate = styled.span`
+
+export const ChevronDown = styled.svg`
   position: absolute;
-  top: 141px;
-  right: 420px;
+  top: 18px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
   cursor: pointer;
   pointer-events: none;
+  fill: var(--primary-text-color);
+`;
+export const Span = styled.div`
+  position: relative;
 `;
