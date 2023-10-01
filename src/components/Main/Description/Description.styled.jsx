@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
-import { tablet, min, desktop } from 'styles/media';
+import { mobile, tablet, min, desktop, max } from 'styles/media';
 
 export const DescriptionContainer = styled.div`
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
+  overflow-x: hidden;
 `;
 
 export const DescriptionContent = styled.ul`
@@ -89,13 +90,16 @@ export const DescriptionAccent = styled.h2`
     max-width: 264px;
     font-size: 40px;
   }
+  ${max(mobile)} {
+    font-size: 1rem;
+  }
 `;
 
 export const DescriptionName = styled.h3`
   font-size: 32px;
   font-weight: 700;
   line-height: 1.25;
-  color: #171820;
+  color: var(--main-page-title);
   text-transform: uppercase;
   margin-top: 8px;
   margin-bottom: 0;
@@ -110,7 +114,7 @@ export const DescriptionText = styled.p`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.28;
-  color: #111111e5;
+  color: var(--main-page-text-color);
   margin-bottom: 40px;
   margin-top: 14px;
 
@@ -131,6 +135,11 @@ export const DescritpionImage = styled.picture`
   ${min(desktop)} {
     width: 604px;
     height: 700px;
+  }
+
+  ${max(mobile)}{
+    width: 100%;
+    height: auto;
   }
 `;
 

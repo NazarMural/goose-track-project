@@ -6,7 +6,7 @@ export const ContainerForm = styled.div`
   border-radius: 8px;
   padding: 40px 24px;
   width: fill-available;
-  width: 335px;
+  max-width: 335px;
 
   ${min(tablet)} {
     padding: 40px 40px;
@@ -75,8 +75,8 @@ export const FieldStyled = styled.input`
   border-radius: 8px;
   width: fill-available;
 
-  &:valid {
-    background-color: var(--primary-bg-color) !important;
+  &:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s;
   }
 
   &::placeholder {
@@ -91,6 +91,23 @@ export const FieldStyled = styled.input`
   ${min(tablet)} {
     font-size: 16px;
     padding: 18px;
+  }
+`;
+
+export const IconShowHidePassword = styled.svg`
+  position: absolute;
+  fill: black;
+  height: 26px;
+  width: 26px;
+  right: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  ${min(tablet)} {
+    height: 28px;
+    width: 28px;
+    right: 49px;
   }
 `;
 
