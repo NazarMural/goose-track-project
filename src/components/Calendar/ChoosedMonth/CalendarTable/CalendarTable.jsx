@@ -40,6 +40,7 @@ const setDay = day => {
 export const CalendarTable = () => {
   //   const [date, setDate] = useState(Date.now);
   const { startMonth, endMonth, weeks, daysArray } = setDay();
+  // console.log(startMonth);
   //   const dateData = setDay(date);
   //   console.log(dateData);
 
@@ -67,7 +68,9 @@ export const CalendarTable = () => {
               {dayItem.format('D')}
             </Day>
           </WrapperDay>
-          <TaskList date={dayItem} />
+          {startMonth < dayItem && endMonth > dayItem && (
+            <TaskList date={dayItem} />
+          )}
         </Cell>
       ))}
     </CalendarGrid>
