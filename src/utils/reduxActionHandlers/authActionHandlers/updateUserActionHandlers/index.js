@@ -1,4 +1,5 @@
 import { handleUpdateUserFulfilled } from './handleUpdateUserFulfilled';
 import { handleUpdateUserRejected } from './handleUpdateUserRejected';
+import { handleUpdateUserPending } from './handleUpdateUserPending';
 
-export { handleUpdateUserFulfilled, handleUpdateUserRejected };
+export { handleUpdateUserFulfilled, handleUpdateUserRejected, handleUpdateUserPending };

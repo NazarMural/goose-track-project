@@ -16,9 +16,11 @@ import {
   handleLogoutRejected,
   handleRefreshUserFulfilled,
   handleRefreshUserRejected,
+  handleRefreshUserPending,
+  handleUpdateUserPending,
   handleUpdateUserFulfilled,
   handleUpdateUserRejected,
-  handleAuthActionPending
+  handleAuthActionPending,
 } from 'utils/reduxActionHandlers/authActionHandlers';
 import storage from 'redux-persist/lib/storage';
 
@@ -36,6 +38,8 @@ const initialState = {
   isLoggedIn: false,
   isRefreshingUser: false,
   isAuthLoading: false,
+  isUpdatingUserData: false,
+  error: null,
 };
 
 const authPersistConfig = {
@@ -58,10 +62,10 @@ const authSlice = createSlice({
       .addCase(logOutOperation.pending, handleAuthActionPending)
       .addCase(logOutOperation.fulfilled, handleLogoutFulfilled)
       .addCase(logOutOperation.rejected, handleLogoutRejected)
-      .addCase(refreshUserOperation.pending, handleAuthActionPending)
+      .addCase(refreshUserOperation.pending, handleRefreshUserPending)
       .addCase(refreshUserOperation.fulfilled, handleRefreshUserFulfilled)
       .addCase(refreshUserOperation.rejected, handleRefreshUserRejected)
-      .addCase(updateUserDataOperation.pending, handleAuthActionPending)
+      .addCase(updateUserDataOperation.pending, handleUpdateUserPending)
       .addCase(updateUserDataOperation.fulfilled, handleUpdateUserFulfilled)
       .addCase(updateUserDataOperation.rejected, handleUpdateUserRejected),
 });

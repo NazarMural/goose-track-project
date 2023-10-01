@@ -11,4 +11,5 @@ export const handleLogoutFulfilled = state => {
   state.token = null;
   state.isLoggedIn = false;
   state.isAuthLoading = false;
+  state.error = null;
 };
