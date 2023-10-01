@@ -6,7 +6,7 @@ export const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0 2px;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-width: 44px;
   /* max-width: 100%; */
   height: 65px;
