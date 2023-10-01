@@ -1,11 +1,26 @@
 import styled from '@emotion/styled';
 
-export const SideBarContainer = styled.div`
+const isShowSideBar = props => {
+  if (props.showSideBar) return '0%';
+  return '-110%';
+};
+
+export const SideBarEl = styled.aside`
   display: inline-flex;
   padding: 24px 24px;
   flex-direction: column;
-  width: 241px;
+  min-width: 241px;
   background: #fff;
+  z-index: 5;
+  position: absolute;
+
+  /* transform: translateY(101%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+
+  /* transform: translateX(-101%) */
+
+  transform: translateX(${isShowSideBar});
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const TitleBox = styled.div`

@@ -1,7 +1,8 @@
 import sprite from '../../../assets/images/icons/icons.svg';
 import { BurgerButtonEl } from './BurgerBtn.styled';
-export const BurgerBtn = ({ addSideBar }) => {
 
+
+export const BurgerBtn = ({ addSideBar }) => {
   return (
     <BurgerButtonEl type="button" onClick={addSideBar}>
       <svg>

@@ -5,6 +5,7 @@ export const UserInfoBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 8px;
+  margin-left: 18px;
 `;
 
 export const UserName = styled.p`

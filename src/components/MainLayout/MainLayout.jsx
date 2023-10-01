@@ -8,6 +8,7 @@ import { Header } from 'components/Header/Header';
 import { SideBar } from 'components/SideBar/SideBar';
 import { Outlet } from 'react-router-dom';
 import { MainLayoutContainer } from './MainLayout.styled';
+import { Container, Overlay } from './MainLayout.styled';
 
 const MainLayout = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -17,13 +18,23 @@ const MainLayout = ({ children }) => {
 
   return (
     <MainLayoutContainer>
-      <Header addSideBar={addSideBar} />
-      <main>
-        {showSideBar && <SideBar removeSideBar={removeSideBar}></SideBar>}
-        {/* <SideBar></SideBar> */}
-        {children}
-        <Outlet />
-      </main>
+      {/* {showSideBar && <SideBar removeSideBar={removeSideBar}></SideBar>} */}
+      {/* {showSideBar && (
+        <Overlay showSideBar={showSideBar}> */}
+      <SideBar removeSideBar={removeSideBar} showSideBar={showSideBar} />
+      {/* </Overlay>
+      )} */}
+      {/* <Overlay showSideBar={showSideBar}>
+        <SideBar removeSideBar={removeSideBar} showSideBar={showSideBar} />
+      </Overlay> */}
+      {/* <SideBar removeSideBar={removeSideBar} showSideBar={showSideBar} /> */}
+      <Container>
+        <Header addSideBar={addSideBar} showSideBar={showSideBar} />
+        <Container>
+          {children}
+          <Outlet />
+        </Container>
+      </Container>
     </MainLayoutContainer>
   );
 };

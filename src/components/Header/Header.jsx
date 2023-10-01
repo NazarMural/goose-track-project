@@ -1,15 +1,17 @@
 import { BurgerBtn } from './BurgerBtn/BurgerBtn';
 import { FeedbackBtn } from './FeedbackBtn.jsx/FeedbackBtn';
-import { ThemeToggler } from './ThemeToggler/ThemeToggler';
 import { UserInfo } from './UserInfo/UserInfo';
-import { HeaderSection } from './Header.styled';
-export const Header = ({ addSideBar }) => {
+import { HeaderSection, Thumb } from './Header.styled';
+
+
+export const Header = ({ addSideBar, showSideBar }) => {
   return (
-    <HeaderSection>
+    <HeaderSection showSideBar={showSideBar}>
       <BurgerBtn addSideBar={addSideBar} />
+      {/* <Thumb> */}
       <FeedbackBtn />
-      <ThemeToggler />
       <UserInfo />
+      {/* </Thumb> */}
     </HeaderSection>
   );
 };
