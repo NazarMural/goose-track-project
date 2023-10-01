@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Chart, ChartData } from 'chart.js/auto';
+import { Chart } from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import { СhartContainer } from './StatisticsСhart.styled';
