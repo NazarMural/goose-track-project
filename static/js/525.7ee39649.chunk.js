@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgoose_track_project=self.webpackChunkgoose_track_project||[]).push([[525],{7525:function(e,t,a){e.exports=a.p+"static/media/tablet404.8e14832fa56d004b0fa2.png"}}]);
