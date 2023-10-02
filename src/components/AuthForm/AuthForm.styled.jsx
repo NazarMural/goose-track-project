@@ -10,7 +10,7 @@ export const ContainerForm = styled.div`
 
   ${min(tablet)} {
     padding: 40px 40px;
-    width: 480px;
+    max-width: 480px;
   }
 `;
 
