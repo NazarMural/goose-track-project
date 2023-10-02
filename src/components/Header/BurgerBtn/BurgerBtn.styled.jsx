@@ -8,7 +8,6 @@ export const BurgerButtonEl = styled.button`
   border: none;
   background-color: inherit;
   cursor: pointer;
- 
 
   svg {
     width: 24px;

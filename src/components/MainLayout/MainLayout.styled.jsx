@@ -1,22 +1,33 @@
 import styled from '@emotion/styled';
 
+import { tablet, min, desktop } from 'styles/media';
+
+// ${min(tablet)} {
+//     width: 410px;
+//     margin-bottom: 247px;
+// }
+// ${min(desktop)} {
+//     margin-bottom: 184px;
+// }
+
 export const MainLayoutContainer = styled.div`
   display: flex;
   position: relative;
-  /* flex-direction: row-reverse; */
   margin: 0 auto;
   height: 100%;
   max-width: 375px;
-  padding: 24px 20px 40px 20px;
   background: #f7f6f9;
-  /* height: auto; */
-  /* overflow: hidden; */
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
+  ${min(tablet)} {
+    max-width: 768px;
+  }
+  ${min(desktop)} {
+    max-width: 1440px;
+  }
 `;
 
 export const Container = styled.div`
-  /* margin: 0 auto;
-  max-width: 375px; */
+  width: 100%;
 `;
 export const Overlay = styled.div`
   position: fixed;
