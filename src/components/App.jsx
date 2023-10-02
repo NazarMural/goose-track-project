@@ -31,35 +31,11 @@ export const App = () => {
       <Suspense fallback={null}>
         <Routes>
           <Route index element={<MainPage />} />{' '}
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                component={<RegisterPage />}
-                redirectTo="/calendar"
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute
-                component={<LoginPage />}
-                redirectTo="/calendar"
-              />
-            }
-          />
+          <Route path="/register" element={<RestrictedRoute component={<RegisterPage />} redirectTo="/calendar" />} />
+          <Route path="/login" element={<RestrictedRoute component={<LoginPage />} redirectTo="/calendar" />} />
           <Route path="/" element={<MainLayout />}>
             <Route path="/account" element={<AccountPage />} />
-            <Route
-              path="/calendar"
-              element={
-                <PrivateRoute
-                  component={<CalendarPage />}
-                  redirectTo="/login"
-                />
-              }
-            >
+            <Route path="/calendar" element={<PrivateRoute component={<CalendarPage />} redirectTo="/login" />}>
               <Route path="day/:currentDay" element={<ChoosedDay />} />
               <Route path="month/:currentMonth" element={<ChoosedMonth />} />
             </Route>
