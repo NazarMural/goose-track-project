@@ -27,7 +27,7 @@ import sprite from '../../../assets/images/icons/icons.svg';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://goose-track-project-backend.onrender.com/api';
-axios.defaults.headers.common.Authorization = `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTk1NDI2MDQzNDI2MWYxYzQ5NDRkNCIsImlhdCI6MTY5NjE1ODc1OSwiZXhwIjoxNjk2MjE5OTU5fQ.vstE6qQZtaBpp0zc1hmsCUtgdfSMTVmnfEcYuwoleKw'}`;
+axios.defaults.headers.common.Authorization = `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWE5MmU2ZGQxNmQyNjY2MWZkN2QyZCIsImlhdCI6MTY5NjI0MDM1OCwiZXhwIjoxNjk2MzAxNTU4fQ.DtwCYCS8P1kLL_jTxiQXiIS9amgWrFt_VWvQ-L91Jgw'}`;
 
 const categories = [
   { id: 1, type: 'to-do' },
@@ -42,6 +42,7 @@ const ChoosedDay = () => {
   useEffect(() => {
     const test = async () => {
       const { data } = await axios.get('/tasks');
+      console.log(data);
       setData(data);
     };
 
