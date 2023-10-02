@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { min, tablet } from 'styles/media';
 
 export const CalendarGrid = styled.div`
   width: 100%;
@@ -20,8 +21,12 @@ export const Cell = styled.div`
   /* justify-content: flex-end; */
   /* background-color: #ffffff; */
   background-color: var(--cell-background);
-  padding: 8px 4px;
+  padding: 8px 0;
   height: 96px;
+
+  ${min(tablet)} {
+    padding: 14px 0;
+  }
 `;
 
 export const WrapperDay = styled.div`
@@ -36,6 +41,11 @@ export const WrapperDay = styled.div`
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 14px;
+  padding-right: 4px;
+
+  ${min(tablet)} {
+    padding-right: 14px;
+  }
 `;
 
 export const Day = styled.div`
