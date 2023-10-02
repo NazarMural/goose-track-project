@@ -1,11 +1,39 @@
-import React from 'react';
-import ChoosedMonth from 'components/Calendar/ChoosedMonth/ChoosedMonth';
+import React, { useEffect, useState } from 'react';
 import { MainContainer } from 'components/MainContainer/MainContainer';
+import CalendarToolbar from 'components/Calendar/CalendarToolbar/CalendarToolbar';
+import { Outlet, useNavigate } from 'react-router';
+import moment from 'moment';
 
 const CalendarPage = () => {
+  const navigate = useNavigate();
+  const [currentDate, setCurrentDate] = useState(moment().format('YYYY MM DD'));
+  const [format, setFormat] = useState('month');
+
+  useEffect(() => {
+    let date;
+    switch (format) {
+      case 'month':
+        date = moment(currentDate).format('MMMM-YYYY');
+        navigate(`/calendar/month/${date}`);
+        break;
+      case 'day':
+        date = moment(currentDate).format('YYYY-MM-DD');
+        navigate(`/calendar/day/${date}`);
+        break;
+      default:
+        return;
+    }
+  }, [format, navigate, currentDate]);
+
   return (
     <MainContainer>
-      <ChoosedMonth />
+      <CalendarToolbar
+        currentDate={currentDate}
+        setCurrentDate={setCurrentDate}
+        format={format}
+        setFormat={setFormat}
+      />
+      <Outlet />
     </MainContainer>
   );
 };

@@ -2,20 +2,19 @@ import { CloseSideBarBtn } from './CloseBtn/CloseBtn';
 import { LogoutBtn } from './LogoutBtn.jsx/LogoutBtn';
 import { SideBarEl, TitleBox } from './SideBar.styled';
 import { UserNavigation } from './UserNav/UserNav';
+import { GooseImage } from './GooseImage/GooseImage';
 
 export const SideBar = ({ removeSideBar, showSideBar }) => {
   return (
     <SideBarEl showSideBar={showSideBar}>
       <TitleBox>
-        <svg width="20" height="20">
-          <use xlinkHref="../../images/mainPage/desktop_GooseMainPage.png;"></use>
-        </svg>
+        <GooseImage />
         <h2>
           G<span>oo</span>seTrack
         </h2>
+        <CloseSideBarBtn removeSideBar={removeSideBar} />
       </TitleBox>
-      <CloseSideBarBtn removeSideBar={removeSideBar} />
-      <UserNavigation />
+      <UserNavigation removeSideBar={removeSideBar} />
       <LogoutBtn />
     </SideBarEl>
   );
