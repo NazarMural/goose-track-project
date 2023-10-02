@@ -25,8 +25,14 @@ import {
 import sprite from '../../../assets/images/icons/icons.svg';
 
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import {
+  deleteTaskOperation,
+  fetchTasksOperation,
+  updateTaskOperation,
+} from 'redux/tasks/operations';
+import { useParams } from 'react-router-dom';
 
-axios.defaults.baseURL = 'https://goose-track-project-backend.onrender.com/api';
 axios.defaults.headers.common.Authorization = `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWE5MmU2ZGQxNmQyNjY2MWZkN2QyZCIsImlhdCI6MTY5NjI0MDM1OCwiZXhwIjoxNjk2MzAxNTU4fQ.DtwCYCS8P1kLL_jTxiQXiIS9amgWrFt_VWvQ-L91Jgw'}`;
 
 const categories = [
@@ -36,18 +42,21 @@ const categories = [
 ];
 
 const ChoosedDay = () => {
-  const [data, setData] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
+  const dispatch = useDispatch();
+
+  const { currentDay } = useParams();
 
   useEffect(() => {
-    const test = async () => {
-      const { data } = await axios.get('/tasks');
-      console.log(data);
-      setData(data);
-    };
-
-    test();
-  }, []);
+    (async () => {
+      const { payload } = await dispatch(fetchTasksOperation());
+      const filteredTasks = payload
+        ? payload.filter(({ date }) => date === currentDay)
+        : [];
+      setTasks(filteredTasks);
+    })();
+  }, [currentDay, dispatch]);
 
   // useEffect(() => {
   //   const onClickBody = ({ target }) => {
@@ -66,25 +75,47 @@ const ChoosedDay = () => {
   //   }
   // }, [isShowPopUpReplace]);
 
-  const onDelete = () => {
-    console.log('onDelete');
+  const onDelete = taskId => {
+    dispatch(deleteTaskOperation(taskId));
+    const filteredTasks = tasks
+      ? tasks.filter(({ _id }) => _id !== taskId)
+      : [];
+    setTasks(filteredTasks);
   };
 
   const onEdit = () => {
     console.log('onEdit');
   };
 
-  const onAdd = () => {
+  const onAdd = category => {
     console.log('onAdd');
   };
+
   const toggleShowPopUpReplace = id => {
     isShowPopUpReplace === id
       ? setIsShowPopUpReplace(false)
       : setIsShowPopUpReplace(id);
   };
 
-  const onReplace = id => {
-    console.log('onReplace');
+  const onReplace = async (id, typeCategory) => {
+    await dispatch(
+      updateTaskOperation({
+        taskId: id,
+        updateTaskData: { category: typeCategory },
+      })
+    );
+
+    const filteredTasks = tasks
+      ? tasks.map(task => {
+          if (task._id === id) {
+            return { ...task, category: typeCategory };
+          }
+          return task;
+        })
+      : [];
+
+    setTasks(filteredTasks);
+
     setIsShowPopUpReplace(false);
   };
 
@@ -93,21 +124,21 @@ const ChoosedDay = () => {
     switch (type) {
       case 'to-do':
         arrCategories = [
-          { id: 1, typeCategory: 'In progress' },
-          { id: 2, typeCategory: 'Done' },
+          { id: 1, typeCategory: 'In progress', typeForOnClick: 'in-progress' },
+          { id: 2, typeCategory: 'Done', typeForOnClick: 'done' },
         ];
         break;
 
       case 'in-progress':
         arrCategories = [
-          { id: 1, typeCategory: 'To Do' },
-          { id: 2, typeCategory: 'Done' },
+          { id: 1, typeCategory: 'To Do', typeForOnClick: 'to-do' },
+          { id: 2, typeCategory: 'Done', typeForOnClick: 'done' },
         ];
         break;
       case 'done':
         arrCategories = [
-          { id: 1, typeCategory: 'To Do' },
-          { id: 2, typeCategory: 'In progress' },
+          { id: 1, typeCategory: 'To Do', typeForOnClick: 'to-do' },
+          { id: 2, typeCategory: 'In progress', typeForOnClick: 'in-progress' },
         ];
         break;
 
@@ -143,7 +174,7 @@ const ChoosedDay = () => {
             </IconAddTask>
           </ContainerTitle>
           <ListTasks>
-            {data.map(
+            {tasks.map(
               ({ _id, title, start, end, priority, date, category, owner }) => {
                 if (type !== category) {
                   return '';
@@ -170,16 +201,16 @@ const ChoosedDay = () => {
                         <IconTask onClick={onEdit}>
                           <use xlinkHref={sprite + '#icon-pencil'} />
                         </IconTask>
-                        <IconTask onClick={onDelete}>
+                        <IconTask onClick={() => onDelete(_id)}>
                           <use xlinkHref={sprite + '#icon-trash'} />
                         </IconTask>
                         {isShowPopUpReplace === _id && (
                           <ContainerReplaceTask>
                             {viewCategories(type).map(
-                              ({ id, typeCategory }) => (
+                              ({ id, typeCategory, typeForOnClick }) => (
                                 <ReplaceTaskContainerText
                                   key={id}
-                                  onClick={() => onReplace(_id)}
+                                  onClick={() => onReplace(_id, typeForOnClick)}
                                 >
                                   <ReplaceTaskText>
                                     {typeCategory}
