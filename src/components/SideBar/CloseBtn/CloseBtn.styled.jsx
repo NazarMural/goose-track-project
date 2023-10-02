@@ -16,7 +16,10 @@ export const CloseBtn = styled.button`
     width: 24px;
     height: 24px;
     use {
-      fill: inherit;
+      width: 24px;
+      height: 24px;
+      /* stroke: #ffffff;
+      fill: #ffffff; */
     }
   }
 

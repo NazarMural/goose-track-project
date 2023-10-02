@@ -2,8 +2,11 @@ import sprite from '../../../assets/images/icons/icons.svg';
 import { ThemeBtn } from './ThemeToggle.styled';
 
 export const ThemeToggler = () => {
+  const handleThemeClick = () => {
+    document.documentElement.classList.toggle('dark');
+  };
   return (
-    <ThemeBtn type="button">
+    <ThemeBtn type="button" onClick={handleThemeClick}>
       <svg>
         <use xlinkHref={`${sprite}#icon-moon`} />
       </svg>

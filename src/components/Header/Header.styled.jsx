@@ -1,21 +1,36 @@
 import styled from '@emotion/styled';
-// import { tablet, min, desktop } from 'styles/media';
+import { tablet, min, desktop } from 'styles/media';
 
-const isShowSideBar = props => {
-  if (props.showSideBar) return '+125%';
-  return '-75%';
-};
+// ${min(tablet)} {
+//     width: 410px;
+//     margin-bottom: 247px;
+// }
+// ${min(desktop)} {
+//     margin-bottom: 184px;
+// }
+
+// const isShowSideBar = props => {
+//   if (props.showSideBar) return '+125%';
+//   return '-75%';
+// };
 
 export const HeaderSection = styled.header`
   display: flex;
-  width: 100%;
-  height: 32px;
+  padding: 24px 20px 0px 20px;
+  max-width: 375px;
+  height: auto;
   align-items: center;
   background: #f7f6f9;
-  justify-content: space-between;
-/* 
-  transform: translateX(${isShowSideBar});
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+  /* justify-content: space-between; */
+
+  ${min(tablet)} {
+    max-width: 768px;
+    padding: 24px 32px 0px 32px;
+  }
+  ${min(desktop)} {
+    max-width: 1440px;
+    padding: 40px 32px 0px 32px;
+  }
 `;
 
 // export const Thumb = styled.div`

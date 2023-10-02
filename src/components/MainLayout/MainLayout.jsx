@@ -1,8 +1,3 @@
-// import { useAuth } from 'hooks/useAuth';
-// import { useDispatch } from 'react-redux';
-// import { NavLink } from 'react-router-dom';
-// import { logOut } from 'redux/auth/operations';
-// import css from './Layout.module.css';
 import { useState } from 'react';
 import { Header } from 'components/Header/Header';
 import { SideBar } from 'components/SideBar/SideBar';
@@ -12,22 +7,12 @@ import { Container } from './MainLayout.styled';
 
 const MainLayout = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState(false);
-  console.log(showSideBar);
   const addSideBar = () => setShowSideBar(true);
   const removeSideBar = () => setShowSideBar(false);
 
   return (
     <MainLayoutContainer>
-      {/* {showSideBar && <SideBar removeSideBar={removeSideBar}></SideBar>} */}
-      {/* {showSideBar && (
-        <Overlay showSideBar={showSideBar}> */}
       <SideBar removeSideBar={removeSideBar} showSideBar={showSideBar} />
-      {/* </Overlay>
-      )} */}
-      {/* <Overlay showSideBar={showSideBar}>
-        <SideBar removeSideBar={removeSideBar} showSideBar={showSideBar} />
-      </Overlay> */}
-      {/* <SideBar removeSideBar={removeSideBar} showSideBar={showSideBar} /> */}
       <Container>
         <Header addSideBar={addSideBar} showSideBar={showSideBar} />
         <Container>
