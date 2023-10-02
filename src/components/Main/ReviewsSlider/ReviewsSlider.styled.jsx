@@ -1,21 +1,91 @@
 import styled from '@emotion/styled';
-import { css } from '@emotion/react'; 
-import { tablet, desktop, min} from 'styles/media';
-
+import { tablet, desktop, min } from 'styles/media';
 
 export const ReviewsSliderContainer = styled.div`
-display: flex;
-flex-direction: column;
- margin-top: 0;
- margin-bottom: 36px;
- padding-left: 94px;
- padding-right: 94px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  margin-bottom: 36px;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  padding-left: 94px;
+  padding-right: 94px;
 
- 
- `;
+`;
 
 export const Title = styled.h2`
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  margin-top: 8px;
+  margin-bottom: 40px;
 
- `
+  ${min(tablet)} {
+    line-height: 1.1;
+    font-size: 40px;
+    margin-bottom: 50px;
+  }
+`;
+
+export const SliderCustom = styled.div`
+//   display: flex;
+//   justify-content: center; /* Центрування по горизонталі */
+//   align-items: center; /* Центрування по вертикалі */
+//   margin-left: auto;
+//   margin-right: auto;
+//   max-width: 1184px;
+
+  ${min(desktop)} {
+    // margin-right: auto;
+    // margin-left: auto;
+    max-width: 1160px;
+  }
+`;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  max-width: 514px;
+  padding: 32px;
+  border-radius: 8px;
+  border: 1px solid #1111111a;
+  margin-left: auto;
+  margin-right: auto;
+  ${min(desktop)} {
+      margin-right: 12px;
+      margin-left: 12px;
+  }
+`;
+
+export const Avatar = styled.div`
+  display: flex;
+`;
+
+export const AvatarImage = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: ;
+`;
+
+export const UserName = styled.h3`
+  margin-top: 0;
+  margin-bottom: 13px;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--secondary-text-color);
+`;
+
+export const Comment = styled.p`
+font-size: 14px;
+line-height: 1.28;
+font-weight: 500;
+  color: var(--review-text-color);
+  margin-top: 24px;
+
+`;

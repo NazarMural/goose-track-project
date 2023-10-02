@@ -21,7 +21,7 @@ export const DescriptionContent = styled.ul`
   }
 
   ${min(tablet)} {
-    padding: 64px 32px;
+    padding: 64px 32px 0;
   }
   ${min(desktop)} {
   padding: 64px 128px;
@@ -148,4 +148,17 @@ export const DescriptionImageImg = styled.img`
   /* Звичайне зображення */
   width: 100%;
   height: 100%;
+`;
+
+export const Slider = styled.div`
+  ${min(tablet)} {
+    margin-top: 36px;
+  }
+  ${min(desktop)} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;

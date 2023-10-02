@@ -11,6 +11,7 @@ import {
   DescriptionImageImg,
   DescritpionImage,
   DescriptionInfo,
+  Slider,
 } from './Description.styled';
 
 import CalendarMob from '../../../assets/images/mainPage/mobile_calendar.png';
@@ -33,7 +34,7 @@ import TasksTab from '../../../assets/images/mainPage/tablet_task_all.png';
 import TasksTab2x from '../../../assets/images/mainPage/tablet_task_all@2x.png';
 import TasksDt from '../../../assets/images/mainPage/desktop_tasks_all.png';
 import TasksDt2x from '../../../assets/images/mainPage/desktop_task_all@2x.png';
-
+ import ReviewsSlider from '../ReviewsSlider/ReviewsSlider';
 
 
 const Description = () => {
@@ -131,9 +132,14 @@ const Description = () => {
             </DescritpionImage>
           </DescriptionBlock>
         </DescriptionContent>
+        <Slider>
+          <ReviewsSlider />
+        </Slider>
       </DescriptionContainer>
     </>
   );
 };
+
+
 
 export default Description;

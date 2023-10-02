@@ -9,6 +9,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { persistAuthReducer } from './auth/authSlice';
+import { reviewReducer } from './reviews/reviewSlice';
+
+
 
 const middleware = getDefaultMiddleware =>
   getDefaultMiddleware({
@@ -20,6 +23,7 @@ const middleware = getDefaultMiddleware =>
 const store = configureStore({
   reducer: {
     auth: persistAuthReducer,
+    reviews: reviewReducer,
   },
   middleware,
 });
