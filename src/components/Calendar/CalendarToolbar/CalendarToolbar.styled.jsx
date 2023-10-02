@@ -6,6 +6,7 @@ export const Toolbar = styled.div`
 export const DateContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 18px;
 `;
 
 export const DateWrapper = styled.div`
@@ -45,7 +46,8 @@ export const Toggle = styled.div`
 
 export const TypeWrapper = styled.div`
   display: flex;
-  padding: 8px 0;
+  border-radius: 8px;
+  overflow: hidden;
 `;
 
 export const Type = styled.div`
@@ -53,4 +55,8 @@ export const Type = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 8px 0;
+  background-color: var(--switch-type-bg-active);
 `;
+
+

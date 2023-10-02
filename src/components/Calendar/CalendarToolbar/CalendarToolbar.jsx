@@ -105,11 +105,11 @@ const CalendarToolbar = ({
             Month
           </Link>
         </Type>
-        <div>
+        <Type>
           <Link to={`day/${day}`} onClick={handleChangeType}>
             Day
           </Link>
-        </div>
+        </Type>
       </TypeWrapper>
     </Toolbar>
   );
