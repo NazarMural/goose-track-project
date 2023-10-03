@@ -9,6 +9,7 @@ import { THEMES } from 'constants/theme/themes';
 export const ThemeToggler = () => {
   const dispatch = useDispatch();
   const curentTheme = useSelector(selectTheme);
+
   // useEffect(() => {
   //   if (curentTheme === 'dark') {
   //     document.documentElement.classList.add('dark');
@@ -23,13 +24,19 @@ export const ThemeToggler = () => {
       setTheme(curentTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT)
     );
 
-     document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle('dark');
   };
   return (
     <ThemeBtn type="button" onClick={handleThemeClick}>
-      <svg>
-        <use xlinkHref={`${sprite}#icon-moon`} />
-      </svg>
+      {curentTheme === THEMES.LIGHT ? (
+        <svg>
+          <use xlinkHref={`${sprite}#icon-sun`} />
+        </svg>
+      ) : (
+        <svg>
+          <use xlinkHref={`${sprite}#icon-moon`} />
+        </svg>
+      )}
     </ThemeBtn>
   );
 };

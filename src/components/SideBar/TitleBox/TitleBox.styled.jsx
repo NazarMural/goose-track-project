@@ -3,6 +3,7 @@ import { tablet, min, desktop } from 'styles/media';
 
 export const TitleBoxEl = styled.div`
   display: flex;
+  align-items: center;
   margin-bottom: 64px;
   ${min(tablet)} {
     margin-bottom: 50px;
@@ -12,6 +13,8 @@ export const TitleBoxEl = styled.div`
   }
 
   h2 {
+    display: block;
+    margin: 0 0 0 6px;
     color: var(--accent-color);
     text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
       0px 47px 355px rgba(0, 0, 0, 0.07);
@@ -25,6 +28,7 @@ export const TitleBoxEl = styled.div`
     ${min(desktop)} {
       font-size: 24px;
       line-height: 24px;
+      margin: 0 0 0 10px;
     }
 
     span {
