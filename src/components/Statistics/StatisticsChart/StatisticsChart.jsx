@@ -1,10 +1,23 @@
 import React, { useEffect } from 'react';
 import { Chart } from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTasksOperation } from 'redux/tasks/operations';
+import { selectTasks } from 'redux/tasks/selectors';
 
-import { СhartContainer } from './StatisticsСhart.styled';
+import {
+  СhartContainer,
+  StatisticsContainer,
+  LegendContainer,
+  DayLegend,
+  MonthLegend,
+  ChartTasks,
+} from './StatisticsСhart.styled';
 
 const StatisticsСhart = () => {
+  const dispatch = useDispatch();
+  const tasks = useSelector(selectTasks);
+
   useEffect(() => {
     Chart.register(ChartDataLabels);
     const canvas = document.getElementById('myChart');
@@ -14,6 +27,10 @@ const StatisticsСhart = () => {
     if (existingChart) {
       existingChart.destroy(); // Видаляємо попередній графік, якщо він існує
     }
+
+    dispatch(fetchTasksOperation());
+
+    console.log(tasks);
 
     new Chart(canvas, {
       type: 'bar',
@@ -62,12 +79,19 @@ const StatisticsСhart = () => {
         },
       },
     });
-  }, []);
+  }, [dispatch, tasks]);
 
   return (
-    <СhartContainer>
-      <canvas id="myChart"></canvas>
-    </СhartContainer>
+    <StatisticsContainer>
+      <LegendContainer>
+        <DayLegend>By Day</DayLegend>
+        <MonthLegend>By Month</MonthLegend>
+      </LegendContainer>
+      <СhartContainer>
+        <ChartTasks>Tasks</ChartTasks>
+        <canvas id="myChart"></canvas>
+      </СhartContainer>
+    </StatisticsContainer>
   );
 };
 

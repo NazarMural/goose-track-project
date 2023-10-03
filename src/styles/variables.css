@@ -78,6 +78,8 @@
 /* statistic-styles */
 --gradient-red:  linear-gradient(0deg, #FFD2DD 0%, rgba(255, 210, 221, 0.00) 96.87%);
 --gradient-blue: fill: linear-gradient(0deg, #3E85F3 0%, rgba(62, 133, 243, 0.00) 100%);
+--legend-day: #FFD2DD;
+--legend-month: #3E85F3;
 }
 
 html.dark {
