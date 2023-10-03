@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkgoose_track_project=self.webpackChunkgoose_track_project||[]).push([[149],{7149:function(e,c,s){e.exports=s.p+"static/media/icons.d4d37f1ebd54effc5597.svg"}}]);
