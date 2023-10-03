@@ -52,8 +52,6 @@ export const AuthSectionTitleItalic = styled.span`
 
 
 
-
-
 export const AuthSectionLinks = styled.div`
   display: flex;
   flex-direction: column;
