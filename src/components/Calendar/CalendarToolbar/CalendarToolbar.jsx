@@ -11,6 +11,7 @@ import {
   Type,
   TypeWrapper,
 } from './CalendarToolbar.styled';
+import { TypeLink } from './CalendarToolbar.styled';
 
 const CalendarToolbar = ({
   currentDate,
@@ -48,7 +49,7 @@ const CalendarToolbar = ({
         <DateWrapper>
           <Date>
             {moment(currentDate).format(
-              format === 'day' ? 'DD MMMM YYYY' : 'MMMM YYYY'
+              format === 'day' ? 'DD MMM YYYY' : 'MMMM YYYY'
             )}
           </Date>
         </DateWrapper>
@@ -101,9 +102,9 @@ const CalendarToolbar = ({
       </DateContainer>
       <TypeWrapper>
         <Type>
-          <Link to={`month/${month}`} onClick={handleChangeType}>
+          <TypeLink to={`month/${month}`} onClick={handleChangeType}>
             Month
-          </Link>
+          </TypeLink>
         </Type>
         <Type>
           <Link to={`day/${day}`} onClick={handleChangeType}>
