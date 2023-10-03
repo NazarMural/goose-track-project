@@ -1,27 +1,51 @@
-import { NavLink } from 'react-router-dom';
-import { NavTitle, NavList } from './UserNav.styled';
+import {
+  NavTitle,
+  NavList,
+  NavListItem,
+  NavLinkSideBar,
+} from './UserNav.styled';
+import sprite from '../../../assets/images/icons/icons.svg';
+// import { pages } from 'components/MainLayout/MainLayout';
 
-export const UserNavigation = ({ removeSideBar }) => {
+export const UserNavigation = ({
+  removeSideBar,
+  // currentPage,
+  // changeCurrentPage,
+}) => {
+  const handleChangeCurrentPage = page => {
+    removeSideBar();
+    // changeCurrentPage(page);
+  };
+  // console.log(pages);
   return (
     <>
       <NavTitle>User panel</NavTitle>
       <nav>
         <NavList>
-          <li>
-            <NavLink to="account" onClick={removeSideBar}>
-              Account
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="calendar" onClick={removeSideBar}>
+          <NavListItem>
+            <NavLinkSideBar to="account" onClick={handleChangeCurrentPage}>
+              <svg>
+                <use xlinkHref={`${sprite}#icon-user`} />
+              </svg>
+              My account
+            </NavLinkSideBar>
+          </NavListItem>
+          <NavListItem>
+            <NavLinkSideBar to="calendar" onClick={handleChangeCurrentPage}>
+              <svg>
+                <use xlinkHref={`${sprite}#icon-calendar`} />
+              </svg>
               Calendar
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="statistics" onClick={removeSideBar}>
+            </NavLinkSideBar>
+          </NavListItem>
+          <NavListItem>
+            <NavLinkSideBar to="statistics" onClick={handleChangeCurrentPage}>
+              <svg>
+                <use xlinkHref={`${sprite}#icon-chart`} />
+              </svg>
               Statistics
-            </NavLink>
-          </li>
+            </NavLinkSideBar>
+          </NavListItem>
         </NavList>
       </nav>
     </>
