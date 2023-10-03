@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { min, mobile, tablet, desktop } from 'styles/media';
+import { min, tablet, desktop } from 'styles/media';
 export const UserContainer = styled.div`
   margin: 0 auto;
   display: flex;
@@ -120,7 +120,7 @@ export const UserName = styled.p`
   color: var(--secondary-text-color);
   font-family: Inter;
   font-size: 14px;
-  font-style: normal;
+
   font-weight: 700;
   line-height: 18px;
   margin: 0 0 4px 0;
@@ -131,7 +131,6 @@ export const UserName = styled.p`
     color: var(--secondary-text-color);
     font-family: Inter;
     font-size: 18px;
-    font-style: normal;
     font-weight: 700;
     line-height: 18px;
     margin: 0 0 8px 0;
@@ -145,7 +144,7 @@ export const UserStatus = styled.p`
   color: var(--secondary-text-color);
   font-family: Inter;
   font-size: 12px;
-  font-style: normal;
+
   font-weight: 600;
   line-height: 14px;
   .dark & {
@@ -156,7 +155,7 @@ export const UserStatus = styled.p`
     color: var(--secondary-text-color);
     font-family: Inter;
     font-size: 14px;
-    font-style: normal;
+
     font-weight: 600;
     line-height: 18px;
     .dark & {

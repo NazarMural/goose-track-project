@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
-import { min, max, mobile, tablet, desktop } from 'styles/media';
+import { min, tablet, desktop } from 'styles/media';
 export const Container = styled.div`
   width: 335px;
   height: 653px;
@@ -67,7 +67,6 @@ export const FormField = styled(Field)`
   color: var(--primary-text-color);
   font-family: Inter;
   font-size: 14px;
-  font-style: normal;
   font-weight: 600;
   line-height: 18px;
   &focus {
@@ -109,7 +108,6 @@ export const FormField = styled(Field)`
     color: var(--primary-text-color);
     font-family: Inter;
     font-size: 14px;
-    font-style: normal;
     font-weight: 600;
     line-height: 18px;
     &focus {
@@ -130,8 +128,7 @@ export const Label = styled.label`
   color: var(--primary-text-color);
   font-family: Inter;
   font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
+
   line-height: 14px;
   .dark & {
     color: var(--user-label-color);
@@ -143,8 +140,6 @@ export const Label = styled.label`
     color: var(--primary-text-color);
     font-family: Inter;
     font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 18px;
     .dark & {
       color: var(--user-label-color);
