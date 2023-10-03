@@ -5,6 +5,7 @@ import {
   ContainerButtonAddTask,
   ContainerButtonsTask,
   ContainerIcons,
+  ContainerListTasks,
   ContainerMain,
   ContainerReplaceTask,
   ContainerSecond,
@@ -33,7 +34,7 @@ import {
 } from 'redux/tasks/operations';
 import { useParams } from 'react-router-dom';
 
-axios.defaults.headers.common.Authorization = `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWE5MmU2ZGQxNmQyNjY2MWZkN2QyZCIsImlhdCI6MTY5NjI0MDM1OCwiZXhwIjoxNjk2MzAxNTU4fQ.DtwCYCS8P1kLL_jTxiQXiIS9amgWrFt_VWvQ-L91Jgw'}`;
+axios.defaults.headers.common.Authorization = `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWE5MmU2ZGQxNmQyNjY2MWZkN2QyZCIsImlhdCI6MTY5NjMxNTM3NCwiZXhwIjoxNjk2Mzc2NTc0fQ.DeLcp-lYKAMf2fWpg2YL7MotfLQ_xF60t5JzX5gIL5U'}`;
 
 const categories = [
   { id: 1, type: 'to-do' },
@@ -173,68 +174,81 @@ const ChoosedDay = () => {
               <use xlinkHref={sprite + '#icon-icon-plus'} />
             </IconAddTask>
           </ContainerTitle>
-          <ListTasks>
-            {tasks.map(
-              ({ _id, title, start, end, priority, date, category, owner }) => {
-                if (type !== category) {
-                  return '';
+          <ContainerListTasks>
+            <ListTasks>
+              {tasks.map(
+                ({
+                  _id,
+                  title,
+                  start,
+                  end,
+                  priority,
+                  date,
+                  category,
+                  owner,
+                }) => {
+                  if (type !== category) {
+                    return '';
+                  }
+                  return (
+                    <Task key={_id}>
+                      <TaskTitle>{title}</TaskTitle>
+                      <ContainerButtonsTask>
+                        <TaskImage
+                          src="https://www.w3schools.com/howto/img_avatar.png"
+                          alt="#"
+                        />
+                        <TaskButtonPriority priority={priority}>
+                          {priority.charAt(0).toUpperCase() + priority.slice(1)}
+                        </TaskButtonPriority>
+                        <ContainerIcons>
+                          <IconTask onClick={() => toggleShowPopUpReplace(_id)}>
+                            <use
+                              xlinkHref={
+                                sprite + '#icon-arrow-circle-broken-right'
+                              }
+                            />
+                          </IconTask>
+                          <IconTask onClick={onEdit}>
+                            <use xlinkHref={sprite + '#icon-pencil'} />
+                          </IconTask>
+                          <IconTask onClick={() => onDelete(_id)}>
+                            <use xlinkHref={sprite + '#icon-trash'} />
+                          </IconTask>
+                          {isShowPopUpReplace === _id && (
+                            <ContainerReplaceTask>
+                              {viewCategories(type).map(
+                                ({ id, typeCategory, typeForOnClick }) => (
+                                  <ReplaceTaskContainerText
+                                    key={id}
+                                    onClick={() =>
+                                      onReplace(_id, typeForOnClick)
+                                    }
+                                  >
+                                    <ReplaceTaskText>
+                                      {typeCategory}
+                                    </ReplaceTaskText>
+                                    <IconTask>
+                                      <use
+                                        xlinkHref={
+                                          sprite +
+                                          '#icon-arrow-circle-broken-right'
+                                        }
+                                      />
+                                    </IconTask>
+                                  </ReplaceTaskContainerText>
+                                )
+                              )}
+                            </ContainerReplaceTask>
+                          )}
+                        </ContainerIcons>
+                      </ContainerButtonsTask>
+                    </Task>
+                  );
                 }
-                return (
-                  <Task key={_id}>
-                    <TaskTitle>{title}</TaskTitle>
-                    <ContainerButtonsTask>
-                      <TaskImage
-                        src="https://www.w3schools.com/howto/img_avatar.png"
-                        alt="#"
-                      />
-                      <TaskButtonPriority priority={priority}>
-                        {priority.charAt(0).toUpperCase() + priority.slice(1)}
-                      </TaskButtonPriority>
-                      <ContainerIcons>
-                        <IconTask onClick={() => toggleShowPopUpReplace(_id)}>
-                          <use
-                            xlinkHref={
-                              sprite + '#icon-arrow-circle-broken-right'
-                            }
-                          />
-                        </IconTask>
-                        <IconTask onClick={onEdit}>
-                          <use xlinkHref={sprite + '#icon-pencil'} />
-                        </IconTask>
-                        <IconTask onClick={() => onDelete(_id)}>
-                          <use xlinkHref={sprite + '#icon-trash'} />
-                        </IconTask>
-                        {isShowPopUpReplace === _id && (
-                          <ContainerReplaceTask>
-                            {viewCategories(type).map(
-                              ({ id, typeCategory, typeForOnClick }) => (
-                                <ReplaceTaskContainerText
-                                  key={id}
-                                  onClick={() => onReplace(_id, typeForOnClick)}
-                                >
-                                  <ReplaceTaskText>
-                                    {typeCategory}
-                                  </ReplaceTaskText>
-                                  <IconTask>
-                                    <use
-                                      xlinkHref={
-                                        sprite +
-                                        '#icon-arrow-circle-broken-right'
-                                      }
-                                    />
-                                  </IconTask>
-                                </ReplaceTaskContainerText>
-                              )
-                            )}
-                          </ContainerReplaceTask>
-                        )}
-                      </ContainerIcons>
-                    </ContainerButtonsTask>
-                  </Task>
-                );
-              }
-            )}
-          </ListTasks>
+              )}
+            </ListTasks>
+          </ContainerListTasks>
           <ContainerButtonAddTask>
             <ButtonAddTask onClick={onAdd}>
               <IconButtonAddTask>
