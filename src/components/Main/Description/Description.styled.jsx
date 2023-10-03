@@ -11,8 +11,9 @@ export const DescriptionContainer = styled.div`
 export const DescriptionContent = styled.ul`
   display: flex;
   flex-direction: column;
-  padding: 64px 20px;
+  padding: 64px 20px 0;
   margin-top: 0;
+  margin-bottom: 0;
   background-color: var(--primary-bg-color);
 
   & > li:nth-of-type(2) > :first-of-type {
@@ -20,7 +21,7 @@ export const DescriptionContent = styled.ul`
   }
 
   ${min(tablet)} {
-    padding: 64px 32px;
+    padding: 64px 32px 0;
   }
   ${min(desktop)} {
   padding: 64px 128px;
@@ -147,4 +148,17 @@ export const DescriptionImageImg = styled.img`
   /* Звичайне зображення */
   width: 100%;
   height: 100%;
+`;
+
+export const Slider = styled.div`
+  ${min(tablet)} {
+    margin-top: 36px;
+  }
+  ${min(desktop)} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
