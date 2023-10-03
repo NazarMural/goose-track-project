@@ -1,77 +1,72 @@
 import styled from '@emotion/styled';
+import { desktop, min, tablet } from 'styles/media';
 
 export const ContainerMain = styled.div`
-  padding: 20px;
   display: flex;
   gap: 30px;
   overflow-x: auto;
   overflow-y: hidden;
-  height: 600px;
-  background-color: #f7f6f9;
-  /* width */
+  height: 432px;
+  scroll-snap-type: x mandatory;
+
+  ${min(tablet)} {
+    height: 568px;
+    gap: 16px;
+  }
+  ${min(desktop)} {
+    gap: 0;
+    justify-content: space-between;
+    max-width: 1087px;
+  }
+  /* width*/
   &::-webkit-scrollbar {
     width: 12px;
   }
 
   /* Track */
   &::-webkit-scrollbar-track {
-    background: #f2f2f2;
+    background: var(--task-scrollbar-track);
+    border-radius: 12px;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: #e7e5e5;
+    background: var(--task-scrollbar-thumb);
     border-radius: 12px;
   }
 
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
-    background: #d4d2d2;
+    background: var(--task-scrollbar-thumb-hover);
   }
 `;
+
 export const ContainerSecond = styled.div`
   position: relative;
-  padding: 0 18px;
-  max-width: 90%;
-  flex-shrink: 0;
-  flex-basis: 300px;
-  background-color: #ffffff;
-  border: 1px solid #dce3e580;
+  padding: 18px;
+  width: 296px;
+  background-color: var(--primary-bg-color);
+  border: 1px solid var(--calendar-grid-border);
   border-radius: 8px;
-  overflow-y: auto;
-  /* width */
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
+  scroll-snap-align: start;
 
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: #f2f2f2;
+  ${min(tablet)} {
+    width: 299px;
+    padding: 20px;
   }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #e7e5e5;
-    border-radius: 12px;
-  }
-
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: #d4d2d2;
+  ${min(desktop)} {
+    width: 306px;
   }
 `;
 
 export const ContainerTitle = styled.div`
-  position: sticky;
-  z-index: 2;
-  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 24px;
-  position: sticky;
-  background-color: #fff;
-  padding-top: 18px;
+  margin-bottom: 24px;
+  ${min(tablet)} {
+    margin-bottom: 28px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -80,16 +75,55 @@ export const Title = styled.h2`
   line-height: 20px;
   margin: 0;
 
-  color: #111;
+  color: var(--primary-text-color);
+  ${min(tablet)} {
+    font-size: 20px;
+    line-height: 24px;
+  }
 `;
 
 export const IconAddTask = styled.svg`
   height: 22px;
   width: 22px;
-  stroke: black;
+  stroke: var(--primary-text-color);
+  padding: 7px 0;
   cursor: pointer;
   & use {
     fill: transparent;
+  }
+  ${min(tablet)} {
+    height: 24px;
+    width: 24px;
+  }
+`;
+
+export const ContainerListTasks = styled.div`
+  max-height: 270px;
+  overflow-y: auto;
+  width: 104%;
+  ${min(tablet)} {
+    max-height: 395px;
+  }
+  /* width*/
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: var(--task-scrollbar-track);
+    border-radius: 12px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: var(--task-scrollbar-thumb);
+    border-radius: 12px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--task-scrollbar-thumb-hover);
   }
 `;
 
@@ -98,22 +132,41 @@ export const ListTasks = styled.ul`
   flex-direction: column;
   gap: 14px;
   list-style: none;
-  margin: 0;
+  margin: 0 0 13px 0;
   padding: 0;
+  width: 296px;
+  ${min(tablet)} {
+    width: 299px;
+    gap: 18px;
+    margin: 0 0 17px 0;
+  }
+  ${min(desktop)} {
+    width: 306px;
+  }
 `;
 
 export const Task = styled.li`
-  background-color: #f7f6f9;
-  padding: 15px 15px 18px 15px;
-  border: 1px solid #dce3e5cc;
+  background-color: var(--page-bg-color);
+  padding: 14px 14px 18px 14px;
+  border: 1px solid var(--calendar-grid-border);
+
   border-radius: 8px;
 `;
 
 export const TaskTitle = styled.h3`
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary-text-color);
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-bottom: 28px;
+  padding: 0;
+  margin: 0 0 28px 0;
+  ${min(tablet)} {
+  }
+  ${min(desktop)} {
+  }
 `;
 
 export const ContainerButtonsTask = styled.div`
@@ -122,9 +175,10 @@ export const ContainerButtonsTask = styled.div`
 `;
 
 export const TaskImage = styled.img`
+  box-sizing: border-box;
   width: 32px;
   height: 32px;
-  border: 1.8px solid #3e85f3;
+  border: 1.8px solid var(--accent-color);
   border-radius: 50%;
   margin-right: 8px;
 `;
@@ -134,16 +188,16 @@ export const TaskButtonPriority = styled.button`
   font-size: 10px;
   font-weight: 600;
   line-height: 12px;
-  color: #f7f6f9;
+  color: var(--task-priority-color);
   padding: 4px 12px;
   background-color: ${({ priority }) => {
     switch (priority) {
       case 'low':
-        return '#72C2F8';
+        return 'var(--task-priority-low-bg)';
       case 'medium':
-        return '#F3B249';
+        return 'var(--task-priority-medium-bg)';
       case 'high':
-        return '#EA3D65';
+        return 'var(--task-priority-high-bg)';
 
       default:
         return;
@@ -152,6 +206,10 @@ export const TaskButtonPriority = styled.button`
   border: none;
 
   border-radius: 4px;
+  ${min(tablet)} {
+  }
+  ${min(desktop)} {
+  }
 `;
 
 export const ContainerIcons = styled.div`
@@ -165,10 +223,16 @@ export const ContainerIcons = styled.div`
 export const IconTask = styled.svg`
   height: 14px;
   width: 14px;
-  stroke: black;
+  stroke: var(--primary-text-color);
   cursor: pointer;
   & use {
     fill: transparent;
+  }
+  ${min(tablet)} {
+    height: 16px;
+    width: 16px;
+  }
+  ${min(desktop)} {
   }
 `;
 
@@ -176,7 +240,7 @@ export const ContainerReplaceTask = styled.div`
   display: flex;
   flex-direction: column;
   gap: 14px;
-  background-color: #fff;
+  background-color: var(--task-popup-bg);
   padding: 14px;
   border-radius: 8px;
   position: absolute;
@@ -191,6 +255,7 @@ export const ReplaceTaskContainerText = styled.div`
   justify-content: space-between;
   gap: 8px;
   white-space: nowrap;
+
   cursor: pointer;
 `;
 
@@ -198,21 +263,15 @@ export const ReplaceTaskText = styled.span`
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
-  color: #343434;
+  color: var(--task-popup-color-text);
 `;
 
 export const ContainerButtonAddTask = styled.div`
-  background-color: #fff;
-  position: sticky;
-  z-index: 2;
-  bottom: 0px;
-  width: 100%;
+  background-color: var(--primary-bg-color);
   border-radius: 8px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  padding-bottom: 18px;
-  margin-top: 14px;
-  overflow: hidden;
+  padding-bottom: 20px;
 `;
 
 export const ButtonAddTask = styled.button`
@@ -222,8 +281,8 @@ export const ButtonAddTask = styled.button`
   justify-content: center;
   gap: 8px;
   width: 100%;
-  background-color: #e3f3ff;
-  border: 1px dashed #3e85f3;
+  background-color: var(--add-task-bg);
+  border: 1px dashed var(--accent-color);
   border-radius: 8px;
   padding: 12px 0;
 `;
@@ -231,7 +290,7 @@ export const ButtonAddTask = styled.button`
 export const IconButtonAddTask = styled.svg`
   width: 24px;
   height: 24px;
-  stroke: black;
+  stroke: var(--primary-text-color);
   & use {
     fill: transparent;
   }
@@ -241,5 +300,5 @@ export const ButtonAddTaskText = styled.span`
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
-  color: #111111;
+  color: var(--primary-text-color);
 `;
