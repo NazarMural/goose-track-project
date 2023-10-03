@@ -29,6 +29,7 @@
 --sidebar-bg-color: #FFFFFF;
 --sidebar-accent-color: #E3F3FF;
 
+--burger-color: #343434;
 /* review-styles */
 --review-text-color: #111111B2;
 --review-border-color: #1111111A;
@@ -90,6 +91,7 @@ html.dark {
 --sidebar-bg-color: #13151A;
 --sidebar-accent-color: #3E85F3;
 
+--burger-color: #FFFFFF;
 --star-color: #353647;
 --review-btn-cancel-color:#FFFFFF;
 --review-btn-cancel-bg: #21222C;
