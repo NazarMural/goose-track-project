@@ -1,18 +1,6 @@
 import styled from '@emotion/styled';
 import { tablet, min, desktop } from 'styles/media';
 
-// ${min(tablet)} {
-//     width: 410px;
-//     margin-bottom: 247px;
-// }
-// ${min(desktop)} {
-//     margin-bottom: 184px;
-// }
-
-// const isShowSideBar = props => {
-//   if (props.showSideBar) return '+125%';
-//   return '-75%';
-// };
 
 export const HeaderSection = styled.header`
   display: flex;

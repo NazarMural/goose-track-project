@@ -5,29 +5,16 @@ export const CloseBtn = styled.button`
   position: absolute;
   top: 15px;
   right: 15px;
-  /* box-sizing: content-box; */
-  align-items: center;
-  /* align-items: center; */
-  width: 24px;
-  height: 24px;
-  padding: 0px;
-  /* border: none; */
+  border: none;
   background-color: inherit;
+  align-items: center;
+  padding: 0px;
   cursor: pointer;
   svg {
-    /* display: block; */
+    fill: transparent;
+    stroke: var(--primary-text-color);
+    display: block;
     width: 24px;
-    height: 24px;
-    use {
-      width: 24px;
-      height: 24px;
-      /* stroke: #ffffff;
-      fill: #ffffff; */
-    }
+    height: 24px;     
   }
-
-  width: 24px;
-  height: 24px;
-  fill: #fefefe;
-  stroke: #fefefe;
 `;

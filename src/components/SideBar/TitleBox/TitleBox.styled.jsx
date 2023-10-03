@@ -3,13 +3,20 @@ import { tablet, min, desktop } from 'styles/media';
 
 export const TitleBoxEl = styled.div`
   display: flex;
+  margin-bottom: 64px;
+  ${min(tablet)} {
+    margin-bottom: 50px;
+  }
+  ${min(desktop)} {
+    margin-bottom: 32px;
+  }
+
   h2 {
-    color: #3e85f3;
+    color: var(--accent-color);
     text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
       0px 47px 355px rgba(0, 0, 0, 0.07);
     font-family: Inter;
     font-size: 16px;
-    font-style: normal;
     font-weight: 700;
     line-height: 22px;
     ${min(tablet)} {
@@ -21,7 +28,7 @@ export const TitleBoxEl = styled.div`
     }
 
     span {
-      color: #3e85f3;
+      color: var(--accent-color);
       font-family: Inter;
       font-size: 16px;
       font-style: italic;

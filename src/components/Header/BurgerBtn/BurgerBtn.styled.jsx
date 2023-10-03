@@ -10,6 +10,8 @@ export const BurgerButtonEl = styled.button`
   cursor: pointer;
 
   svg {
+    fill: transparent;
+    stroke: var(--btn-bg-color);
     width: 24px;
     height: 24px;
   }

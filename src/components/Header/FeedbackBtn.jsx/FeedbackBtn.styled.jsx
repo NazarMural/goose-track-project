@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { tablet, min} from 'styles/media';
+import { tablet, min } from 'styles/media';
 
 export const FeedbackButton = styled.button`
   display: block;
@@ -8,15 +8,18 @@ export const FeedbackButton = styled.button`
   border: none;
   border-radius: 10px;
   outline: none;
-  background: #3e85f3;
-  color: #ffffff;
+  background-color: var(--btn-bg-color);
+  color: var(--btn-text-color);
   margin-left: auto;
   text-align: center;
   font-family: Inter;
-  font-size: 12px;
-  font-style: normal;
+  font-size: 12px; 
   font-weight: 600;
   line-height: 16px;
+
+  :hover {
+    background-color: var(--btn-bg-hover);
+  }
   ${min(tablet)} {
     padding: 12px 32px;
     font-size: 14px;
