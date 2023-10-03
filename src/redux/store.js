@@ -9,6 +9,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { persistAuthReducer } from './auth/authSlice';
+import { reviewReducer } from './reviews/reviewSlice';
+
+
 import { persistThemeReducer } from './theme/themeSlice';
 import { tasksReducer } from './tasks/tasksSlice';
 
@@ -22,6 +25,7 @@ const middleware = getDefaultMiddleware =>
 const store = configureStore({
   reducer: {
     auth: persistAuthReducer,
+    reviews: reviewReducer,
     tasks: tasksReducer,
     theme: persistThemeReducer,
   },
