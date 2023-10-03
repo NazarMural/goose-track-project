@@ -25,7 +25,6 @@ import {
 
 import sprite from '../../../assets/images/icons/icons.svg';
 
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import {
   deleteTaskOperation,
@@ -33,8 +32,6 @@ import {
   updateTaskOperation,
 } from 'redux/tasks/operations';
 import { useParams } from 'react-router-dom';
-
-axios.defaults.headers.common.Authorization = `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWE5MmU2ZGQxNmQyNjY2MWZkN2QyZCIsImlhdCI6MTY5NjMxNTM3NCwiZXhwIjoxNjk2Mzc2NTc0fQ.DeLcp-lYKAMf2fWpg2YL7MotfLQ_xF60t5JzX5gIL5U'}`;
 
 const categories = [
   { id: 1, type: 'to-do' },
