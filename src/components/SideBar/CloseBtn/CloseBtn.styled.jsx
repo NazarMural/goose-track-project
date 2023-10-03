@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 
 export const CloseBtn = styled.button`
   display: block;
+  position: absolute;
+  top: 15px;
+  right: 15px;
   /* box-sizing: content-box; */
   align-items: center;
   /* align-items: center; */
@@ -12,7 +15,7 @@ export const CloseBtn = styled.button`
   background-color: inherit;
   cursor: pointer;
   svg {
-    display: block;
+    /* display: block; */
     width: 24px;
     height: 24px;
     use {

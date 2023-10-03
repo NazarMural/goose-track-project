@@ -3,7 +3,8 @@ import { ThemeBtn } from './ThemeToggle.styled';
 
 export const ThemeToggler = () => {
   const handleThemeClick = () => {
-    document.documentElement.classList.toggle('dark');
+    // const r = localStorage.getItem('persist:theme');
+       document.documentElement.classList.toggle('dark');
   };
   return (
     <ThemeBtn type="button" onClick={handleThemeClick}>

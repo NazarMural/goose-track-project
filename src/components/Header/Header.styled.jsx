@@ -20,7 +20,7 @@ export const HeaderSection = styled.header`
   max-width: 375px;
   height: auto;
   align-items: center;
-  background: #f7f6f9;
+  /* background: #f7f6f9; */
   /* justify-content: space-between; */
 
   ${min(tablet)} {
