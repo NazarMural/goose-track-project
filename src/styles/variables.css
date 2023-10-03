@@ -29,6 +29,7 @@
 --sidebar-bg-color: #FFFFFF;
 --sidebar-accent-color: #E3F3FF;
 
+--burger-color: #343434;
 /* review-styles */
 --review-text-color: #111111B2;
 --review-border-color: #1111111A;
@@ -68,10 +69,18 @@
 --task-priority-low-bg: #72C2F8;
 --add-task-bg: #E3F3FF;
 --task-btn-cancel: #EFEFEF;
+--task-popup-bg: #FFFFFF;
+--task-popup-color-text: #343434;
+--task-scrollbar-track: #f2f2f2;
+--task-scrollbar-thumb: #E7E5E5;
+--task-scrollbar-thumb-hover: #d4d2d2;
+
 
 /* statistic-styles */
 --gradient-red:  linear-gradient(0deg, #FFD2DD 0%, rgba(255, 210, 221, 0.00) 96.87%);
 --gradient-blue: fill: linear-gradient(0deg, #3E85F3 0%, rgba(62, 133, 243, 0.00) 100%);
+--legend-day: #FFD2DD;
+--legend-month: #3E85F3;
 }
 
 html.dark {
@@ -84,6 +93,7 @@ html.dark {
 --sidebar-bg-color: #13151A;
 --sidebar-accent-color: #3E85F3;
 
+--burger-color: #FFFFFF;
 --star-color: #353647;
 --review-btn-cancel-color:#FFFFFF;
 --review-btn-cancel-bg: #21222C;
@@ -100,5 +110,11 @@ html.dark {
 --user-label-color: #FAFAFA4D;
 
 --add-task-bg: #3E85F3;
+
+--task-popup-bg: #171820;
+--task-popup-color-text: #FFFFFF;
+--task-scrollbar-track: #2D3037;
+--task-scrollbar-thumb: #171820;
+--task-scrollbar-thumb-hover: #1a1b20;
 }
 

@@ -1,17 +1,26 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
+import { min, tablet } from 'styles/media';
 
 export const Toolbar = styled.div`
   margin-bottom: 24px;
+
+  ${min(tablet)} {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
+
 export const DateContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 18px;
+  gap: 8px;
 `;
 
 export const DateWrapper = styled.div`
   background-color: var(--accent-color);
-  max-width: 128px;
+  width: 148px;
   /* width: auto; */
   display: flex;
   padding: 6px 12px;
@@ -48,6 +57,7 @@ export const TypeWrapper = styled.div`
   display: flex;
   border-radius: 8px;
   overflow: hidden;
+  height: 34px;
 `;
 
 export const Type = styled.div`
@@ -57,6 +67,15 @@ export const Type = styled.div`
   align-items: center;
   padding: 8px 0;
   background-color: var(--switch-type-bg-active);
+`;
+
+export const TypeLink = styled(NavLink)`
+  text-decoration: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--switch-type-color);
 `;
 
 
