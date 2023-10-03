@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart } from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTasksOperation } from 'redux/tasks/operations';
 import { selectTasks } from 'redux/tasks/selectors';
+import moment from 'moment';
 
 import {
   СhartContainer,
@@ -17,6 +18,21 @@ import {
 const StatisticsСhart = () => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
+  const dataDay = moment().format('YYYY-MM-DD');
+
+  const [currentDay, setCurrentDay] = useState(dataDay);
+
+  useEffect(() => {
+    (async () => {
+      const { payload } = await dispatch(fetchTasksOperation());
+      const filteredTasks = payload
+        ? payload.filter(({ date }) => date === currentDay)
+        : [];
+
+      console.log(filteredTasks);
+      
+    })();
+  }, [currentDay, dispatch]);
 
   useEffect(() => {
     Chart.register(ChartDataLabels);
@@ -27,10 +43,6 @@ const StatisticsСhart = () => {
     if (existingChart) {
       existingChart.destroy(); // Видаляємо попередній графік, якщо він існує
     }
-
-    dispatch(fetchTasksOperation());
-
-    console.log(tasks);
 
     new Chart(canvas, {
       type: 'bar',
@@ -79,7 +91,7 @@ const StatisticsСhart = () => {
         },
       },
     });
-  }, [dispatch, tasks]);
+  }, [tasks]);
 
   return (
     <StatisticsContainer>
