@@ -4,19 +4,20 @@ import { ThemeBtn } from './ThemeToggle.styled';
 import { setTheme } from 'redux/theme/themeSlice';
 import { selectTheme } from 'redux/theme/selectors';
 import { THEMES } from 'constants/theme/themes';
+import { useEffect } from 'react';
 // import { useEffect } from 'react';
 
 export const ThemeToggler = () => {
   const dispatch = useDispatch();
   const curentTheme = useSelector(selectTheme);
 
-  // useEffect(() => {
-  //   if (curentTheme === 'dark') {
-  //     document.documentElement.classList.add('dark');
-  //     document.documentElement.classList.remove ('dark');
-  //   }
-
-  // }, [curentTheme]);
+  useEffect(() => {
+    if (curentTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      return;
+    }
+    document.documentElement.classList.remove('dark');
+  }, [curentTheme]);
 
   const handleThemeClick = () => {
     // const r = localStorage.getItem('persist:theme');

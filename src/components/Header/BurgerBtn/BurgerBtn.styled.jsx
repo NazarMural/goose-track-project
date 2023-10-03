@@ -16,5 +16,9 @@ export const BurgerButtonEl = styled.button`
     stroke: var(--star-color-active);
     width: 24px;
     height: 24px;
+    use {
+      fill: var(--star-color-active);
+      /* stroke: var(--star-color-active); */
+    }
   }
 `;
