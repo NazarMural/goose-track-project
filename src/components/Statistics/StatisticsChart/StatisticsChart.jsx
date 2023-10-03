@@ -20,7 +20,7 @@ const StatisticsСhart = () => {
   const tasks = useSelector(selectTasks);
   const dataDay = moment().format('YYYY-MM-DD');
 
-  const [currentDay, setCurrentDay] = useState(dataDay);
+  const [currentDay] = useState(dataDay);
 
   useEffect(() => {
     (async () => {
@@ -30,7 +30,6 @@ const StatisticsСhart = () => {
         : [];
 
       console.log(filteredTasks);
-      
     })();
   }, [currentDay, dispatch]);
 
