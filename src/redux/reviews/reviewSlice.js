@@ -1,21 +1,30 @@
-
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-axios.defaults.baseURL =
-  'https://goose-track-project-backend.onrender.com/api/';
-
-export const fetchReviews = createAsyncThunk(
-  'reviews/fetchAll',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get('/reviews');
-      return response.data.reviews;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  handleAddReviewFulfilled,
+  handleAddReviewPending,
+  handleAddReviewRejected,
+  handleDeleteReviewFulfilled,
+  handleDeleteReviewPending,
+  handleDeleteReviewRejected,
+  handleFetchOwnReviewFulfilled,
+  handleFetchOwnReviewPending,
+  handleFetchOwnReviewRejected,
+  handleUpdateReviewFulfilled,
+  handleUpdateReviewPending,
+  handleUpdateReviewRejected,
+  handleFetchReviewsFulfilled,
+  handleFetchReviewsPending,
+  handleFetchReviewsRejected,
+  handleLogoutInReviewsFulfilled,
+} from 'utils/reduxActionHandlers/reviewsActionHandlers';
+import {
+  fetchAllReviewsOperation,
+  fetchOwnReviewOperation,
+  addReviewOperation,
+  deleteReviewOperation,
+  updateReviewOperation,
+} from './operations';
+import { logOutOperation } from 'redux/auth/operations';
 
 const reviewsInitialState = {
   reviewsItem: [],
@@ -23,30 +32,27 @@ const reviewsInitialState = {
   error: null,
 };
 
-const handlePending = (state) => {
-  state.isLoading = true;
-};
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
-const handleFetchReviewsFulfilled = (state, action) => {
-  state.isLoading = false;
-  state.error = null;
-  state.reviewsItem = action.payload;
-};
-
 export const reviewsSlice = createSlice({
   name: 'reviews',
   initialState: reviewsInitialState,
-  extraReducers: (builder) =>
+  extraReducers: builder =>
     builder
-      .addCase(fetchReviews.pending, handlePending)
-      .addCase(fetchReviews.fulfilled, handleFetchReviewsFulfilled)
-      .addCase(fetchReviews.rejected, handleRejected),
+      .addCase(fetchAllReviewsOperation.pending, handleFetchReviewsPending)
+      .addCase(fetchAllReviewsOperation.fulfilled, handleFetchReviewsFulfilled)
+      .addCase(fetchAllReviewsOperation.rejected, handleFetchReviewsRejected)
+      .addCase(fetchOwnReviewOperation.pending, handleFetchOwnReviewPending)
+      .addCase(fetchOwnReviewOperation.fulfilled, handleFetchOwnReviewFulfilled)
+      .addCase(fetchOwnReviewOperation.rejected, handleFetchOwnReviewRejected)
+      .addCase(addReviewOperation.pending, handleAddReviewPending)
+      .addCase(addReviewOperation.fulfilled, handleAddReviewFulfilled)
+      .addCase(addReviewOperation.rejected, handleAddReviewRejected)
+      .addCase(deleteReviewOperation.pending, handleDeleteReviewPending)
+      .addCase(deleteReviewOperation.fulfilled, handleDeleteReviewFulfilled)
+      .addCase(deleteReviewOperation.rejected, handleDeleteReviewRejected)
+      .addCase(updateReviewOperation.pending, handleUpdateReviewPending)
+      .addCase(updateReviewOperation.fulfilled, handleUpdateReviewFulfilled)
+      .addCase(updateReviewOperation.rejected, handleUpdateReviewRejected)
+      .addCase(logOutOperation.fulfilled, handleLogoutInReviewsFulfilled),
 });
-
-export const { fetchingInProgress, fetchingSuccess, fetchingError } =
-  reviewsSlice.actions;
 
 export const reviewReducer = reviewsSlice.reducer;

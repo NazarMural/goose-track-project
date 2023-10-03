@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchReviews } from 'redux/reviews/reviewSlice';
+import { fetchAllReviewsOperation } from 'redux/reviews/operations';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -22,15 +22,16 @@ import {
 import sprite from '../../../assets/images/icons/icons.svg';
 import defaultAvatar from '../../../assets/images/default-avatar.png';
 import RatingStars from './RatingStars';
+import { selectReviews } from 'redux/reviews/selectors';
 
 const ReviewsSlider = () => {
   const dispatch = useDispatch();
-  const reviews = useSelector(state => state.reviews.reviewsItem);
+  const reviews = useSelector(selectReviews);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    dispatch(fetchReviews());
+    dispatch(fetchAllReviewsOperation());
     window.addEventListener('resize', handleResize);
 
     return () => {
