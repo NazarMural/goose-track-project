@@ -2,21 +2,15 @@ import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { object, string, number, date } from 'yup';
 import sprite from '../../../assets/images/icons/icons.svg';
+import { UserInfo } from '../UserInfo/UserInfo';
 import {
   Container,
-  UserContainer,
-  AvatarWrapper,
   AddUserForm,
   FormField,
   Label,
   Button,
   ButtonContainer,
-  UserName,
-  UserStatus,
   ChevronDown,
-  UserAvatar,
-  AddAvatar,
-  AddAvatarButton,
   Span,
 } from './UserForm.styled';
 
@@ -45,20 +39,7 @@ export const UserForm = () => {
 
   return (
     <Container>
-      <UserContainer>
-        <AvatarWrapper>
-          <AddAvatarButton type="submit">
-            <AddAvatar>
-              <use href={`${sprite}#icon-plus`}></use>
-            </AddAvatar>
-          </AddAvatarButton>
-          <UserAvatar>
-            <use href={`${sprite}#icon-ph_user`}></use>
-          </UserAvatar>
-        </AvatarWrapper>
-        <UserName>Username</UserName>
-        <UserStatus>User</UserStatus>
-      </UserContainer>
+      <UserInfo />
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
