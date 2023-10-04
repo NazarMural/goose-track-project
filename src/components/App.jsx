@@ -50,7 +50,12 @@ export const App = () => {
             }
           />
           <Route path="/" element={<MainLayout />}>
-            <Route path="/account" element={<AccountPage />} />
+            <Route
+              path="/account"
+              element={
+                <PrivateRoute component={<AccountPage />} redirectTo="/login" />
+              }
+            />
             <Route
               path="/calendar"
               element={
@@ -60,10 +65,34 @@ export const App = () => {
                 />
               }
             >
-              <Route path="day/:currentDay" element={<ChoosedDay />} />
-              <Route path="month/:currentMonth" element={<ChoosedMonth />} />
+              <Route
+                path="day/:currentDay"
+                element={
+                  <PrivateRoute
+                    component={<ChoosedDay />}
+                    redirectTo="/login"
+                  />
+                }
+              />
+              <Route
+                path="month/:currentMonth"
+                element={
+                  <PrivateRoute
+                    component={<ChoosedMonth />}
+                    redirectTo="/login"
+                  />
+                }
+              />
             </Route>
-            <Route path="/statistics" element={<StatisticsPage />} />
+            <Route
+              path="/statistics"
+              element={
+                <PrivateRoute
+                  component={<StatisticsPage />}
+                  redirectTo="/login"
+                />
+              }
+            />
           </Route>
           <Route path="*" element={<ErrorPage />} />
         </Routes>

@@ -112,3 +112,4 @@ const sortedReviews = reviews.slice().sort((a, b) => {
 };
 
 export default ReviewsSlider;
+

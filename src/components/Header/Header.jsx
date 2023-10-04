@@ -5,6 +5,8 @@ import { FeedbackBtn } from './FeedbackBtn.jsx/FeedbackBtn';
 import { UserInfo } from './UserInfo/UserInfo';
 import { HeaderSection } from './Header.styled';
 import ReviewForm from '../../components/Modal/ReviewForm/ReviewForm';
+import { HeaderSection, PageTitle } from './Header.styled';
+import { useLocation } from 'react-router-dom';
 
 export const Header = ({ addSideBar, showSideBar }) => {
   const isDesktop = useMediaQuery({
@@ -20,11 +22,25 @@ export const Header = ({ addSideBar, showSideBar }) => {
    const closeForm = () => {
      setIsFormOpen(false);
    };
+  const location = useLocation();
+
+  const defineCurentPage = () => {
+    if (location.pathname.includes('account')) return 'User profile';
+    if (location.pathname.includes('calendar')) return 'Calendar';
+    if (location.pathname.includes('statistics')) return 'Statistics';
+  };
+  const currentPageTitle = defineCurentPage();
 
   return (
     <HeaderSection showSideBar={showSideBar}>
       {!isDesktop && <BurgerBtn addSideBar={addSideBar} />}
       <FeedbackBtn openForm={openForm} />
+      {isDesktop ? (
+        <PageTitle>{currentPageTitle}</PageTitle>
+      ) : (
+        <BurgerBtn addSideBar={addSideBar} />
+      )}
+      <FeedbackBtn />
       <UserInfo />
       {isFormOpen && <ReviewForm isOpen={isFormOpen} onClose={closeForm} />}
     </HeaderSection>

@@ -1,19 +1,20 @@
-import { CloseSideBarBtn } from './CloseBtn/CloseBtn';
 import { LogoutBtn } from './LogoutBtn.jsx/LogoutBtn';
-import { SideBarEl, TitleBox } from './SideBar.styled';
+import { SideBarEl } from './SideBar.styled';
+import { TitleBox } from './TitleBox/TitleBox';
 import { UserNavigation } from './UserNav/UserNav';
-import { GooseImage } from './GooseImage/GooseImage';
+import { useMediaQuery } from 'react-responsive';
 
 export const SideBar = ({ removeSideBar, showSideBar }) => {
+  const desktop = useMediaQuery({ minWidth: 1440 });
+  if (showSideBar && !desktop) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+
   return (
     <SideBarEl showSideBar={showSideBar}>
-      <TitleBox>
-        <GooseImage />
-        <h2>
-          G<span>oo</span>seTrack
-        </h2>
-        <CloseSideBarBtn removeSideBar={removeSideBar} />
-      </TitleBox>
+      <TitleBox removeSideBar={removeSideBar} />
       <UserNavigation removeSideBar={removeSideBar} />
       <LogoutBtn />
     </SideBarEl>
