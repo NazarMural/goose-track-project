@@ -72,7 +72,6 @@ const PopUpReplace = ({
           return task;
         })
       : [];
-    console.log(filteredTasks);
 
     setTasks(filteredTasks);
 
