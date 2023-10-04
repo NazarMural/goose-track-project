@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import { tablet, min, desktop } from 'styles/media';
 
-
-
 export const MainLayoutContainer = styled.div`
   display: flex;
   position: relative;

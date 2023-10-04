@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 
 export const BurgerButtonEl = styled.button`
   display: block;
-  /* width: 24px;
-  height: 24px; */
   align-items: center;
   padding: 0px;
   border: none;
@@ -13,12 +11,8 @@ export const BurgerButtonEl = styled.button`
   svg {
     display: block;
     fill: transparent;
-    stroke: var(--star-color-active);
+    fill: var(--burger-color);
     width: 24px;
     height: 24px;
-    use {
-      fill: var(--star-color-active);
-      /* stroke: var(--star-color-active); */
-    }
   }
 `;

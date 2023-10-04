@@ -5,18 +5,12 @@ import { UserNavigation } from './UserNav/UserNav';
 
 export const SideBar = ({
   removeSideBar,
-  showSideBar,
-  // currentPage,
-  // changeCurrentPage,
-}) => {
-  return (
+  showSideBar
+}) => {  
+  return (   
     <SideBarEl showSideBar={showSideBar}>
       <TitleBox removeSideBar={removeSideBar} />
-      <UserNavigation
-        removeSideBar={removeSideBar}
-        // currentPage={currentPage}
-        // changeCurrentPage={changeCurrentPage}
-      />
+      <UserNavigation removeSideBar={removeSideBar} />
       <LogoutBtn />
     </SideBarEl>
   );

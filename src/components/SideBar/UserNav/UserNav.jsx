@@ -3,6 +3,8 @@ import {
   NavList,
   NavListItem,
   NavLinkSideBar,
+  IconWithStroke,
+  IconWithFill,
 } from './UserNav.styled';
 import sprite from '../../../assets/images/icons/icons.svg';
 // import { pages } from 'components/MainLayout/MainLayout';
@@ -22,27 +24,27 @@ export const UserNavigation = ({
       <NavTitle>User panel</NavTitle>
       <nav>
         <NavList>
-          <NavListItem>
+          <NavListItem page="account">
             <NavLinkSideBar to="account" onClick={handleChangeCurrentPage}>
-              <svg>
+              <IconWithStroke>
                 <use xlinkHref={`${sprite}#icon-user`} />
-              </svg>
+              </IconWithStroke>
               My account
             </NavLinkSideBar>
           </NavListItem>
-          <NavListItem>
+          <NavListItem page="calendar">
             <NavLinkSideBar to="calendar" onClick={handleChangeCurrentPage}>
-              <svg>
+              <IconWithStroke>
                 <use xlinkHref={`${sprite}#icon-calendar`} />
-              </svg>
+              </IconWithStroke>
               Calendar
             </NavLinkSideBar>
           </NavListItem>
-          <NavListItem>
+          <NavListItem page="statistics">
             <NavLinkSideBar to="statistics" onClick={handleChangeCurrentPage}>
-              <svg>
+              <IconWithFill>
                 <use xlinkHref={`${sprite}#icon-chart`} />
-              </svg>
+              </IconWithFill>
               Statistics
             </NavLinkSideBar>
           </NavListItem>
