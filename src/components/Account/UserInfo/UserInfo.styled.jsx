@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { min, tablet, desktop } from 'styles/media';
+
 export const UserContainer = styled.div`
   margin: 0 auto;
   display: flex;
@@ -7,6 +8,7 @@ export const UserContainer = styled.div`
   max-width: 299px;
   flex-direction: column;
   align-items: center;
+
   ${min(tablet)} {
     max-width: 704px;
     margin-bottom: 66px;
@@ -26,6 +28,7 @@ export const AvatarWrapper = styled.div`
   border-radius: 50%;
   margin: -31px 0 18px;
   border: solid 2px var(--accent-color);
+  overflow: hidden;
   ${min(tablet)} {
     margin: 40px 0 20px;
   }
@@ -38,21 +41,23 @@ export const AvatarWrapper = styled.div`
     border: solid 2px var(--accent-color);
   }
 `;
-export const AddAvatarButton = styled.button`
+export const AddAvatarButton = styled.label`
   position: absolute;
-  bottom: -6px;
+  bottom: 16px;
   right: 14px;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   border: none;
   background-color: var(--accent-color);
+  z-index: 1;
   cursor: pointer;
   ${min(tablet)} {
+    bottom: 19px;
   }
   ${min(desktop)} {
     position: absolute;
-    bottom: -8px;
+    bottom: 16px;
     right: 24px;
     width: 24px;
     height: 24px;
@@ -162,4 +167,18 @@ export const UserStatus = styled.p`
       color: var(--user-label-color);
     }
   }
+`;
+
+export const InputFile = styled.input`
+  display: none;
+`;
+
+export const AvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+`;
+export const UserWrapper = styled.div`
+  position: relative;
 `;
