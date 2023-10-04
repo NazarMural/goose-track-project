@@ -115,6 +115,8 @@ const AuthForm = ({ login }) => {
     }
 
     resetForm();
+    localStorage.removeItem('type');
+    localStorage.removeItem('date');
   }
 
   const togglePassword = () => {
