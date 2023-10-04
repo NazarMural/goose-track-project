@@ -6,7 +6,6 @@ import { HeadCell, HeadWrapper } from './MonthCalendarHead.styled';
 export const MonthCalendarHead = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   //   const day = moment().day(1).format('ddd');
-
   //   console.log(day);
 
   return (
