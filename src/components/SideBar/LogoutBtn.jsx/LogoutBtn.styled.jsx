@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { tablet, min } from 'styles/media';
+import { tablet, min, max, desktop } from 'styles/media';
 
 export const LogoutButtonEl = styled.button`
   display: flex;
@@ -38,5 +38,9 @@ export const LogoutButtonEl = styled.button`
     width: 20px;
     height: 20px;
     margin-left: 6px;
+  }
+
+  ${max(desktop - 0.02)} {
+    margin-bottom: 35px;
   }
 `;
