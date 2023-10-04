@@ -5,16 +5,35 @@ import { Outlet } from 'react-router-dom';
 import { MainLayoutContainer } from './MainLayout.styled';
 import { Container } from './MainLayout.styled';
 
+export const pages = {
+  account: 'User Profile',
+  calendar: 'Calendar',
+  statistics: 'Statistics',
+};
+
 const MainLayout = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState(false);
+  // const [currentPage, setCurrentPage] = useState(pages.account);
+
   const addSideBar = () => setShowSideBar(true);
   const removeSideBar = () => setShowSideBar(false);
 
+  // const changeCurrentPage = newCurentPage => setCurrentPage(newCurentPage);
+
   return (
     <MainLayoutContainer>
-      <SideBar removeSideBar={removeSideBar} showSideBar={showSideBar} />
+      <SideBar
+        removeSideBar={removeSideBar}
+        showSideBar={showSideBar}
+        // currentPage={currentPage}
+        // changeCurrentPage={changeCurrentPage}
+      />
       <Container>
-        <Header addSideBar={addSideBar} showSideBar={showSideBar} />
+        <Header
+          addSideBar={addSideBar}
+          showSideBar={showSideBar}
+          // currentPage={currentPage}
+        />
         <Container>
           {children}
           <Outlet />
@@ -26,86 +45,4 @@ const MainLayout = ({ children }) => {
 
 export default MainLayout;
 
-// export const Layout = ({ children }) => {
-//   const dispatch = useDispatch();
-//   const handleLogOut = () => {
-//     dispatch(logOut());
-//   };
 
-//   const {
-//     user: { name },
-//   } = useAuth();
-
-//   const { isLoggedIn } = useAuth();
-
-//   return (
-//     <div className={css.container}>
-//       <header>
-//         <nav className={css.nav}>
-//           <NavLink to="/" className={css.navText}>
-//             Home Page
-//           </NavLink>
-//           {isLoggedIn && (
-//             <NavLink to="/contacts" className={css.navText}>
-//               Contacts
-//             </NavLink>
-//           )}
-//           {isLoggedIn ? (
-//             <div className={css.forLoggeded}>
-//               {/* <NavLink to="/contacts" className={css.navText}>
-//                 Contacts
-//               </NavLink> */}
-//               <p className={css.greating}>
-//                 Hello, <span className={css.userName}>{name}</span>!{' '}
-//               </p>
-//               <button
-//                 type="button"
-//                 onClick={handleLogOut}
-//                 className={css.btnLogout}
-//               >
-//                 LogOut
-//               </button>
-//             </div>
-//           ) : (
-//             <div className={css.authorization}>
-//               <NavLink to="/login" className={css.navText}>
-//                 LogIn
-//               </NavLink>
-//               <NavLink to="/register" className={css.navText}>
-//                 Register
-//               </NavLink>
-//             </div>
-//           )}
-//         </nav>
-//       </header>
-//       <main>{children}</main>
-//       <footer></footer>
-//     </div>
-//   );
-
-// hook useAuth
-//     import { useSelector } from 'react-redux';
-// import {
-//   selectUser,
-//   selectIsLoggedIn,
-//   selectIsRefreshing,
-// } from '../redux/auth/selectors';
-
-// export const useAuth = () => {
-//   const isLoggedIn = useSelector(selectIsLoggedIn);
-//   const isRefreshing = useSelector(selectIsRefreshing);
-//   const user = useSelector(selectUser);
-
-//   return {
-//     isLoggedIn,
-//     isRefreshing,
-//     user,
-//   };
-// };
-
-// Selectors
-// export const selectIsLoggedIn = state => state.auth.isLoggedIn;
-
-// export const selectUser = state => state.auth.user;
-
-// export const selectIsRefreshing = state => state.auth.isRefreshing;
