@@ -24,7 +24,6 @@ const StatisticsСhart = () => {
   const [sortTasks, setSortTasks] = useState({});
 
   const tasks = useSelector(selectTasks);
-  const dataDay = moment().format('YYYY-MM-DD');
 
   const [currentDay] = useState(dataDay);
 
