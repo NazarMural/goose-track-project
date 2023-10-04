@@ -6,8 +6,10 @@ import moment from 'moment';
 
 const CalendarPage = () => {
   const navigate = useNavigate();
-  const [currentDate, setCurrentDate] = useState(moment().format('YYYY MM DD'));
-  const [format, setFormat] = useState('month');
+  const [currentDate, setCurrentDate] = useState(
+    localStorage.getItem('date') || moment().format('YYYY MM DD')
+  );
+  const [format, setFormat] = useState(localStorage.getItem('type') || 'month');
 
   useEffect(() => {
     let date;

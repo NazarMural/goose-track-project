@@ -8,11 +8,17 @@ export const ThemeBtn = styled.button`
   border: none;
   background-color: inherit;
   cursor: pointer;
+
   svg {
-    fill: #3e85f3;
+    fill: var(--btn-bg-color);
     display: block;
     width: 20px;
     height: 20px;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    :hover {
+      fill: var(--btn-bg-hover);
+    }
+
     ${min(tablet)} {
       width: 32px;
       height: 32px;
