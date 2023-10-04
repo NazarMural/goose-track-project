@@ -15,11 +15,12 @@ import {
 } from './UserInfo.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserAvatarOperation } from 'redux/auth/operations';
-import { selectUserAvatar } from 'redux/auth/selectors';
+import { selectUser, selectUserAvatar } from 'redux/auth/selectors';
 
 export const UserInfo = () => {
   const dispatch = useDispatch();
   const avatarCloud = useSelector(selectUserAvatar);
+  const { name } = useSelector(selectUser);
 
   const fileInputChange = e => {
     const file = e.target.files[0];
@@ -47,7 +48,7 @@ export const UserInfo = () => {
           )}
         </AvatarWrapper>
       </UserWrapper>
-      <UserName>Username</UserName>
+      <UserName>{name}</UserName>
       <UserStatus>User</UserStatus>
     </UserContainer>
   );
