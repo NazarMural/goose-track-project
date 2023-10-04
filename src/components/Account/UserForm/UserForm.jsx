@@ -86,10 +86,9 @@ export const UserForm = () => {
             />
             <ErrorMessage name="phone" component="div" />
           </Label>
-
-          <Label>
-            Birthday
-            <Span>
+          <Span>
+            <Label>
+              Birthday
               <FormField
                 type="date"
                 name="birthday"
@@ -101,9 +100,8 @@ export const UserForm = () => {
                 <use href={`${sprite}#icon-chevron-down`}></use>
               </ChevronDown>
               <ErrorMessage name="birthday" component="div" />
-            </Span>
-          </Label>
-
+            </Label>
+          </Span>
           <Label>
             Skype
             <FormField
