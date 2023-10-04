@@ -4,7 +4,6 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTasksOperation } from 'redux/tasks/operations';
 import { selectTasks } from 'redux/tasks/selectors';
-import sortTasksCurrentDay from 'helpers/sortTasks';
 import moment from 'moment';
 
 import {
@@ -18,11 +17,6 @@ import {
 
 const StatisticsСhart = () => {
   const dispatch = useDispatch();
-  const dataDay = moment().format('YYYY-MM-DD');
-
-  const [currentDate] = useState(dataDay);
-  const [sortTasks, setSortTasks] = useState({});
-
   const tasks = useSelector(selectTasks);
   const dataDay = moment().format('YYYY-MM-DD');
 
@@ -38,19 +32,6 @@ const StatisticsСhart = () => {
       console.log(filteredTasks);
     })();
   }, [currentDay, dispatch]);
-
-  useEffect(() => {
-    (async () => {
-      const { payload } = await dispatch(fetchTasksOperation());
-
-      const temp = sortTasksCurrentDay(currentDate, payload);
-      setSortTasks(temp);
-    })();
-  }, [dispatch, currentDate]);
-
-  useEffect(() => {
-    console.log(sortTasks);
-  }, [sortTasks]);
 
   useEffect(() => {
     Chart.register(ChartDataLabels);
