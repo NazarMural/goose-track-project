@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/goose-track-project/static/css/main.5d7ae03f.css",
-    "main.js": "/goose-track-project/static/js/main.3f073291.js",
+    "main.js": "/goose-track-project/static/js/main.ba82d752.js",
     "static/js/432.daa086a2.chunk.js": "/goose-track-project/static/js/432.daa086a2.chunk.js",
     "static/js/637.1dc283c9.chunk.js": "/goose-track-project/static/js/637.1dc283c9.chunk.js",
     "static/js/647.87234570.chunk.js": "/goose-track-project/static/js/647.87234570.chunk.js",
-    "static/js/18.46d71ba0.chunk.js": "/goose-track-project/static/js/18.46d71ba0.chunk.js",
+    "static/js/18.b44b1bd4.chunk.js": "/goose-track-project/static/js/18.b44b1bd4.chunk.js",
     "static/js/130.82b185df.chunk.js": "/goose-track-project/static/js/130.82b185df.chunk.js",
     "static/js/464.8f5517d0.chunk.js": "/goose-track-project/static/js/464.8f5517d0.chunk.js",
     "static/js/518.aa9a123b.chunk.js": "/goose-track-project/static/js/518.aa9a123b.chunk.js",
@@ -27,9 +27,8 @@
     "static/js/313.051181b6.chunk.js": "/goose-track-project/static/js/313.051181b6.chunk.js",
     "static/js/220.83e9b32c.chunk.js": "/goose-track-project/static/js/220.83e9b32c.chunk.js",
     "static/js/190.9f07ddc5.chunk.js": "/goose-track-project/static/js/190.9f07ddc5.chunk.js",
-    "static/js/306.12789992.chunk.js": "/goose-track-project/static/js/306.12789992.chunk.js",
+    "static/js/541.da5191d6.chunk.js": "/goose-track-project/static/js/541.da5191d6.chunk.js",
     "static/js/426.6e884006.chunk.js": "/goose-track-project/static/js/426.6e884006.chunk.js",
-    "static/js/686.04ebb988.chunk.js": "/goose-track-project/static/js/686.04ebb988.chunk.js",
     "static/js/805.43bf9816.chunk.js": "/goose-track-project/static/js/805.43bf9816.chunk.js",
     "static/js/353.b7c6c0b7.chunk.js": "/goose-track-project/static/js/353.b7c6c0b7.chunk.js",
     "static/media/tablet_calendar@2x.png": "/goose-track-project/static/media/tablet_calendar@2x.c99a3ead380f5bfc46e8.png",
@@ -76,24 +75,23 @@
     "static/media/slick.ttf": "/goose-track-project/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/goose-track-project/static/media/slick.295183786cd8a1389865.woff",
     "main.5d7ae03f.css.map": "/goose-track-project/static/css/main.5d7ae03f.css.map",
-    "main.3f073291.js.map": "/goose-track-project/static/js/main.3f073291.js.map",
+    "main.ba82d752.js.map": "/goose-track-project/static/js/main.ba82d752.js.map",
     "432.daa086a2.chunk.js.map": "/goose-track-project/static/js/432.daa086a2.chunk.js.map",
     "637.1dc283c9.chunk.js.map": "/goose-track-project/static/js/637.1dc283c9.chunk.js.map",
     "647.87234570.chunk.js.map": "/goose-track-project/static/js/647.87234570.chunk.js.map",
-    "18.46d71ba0.chunk.js.map": "/goose-track-project/static/js/18.46d71ba0.chunk.js.map",
+    "18.b44b1bd4.chunk.js.map": "/goose-track-project/static/js/18.b44b1bd4.chunk.js.map",
     "130.82b185df.chunk.js.map": "/goose-track-project/static/js/130.82b185df.chunk.js.map",
     "464.8f5517d0.chunk.js.map": "/goose-track-project/static/js/464.8f5517d0.chunk.js.map",
     "518.aa9a123b.chunk.js.map": "/goose-track-project/static/js/518.aa9a123b.chunk.js.map",
     "757.24766d12.chunk.js.map": "/goose-track-project/static/js/757.24766d12.chunk.js.map",
     "960.5ba9beef.chunk.js.map": "/goose-track-project/static/js/960.5ba9beef.chunk.js.map",
-    "306.12789992.chunk.js.map": "/goose-track-project/static/js/306.12789992.chunk.js.map",
+    "541.da5191d6.chunk.js.map": "/goose-track-project/static/js/541.da5191d6.chunk.js.map",
     "426.6e884006.chunk.js.map": "/goose-track-project/static/js/426.6e884006.chunk.js.map",
-    "686.04ebb988.chunk.js.map": "/goose-track-project/static/js/686.04ebb988.chunk.js.map",
     "805.43bf9816.chunk.js.map": "/goose-track-project/static/js/805.43bf9816.chunk.js.map",
     "353.b7c6c0b7.chunk.js.map": "/goose-track-project/static/js/353.b7c6c0b7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5d7ae03f.css",
-    "static/js/main.3f073291.js"
+    "static/js/main.ba82d752.js"
   ]
 }
