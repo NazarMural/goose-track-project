@@ -54,12 +54,12 @@ const AuthForm = ({ login }) => {
   const isLoading = useSelector(selectIsAuthLoading);
   const isLogIn = useSelector(selectIsLoggedIn);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     isLogIn && navigate('/calendar/month/');
   }, [isLogIn, navigate]);
 
-  const dispatch = useDispatch();
   const {
     values,
     errors,
