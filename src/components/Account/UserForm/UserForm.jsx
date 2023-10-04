@@ -16,6 +16,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserDataOperation } from 'redux/auth/operations';
 import { selectUser } from 'redux/auth/selectors';
+import { Notify } from 'notiflix';
 
 const schema = object().shape({
   username: string().max(16).required(),
@@ -54,6 +55,8 @@ export const UserForm = () => {
     };
 
     await dispatch(updateUserDataOperation(newData));
+
+    Notify.success('Data update successfully');
   }
 
   return (
