@@ -69,20 +69,25 @@ const ReviewsSlider = () => {
       </IconArrowRight>
     ),
   };
-
+const sortedReviews = reviews.slice().sort((a, b) => {
+  const dateA = a.createdAt ? new Date(a.createdAt) : null;
+  const dateB = b.createdAt ? new Date(b.createdAt) : null;
+  return dateB - dateA;
+});
+  
   return (
     <ReviewsSliderContainer>
       <Title>reviews</Title>
       <SliderCustom>
         <Slider {...settings}>
           {Array.isArray(reviews) &&
-            reviews.map(({ _id, name, comment, rating, avatar }) => (
+            sortedReviews.map(({ _id, name, comment, rating, avatarURL }) => (
               <div key={_id}>
                 <Box>
                   <BoxTop>
                     <Avatar>
-                      {avatar ? (
-                        <AvatarImage src={avatar} alt="Avatar" />
+                      {avatarURL ? (
+                        <AvatarImage src={avatarURL} alt="Avatar" />
                       ) : (
                         <AvatarImage
                           src={defaultAvatar}

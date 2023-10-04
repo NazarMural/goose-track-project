@@ -3,16 +3,14 @@ import { tablet, desktop, min } from 'styles/media';
 
 
 export const Container = styled.div`
-  position: absolute;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--primary-bg-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  background-color: green;
+overflow: auto;
 `;
 
 export const Content = styled.div`

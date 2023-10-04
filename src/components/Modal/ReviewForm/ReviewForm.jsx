@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Modal from "../Modal";
+import {
+  FormContainer,
+} from "./ReviewForm.styled";
 
 const ReviewForm = ({ isOpen, onClose}) => {
   const [formData, setFormData] = useState({
@@ -25,7 +28,7 @@ const ReviewForm = ({ isOpen, onClose}) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <form onSubmit={handleSubmit}>
+      <FormContainer onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Имя:</label>
           <input
@@ -61,7 +64,7 @@ const ReviewForm = ({ isOpen, onClose}) => {
           />
         </div>
         <button type="submit">Отправить отзыв</button>
-      </form>
+      </FormContainer>
     </Modal>
   );
 };

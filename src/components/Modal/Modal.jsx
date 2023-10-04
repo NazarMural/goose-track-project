@@ -9,11 +9,22 @@ const Modal = ({ isOpen, onClose, children }) => {
                 onClose();
             }
         };
+      
+         const handleClickOutside = event => {
+           if (
+             isOpen &&
+             !document.getElementById('modal-container').contains(event.target)
+           ) {
+             onClose();
+           }
+         };
     
-        window.addEventListener('keydown', handleEscKeyPress);
+      window.addEventListener('keydown', handleEscKeyPress);
+       window.addEventListener('mousedown', handleClickOutside);
 
         return () => {
-            window.removeEventListener('keydown', handleEscKeyPress);
+          window.removeEventListener('keydown', handleEscKeyPress);
+            window.removeEventListener('mousedown', handleClickOutside);
         };
     }, [isOpen, onClose]);
 
@@ -21,8 +32,9 @@ const Modal = ({ isOpen, onClose, children }) => {
     return null;
   }
   return (
-    <Container>
+    <Container id="modal-container">
       <div>
+        
         <button onClick={onClose}>X</button>
         {children}
       </div>
