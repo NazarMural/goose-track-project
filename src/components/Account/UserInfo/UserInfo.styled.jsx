@@ -4,15 +4,15 @@ export const UserContainer = styled.div`
   margin: 0 auto;
   display: flex;
   margin-bottom: 40px;
-  width: 299px;
+  max-width: 299px;
   flex-direction: column;
   align-items: center;
   ${min(tablet)} {
-    width: 704px;
+    max-width: 704px;
     margin-bottom: 66px;
   }
   ${min(desktop)} {
-    width: 1087px;
+    max-width: 1087px;
     display: flex;
     margin-bottom: 44px;
     flex-direction: column;

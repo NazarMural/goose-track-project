@@ -64,18 +64,16 @@ export const UserForm = () => {
             />
             <ErrorMessage name="phone" component="div" />
           </Label>
-
-          <Label>
-            Birthday
-            <Span>
+          <Span>
+            <Label>
+              Birthday
               <FormField type="date" name="birthday" placeholder="DD/MM/YYYY" />
               <ChevronDown>
                 <use href={`${sprite}#icon-chevron-down`}></use>
               </ChevronDown>
               <ErrorMessage name="birthday" component="div" />
-            </Span>
-          </Label>
-
+            </Label>
+          </Span>
           <Label>
             Skype
             <FormField
