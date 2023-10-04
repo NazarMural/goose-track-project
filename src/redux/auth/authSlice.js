@@ -6,6 +6,7 @@ import {
   logOutOperation,
   refreshUserOperation,
   updateUserDataOperation,
+  updateUserAvatarOperation,
 } from './operations';
 import {
   handleRegisterFulfilled,
@@ -21,6 +22,9 @@ import {
   handleUpdateUserFulfilled,
   handleUpdateUserRejected,
   handleAuthActionPending,
+  handleUpdateAvatarPending,
+  handleUpdateAvatarFulfilled,
+  handleUpdateAvatarRejected,
 } from 'utils/reduxActionHandlers/authActionHandlers';
 import storage from 'redux-persist/lib/storage';
 
@@ -39,6 +43,7 @@ const initialState = {
   isRefreshingUser: false,
   isAuthLoading: false,
   isUpdatingUserData: false,
+  isUpdatingAvatar: false,
   error: null,
 };
 
@@ -67,12 +72,12 @@ const authSlice = createSlice({
       .addCase(refreshUserOperation.rejected, handleRefreshUserRejected)
       .addCase(updateUserDataOperation.pending, handleUpdateUserPending)
       .addCase(updateUserDataOperation.fulfilled, handleUpdateUserFulfilled)
-      .addCase(updateUserDataOperation.rejected, handleUpdateUserRejected),
+      .addCase(updateUserDataOperation.rejected, handleUpdateUserRejected)
+      .addCase(updateUserAvatarOperation.pending, handleUpdateAvatarPending)
+      .addCase(updateUserAvatarOperation.fulfilled, handleUpdateAvatarFulfilled)
+      .addCase(updateUserAvatarOperation.rejected, handleUpdateAvatarRejected),
 });
 
 const authReducer = authSlice.reducer;
 
-export const persistAuthReducer = persistReducer(
-  authPersistConfig,
-  authReducer
-);
+export const persistAuthReducer = persistReducer(authPersistConfig, authReducer);
