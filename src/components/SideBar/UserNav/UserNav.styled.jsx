@@ -32,14 +32,14 @@ export const NavList = styled.ul`
 
 export const NavListItem = styled.li`
   display: block;
+
   background-color: ${props => {
     const location = useLocation();
-    console.log(location);
-    console.log(props.page);
     if (location.pathname.includes(props.page))
       return 'var(--sidebar-accent-color)';
     return 'transparent';
   }};
+
   padding: 10px 0px 10px 12px;
   border-radius: 8px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
