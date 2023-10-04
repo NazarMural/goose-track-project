@@ -32,7 +32,7 @@ export const AddUserForm = styled(Form)`
   margin: 0 auto;
   ${min(tablet)} {
     margin: 0 auto;
-    width: 354px;
+    max-width: 354px;
     height: 458px;
   }
   ${min(desktop)} {
@@ -52,8 +52,8 @@ export const FormField = styled(Field)`
     cursor: pointer;
     opacity: 0;
   }
-  max-width: 269px;
-  padding: 12px 14px;
+  max-width: 283px;
+  padding: 12px 0 12px 14px;
   margin-bottom: 18px;
   border: 1px solid var(--input-border-color);
   border-radius: 8px;
@@ -72,12 +72,11 @@ export const FormField = styled(Field)`
   }
 
   ${min(tablet)} {
-    max-width: 318px;
-    padding: 14px 18px;
+    max-width: 334px;
+    padding: 14px 0 14px 18px;
     margin-bottom: 24px;
   }
   ${min(desktop)} {
-    max-width: 334px;
     margin: 0;
     font-size: 14px;
     font-weight: 600;
@@ -119,21 +118,26 @@ export const Label = styled.label`
 `;
 export const Span = styled.div`
   position: relative;
+  max-width: 299px;
+  ${min(tablet)} {
+    max-width: 354px;
+  }
 `;
 
 export const ChevronDown = styled.svg`
   position: absolute;
   top: 36px;
-  right: 14px;
+  right: 11px;
   width: 18px;
   height: 18px;
   cursor: pointer;
   pointer-events: none;
   fill: var(--primary-text-color);
+  ${min(tablet)} {
+    top: 38px;
+  }
   ${min(desktop)} {
-    top: 40px;
-    right: 14px;
-    fill: var(--primary-text-color);
+    top: 42px;
   }
 `;
 
