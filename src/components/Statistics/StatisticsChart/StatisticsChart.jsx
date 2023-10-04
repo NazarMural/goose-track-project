@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Chart } from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchTasksOperation } from 'redux/tasks/operations';
-import { selectTasks } from 'redux/tasks/selectors';
-import sortTasksCurrentDay from 'helpers/sortTasks';
+import calculationTasksCurrentDay from 'helpers/calculationTask';
 import moment from 'moment';
 
 import {
@@ -23,33 +22,14 @@ const StatisticsСhart = () => {
   const [currentDate] = useState(dataDay);
   const [sortTasks, setSortTasks] = useState({});
 
-  const tasks = useSelector(selectTasks);
-
-  const [currentDay] = useState(dataDay);
-
-  useEffect(() => {
-    (async () => {
-      const { payload } = await dispatch(fetchTasksOperation());
-      const filteredTasks = payload
-        ? payload.filter(({ date }) => date === currentDay)
-        : [];
-
-      console.log(filteredTasks);
-    })();
-  }, [currentDay, dispatch]);
-
   useEffect(() => {
     (async () => {
       const { payload } = await dispatch(fetchTasksOperation());
 
-      const temp = sortTasksCurrentDay(currentDate, payload);
+      const temp = calculationTasksCurrentDay(currentDate, payload);
       setSortTasks(temp);
     })();
   }, [dispatch, currentDate]);
-
-  useEffect(() => {
-    console.log(sortTasks);
-  }, [sortTasks]);
 
   useEffect(() => {
     Chart.register(ChartDataLabels);
@@ -61,54 +41,62 @@ const StatisticsСhart = () => {
       existingChart.destroy();
     }
 
-    new Chart(canvas, {
-      type: 'bar',
-      data: {
-        labels: ['to-do', 'in-progress', 'done'],
+    const data = sortTasks;
 
-        datasets: [
-          {
-            label: '# of Votes',
-            data: [14, 4, 24],
-            lab: [`${30}%`, `${50}%`, `${20}%`],
-            backgroundColor: '#FFD2DD',
-          },
-          {
-            label: '# of Votes',
-            data: [18, 14, 13],
-            lab: [`${35}%`, `${55}%`, `${25}%`],
-            backgroundColor: '#3E85F3',
-          },
-        ],
-      },
-      plugins: [ChartDataLabels],
-      options: {
-        parsing: {
-          xAxisKey: 'id',
-          yAxisKey: 'value',
+    console.log(data);
+    if (data && data.tasksDay && data.tasksMonth) {
+      new Chart(canvas, {
+        type: 'bar',
+        data: {
+          labels: ['to-do', 'in-progress', 'done'],
+
+          datasets: [
+            {
+              label: '# of Votes',
+              data: data.tasksDay,
+              lab: data.percentageTasksDay,
+              backgroundColor: '#FFD2DD',
+            },
+            {
+              label: '# of Votes',
+              data: data.tasksMonth,
+              lab: data.percentageTasksMonth,
+              backgroundColor: '#3E85F3',
+            },
+          ],
         },
-        plugins: {
-          legend: {
-            display: false,
+        plugins: [ChartDataLabels],
+        options: {
+          parsing: {
+            xAxisKey: 'id',
+            yAxisKey: 'value',
           },
-          datalabels: {
-            color: 'bleak',
-            anchor: 'end',
-            align: 'top',
-            offset: 0,
-            formatter: function (value, context) {
-              return context.dataset.lab[context.dataIndex];
+          plugins: {
+            legend: {
+              display: false,
+            },
+            datalabels: {
+              color: 'bleak',
+              anchor: 'end',
+              align: 'top',
+              offset: 0,
+              formatter: function (value, context) {
+                return context.dataset.lab[context.dataIndex];
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: false, // Зміниць на false, щоб шкала не починалася з нуля
+              suggestedMin: 0, // Мінімальне значення на осі Y
+              suggestedMax:
+                Math.max(...data.tasksDay, ...data.tasksMonth) + 0.5, // Максимальне значення на осі Y + 1 таск
             },
           },
         },
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
-  }, [tasks]);
+      });
+    }
+  }, [sortTasks]);
 
   return (
     <StatisticsContainer>
