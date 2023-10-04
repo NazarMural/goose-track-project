@@ -89,7 +89,13 @@ export const UserForm = () => {
           <Span>
             <Label>
               Birthday
-              <FormField type="date" name="birthday" placeholder="DD/MM/YYYY" />
+              <FormField
+                type="date"
+                name="birthday"
+                placeholder="DD/MM/YYYY"
+                value={values.birthday}
+                onChange={handleChange}
+              />
               <ChevronDown>
                 <use href={`${sprite}#icon-chevron-down`}></use>
               </ChevronDown>
