@@ -2,10 +2,18 @@ import styled from '@emotion/styled';
 import { mobile, tablet, min, desktop, max } from 'styles/media';
 
 export const DescriptionContainer = styled.div`
-  max-width: 1440px;
+  max-width: 375px;
   margin-left: auto;
   margin-right: auto;
   overflow-x: hidden;
+
+  ${min(tablet)} {
+    max-width: 768px;
+  }
+  ${min(desktop)} {
+    max-width: 1440px;
+  }
+
 `;
 
 export const DescriptionContent = styled.ul`

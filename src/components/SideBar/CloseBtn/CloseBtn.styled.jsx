@@ -1,30 +1,26 @@
 import styled from '@emotion/styled';
+import { min, tablet, desktop } from 'styles/media';
 
 export const CloseBtn = styled.button`
   display: block;
-  /* box-sizing: content-box; */
-  align-items: center;
-  /* align-items: center; */
-  width: 24px;
-  height: 24px;
-  padding: 0px;
-  /* border: none; */
+  border: none;
   background-color: inherit;
+  align-items: center;
+  padding: 0px;
+  margin-left: auto;
   cursor: pointer;
   svg {
+    fill: transparent;
+    stroke: var(--primary-text-color);
     display: block;
     width: 24px;
     height: 24px;
-    use {
-      width: 24px;
-      height: 24px;
-      /* stroke: #ffffff;
-      fill: #ffffff; */
+    ${min(tablet)} {
+      width: 34px;
+      height: 34px;
+    }
+    ${min(desktop)} {
+      display: none;
     }
   }
-
-  width: 24px;
-  height: 24px;
-  fill: #fefefe;
-  stroke: #fefefe;
 `;

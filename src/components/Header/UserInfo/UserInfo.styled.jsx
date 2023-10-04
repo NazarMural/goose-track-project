@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { tablet, min } from 'styles/media';
+import { tablet, min, desktop } from 'styles/media';
 
 export const UserInfoBox = styled.div`
   display: flex;
@@ -26,11 +26,43 @@ export const UserName = styled.p`
 `;
 
 export const UserAvatarThumb = styled.div`
+  position: relative;
   width: 44px;
   height: 44px;
-  border-radius: 44px;
   border: 1.8px solid #3e85f3;
+  overflow: hidden;
+  border-radius: 50%;
+`;
 
-  background: ${props => (props.userAvatarUrl ? props.userAvatarUrl : '')},
-    lightgray 50% / cover no-repeat;
+export const UserImage = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+`;
+
+export const UserAvatar = styled.svg`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  fill: #3e85f32e;
+  .dark & {
+    fill: #ffffff2e;
+  }
+  ${min(tablet)} {
+  }
+  ${min(desktop)} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    fill: #3e85f32e;
+    .dark & {
+      fill: #ffffff2e;
+    }
+  }
 `;

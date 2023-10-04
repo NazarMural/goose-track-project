@@ -11,6 +11,7 @@ import {
   Type,
   TypeWrapper,
 } from './CalendarToolbar.styled';
+import { TypeLink } from './CalendarToolbar.styled';
 
 const CalendarToolbar = ({
   currentDate,
@@ -22,20 +23,26 @@ const CalendarToolbar = ({
   const day = moment(currentDate).format('YYYY-MM-DD');
 
   const handleClick = format => {
-    setCurrentDate(moment(currentDate).add(1, format));
+    const date = moment(currentDate).add(1, format);
+    setCurrentDate(date);
+    localStorage.setItem('date', date);
   };
 
   const handleClickBack = format => {
-    setCurrentDate(moment(currentDate).subtract(1, format));
+    const date = moment(currentDate).subtract(1, format);
+    setCurrentDate(date);
+    localStorage.setItem('date', date);
   };
 
   const handleChangeType = e => {
     switch (e.currentTarget.textContent) {
       case 'Month':
         setFormat('month');
+        localStorage.setItem('type', 'month');
         break;
       case 'Day':
         setFormat('day');
+        localStorage.setItem('type', 'day');
         break;
       default:
         return format;
@@ -48,7 +55,7 @@ const CalendarToolbar = ({
         <DateWrapper>
           <Date>
             {moment(currentDate).format(
-              format === 'day' ? 'DD MMMM YYYY' : 'MMMM YYYY'
+              format === 'day' ? 'DD MMM YYYY' : 'MMMM YYYY'
             )}
           </Date>
         </DateWrapper>
@@ -101,9 +108,9 @@ const CalendarToolbar = ({
       </DateContainer>
       <TypeWrapper>
         <Type>
-          <Link to={`month/${month}`} onClick={handleChangeType}>
+          <TypeLink to={`month/${month}`} onClick={handleChangeType}>
             Month
-          </Link>
+          </TypeLink>
         </Type>
         <Type>
           <Link to={`day/${day}`} onClick={handleChangeType}>

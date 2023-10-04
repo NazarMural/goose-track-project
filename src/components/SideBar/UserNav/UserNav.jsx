@@ -1,27 +1,53 @@
-import { NavLink } from 'react-router-dom';
-import { NavTitle, NavList } from './UserNav.styled';
+import {
+  NavTitle,
+  NavList,
+  NavListItem,
+  NavLinkSideBar,
+  IconWithStroke,
+  IconWithFill,
+} from './UserNav.styled';
+import sprite from '../../../assets/images/icons/icons.svg';
+// import { pages } from 'components/MainLayout/MainLayout';
 
-export const UserNavigation = ({ removeSideBar }) => {
+export const UserNavigation = ({
+  removeSideBar,
+  // currentPage,
+  // changeCurrentPage,
+}) => {
+  const handleChangeCurrentPage = page => {
+    removeSideBar();
+    // changeCurrentPage(page);
+  };
+  // console.log(pages);
   return (
     <>
       <NavTitle>User panel</NavTitle>
       <nav>
         <NavList>
-          <li>
-            <NavLink to="account" onClick={removeSideBar}>
-              Account
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="calendar" onClick={removeSideBar}>
+          <NavListItem page="account">
+            <NavLinkSideBar to="account" onClick={handleChangeCurrentPage}>
+              <IconWithStroke>
+                <use xlinkHref={`${sprite}#icon-user`} />
+              </IconWithStroke>
+              My account
+            </NavLinkSideBar>
+          </NavListItem>
+          <NavListItem page="calendar">
+            <NavLinkSideBar to="calendar" onClick={handleChangeCurrentPage}>
+              <IconWithStroke>
+                <use xlinkHref={`${sprite}#icon-calendar`} />
+              </IconWithStroke>
               Calendar
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="statistics" onClick={removeSideBar}>
+            </NavLinkSideBar>
+          </NavListItem>
+          <NavListItem page="statistics">
+            <NavLinkSideBar to="statistics" onClick={handleChangeCurrentPage}>
+              <IconWithFill>
+                <use xlinkHref={`${sprite}#icon-chart`} />
+              </IconWithFill>
               Statistics
-            </NavLink>
-          </li>
+            </NavLinkSideBar>
+          </NavListItem>
         </NavList>
       </nav>
     </>

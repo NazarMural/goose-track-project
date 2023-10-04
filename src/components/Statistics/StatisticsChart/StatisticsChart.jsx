@@ -24,6 +24,20 @@ const StatisticsСhart = () => {
   const [sortTasks, setSortTasks] = useState({});
 
   const tasks = useSelector(selectTasks);
+  const dataDay = moment().format('YYYY-MM-DD');
+
+  const [currentDay] = useState(dataDay);
+
+  useEffect(() => {
+    (async () => {
+      const { payload } = await dispatch(fetchTasksOperation());
+      const filteredTasks = payload
+        ? payload.filter(({ date }) => date === currentDay)
+        : [];
+
+      console.log(filteredTasks);
+    })();
+  }, [currentDay, dispatch]);
 
   useEffect(() => {
     (async () => {

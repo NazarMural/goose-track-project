@@ -1,17 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import {
-  persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
+import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { persistAuthReducer } from './auth/authSlice';
 import { reviewReducer } from './reviews/reviewSlice';
-
-
 import { persistThemeReducer } from './theme/themeSlice';
 import { tasksReducer } from './tasks/tasksSlice';
 

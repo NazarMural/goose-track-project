@@ -11,6 +11,12 @@ import {
   handleUpdateUserRejected,
   handleUpdateUserPending,
 } from './updateUserActionHandlers';
+import {
+  handleUpdateAvatarFulfilled,
+  handleUpdateAvatarRejected,
+  handleUpdateAvatarPending,
+} from './updateAvatarActionHandlers';
+
 import { handleAuthActionPending } from './handleAuthActionPending';
 
 export {
@@ -28,4 +34,7 @@ export {
   handleAuthActionPending,
   handleRefreshUserPending,
   handleUpdateUserPending,
+  handleUpdateAvatarFulfilled,
+  handleUpdateAvatarRejected,
+  handleUpdateAvatarPending,
 };

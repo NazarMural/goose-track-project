@@ -59,4 +59,18 @@ const updateUserDataOperation = createAsyncThunk('auth/update', async (updateUse
   }, thunkAPI);
 });
 
-export { signUpOperation, signInOperation, refreshUserOperation, updateUserDataOperation, logOutOperation };
+const updateUserAvatarOperation = createAsyncThunk('auth/updateAvatar', async (formDataAvatar, thunkAPI) => {
+  return await handleErrorAsyncOperation(async () => {
+    const { data } = await axios.post(`/users/avatars`, formDataAvatar);
+    return data;
+  }, thunkAPI);
+});
+
+export {
+  signUpOperation,
+  signInOperation,
+  refreshUserOperation,
+  updateUserDataOperation,
+  logOutOperation,
+  updateUserAvatarOperation,
+};

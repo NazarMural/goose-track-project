@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { min, tablet } from 'styles/media';
 
 export const ContainerForm = styled.div`
-  background-color: var(--primary-bg-color);
+  background-color: var(--public-page-bg);
   border-radius: 8px;
   padding: 40px 24px;
   width: fill-available;

@@ -5,13 +5,7 @@ export const CloseSideBarBtn = ({ removeSideBar }) => {
   return (
     <CloseBtn onClick={removeSideBar}>
       <svg>
-        <use
-          xlinkHref={`${sprite}#icon-x-close`}
-          // width={24}
-          // height={24}
-          stroke="var(--primary-text-color)"
-          fill="transparent"
-        />
+        <use xlinkHref={`${sprite}#icon-x-close`} />
       </svg>
     </CloseBtn>
   );
