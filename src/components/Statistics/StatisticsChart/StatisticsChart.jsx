@@ -42,10 +42,10 @@ const StatisticsСhart = () => {
     Chart.register(ChartDataLabels);
     const canvas = document.getElementById('myChart');
 
-    const existingChart = Chart.getChart(canvas); // Отримуємо попередній графік
+    const existingChart = Chart.getChart(canvas);
 
     if (existingChart) {
-      existingChart.destroy(); // Видаляємо попередній графік, якщо він існує
+      existingChart.destroy();
     }
 
     new Chart(canvas, {
