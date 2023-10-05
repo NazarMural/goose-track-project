@@ -4,27 +4,32 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useDispatch } from 'react-redux';
 import { fetchTasksOperation } from 'redux/tasks/operations';
 import calculationTasksCurrentDay from 'helpers/calculationTask';
+import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 import {
-  СhartContainer,
+  СhartBox,
+  CanvasChart,
   StatisticsContainer,
   LegendContainer,
   DayLegend,
   MonthLegend,
   ChartTasks,
+  ChartContainer,
 } from './StatisticsСhart.styled';
 
 const StatisticsСhart = () => {
   const dispatch = useDispatch();
-  const dataDay = moment().format('YYYY-MM-DD');
 
-  const [currentDate] = useState(dataDay);
+  const [currentDate, setCurrentDate] = useState(new Date());
+
   const [sortTasks, setSortTasks] = useState({});
 
   useEffect(() => {
     (async () => {
-      const { payload } = await dispatch(fetchTasksOperation());
+      const month = moment(currentDate).format('YYYY-MM');
+      console.log(month);
+      const { payload } = await dispatch(fetchTasksOperation(month));
 
       const temp = calculationTasksCurrentDay(currentDate, payload);
       setSortTasks(temp);
@@ -33,9 +38,16 @@ const StatisticsСhart = () => {
 
   useEffect(() => {
     Chart.register(ChartDataLabels);
-    const canvas = document.getElementById('myChart');
+    const ctx = document.getElementById('myChart').getContext('2d');
 
-    const existingChart = Chart.getChart(canvas);
+    const gradientBgDay = ctx.createLinearGradient(0, 0, 0, 350);
+    const gradientBgMonth = ctx.createLinearGradient(0, 0, 0, 350);
+    gradientBgDay.addColorStop(0, 'rgba(255, 210, 221, 0)');
+    gradientBgDay.addColorStop(1, 'rgba(255, 210, 221, 1)');
+    gradientBgMonth.addColorStop(0, 'rgba(62, 133, 243, 0)');
+    gradientBgMonth.addColorStop(1, 'rgba(62, 133, 243, 1)');
+
+    const existingChart = Chart.getChart(ctx);
 
     if (existingChart) {
       existingChart.destroy();
@@ -45,7 +57,7 @@ const StatisticsСhart = () => {
 
     console.log(data);
     if (data && data.tasksDay && data.tasksMonth) {
-      new Chart(canvas, {
+      new Chart(ctx, {
         type: 'bar',
         data: {
           labels: ['to-do', 'in-progress', 'done'],
@@ -55,18 +67,25 @@ const StatisticsСhart = () => {
               label: '# of Votes',
               data: data.tasksDay,
               lab: data.percentageTasksDay,
-              backgroundColor: '#FFD2DD',
+              backgroundColor: gradientBgDay,
+              borderRadius: 5,
+              barPercentage: 0.6,
+              categoryPercentage: 0.35,
             },
             {
               label: '# of Votes',
               data: data.tasksMonth,
               lab: data.percentageTasksMonth,
-              backgroundColor: '#3E85F3',
+              backgroundColor: gradientBgMonth,
+              borderRadius: 5,
+              barPercentage: 0.6,
+              categoryPercentage: 0.35,
             },
           ],
         },
         plugins: [ChartDataLabels],
         options: {
+          maintainAspectRatio: false, //автоматично підлаштовує розміри графіка
           parsing: {
             xAxisKey: 'id',
             yAxisKey: 'value',
@@ -104,10 +123,12 @@ const StatisticsСhart = () => {
         <DayLegend>By Day</DayLegend>
         <MonthLegend>By Month</MonthLegend>
       </LegendContainer>
-      <СhartContainer>
+      <ChartContainer>
         <ChartTasks>Tasks</ChartTasks>
-        <canvas id="myChart"></canvas>
-      </СhartContainer>
+        <СhartBox>
+          <CanvasChart id="myChart"></CanvasChart>
+        </СhartBox>
+      </ChartContainer>
     </StatisticsContainer>
   );
 };
