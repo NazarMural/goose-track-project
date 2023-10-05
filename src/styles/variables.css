@@ -15,6 +15,7 @@
 --btn-text-color: #FFFFFF;
 --btn-bg-color: #3E85F3;
 --btn-bg-hover: #2B78EF;
+--btn-close-hover: #84828A;
 
 /* form-styles */
 --input-border-color: #11111126;
@@ -31,6 +32,7 @@
 --sidebar-accent-color: #E3F3FF;
 
 --burger-color: #343434;
+
 /* review-styles */
 --review-text-color: #111111B2;
 --review-border-color: #1111111A;
@@ -56,6 +58,8 @@
   --cell-background: #ffffff;
   --date-color: #343434;
   --date-color-accent: #ffffff;
+  --chevron-btn-color: #343434;
+    --chevron-btn-disabled-color: #DCE3E5;
 
 /* day-month-switch-styles */
 --switch-type-color: #3E85F3;
@@ -104,6 +108,8 @@ html.dark {
   --calendar-grid-border: #FFFFFF26;
   --date-color: #ffffff;
   --date-color-accent: #22232D;
+  --chevron-btn-color: #FFFFFF26;
+    --chevron-btn-disabled-color: #FFFFFF;
 --switch-type-color-active: #FFFFFF;
 --switch-type-bg: #21222C;
 --switch-type-bg-active: #3E85F3;
