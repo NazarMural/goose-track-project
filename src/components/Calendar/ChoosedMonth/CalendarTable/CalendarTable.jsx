@@ -3,16 +3,26 @@ import { CalendarGrid, Cell, Day, WrapperDay } from './CalendarTable.styled';
 import { TaskList } from '../TaskList/TaskList';
 import { setDay } from 'helpers/setDay';
 import { useNavigate, useParams } from 'react-router';
+import { useEffect, useState } from 'react';
+import { fetchTasksOperation } from 'redux/tasks/operations';
+import { useDispatch } from 'react-redux';
 
 export const CalendarTable = () => {
   const { currentMonth } = useParams();
+  const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
-  const [month, year] = currentMonth.split('-');
-  const date = moment(`${year}-${month}-01`, 'YYYY-MMMM-DD');
+  const dispatch = useDispatch();
 
+  const date = moment(`${currentMonth}-01`, 'YYYY-MM-DD');
   const { startMonth, endMonth, weeks, daysArray } = setDay(date);
-  // console.log(daysArray);
   const isCurrentDay = day => moment().isSame(day, 'day');
+
+  useEffect(() => {
+    (async () => {
+      const { payload } = await dispatch(fetchTasksOperation(currentMonth));
+      setTasks(payload);
+    })();
+  }, [currentMonth, dispatch]);
 
   const handleNavigateToDay = day => {
     navigate(`day/${day}`);
@@ -41,7 +51,7 @@ export const CalendarTable = () => {
             </Day>
           </WrapperDay>
           {startMonth < dayItem && endMonth > dayItem && (
-            <TaskList currentDate={dayItem} />
+            <TaskList currentDate={dayItem} tasks={tasks} />
           )}
         </Cell>
       ))}

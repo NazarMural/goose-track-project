@@ -7,7 +7,7 @@ import moment from 'moment';
 const CalendarPage = () => {
   const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState(
-    localStorage.getItem('date') || moment().format('YYYY MM DD')
+    localStorage.getItem('date') || moment().format('YYYY-MM-DD').toString()
   );
   const [format, setFormat] = useState(localStorage.getItem('type') || 'month');
 
@@ -15,7 +15,7 @@ const CalendarPage = () => {
     let date;
     switch (format) {
       case 'month':
-        date = moment(currentDate).format('MMMM-YYYY');
+        date = moment(currentDate).format('YYYY-MM');
         navigate(`/calendar/month/${date}`);
         break;
       case 'day':

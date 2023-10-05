@@ -6,7 +6,7 @@ export const setDay = day => {
   if (!day) {
     currentDay = moment();
   } else {
-    currentDay = moment(day);
+    currentDay = moment(day).clone();
   }
   const startMonth = currentDay.clone().startOf('month'); // початок поточного місяця
   const endMonth = currentDay.clone().endOf('month'); // кінець поточного місяця
