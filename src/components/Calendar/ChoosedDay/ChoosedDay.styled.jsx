@@ -16,7 +16,7 @@ export const ContainerMain = styled.div`
   ${min(desktop)} {
     gap: 0;
     justify-content: space-between;
-    max-width: 1087px;
+    max-width: 1106px;
   }
   /* width*/
   &::-webkit-scrollbar {
