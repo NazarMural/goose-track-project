@@ -38,7 +38,6 @@ const StatisticsСhart = () => {
     (async () => {
       const month = moment(currentDate).format('YYYY-MM');
       const day = moment(currentDate).format('YYYY-MM-DD');
-      console.log(currentDate);
 
       const { payload } = await dispatch(fetchTasksOperation(month));
       const temp = calculationTasksCurrentDay(day, payload);
@@ -66,7 +65,6 @@ const StatisticsСhart = () => {
 
     const data = sortTasks;
 
-    console.log(data);
     if (data && data.tasksDay && data.tasksMonth) {
       new Chart(ctx, {
         type: 'bar',
