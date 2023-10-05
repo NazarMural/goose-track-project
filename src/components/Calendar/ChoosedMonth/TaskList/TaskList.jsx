@@ -20,7 +20,7 @@ export const TaskList = ({ currentDate }) => {
 
   useEffect(() => {
     (async () => {
-      const { payload } = await dispatch(fetchTasksOperation());
+      const { payload } = await dispatch(fetchTasksOperation('2023-10'));
       const filteredTasks = payload
         ? payload.filter(({ date }) => updateDate(date) === currentMonth)
         : [];
