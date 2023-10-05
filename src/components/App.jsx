@@ -30,7 +30,15 @@ export const App = () => {
     !isRefreshingUser && (
       <Suspense fallback={null}>
         <Routes>
-          <Route index element={<MainPage />} />{' '}
+          <Route
+            index
+            element={
+              <RestrictedRoute
+                component={<MainPage />}
+                redirectTo="/calendar"
+              />
+            }
+          />{' '}
           <Route
             path="/register"
             element={
