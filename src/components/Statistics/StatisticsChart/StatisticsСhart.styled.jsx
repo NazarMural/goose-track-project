@@ -5,23 +5,6 @@ import { desktop, min, max, tablet, mobile } from 'styles/media';
 
 export const DatePickerStyle = styled(DatePicker)``;
 
-export const СhartBox = styled.div`
-  height: 300px;
-
-  ${max(mobile)} {
-    max-width: 279px;
-  }
-
-  ${min(tablet)} {
-    width: 576px;
-    height: 331px;
-  }
-  ${min(desktop)} {
-    width: 780px;
-    height: 331px;
-  }
-`;
-
 export const ChartContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,12 +12,24 @@ export const ChartContainer = styled.div`
   border: 0.8px solid var(--border-chart);
   border-radius: 20px;
 
+  height: 413px;
+
+  ${max(mobile)} {
+    max-width: 307px;
+  }
+
   ${min(tablet)} {
     padding: 32px;
     border-radius: 29px;
+
+    width: 640px;
+    height: 424px;
   }
   ${min(desktop)} {
     padding: 40px;
+
+    width: 860px;
+    height: 440px;
   }
 `;
 

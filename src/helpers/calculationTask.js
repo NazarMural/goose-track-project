@@ -1,26 +1,23 @@
-const filteredTasksByCategory = tasks => {
-  const toDoTasks = tasks
-    ? tasks.filter(({ category }) => category === 'to-do')
-    : [];
-  const inProgressTasks = tasks
-    ? tasks.filter(({ category }) => category === 'in-progress')
-    : [];
-  const doneTasks = tasks
-    ? tasks.filter(({ category }) => category === 'done')
-    : [];
-  return [toDoTasks.length, inProgressTasks.length, doneTasks.length];
-};
+const filteredTasksByCategory = (tasks, category) =>
+  tasks
+    ? tasks.filter(({ category: taskCategory }) => taskCategory === category)
+        .length
+    : 0;
 
 const percentageOfTasks = numbers => {
   const sum = numbers.reduce((acc, num) => acc + num, 0);
-  const percentages = numbers.map(num => {
-    if (sum === 0) {
-      return '0%'; // Якщо сума чисел дорівнює нулю, повертаємо "0%"
-    } else {
-      return ((num / sum) * 100).toFixed(0) + '%'; // В іншому випадку обчислюємо відсоток
-    }
-  });
-  return percentages;
+  return numbers.map(num =>
+    sum === 0 ? '0%' : `${((num / sum) * 100).toFixed(0)}%`
+  );
+};
+
+const getCategoryName = category => {
+  const categoryNames = {
+    'to-do': 'To Do',
+    'in-progress': 'In Progress',
+    done: 'Done',
+  };
+  return categoryNames[category] || category;
 };
 
 const calculationTasksByCategory = (currentDate, tasks) => {
@@ -28,18 +25,24 @@ const calculationTasksByCategory = (currentDate, tasks) => {
     ? tasks.filter(({ date }) => date === currentDate)
     : [];
 
-  const numberOfTasksDayByCategory = filteredTasksByCategory(filteredTasksDay);
-  const numberOfTasksMonthByCategory = filteredTasksByCategory(tasks);
+  const categories = ['to-do', 'in-progress', 'done'];
+  const numberOfTasksDayByCategory = categories.map(category =>
+    filteredTasksByCategory(filteredTasksDay, category)
+  );
+  const numberOfTasksMonthByCategory = categories.map(category =>
+    filteredTasksByCategory(tasks, category)
+  );
 
   const percentageTasksDay = percentageOfTasks(numberOfTasksDayByCategory);
   const percentageTasksMonth = percentageOfTasks(numberOfTasksMonthByCategory);
 
-  return {
-    tasksDay: numberOfTasksDayByCategory,
-    tasksMonth: numberOfTasksMonthByCategory,
-    percentageTasksDay,
-    percentageTasksMonth,
-  };
+  return categories.map((category, index) => ({
+    name: getCategoryName(category),
+    day: numberOfTasksDayByCategory[index],
+    month: numberOfTasksMonthByCategory[index],
+    percentageDay: percentageTasksDay[index],
+    percentageMonth: percentageTasksMonth[index],
+  }));
 };
 
 export default calculationTasksByCategory;
