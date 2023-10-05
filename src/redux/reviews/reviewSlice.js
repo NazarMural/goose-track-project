@@ -16,6 +16,7 @@ import {
   handleFetchReviewsPending,
   handleFetchReviewsRejected,
   handleLogoutInReviewsFulfilled,
+  handleLoginInReviewsFulfilled,
 } from 'utils/reduxActionHandlers/reviewsActionHandlers';
 import {
   fetchAllReviewsOperation,
@@ -24,7 +25,7 @@ import {
   deleteReviewOperation,
   updateReviewOperation,
 } from './operations';
-import { logOutOperation } from 'redux/auth/operations';
+import { logOutOperation, signInOperation } from 'redux/auth/operations';
 
 const reviewsInitialState = {
   reviewsItem: [],
@@ -52,7 +53,8 @@ export const reviewsSlice = createSlice({
       .addCase(updateReviewOperation.pending, handleUpdateReviewPending)
       .addCase(updateReviewOperation.fulfilled, handleUpdateReviewFulfilled)
       .addCase(updateReviewOperation.rejected, handleUpdateReviewRejected)
-      .addCase(logOutOperation.fulfilled, handleLogoutInReviewsFulfilled),
+      .addCase(logOutOperation.fulfilled, handleLogoutInReviewsFulfilled)
+      .addCase(signInOperation.fulfilled, handleLoginInReviewsFulfilled),
 });
 
 export const reviewReducer = reviewsSlice.reducer;
