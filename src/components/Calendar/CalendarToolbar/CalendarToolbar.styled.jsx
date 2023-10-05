@@ -53,6 +53,12 @@ export const Toggle = styled.div`
   background: var(--primary-bg-color);
 `;
 
+export const ToggleIcon = styled.svg`
+  &:hover {
+    fill: var(--accent-color);
+  }
+`;
+
 export const TypeWrapper = styled.div`
   display: flex;
   border-radius: 8px;
