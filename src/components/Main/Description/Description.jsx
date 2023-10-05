@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  DescriptionBg,
   DescriptionContainer,
   DescriptionContent,
   DescriptionBlock,
@@ -39,7 +40,7 @@ import TasksDt2x from '../../../assets/images/mainPage/desktop_task_all@2x.png';
 
 const Description = () => {
   return (
-    <>
+    <DescriptionBg>
       <DescriptionContainer>
         <DescriptionContent>
           <DescriptionBlock>
@@ -136,7 +137,7 @@ const Description = () => {
           <ReviewsSlider />
         </Slider>
       </DescriptionContainer>
-    </>
+    </DescriptionBg>
   );
 };
 

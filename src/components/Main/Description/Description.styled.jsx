@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 import { mobile, tablet, min, desktop, max } from 'styles/media';
 
+export const DescriptionBg = styled.div`
+  width: 100%;
+  background-color: var(--primary-bg-color);
+`;
+
 export const DescriptionContainer = styled.div`
   max-width: 375px;
   margin-left: auto;
