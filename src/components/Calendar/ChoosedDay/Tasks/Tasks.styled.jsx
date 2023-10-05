@@ -117,8 +117,6 @@ export const TaskButtonPriority = styled.button`
 `;
 
 export const ContainerIcons = styled.div`
-  position: relative;
-  z-index: 1;
   display: flex;
   gap: 10px;
   margin-left: auto;

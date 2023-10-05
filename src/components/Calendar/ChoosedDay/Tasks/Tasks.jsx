@@ -66,17 +66,17 @@ const Tasks = ({ type, tasks, setTasks }) => {
                     <IconTask onClick={() => onDelete(_id)}>
                       <use xlinkHref={sprite + '#icon-trash'} />
                     </IconTask>
-                    {isShowPopUpReplace === _id && (
-                      <PopUpReplace
-                        type={type}
-                        tasks={tasks}
-                        setTasks={setTasks}
-                        setIsShowPopUpReplace={setIsShowPopUpReplace}
-                        _id={_id}
-                      ></PopUpReplace>
-                    )}
                   </ContainerIcons>
                 </ContainerButtonsTask>
+                {isShowPopUpReplace === _id && (
+                  <PopUpReplace
+                    type={type}
+                    tasks={tasks}
+                    setTasks={setTasks}
+                    setIsShowPopUpReplace={setIsShowPopUpReplace}
+                    _id={_id}
+                  ></PopUpReplace>
+                )}
               </Task>
             );
           }
