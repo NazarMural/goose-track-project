@@ -19,17 +19,17 @@ const CalendarToolbar = ({
   format,
   setFormat,
 }) => {
-  const month = moment(currentDate).format('MMMM-YYYY');
+  const month = moment(currentDate).format('YYYY-MM');
   const day = moment(currentDate).format('YYYY-MM-DD');
 
   const handleClick = format => {
-    const date = moment(currentDate).add(1, format);
+    const date = moment(currentDate).add(1, format).format('YYYY-MM-DD');
     setCurrentDate(date);
     localStorage.setItem('date', date);
   };
 
   const handleClickBack = format => {
-    const date = moment(currentDate).subtract(1, format);
+    const date = moment(currentDate).subtract(1, format).format('YYYY-MM-DD');
     setCurrentDate(date);
     localStorage.setItem('date', date);
   };
