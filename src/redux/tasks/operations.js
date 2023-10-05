@@ -2,13 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { handleErrorAsyncOperation } from 'utils';
 import axios from 'axios';
 
-const fetchTasksOperation = createAsyncThunk('tasks/fetchUserTasks', async (queryParams = {}, thunkAPI) => {
-  const params = new URLSearchParams(queryParams);
-  return await handleErrorAsyncOperation(async () => {
-    const { data } = await axios.get(`/tasks?${params}`);
-    return data;
-  }, thunkAPI);
-});
+const fetchTasksOperation = createAsyncThunk(
+  'tasks/fetchUserTasks',
+  async (params, thunkAPI) => {
+    // const params = new URLSearchParams(queryParams);
+    return await handleErrorAsyncOperation(async () => {
+      const { data } = await axios.get(`/tasks?currentMonth=${params}`);
+      return data;
+    }, thunkAPI);
+  }
+);
 
 const addTaskOperation = createAsyncThunk('tasks/addTask', async (task, thunkAPI) => {
   return await handleErrorAsyncOperation(async () => {
