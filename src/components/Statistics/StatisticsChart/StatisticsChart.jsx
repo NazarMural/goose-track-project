@@ -4,10 +4,10 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useDispatch } from 'react-redux';
 import { fetchTasksOperation } from 'redux/tasks/operations';
 import calculationTasksCurrentDay from 'helpers/calculationTask';
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 import {
+  DatePickerStyle,
   СhartBox,
   CanvasChart,
   StatisticsContainer,
@@ -22,16 +22,27 @@ const StatisticsСhart = () => {
   const dispatch = useDispatch();
 
   const [currentDate, setCurrentDate] = useState(new Date());
-
   const [sortTasks, setSortTasks] = useState({});
+
+  const goToNextDay = () => {
+    const newDate = moment(currentDate).add(1, 'day').toDate();
+    setCurrentDate(newDate);
+  };
+
+  const goToPreviousDay = () => {
+    const newDate = moment(currentDate).subtract(1, 'day').toDate();
+    setCurrentDate(newDate);
+  };
 
   useEffect(() => {
     (async () => {
       const month = moment(currentDate).format('YYYY-MM');
-      console.log(month);
-      const { payload } = await dispatch(fetchTasksOperation(month));
+      const day = moment(currentDate).format('YYYY-MM-DD');
+      console.log(currentDate);
 
-      const temp = calculationTasksCurrentDay(currentDate, payload);
+      const { payload } = await dispatch(fetchTasksOperation(month));
+      const temp = calculationTasksCurrentDay(day, payload);
+
       setSortTasks(temp);
     })();
   }, [dispatch, currentDate]);
@@ -120,6 +131,12 @@ const StatisticsСhart = () => {
   return (
     <StatisticsContainer>
       <LegendContainer>
+        <DatePickerStyle
+          selected={currentDate}
+          onChange={date => setCurrentDate(date)}
+        />
+        <button onClick={goToPreviousDay}>Попередній день</button>
+        <button onClick={goToNextDay}>Наступний день</button>
         <DayLegend>By Day</DayLegend>
         <MonthLegend>By Month</MonthLegend>
       </LegendContainer>

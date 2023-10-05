@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { desktop, min, max, tablet, mobile } from 'styles/media';
+
+export const DatePickerStyle = styled(DatePicker)``;
 
 export const СhartBox = styled.div`
   height: 300px;
