@@ -63,7 +63,7 @@ export const UserForm = () => {
 
     Notify.success('Data update successfully');
   }
-  // const now = moment().format('YYYY - MM - DD');
+
   return (
     <Container>
       <UserInfo />
@@ -80,7 +80,7 @@ export const UserForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 errors={errors.username}
-                // touched={touched.username}
+                touched={touched.username ? touched.username.toString() : ''}
               />
               {touched.username && (
                 <IconStatus error={errors.username}>
@@ -110,7 +110,7 @@ export const UserForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 errors={errors.phone}
-                // touched={touched.phone}
+                touched={touched.phone ? touched.phone.toString() : ''}
               />
               {touched.phone && (
                 <IconStatus error={errors.phone}>
@@ -141,7 +141,7 @@ export const UserForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   errors={errors.birthday}
-                  // touched={touched.birthday}
+                  touched={touched.birthday ? touched.birthday.toString() : ''}
                 />
                 <ChevronDown>
                   <use href={`${sprite}#icon-chevron-down`}></use>
@@ -175,7 +175,7 @@ export const UserForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 errors={errors.skype}
-                // touched={touched.skype}
+                touched={touched.skype ? touched.skype.toString() : ''}
               />
               {touched.skype && (
                 <IconStatus error={errors.skype}>
@@ -207,7 +207,7 @@ export const UserForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 errors={errors.email}
-                // touched={touched.email}
+                touched={touched.email ? touched.email.toString() : ''}
               />
               {touched.email && (
                 <IconStatus error={errors.email}>
