@@ -10,6 +10,10 @@ import {
 import sprite from '../../../assets/images/icons/icons.svg';
 import Title from './Title/Title';
 import Tasks from './Tasks/Tasks';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchTasksOperation } from 'redux/tasks/operations';
+import { useParams } from 'react-router-dom';
 
 const categories = [
   { id: 1, type: 'to-do' },
@@ -18,6 +22,26 @@ const categories = [
 ];
 
 const ChoosedDay = () => {
+  const [tasks, setTasks] = useState([]);
+  const { currentDay } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      const formatedDate = currentDay.split('-').slice(0, 2).join('-');
+      console.log(formatedDate);
+      const { payload } = await dispatch(fetchTasksOperation(formatedDate));
+      console.log(payload);
+      const filteredTasks = payload
+        ? payload.filter(({ date }) => date === currentDay)
+        : [];
+      setTasks(filteredTasks);
+    })();
+    return () => {
+      setTasks([]);
+    };
+  }, [currentDay, dispatch]);
+
   // useEffect(() => {
   //   const onClickBody = ({ target }) => {
   //     console.dir(target);
@@ -44,7 +68,7 @@ const ChoosedDay = () => {
       {categories.map(({ id, type }) => (
         <ContainerSecond key={id}>
           <Title type={type} onAdd={onAdd} />
-          <Tasks type={type} />
+          <Tasks type={type} tasks={tasks} setTasks={setTasks} />
           <ContainerButtonAddTask>
             <ButtonAddTask onClick={onAdd}>
               <IconButtonAddTask>

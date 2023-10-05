@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   ContainerButtonsTask,
   ContainerIcons,
@@ -12,30 +12,13 @@ import {
 } from './Tasks.styled';
 import PopUpReplace from '../PopUpReplace/PopUpReplace';
 import { useDispatch } from 'react-redux';
-import {
-  deleteTaskOperation,
-  fetchTasksOperation,
-} from 'redux/tasks/operations';
-import { useParams } from 'react-router-dom';
+import { deleteTaskOperation } from 'redux/tasks/operations';
+
 import sprite from '../../../../assets/images/icons/icons.svg';
 
-const Tasks = ({ type }) => {
+const Tasks = ({ type, tasks, setTasks }) => {
   const dispatch = useDispatch();
   const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
-
-  const [tasks, setTasks] = useState([]);
-
-  const { currentDay } = useParams();
-
-  useEffect(() => {
-    (async () => {
-      const { payload } = await dispatch(fetchTasksOperation());
-      const filteredTasks = payload
-        ? payload.filter(({ date }) => date === currentDay)
-        : [];
-      setTasks(filteredTasks);
-    })();
-  }, [tasks, currentDay, dispatch]);
 
   const toggleShowPopUpReplace = id => {
     isShowPopUpReplace === id
