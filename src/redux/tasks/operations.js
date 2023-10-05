@@ -2,9 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { handleErrorAsyncOperation } from 'utils';
 import axios from 'axios';
 
-const fetchTasksOperation = createAsyncThunk('tasks/fetchUserTasks', async (_, thunkAPI) => {
+const fetchTasksOperation = createAsyncThunk('tasks/fetchUserTasks', async (queryParams = {}, thunkAPI) => {
+  const params = new URLSearchParams(queryParams);
   return await handleErrorAsyncOperation(async () => {
-    const { data } = await axios.get('/tasks');
+    const { data } = await axios.get(`/tasks?${params}`);
     return data;
   }, thunkAPI);
 });
