@@ -86,6 +86,7 @@
 --gradient-blue: fill: linear-gradient(0deg, #3E85F3 0%, rgba(62, 133, 243, 0.00) 100%);
 --legend-day: #FFD2DD;
 --legend-month: #3E85F3;
+--border-chart: #E3F3FF
 }
 
 html.dark {
