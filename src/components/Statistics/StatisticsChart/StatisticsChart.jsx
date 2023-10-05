@@ -130,13 +130,13 @@ const StatisticsСhart = () => {
 
   return (
     <StatisticsContainer>
+      <DatePickerStyle
+        selected={currentDate}
+        onChange={date => setCurrentDate(date)}
+      />
+      <button onClick={goToPreviousDay}>Попередній день</button>
+      <button onClick={goToNextDay}>Наступний день</button>
       <LegendContainer>
-        <DatePickerStyle
-          selected={currentDate}
-          onChange={date => setCurrentDate(date)}
-        />
-        <button onClick={goToPreviousDay}>Попередній день</button>
-        <button onClick={goToNextDay}>Наступний день</button>
         <DayLegend>By Day</DayLegend>
         <MonthLegend>By Month</MonthLegend>
       </LegendContainer>
