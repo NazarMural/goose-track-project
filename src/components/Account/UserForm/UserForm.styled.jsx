@@ -46,16 +46,30 @@ export const AddUserForm = styled(Form)`
     gap: 18px 50px;
   }
 `;
+export const FieldContainer = styled.div`
+  position: relative;
+  max-width: 283px;
+
+  ${min(tablet)} {
+    max-width: 334px;
+  }
+`;
 export const FormField = styled(Field)`
   ::-webkit-calendar-picker-indicator {
     margin: 0 10px 0;
     cursor: pointer;
     opacity: 0;
   }
-  max-width: 283px;
+  max-width: 299px;
   padding: 12px 0 12px 14px;
   margin-bottom: 18px;
-  border: 1px solid var(--input-border-color);
+  border: 1px solid;
+  border-color: ${({ errors, touched }) =>
+    touched
+      ? errors
+        ? 'var(--error-color);'
+        : 'var(--success-color);'
+      : 'var(--input-border-color);'};
   border-radius: 8px;
   color: var(--primary-text-color);
   font-family: Inter;
@@ -127,7 +141,7 @@ export const Span = styled.div`
 export const ChevronDown = styled.svg`
   position: absolute;
   top: 36px;
-  right: 11px;
+  right: 14px;
   width: 18px;
   height: 18px;
   cursor: pointer;
@@ -174,8 +188,7 @@ export const Button = styled.button`
   .dark & {
     color: var(--primary-text-color);
   }
-  ${min(tablet)} {
-  }
+
   ${min(desktop)} {
     display: flex;
     justify-content: center;
@@ -198,4 +211,27 @@ export const Button = styled.button`
       color: var(--primary-text-color);
     }
   }
+`;
+export const IconStatus = styled.svg`
+  position: absolute;
+  fill: ${({ error }) =>
+    error ? 'var(--error-color)' : 'var(--success-color)'};
+  height: 22px;
+  width: 22px;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  ${min(tablet)} {
+    height: 24px;
+    width: 24px;
+    right: 18px;
+  }
+`;
+export const ErrorMessageText = styled.span`
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  color: ${({ error }) =>
+    error ? 'var(--error-color)' : 'var(--success-color)'};
 `;
