@@ -219,7 +219,7 @@ export const IconStatus = styled.svg`
   height: 22px;
   width: 22px;
   right: 14px;
-  top: 50%;
+  top: 45px;
   transform: translateY(-50%);
 
   ${min(tablet)} {
@@ -227,11 +227,22 @@ export const IconStatus = styled.svg`
     width: 24px;
     right: 18px;
   }
+  ${min(desktop)} {
+    top: 50px;
+  }
 `;
 export const ErrorMessageText = styled.span`
+  position: absolute;
+  top: 70px;
   font-size: 12px;
   font-weight: 400;
   line-height: 14px;
   color: ${({ error }) =>
     error ? 'var(--error-color)' : 'var(--success-color)'};
+  ${min(tablet)} {
+    top: 75px;
+  }
+  ${min(desktop)} {
+    top: 80px;
+  }
 `;

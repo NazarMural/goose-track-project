@@ -1,5 +1,4 @@
 import React from 'react';
-// import moment from 'moment';
 import { Formik, useFormik } from 'formik';
 import { object, string, number, date } from 'yup';
 import sprite from '../../../assets/images/icons/icons.svg';
@@ -42,13 +41,20 @@ export const UserForm = () => {
     email: user.email,
   };
 
-  const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: schema,
-      validateOnChange: false,
-      onSubmit: onSubmit,
-    });
+  const {
+    values,
+    errors,
+    touched,
+    resetForm,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: schema,
+    validateOnChange: false,
+    onSubmit: onSubmit,
+  });
 
   async function onSubmit(values) {
     const newData = {
@@ -60,8 +66,8 @@ export const UserForm = () => {
     };
 
     await dispatch(updateUserDataOperation(newData));
-
     Notify.success('Data update successfully');
+    resetForm();
   }
 
   return (
@@ -76,9 +82,9 @@ export const UserForm = () => {
                 type="text"
                 name="username"
                 placeholder="Enter your name"
-                value={values.username}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                value={values.username ?? ''}
+                onChange={handleChange('username')}
+                onBlur={handleBlur('username')}
                 errors={errors.username}
                 touched={touched.username ? touched.username.toString() : ''}
               />
@@ -106,9 +112,9 @@ export const UserForm = () => {
                 type="tel"
                 name="phone"
                 placeholder="Enter your phone number"
-                value={values.phone}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                value={values.phone ?? ''}
+                onChange={handleChange('phone')}
+                onBlur={handleBlur('phone')}
                 errors={errors.phone}
                 touched={touched.phone ? touched.phone.toString() : ''}
               />
@@ -137,9 +143,9 @@ export const UserForm = () => {
                   type="date"
                   name="birthday"
                   placeholder="YYYY - MM - DD"
-                  value={values.birthday}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={values.birthday ?? ''}
+                  onChange={handleChange('birthday')}
+                  onBlur={handleBlur('birthday')}
                   errors={errors.birthday}
                   touched={touched.birthday ? touched.birthday.toString() : ''}
                 />
@@ -171,9 +177,9 @@ export const UserForm = () => {
                 type="text"
                 name="skype"
                 placeholder="Add a skype number"
-                value={values.skype}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                value={values.skype ?? ''}
+                onChange={handleChange('skype')}
+                onBlur={handleBlur('skype')}
                 errors={errors.skype}
                 touched={touched.skype ? touched.skype.toString() : ''}
               />
@@ -203,9 +209,9 @@ export const UserForm = () => {
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                value={values.email ?? ''}
+                onChange={handleChange('email')}
+                onBlur={handleBlur('email')}
                 errors={errors.email}
                 touched={touched.email ? touched.email.toString() : ''}
               />
