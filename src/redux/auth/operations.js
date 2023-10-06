@@ -39,7 +39,7 @@ const refreshUserOperation = createAsyncThunk('auth/refresh', async (_, thunkAPI
   const persistedToken = state.auth.token;
 
   if (persistedToken === null) {
-    return thunkAPI.rejectWithValue({ status: 401, message: 'Будь ласка увійдіть або зареєструйтеся!' });
+    return thunkAPI.rejectWithValue({ status: 401, message: 'Please login or register!' });
   }
 
   return await handleErrorAsyncOperation(async () => {
