@@ -14,8 +14,8 @@ export const ContainerMain = styled.div`
     gap: 16px;
   }
   ${min(desktop)} {
-    gap: 0;
-    justify-content: space-between;
+    gap: 27px;
+    /* justify-content: space-between; */
     /* max-width: 1106px; */
   }
   /* width*/
@@ -56,8 +56,8 @@ export const ContainerSecond = styled.div`
     padding: 20px;
   }
   ${min(desktop)} {
-    width: auto;
-    flex-basis: 377px;
+    width: 323px;
+    /* flex-basis: 377px; */
   }
 `;
 

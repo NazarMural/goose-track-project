@@ -2,11 +2,15 @@ import styled from '@emotion/styled';
 import { desktop, min, tablet } from 'styles/media';
 
 export const ContainerListTasks = styled.div`
-  max-height: 270px;
+  max-height: 280px;
   overflow-y: auto;
   width: 103%;
   ${min(tablet)} {
-    max-height: 395px;
+    max-height: 406px;
+  }
+  ${min(desktop)} {
+    max-height: 424px;
+    width: 105%;
   }
   /* width*/
   &::-webkit-scrollbar {
@@ -43,7 +47,7 @@ export const ListTasks = styled.ul`
     margin-bottom: 17px;
   }
   ${min(desktop)} {
-    width: 329px;
+    width: 281px;
   }
 `;
 
