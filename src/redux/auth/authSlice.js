@@ -8,24 +8,7 @@ import {
   updateUserDataOperation,
   updateUserAvatarOperation,
 } from './operations';
-import {
-  handleRegisterFulfilled,
-  handleRegisterRejected,
-  handleLoginFulfilled,
-  handleLogoutFulfilled,
-  handleLoginRejected,
-  handleLogoutRejected,
-  handleRefreshUserFulfilled,
-  handleRefreshUserRejected,
-  handleRefreshUserPending,
-  handleUpdateUserPending,
-  handleUpdateUserFulfilled,
-  handleUpdateUserRejected,
-  handleAuthActionPending,
-  handleUpdateAvatarPending,
-  handleUpdateAvatarFulfilled,
-  handleUpdateAvatarRejected,
-} from 'utils/reduxActionHandlers/authActionHandlers';
+import * as authReducers from 'utils/reduxActionHandlers/authActionHandlers';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
@@ -58,24 +41,24 @@ const authSlice = createSlice({
   initialState,
   extraReducers: build =>
     build
-      .addCase(signUpOperation.pending, handleAuthActionPending)
-      .addCase(signUpOperation.fulfilled, handleRegisterFulfilled)
-      .addCase(signUpOperation.rejected, handleRegisterRejected)
-      .addCase(signInOperation.pending, handleAuthActionPending)
-      .addCase(signInOperation.fulfilled, handleLoginFulfilled)
-      .addCase(signInOperation.rejected, handleLoginRejected)
-      .addCase(logOutOperation.pending, handleAuthActionPending)
-      .addCase(logOutOperation.fulfilled, handleLogoutFulfilled)
-      .addCase(logOutOperation.rejected, handleLogoutRejected)
-      .addCase(refreshUserOperation.pending, handleRefreshUserPending)
-      .addCase(refreshUserOperation.fulfilled, handleRefreshUserFulfilled)
-      .addCase(refreshUserOperation.rejected, handleRefreshUserRejected)
-      .addCase(updateUserDataOperation.pending, handleUpdateUserPending)
-      .addCase(updateUserDataOperation.fulfilled, handleUpdateUserFulfilled)
-      .addCase(updateUserDataOperation.rejected, handleUpdateUserRejected)
-      .addCase(updateUserAvatarOperation.pending, handleUpdateAvatarPending)
-      .addCase(updateUserAvatarOperation.fulfilled, handleUpdateAvatarFulfilled)
-      .addCase(updateUserAvatarOperation.rejected, handleUpdateAvatarRejected),
+      .addCase(signUpOperation.pending, authReducers.handleAuthActionPending)
+      .addCase(signUpOperation.fulfilled, authReducers.handleRegisterFulfilled)
+      .addCase(signUpOperation.rejected, authReducers.handleRegisterRejected)
+      .addCase(signInOperation.pending, authReducers.handleAuthActionPending)
+      .addCase(signInOperation.fulfilled, authReducers.handleLoginFulfilled)
+      .addCase(signInOperation.rejected, authReducers.handleLoginRejected)
+      .addCase(logOutOperation.pending, authReducers.handleAuthActionPending)
+      .addCase(logOutOperation.fulfilled, authReducers.handleLogoutFulfilled)
+      .addCase(logOutOperation.rejected, authReducers.handleLogoutRejected)
+      .addCase(refreshUserOperation.pending, authReducers.handleRefreshUserPending)
+      .addCase(refreshUserOperation.fulfilled, authReducers.handleRefreshUserFulfilled)
+      .addCase(refreshUserOperation.rejected, authReducers.handleRefreshUserRejected)
+      .addCase(updateUserDataOperation.pending, authReducers.handleUpdateUserPending)
+      .addCase(updateUserDataOperation.fulfilled, authReducers.handleUpdateUserFulfilled)
+      .addCase(updateUserDataOperation.rejected, authReducers.handleUpdateUserRejected)
+      .addCase(updateUserAvatarOperation.pending, authReducers.handleUpdateAvatarPending)
+      .addCase(updateUserAvatarOperation.fulfilled, authReducers.handleUpdateAvatarFulfilled)
+      .addCase(updateUserAvatarOperation.rejected, authReducers.handleUpdateAvatarRejected),
 });
 
 const authReducer = authSlice.reducer;
