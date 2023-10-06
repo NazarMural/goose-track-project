@@ -86,6 +86,18 @@ export const TaskImage = styled.img`
   border-radius: 50%;
   margin-right: 8px;
 `;
+export const TaskImagePlug = styled.svg`
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  border: 1.8px solid var(--accent-color);
+  border-radius: 50%;
+  margin-right: 8px;
+  fill: #3e85f32e;
+  .dark & {
+    fill: #ffffff2e;
+  }
+`;
 
 export const TaskButtonPriority = styled.button`
   height: 20px;

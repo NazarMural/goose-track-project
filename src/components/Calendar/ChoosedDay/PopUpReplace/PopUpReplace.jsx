@@ -9,6 +9,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { updateTaskOperation } from 'redux/tasks/operations';
 import { IconTask } from '../Tasks/Tasks.styled';
+import { Notify } from 'notiflix';
 
 const PopUpReplace = ({
   type,
@@ -57,12 +58,17 @@ const PopUpReplace = ({
   };
 
   const onReplace = async (id, typeCategory) => {
-    await dispatch(
+    const response = await dispatch(
       updateTaskOperation({
         taskId: id,
         updateTaskData: { category: typeCategory },
       })
     );
+
+    if (response.payload.status) {
+      Notify.failure('Task don`t replace. Try again');
+      return;
+    }
 
     const filteredTasks = tasks
       ? tasks.map(task => {
