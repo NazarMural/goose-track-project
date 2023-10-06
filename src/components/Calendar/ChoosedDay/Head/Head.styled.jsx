@@ -29,15 +29,23 @@ export const HeadCell = styled.div`
   text-align: center;
   text-transform: uppercase;
   background-color: var(--cell-background);
-  color: #343434;
+
+  & div {
+    color: #343434;
+    /* opacity: 0; */
+    background-color: var(--cell-background);
+
+    border-radius: 6px;
+    transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s;
+  }
 
   padding: 16px 0;
   cursor: pointer;
   &:hover {
     & div {
+      opacity: 1;
       color: #ffffff;
       background-color: #3e85f3;
-      border-radius: 6px;
     }
   }
 `;

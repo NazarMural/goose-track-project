@@ -9,27 +9,32 @@ import {
 } from './Head.styled';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import { setDay } from 'helpers/setDay';
 
 const Head = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const [isSelected, setIsSelected] = useState('');
+
   const { currentDay } = useParams();
   const navigate = useNavigate();
+
   useEffect(() => {
     const currentDaySlice = currentDay.split('-').slice(2).join('');
-    [...Array(7)].filter((_, idx) => {
-      const test = moment()
-        .day(idx + 1)
+    [...Array(7)].map((_, idx) => {
+      const dayIdx = setDay(currentDay)
+        .startWeek.day(idx + 1)
         .format('DD');
-      if (test === currentDaySlice) {
+      if (dayIdx === currentDaySlice) {
         setIsSelected(idx);
       }
+      return null;
     });
   }, [currentDay]);
 
   const onChangeDay = date => {
     const formatDate = date.format('YYYY-MM-DD');
-    // navigate(`day/${formatDate}`);
+    localStorage.setItem('date', formatDate);
+    navigate('../', { relative: `${formatDate}` });
   };
 
   return (
@@ -48,8 +53,8 @@ const Head = () => {
           </NameWeek>
           <DayWeekContainer>
             <DayWeekText>
-              {moment()
-                .day(idx + 1)
+              {setDay(currentDay)
+                .startWeek.day(idx + 1)
                 .format('D')}
             </DayWeekText>
           </DayWeekContainer>
