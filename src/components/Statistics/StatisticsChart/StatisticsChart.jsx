@@ -15,6 +15,8 @@ import { fetchTasksOperation } from 'redux/tasks/operations';
 import calculationTasksCurrentDay from 'helpers/calculationTask';
 
 import {
+  CalendarBox,
+  ButtonBox,
   DatePickerStyle,
   StatisticsContainer,
   LegendContainer,
@@ -70,16 +72,36 @@ const StatisticsСhart = () => {
     </g>
   );
 
+  const filterDates = date => {
+    // Отримуємо поточний місяць та рік
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+
+    // Отримуємо місяць і рік від дати
+    const dateMonth = date.getMonth();
+    const dateYear = date.getFullYear();
+
+    // Якщо місяць і рік дати співпадають з поточним місяцем і роком,
+    // ми показуємо цю дату, інакше ми її приховуємо
+    return dateMonth === currentMonth && dateYear === currentYear;
+  };
+
   const data = sortTasks;
 
   return (
     <StatisticsContainer>
-      <DatePickerStyle
-        selected={currentDate}
-        onChange={date => setCurrentDate(date)}
-      />
-      <button onClick={goToPreviousDay}>Попередній день</button>
-      <button onClick={goToNextDay}>Наступний день</button>
+      <CalendarBox>
+        <DatePickerStyle
+          selected={currentDate}
+          onChange={date => setCurrentDate(date)}
+          dateFormat="dd MMMM yyyy"
+          filterDate={filterDates}
+        />
+        <ButtonBox>
+          <button onClick={goToPreviousDay}>-=</button>
+          <button onClick={goToNextDay}>=-</button>
+        </ButtonBox>
+      </CalendarBox>
       <LegendContainer>
         <DayLegend>By Day</DayLegend>
         <MonthLegend>By Month</MonthLegend>
@@ -128,7 +150,7 @@ const StatisticsСhart = () => {
               />
             </Bar>
             <Bar
-              dataKey="day"
+              dataKey="month"
               fill="url(#gradient-month)"
               radius={[0, 0, 10, 10]}
             >
