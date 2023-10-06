@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import sprite from '../../../../assets/images/icons/icons.svg';
 import {
@@ -19,6 +19,28 @@ const PopUpReplace = ({
   _id,
 }) => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    const onClickClose = ({ target }) => {
+      if (target.localName !== 'use') {
+        if (target.localName !== 'svg') {
+          setIsShowPopUpReplace(false);
+        }
+      }
+    };
+    const onEscClose = ({ code }) => {
+      if (code === 'Escape') {
+        setIsShowPopUpReplace(false);
+      }
+    };
+
+    document.addEventListener('click', onClickClose);
+    document.addEventListener('keydown', onEscClose);
+
+    return () => {
+      document.removeEventListener('click', onClickClose);
+      document.removeEventListener('keydown', onEscClose);
+    };
+  }, [setIsShowPopUpReplace]);
 
   const viewCategories = type => {
     let arrCategories = [];
@@ -81,7 +103,7 @@ const PopUpReplace = ({
 
     setTasks(filteredTasks);
 
-    setIsShowPopUpReplace(false);
+    // setIsShowPopUpReplace(false);
   };
   return (
     <ContainerReplaceTask>
