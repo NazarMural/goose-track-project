@@ -8,17 +8,21 @@ import {
   Task,
   TaskButtonPriority,
   TaskImage,
+  TaskImagePlug,
   TaskTitle,
 } from './Tasks.styled';
 import PopUpReplace from '../PopUpReplace/PopUpReplace';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteTaskOperation } from 'redux/tasks/operations';
 
 import sprite from '../../../../assets/images/icons/icons.svg';
+import { selectUserAvatar } from 'redux/auth/selectors';
+import { Notify } from 'notiflix';
 
 const Tasks = ({ type, tasks, setTasks }) => {
   const dispatch = useDispatch();
   const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
+  const avatarURL = useSelector(selectUserAvatar);
 
   const toggleShowPopUpReplace = id => {
     isShowPopUpReplace === id
@@ -28,12 +32,17 @@ const Tasks = ({ type, tasks, setTasks }) => {
   const onEdit = () => {
     console.log('onEdit');
   };
-  const onDelete = taskId => {
-    dispatch(deleteTaskOperation(taskId));
+  const onDelete = async taskId => {
+    const response = await dispatch(deleteTaskOperation(taskId));
+    if (response.payload.status) {
+      Notify.failure('Task don`t delete. Try again');
+      return;
+    }
     const filteredTasks = tasks
       ? tasks.filter(({ _id }) => _id !== taskId)
       : [];
     setTasks(filteredTasks);
+    Notify.success('Task deleted successfully');
   };
   return (
     <ContainerListTasks>
@@ -47,10 +56,13 @@ const Tasks = ({ type, tasks, setTasks }) => {
               <Task key={_id}>
                 <TaskTitle>{title}</TaskTitle>
                 <ContainerButtonsTask>
-                  <TaskImage
-                    src="https://www.w3schools.com/howto/img_avatar.png"
-                    alt="#"
-                  />
+                  {avatarURL ? (
+                    <TaskImage src={avatarURL} alt="User avatar" />
+                  ) : (
+                    <TaskImagePlug>
+                      <use href={`${sprite}#icon-ph_user`}></use>
+                    </TaskImagePlug>
+                  )}
                   <TaskButtonPriority priority={priority}>
                     {priority.charAt(0).toUpperCase() + priority.slice(1)}
                   </TaskButtonPriority>
