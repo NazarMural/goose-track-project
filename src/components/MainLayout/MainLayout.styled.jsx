@@ -19,6 +19,10 @@ export const MainLayoutContainer = styled.div`
 
 export const Container = styled.div`
   width: 100%;
+  max-width: 1087px;
   background-color: var(--page-bg-color);
 `;
 
+export const SideBarPlaceholder = styled.div`
+width: 289px;
+`

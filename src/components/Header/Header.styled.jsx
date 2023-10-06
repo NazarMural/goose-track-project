@@ -13,7 +13,7 @@ export const HeaderSection = styled.header`
     padding: 24px 32px 0px 32px;
   }
   ${min(desktop)} {
-    max-width: 1440px;
+    max-width: 1087px;
     padding: 40px 32px 0px 32px;
   }
 `;
