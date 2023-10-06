@@ -21,10 +21,9 @@ const PopUpReplace = ({
   const dispatch = useDispatch();
   useEffect(() => {
     const onClickClose = ({ target }) => {
-      if (target.localName !== 'use') {
-        if (target.localName !== 'svg') {
-          setIsShowPopUpReplace(false);
-        }
+      console.log(target.id);
+      if (target.id !== 'togglePopUp') {
+        setIsShowPopUpReplace(false);
       }
     };
     const onEscClose = ({ code }) => {

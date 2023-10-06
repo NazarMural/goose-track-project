@@ -67,8 +67,12 @@ const Tasks = ({ type, tasks, setTasks }) => {
                     {priority.charAt(0).toUpperCase() + priority.slice(1)}
                   </TaskButtonPriority>
                   <ContainerIcons>
-                    <IconTask onClick={() => toggleShowPopUpReplace(_id)}>
+                    <IconTask
+                      id="togglePopUp"
+                      onClick={() => toggleShowPopUpReplace(_id)}
+                    >
                       <use
+                        id="togglePopUp"
                         xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
                       />
                     </IconTask>
