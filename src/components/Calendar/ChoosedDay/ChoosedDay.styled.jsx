@@ -16,7 +16,7 @@ export const ContainerMain = styled.div`
   ${min(desktop)} {
     gap: 0;
     justify-content: space-between;
-    max-width: 1106px;
+    /* max-width: 1106px; */
   }
   /* width*/
   &::-webkit-scrollbar {
@@ -44,18 +44,20 @@ export const ContainerMain = styled.div`
 export const ContainerSecond = styled.div`
   position: relative;
   padding: 18px;
-  width: 296px;
+  /* width: 296px; */
+  flex: none;
   background-color: var(--primary-bg-color);
   border: 1px solid var(--calendar-grid-border);
   border-radius: 8px;
   scroll-snap-align: start;
 
   ${min(tablet)} {
-    width: 299px;
+    width: 344px;
     padding: 20px;
   }
   ${min(desktop)} {
-    width: 306px;
+    width: auto;
+    flex-basis: 377px;
   }
 `;
 

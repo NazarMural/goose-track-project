@@ -28,7 +28,7 @@ export const IconAddTask = styled.svg`
   height: 22px;
   width: 22px;
   stroke: var(--primary-text-color);
-  padding: 7px 0;
+  /* padding: 7px 0; */
   cursor: pointer;
   & use {
     fill: transparent;
