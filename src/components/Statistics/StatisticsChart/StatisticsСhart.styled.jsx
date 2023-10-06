@@ -1,7 +1,44 @@
 import styled from '@emotion/styled';
-import { desktop, min, tablet } from 'styles/media';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { desktop, min, max, tablet, mobile } from 'styles/media';
 
-export const СhartContainer = styled.div``;
+export const DatePickerStyle = styled(DatePicker)``;
+
+export const СhartBox = styled.div`
+  height: 300px;
+
+  ${max(mobile)} {
+    max-width: 279px;
+  }
+
+  ${min(tablet)} {
+    width: 576px;
+    height: 331px;
+  }
+  ${min(desktop)} {
+    width: 780px;
+    height: 331px;
+  }
+`;
+
+export const ChartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 40px 14px;
+  border: 0.8px solid var(--border-chart);
+  border-radius: 20px;
+
+  ${min(tablet)} {
+    padding: 32px;
+    border-radius: 29px;
+  }
+  ${min(desktop)} {
+    padding: 40px;
+  }
+`;
+
+export const CanvasChart = styled.canvas``;
 
 export const StatisticsContainer = styled.div`
   padding: 28px 14px;
@@ -54,6 +91,7 @@ export const MonthLegend = styled(Legend)`
 `;
 
 export const ChartTasks = styled.p`
+  margin: 0;
   margin-bottom: 14px;
 
   color: var(--secondary-text-color);
