@@ -1,38 +1,42 @@
+import sprite from '../../../assets/images/icons/icons.svg';
 import React, { useEffect, useState } from 'react';
-import { Chart } from 'chart.js/auto';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useDispatch } from 'react-redux';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  LabelList,
+  ResponsiveContainer,
+} from 'recharts';
+import moment from 'moment';
+import { useMediaQuery } from 'react-responsive';
 import { fetchTasksOperation } from 'redux/tasks/operations';
 import calculationTasksCurrentDay from 'helpers/calculationTask';
-import moment from 'moment';
 
 import {
+  CalendarBox,
+  ButtonBox,
   DatePickerStyle,
-  СhartBox,
-  CanvasChart,
   StatisticsContainer,
   LegendContainer,
   DayLegend,
   MonthLegend,
   ChartTasks,
   ChartContainer,
+  ButtonLeft,
+  ButtonRight,
+  NavContainer,
 } from './StatisticsСhart.styled';
 
 const StatisticsСhart = () => {
   const dispatch = useDispatch();
 
+  const isMobile = useMediaQuery({ query: 'max-width: 768px' });
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const [sortTasks, setSortTasks] = useState({});
-
-  const goToNextDay = () => {
-    const newDate = moment(currentDate).add(1, 'day').toDate();
-    setCurrentDate(newDate);
-  };
-
-  const goToPreviousDay = () => {
-    const newDate = moment(currentDate).subtract(1, 'day').toDate();
-    setCurrentDate(newDate);
-  };
 
   useEffect(() => {
     (async () => {
@@ -46,103 +50,128 @@ const StatisticsСhart = () => {
     })();
   }, [dispatch, currentDate]);
 
-  useEffect(() => {
-    Chart.register(ChartDataLabels);
-    const ctx = document.getElementById('myChart').getContext('2d');
+  const goToNextDay = () => {
+    const newDate = moment(currentDate).add(1, 'day').toDate();
+    setCurrentDate(newDate);
+  };
 
-    const gradientBgDay = ctx.createLinearGradient(0, 0, 0, 350);
-    const gradientBgMonth = ctx.createLinearGradient(0, 0, 0, 350);
-    gradientBgDay.addColorStop(0, 'rgba(255, 210, 221, 0)');
-    gradientBgDay.addColorStop(1, 'rgba(255, 210, 221, 1)');
-    gradientBgMonth.addColorStop(0, 'rgba(62, 133, 243, 0)');
-    gradientBgMonth.addColorStop(1, 'rgba(62, 133, 243, 1)');
+  const goToPreviousDay = () => {
+    const newDate = moment(currentDate).subtract(1, 'day').toDate();
+    setCurrentDate(newDate);
+  };
 
-    const existingChart = Chart.getChart(ctx);
+  const LabelListContent = ({ x, y, width, value }) => (
+    <g transform={`translate(${x + width / 2},${y + 4})`}>
+      <text
+        x={2}
+        y={3}
+        dy={0}
+        textAnchor="middle"
+        fill="#343434"
+        fontSize={isMobile ? 12 : 16}
+        fontWeight={400}
+      >
+        {value}
+      </text>
+    </g>
+  );
 
-    if (existingChart) {
-      existingChart.destroy();
-    }
-
-    const data = sortTasks;
-
-    if (data && data.tasksDay && data.tasksMonth) {
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['to-do', 'in-progress', 'done'],
-
-          datasets: [
-            {
-              label: '# of Votes',
-              data: data.tasksDay,
-              lab: data.percentageTasksDay,
-              backgroundColor: gradientBgDay,
-              borderRadius: 5,
-              barPercentage: 0.6,
-              categoryPercentage: 0.35,
-            },
-            {
-              label: '# of Votes',
-              data: data.tasksMonth,
-              lab: data.percentageTasksMonth,
-              backgroundColor: gradientBgMonth,
-              borderRadius: 5,
-              barPercentage: 0.6,
-              categoryPercentage: 0.35,
-            },
-          ],
-        },
-        plugins: [ChartDataLabels],
-        options: {
-          maintainAspectRatio: false, //автоматично підлаштовує розміри графіка
-          parsing: {
-            xAxisKey: 'id',
-            yAxisKey: 'value',
-          },
-          plugins: {
-            legend: {
-              display: false,
-            },
-            datalabels: {
-              color: 'bleak',
-              anchor: 'end',
-              align: 'top',
-              offset: 0,
-              formatter: function (value, context) {
-                return context.dataset.lab[context.dataIndex];
-              },
-            },
-          },
-          scales: {
-            y: {
-              beginAtZero: false, // Зміниць на false, щоб шкала не починалася з нуля
-              suggestedMin: 0, // Мінімальне значення на осі Y
-              suggestedMax:
-                Math.max(...data.tasksDay, ...data.tasksMonth) + 0.5, // Максимальне значення на осі Y + 1 таск
-            },
-          },
-        },
-      });
-    }
-  }, [sortTasks]);
+  const data = sortTasks;
 
   return (
     <StatisticsContainer>
-      <DatePickerStyle
-        selected={currentDate}
-        onChange={date => setCurrentDate(date)}
-      />
-      <button onClick={goToPreviousDay}>Попередній день</button>
-      <button onClick={goToNextDay}>Наступний день</button>
-      <LegendContainer>
-        <DayLegend>By Day</DayLegend>
-        <MonthLegend>By Month</MonthLegend>
-      </LegendContainer>
+      <NavContainer>
+        <CalendarBox>
+          <DatePickerStyle
+            selected={currentDate}
+            onChange={date => setCurrentDate(date)}
+            dateFormat="dd MMMM yyyy"
+          />
+          <ButtonBox>
+            <ButtonLeft onClick={goToPreviousDay}>
+              <svg height={16} width={16}>
+                <use xlinkHref={`${sprite}#icon-chevron-left`} />
+              </svg>
+            </ButtonLeft>
+            <ButtonRight onClick={goToNextDay}>
+              <svg height={16} width={16}>
+                <use xlinkHref={`${sprite}#icon-chevron-right`} />
+              </svg>
+            </ButtonRight>
+          </ButtonBox>
+        </CalendarBox>
+        <LegendContainer>
+          <DayLegend>By Day</DayLegend>
+          <MonthLegend>By Month</MonthLegend>
+        </LegendContainer>
+      </NavContainer>
       <ChartContainer>
         <ChartTasks>Tasks</ChartTasks>
-        <СhartBox>
-          <CanvasChart id="myChart"></CanvasChart>
-        </СhartBox>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={data}
+            barGap={isMobile ? 8 : 14}
+            barSize={isMobile ? 22 : 27}
+          >
+            <CartesianGrid
+              stroke="#e3f3ff"
+              strokeWidth={1}
+              strokeDasharray="none"
+              vertical={false}
+            />
+            <XAxis
+              dataKey="name"
+              tick={{ fontSize: isMobile ? 12 : 16, fill: '#343434' }}
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+            />
+            <YAxis
+              tickFormatter={value => value}
+              domain={[0, 'dataMax']}
+              allowDataOverflow={true}
+              scale="linear"
+              axisLine={false}
+              tickLine={false}
+              tickMargin={30}
+              tick={{ fill: '#343434' }}
+            />
+            <Bar
+              dataKey="day"
+              fill="url(#gradient-day)"
+              radius={[0, 0, 10, 10]}
+            >
+              <LabelList
+                dataKey="percentageDay"
+                content={<LabelListContent />}
+                position="top"
+                fill="#343434"
+              />
+            </Bar>
+            <Bar
+              dataKey="month"
+              fill="url(#gradient-month)"
+              radius={[0, 0, 10, 10]}
+            >
+              <LabelList
+                dataKey="percentageMonth"
+                content={<LabelListContent />}
+                position="top"
+                fill="#343434"
+              />
+            </Bar>
+            <defs>
+              <linearGradient id={'gradient-day'} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={'#FFD2DD'} stopOpacity={0} />
+                <stop offset="100%" stopColor={'#FFD2DD'} stopOpacity={1} />
+              </linearGradient>
+              <linearGradient id={'gradient-month'} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={'#3E85F3'} stopOpacity={0} />
+                <stop offset="100%" stopColor={'#3E85F3'} stopOpacity={1} />
+              </linearGradient>
+            </defs>
+          </BarChart>
+        </ResponsiveContainer>
       </ChartContainer>
     </StatisticsContainer>
   );
