@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import { handleSetTheme } from 'utils/reduxActionHandlers/themeActionHandlers';
+import { THEMES } from 'constants/theme/themes';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
-  theme: 'light',
+  theme: THEMES.LIGHT,
 };
 
 const themePersistConfig = {
