@@ -1,23 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  handleAddReviewFulfilled,
-  handleAddReviewPending,
-  handleAddReviewRejected,
-  handleDeleteReviewFulfilled,
-  handleDeleteReviewPending,
-  handleDeleteReviewRejected,
-  handleFetchOwnReviewFulfilled,
-  handleFetchOwnReviewPending,
-  handleFetchOwnReviewRejected,
-  handleUpdateReviewFulfilled,
-  handleUpdateReviewPending,
-  handleUpdateReviewRejected,
-  handleFetchReviewsFulfilled,
-  handleFetchReviewsPending,
-  handleFetchReviewsRejected,
-  handleLogoutInReviewsFulfilled,
-  handleLoginInReviewsFulfilled,
-} from 'utils/reduxActionHandlers/reviewsActionHandlers';
+import * as reviewsReducers from 'utils/reduxActionHandlers/reviewsActionHandlers';
 import {
   fetchAllReviewsOperation,
   fetchOwnReviewOperation,
@@ -38,23 +20,23 @@ export const reviewsSlice = createSlice({
   initialState: reviewsInitialState,
   extraReducers: builder =>
     builder
-      .addCase(fetchAllReviewsOperation.pending, handleFetchReviewsPending)
-      .addCase(fetchAllReviewsOperation.fulfilled, handleFetchReviewsFulfilled)
-      .addCase(fetchAllReviewsOperation.rejected, handleFetchReviewsRejected)
-      .addCase(fetchOwnReviewOperation.pending, handleFetchOwnReviewPending)
-      .addCase(fetchOwnReviewOperation.fulfilled, handleFetchOwnReviewFulfilled)
-      .addCase(fetchOwnReviewOperation.rejected, handleFetchOwnReviewRejected)
-      .addCase(addReviewOperation.pending, handleAddReviewPending)
-      .addCase(addReviewOperation.fulfilled, handleAddReviewFulfilled)
-      .addCase(addReviewOperation.rejected, handleAddReviewRejected)
-      .addCase(deleteReviewOperation.pending, handleDeleteReviewPending)
-      .addCase(deleteReviewOperation.fulfilled, handleDeleteReviewFulfilled)
-      .addCase(deleteReviewOperation.rejected, handleDeleteReviewRejected)
-      .addCase(updateReviewOperation.pending, handleUpdateReviewPending)
-      .addCase(updateReviewOperation.fulfilled, handleUpdateReviewFulfilled)
-      .addCase(updateReviewOperation.rejected, handleUpdateReviewRejected)
-      .addCase(logOutOperation.fulfilled, handleLogoutInReviewsFulfilled)
-      .addCase(signInOperation.fulfilled, handleLoginInReviewsFulfilled),
+      .addCase(fetchAllReviewsOperation.pending, reviewsReducers.handleFetchReviewsPending)
+      .addCase(fetchAllReviewsOperation.fulfilled, reviewsReducers.handleFetchReviewsFulfilled)
+      .addCase(fetchAllReviewsOperation.rejected, reviewsReducers.handleFetchReviewsRejected)
+      .addCase(fetchOwnReviewOperation.pending, reviewsReducers.handleFetchOwnReviewPending)
+      .addCase(fetchOwnReviewOperation.fulfilled, reviewsReducers.handleFetchOwnReviewFulfilled)
+      .addCase(fetchOwnReviewOperation.rejected, reviewsReducers.handleFetchOwnReviewRejected)
+      .addCase(addReviewOperation.pending, reviewsReducers.handleAddReviewPending)
+      .addCase(addReviewOperation.fulfilled, reviewsReducers.handleAddReviewFulfilled)
+      .addCase(addReviewOperation.rejected, reviewsReducers.handleAddReviewRejected)
+      .addCase(deleteReviewOperation.pending, reviewsReducers.handleDeleteReviewPending)
+      .addCase(deleteReviewOperation.fulfilled, reviewsReducers.handleDeleteReviewFulfilled)
+      .addCase(deleteReviewOperation.rejected, reviewsReducers.handleDeleteReviewRejected)
+      .addCase(updateReviewOperation.pending, reviewsReducers.handleUpdateReviewPending)
+      .addCase(updateReviewOperation.fulfilled, reviewsReducers.handleUpdateReviewFulfilled)
+      .addCase(updateReviewOperation.rejected, reviewsReducers.handleUpdateReviewRejected)
+      .addCase(logOutOperation.fulfilled, reviewsReducers.handleLogoutInReviewsFulfilled)
+      .addCase(signInOperation.fulfilled, reviewsReducers.handleLoginInReviewsFulfilled),
 });
 
 export const reviewReducer = reviewsSlice.reducer;
