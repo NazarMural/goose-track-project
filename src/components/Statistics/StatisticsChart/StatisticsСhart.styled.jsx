@@ -12,13 +12,17 @@ export const DatePickerStyle = styled(DatePicker)`
   text-align: center;
 
   padding: 6px 12px;
-  max-width: 143px;
+  max-width: 172px;
 
   background-color: #3e85f3;
   color: white;
 
   border: 0;
   border-radius: 8px;
+
+  ${min(tablet)} {
+    font-size: 16px;
+  }
 `;
 
 export const CalendarBox = styled.div`
@@ -26,6 +30,11 @@ export const CalendarBox = styled.div`
   justify-content: space-between;
 
   margin-bottom: 26px;
+
+  ${min(tablet)} {
+    margin-bottom: 0;
+    gap: 8px;
+  }
 
   .react-datepicker__input-container input {
     outline: none;
@@ -152,6 +161,42 @@ export const ButtonBox = styled.div`
   display: flex;
 `;
 
+export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+
+  background-color: transparent;
+  height: 30px;
+  width: 35px;
+
+  cursor: pointer;
+
+  ${min(tablet)} {
+    height: 32px;
+  }
+
+  &:hover svg {
+    fill: #3e85f3;
+  }
+  & svg {
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+`;
+
+export const ButtonLeft = styled(Button)`
+  border-radius: 8px 0 0 8px;
+  border: 1px solid rgba(220, 227, 229, 0.5);
+`;
+
+export const ButtonRight = styled(Button)`
+  border-radius: 0 8px 8px 0;
+  border: 1px solid rgba(220, 227, 229, 0.5);
+  border-left: none;
+`;
+
 export const ChartContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -180,19 +225,32 @@ export const ChartContainer = styled.div`
   }
 `;
 
-export const CanvasChart = styled.canvas``;
-
 export const StatisticsContainer = styled.div`
-  padding: 28px 14px;
+  padding: 28px 14px 0;
   max-width: 335px;
   background-color: var(--primary-bg-color);
 
   ${min(tablet)} {
     min-width: 704px;
+    padding: 132px 32px 0;
   }
 
   ${min(desktop)} {
     min-width: 1087px;
+    padding: 134px 113px 0;
+  }
+`;
+
+export const NavContainer = styled.div`
+  ${min(tablet)} {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 32px 0 23px;
+    margin-bottom: 40px;
+  }
+
+  ${min(desktop)} {
+    padding: 0 40px 0 40px;
   }
 `;
 
@@ -200,6 +258,10 @@ export const LegendContainer = styled.div`
   display: flex;
   gap: 14px;
   margin-bottom: 40px;
+
+  ${min(tablet)} {
+    margin-bottom: 0;
+  }
 `;
 
 export const Legend = styled.p`
@@ -211,6 +273,10 @@ export const Legend = styled.p`
   color: var(--secondary-text-color);
   font-size: 14px;
   line-height: 1.28;
+
+  ${min(tablet)} {
+    font-size: 16px;
+  }
 
   ::before {
     content: '';

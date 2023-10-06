@@ -1,3 +1,4 @@
+import sprite from '../../../assets/images/icons/icons.svg';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
@@ -24,6 +25,9 @@ import {
   MonthLegend,
   ChartTasks,
   ChartContainer,
+  ButtonLeft,
+  ButtonRight,
+  NavContainer,
 } from './StatisticsСhart.styled';
 
 const StatisticsСhart = () => {
@@ -72,40 +76,35 @@ const StatisticsСhart = () => {
     </g>
   );
 
-  const filterDates = date => {
-    // Отримуємо поточний місяць та рік
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
-
-    // Отримуємо місяць і рік від дати
-    const dateMonth = date.getMonth();
-    const dateYear = date.getFullYear();
-
-    // Якщо місяць і рік дати співпадають з поточним місяцем і роком,
-    // ми показуємо цю дату, інакше ми її приховуємо
-    return dateMonth === currentMonth && dateYear === currentYear;
-  };
-
   const data = sortTasks;
 
   return (
     <StatisticsContainer>
-      <CalendarBox>
-        <DatePickerStyle
-          selected={currentDate}
-          onChange={date => setCurrentDate(date)}
-          dateFormat="dd MMMM yyyy"
-          filterDate={filterDates}
-        />
-        <ButtonBox>
-          <button onClick={goToPreviousDay}>-=</button>
-          <button onClick={goToNextDay}>=-</button>
-        </ButtonBox>
-      </CalendarBox>
-      <LegendContainer>
-        <DayLegend>By Day</DayLegend>
-        <MonthLegend>By Month</MonthLegend>
-      </LegendContainer>
+      <NavContainer>
+        <CalendarBox>
+          <DatePickerStyle
+            selected={currentDate}
+            onChange={date => setCurrentDate(date)}
+            dateFormat="dd MMMM yyyy"
+          />
+          <ButtonBox>
+            <ButtonLeft onClick={goToPreviousDay}>
+              <svg height={16} width={16}>
+                <use xlinkHref={`${sprite}#icon-chevron-left`} />
+              </svg>
+            </ButtonLeft>
+            <ButtonRight onClick={goToNextDay}>
+              <svg height={16} width={16}>
+                <use xlinkHref={`${sprite}#icon-chevron-right`} />
+              </svg>
+            </ButtonRight>
+          </ButtonBox>
+        </CalendarBox>
+        <LegendContainer>
+          <DayLegend>By Day</DayLegend>
+          <MonthLegend>By Month</MonthLegend>
+        </LegendContainer>
+      </NavContainer>
       <ChartContainer>
         <ChartTasks>Tasks</ChartTasks>
         <ResponsiveContainer width="100%" height="100%">
