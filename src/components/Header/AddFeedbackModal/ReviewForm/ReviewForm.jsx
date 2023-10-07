@@ -9,6 +9,8 @@ import {
   CommentText,
   SaveButton,
   CancelButton,
+  EditButton,
+  DeleteButton,
   ButtonsBox,
 } from './ReviewForm.styled';
 import Rating from '../Rating/Rating';
