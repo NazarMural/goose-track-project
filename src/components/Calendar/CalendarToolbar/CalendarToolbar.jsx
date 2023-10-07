@@ -1,4 +1,4 @@
-// import sprite from '../../../assets/images/icons/icons.svg';
+import sprite from '../../../assets/images/icons/icons.svg';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import {
@@ -6,6 +6,7 @@ import {
   DateContainer,
   DateWrapper,
   Toggle,
+  ToggleIcon,
   ToggleWrapper,
   Toolbar,
   Type,
@@ -19,17 +20,17 @@ const CalendarToolbar = ({
   format,
   setFormat,
 }) => {
-  const month = moment(currentDate).format('MMMM-YYYY');
+  const month = moment(currentDate).format('YYYY-MM');
   const day = moment(currentDate).format('YYYY-MM-DD');
 
   const handleClick = format => {
-    const date = moment(currentDate).add(1, format);
+    const date = moment(currentDate).add(1, format).format('YYYY-MM-DD');
     setCurrentDate(date);
     localStorage.setItem('date', date);
   };
 
   const handleClickBack = format => {
-    const date = moment(currentDate).subtract(1, format);
+    const date = moment(currentDate).subtract(1, format).format('YYYY-MM-DD');
     setCurrentDate(date);
     localStorage.setItem('date', date);
   };
@@ -65,21 +66,13 @@ const CalendarToolbar = ({
             onClick={() => handleClickBack(format)}
           >
             <Toggle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-              >
-                <path
-                  d="M10 12L6 8L10 4"
-                  stroke="#DCE3E5"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+              <ToggleIcon width="16" height="16">
+                <use
+                  xlinkHref={`${sprite}#icon-chevron-left`}
+                  width={16}
+                  height={16}
                 />
-              </svg>
+              </ToggleIcon>
             </Toggle>
           </Link>
           <Link
@@ -87,21 +80,13 @@ const CalendarToolbar = ({
             onClick={() => handleClick(format)}
           >
             <Toggle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-              >
-                <path
-                  d="M6 12L10 8L6 4"
-                  stroke="#343434"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+              <ToggleIcon width="16" height="16">
+                <use
+                  xlinkHref={`${sprite}#icon-chevron-right`}
+                  width={16}
+                  height={16}
                 />
-              </svg>
+              </ToggleIcon>
             </Toggle>
           </Link>
         </ToggleWrapper>

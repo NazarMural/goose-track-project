@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
+
 import { store, persistor } from 'redux/store';
 import { App } from 'components/App';
-import 'normalize.css';
+
+import 'modern-normalize/modern-normalize.css';
 import './index.css';
 import './styles/variables.css';
 

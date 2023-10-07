@@ -1,33 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
 import moment from 'moment';
 
 import { List, TaskItem, TaskLink } from './TaskList.styled';
-import { fetchTasksOperation } from 'redux/tasks/operations';
 
-const updateDate = date => {
-  const [year, mon] = date.split('-');
-  const month = moment(mon).format('MMMM');
-  return `${month}-${year}`;
-};
-
-export const TaskList = ({ currentDate }) => {
-  const [tasks, setTasks] = useState([]);
-  const dispatch = useDispatch();
-
-  const { currentMonth } = useParams();
-
-  useEffect(() => {
-    (async () => {
-      const { payload } = await dispatch(fetchTasksOperation());
-      const filteredTasks = payload
-        ? payload.filter(({ date }) => updateDate(date) === currentMonth)
-        : [];
-      setTasks(filteredTasks);
-    })();
-  }, [currentMonth, dispatch]);
-
+export const TaskList = ({ tasks, currentDate }) => {
   return (
     <List>
       {tasks
