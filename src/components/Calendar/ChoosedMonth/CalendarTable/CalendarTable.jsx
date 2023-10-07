@@ -24,15 +24,21 @@ export const CalendarTable = () => {
     })();
   }, [currentMonth, dispatch]);
 
-  const handleNavigateToDay = day => {
-    navigate(`day/${day}`);
+  const handleNavigateToDay = date => {
+    const day = moment(date).format('YYYY-MM-DD');
+    localStorage.setItem('type', 'day');
+    localStorage.setItem('date', day);
+    navigate(`/calendar/day/${day}`);
   };
 
   return (
     <CalendarGrid rows={weeks}>
       {daysArray.map((dayItem, idx) => (
         <Cell key={idx}>
-          <WrapperDay onClick={() => handleNavigateToDay(dayItem)}>
+          <WrapperDay
+            // to={`/calendar/day/${moment(dayItem).format('YYYY-MM-DD')}`}
+            onClick={() => handleNavigateToDay(dayItem)}
+          >
             <Day
               color={`${
                 isCurrentDay(dayItem)

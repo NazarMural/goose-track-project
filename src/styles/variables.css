@@ -86,8 +86,25 @@
 --gradient-blue: fill: linear-gradient(0deg, #3E85F3 0%, rgba(62, 133, 243, 0.00) 100%);
 --legend-day: #FFD2DD;
 --legend-month: #3E85F3;
---border-chart: #E3F3FF
+--border-chart: #E3F3FF;
+--statistic-button-border-color: rgba(220, 227, 229, 0.5);
+--statistic-button-arrow-color: #000000;
+--legend-text-color: #343434;
+--statistic-tasks-text-color: #343434;
+
+/* DatePicker */
+--datepicker-bg-color: #3e85f3;
+--datepicker-text-color: #FFFFFF;
+--datepicker-arrow-color: #FFFFFF;
+--datepicker-current-month-text-color: #FFFFFF;
+--datepicker-day-text-color: #FFFFFF;
+--datepicker-day-accent-bg-color: #FFFFFF;
+--datepicker-day-accent-text-color: #3e85f3;
+--datepicker-day-names-border: rgba(255, 255, 255, 0.2);
+--datepicker-day-names-text-color: rgba(255, 255, 255, 0.5);
 }
+
+
 
 html.dark {
 --primary-text-color: #FFFFFF;
@@ -124,5 +141,10 @@ html.dark {
 --task-scrollbar-track: #2D3037;
 --task-scrollbar-thumb: #171820;
 --task-scrollbar-thumb-hover: #1a1b20;
+
+--statistic-button-arrow-color: #fff;
+--legend-text-color: #fff;
+--border-chart: rgba(227, 243, 255, 0.15);
+--statistic-tasks-text-color: #fff;
 }
 

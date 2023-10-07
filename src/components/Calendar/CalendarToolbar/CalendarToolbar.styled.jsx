@@ -20,7 +20,7 @@ export const DateContainer = styled.div`
 
 export const DateWrapper = styled.div`
   background-color: var(--accent-color);
-  width: 148px;
+  width: 150px;
   /* width: auto; */
   display: flex;
   padding: 6px 12px;
