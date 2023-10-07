@@ -28,7 +28,6 @@ export const CalendarTable = () => {
     const day = moment(date).format('YYYY-MM-DD');
     localStorage.setItem('type', 'day');
     localStorage.setItem('date', day);
-    console.log(day);
     navigate(`/calendar/day/${day}`);
   };
 

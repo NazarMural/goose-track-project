@@ -1,5 +1,5 @@
 import sprite from '../../../assets/images/icons/icons.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import {
   Date,
@@ -13,31 +13,21 @@ import {
   TypeWrapper,
 } from './CalendarToolbar.styled';
 import { TypeLink } from './CalendarToolbar.styled';
-import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { fetchTasksOperation } from 'redux/tasks/operations';
+import { useEffect, useState } from 'react';
 
-// {
-//   // currentDate,
-//   // setCurrentDate,
-//   // format,
-//   // setFormat,
-// }
-const CalendarToolbar = () => {
-  const [currentDate, setCurrentDate] = useState(
-    localStorage.getItem('date') || moment().format('YYYY-MM-DD').toString()
-  );
+const CalendarToolbar = ({ globalFormat }) => {
+  const [currentDate, setCurrentDate] = useState('');
+  //   localStorage.getItem('date') || moment().format('YYYY-MM-DD').toString()
+  // );
+  const [format, setFormat] = useState('');
 
-  // const [tasks, setTasks] = useState([]);
-
-  // const month = moment(currentDate).format('YYYY-MM');
-  // const day = moment(currentDate).format('YYYY-MM-DD');
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const dispatch = useDispatch();
 
   // console.log(month);
   // localStorage.getItem('date') || moment().format('YYYY-MM-DD').toString()
-  const [format, setFormat] = useState(localStorage.getItem('type')); //|| 'month');
+  // const [format, setFormat] = useState(localStorage.getItem('type'));
+  //|| 'month');
   // ;
   // localStorage.getItem('type') || 'month';
   const month = moment(currentDate).format('YYYY-MM');
@@ -58,51 +48,41 @@ const CalendarToolbar = () => {
   //   // month = moment(currentDate).format('YYYY-MM');
   // }, [currentDate, dispatch]);
 
-  // useEffect(() => {
-  //   // Зчитуємо дані з localStorage
-  //   const storedDate = localStorage.getItem('date');
-  //   const storedType = localStorage.getItem('type');
+  useEffect(() => {
+    // Зчитуємо дані з localStorage
+    const storedDate = localStorage.getItem('date');
+    const storedType = localStorage.getItem('type');
 
-  //   // Встановлюємо значення лише після завершення зчитування
-  //   if (storedDate) {
-  //     setCurrentDate(storedDate);
-  //   } else {
-  //     // Якщо дані відсутні в localStorage, встановлюємо значення за замовчуванням
-  //     setCurrentDate(moment().format('YYYY-MM-DD'));
-  //   }
+    // Встановлюємо значення лише після завершення зчитування
+    if (storedDate) {
+      setCurrentDate(storedDate);
+    } else {
+      // Якщо дані відсутні в localStorage, встановлюємо значення за замовчуванням
+      setCurrentDate(moment().format('YYYY-MM-DD'));
+    }
 
-  //   if (storedType) {
-  //     setFormat(storedType);
-  //   } else {
-  //     setFormat('month');
-  //   }
-  // }, []);
+    if (storedType) {
+      setFormat(storedType);
+    } else {
+      setFormat('month');
+    }
+  }, []);
 
-  const handleClick = format => {
-    console.log(currentDate);
-
-    localStorage.setItem('date', currentDate);
+  const handleClick = () => {
     const date = moment(currentDate).add(1, format).format('YYYY-MM-DD');
     setCurrentDate(date);
-    // setTimeout(() => {
-    //   localStorage.setItem('date', date);
-    // }, 1000);
-    console.log(currentDate);
-    console.log(date === currentDate);
-    // let address;
-    // console.log(month);
-    // if (format === 'month') {
-    //   address = `/calendar/month/${month}`;
-    // } else {
-    //   address = `day/${day}`;
-    // }
-    // navigate(address);
+    localStorage.setItem('date', date);
+    const month = moment(date).format('YYYY-MM');
+    const day = moment(date).format('YYYY-MM-DD');
+    navigate(globalFormat === 'month' ? `month/${month}` : `day/${day}`);
   };
 
-  const handleClickBack = format => {
-    localStorage.setItem('date', currentDate);
+  const handleClickBack = () => {
     const date = moment(currentDate).subtract(1, format).format('YYYY-MM-DD');
+    localStorage.setItem('date', date);
     setCurrentDate(date);
+    const month = moment(date).format('YYYY-MM');
+    navigate(globalFormat === 'month' ? `month/${month}` : `day/${date}`);
   };
 
   const handleChangeType = e => {
@@ -125,16 +105,13 @@ const CalendarToolbar = () => {
       <DateContainer>
         <DateWrapper>
           <Date>
-            {moment(localStorage.getItem('date')).format(
+            {moment(currentDate).format(
               format === 'day' ? 'DD MMM YYYY' : 'MMMM YYYY'
             )}
           </Date>
         </DateWrapper>
         <ToggleWrapper>
-          <Link
-            to={format === 'month' ? `month/${month}` : `day/${day}`}
-            onClick={() => handleClickBack(format)}
-          >
+          <div onClick={handleClickBack}>
             <Toggle>
               <ToggleIcon width="16" height="16">
                 <use
@@ -144,11 +121,8 @@ const CalendarToolbar = () => {
                 />
               </ToggleIcon>
             </Toggle>
-          </Link>
-          <Link
-            to={format === 'month' ? `month/${month}` : `day/${day}`}
-            onClick={() => handleClick(format)}
-          >
+          </div>
+          <div onClick={handleClick}>
             <Toggle>
               <ToggleIcon width="16" height="16">
                 <use
@@ -158,7 +132,7 @@ const CalendarToolbar = () => {
                 />
               </ToggleIcon>
             </Toggle>
-          </Link>
+          </div>
         </ToggleWrapper>
       </DateContainer>
       <TypeWrapper>
