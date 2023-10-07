@@ -8,9 +8,9 @@ export const ContainerReplaceTask = styled.div`
   padding: 14px;
   border-radius: 8px;
   position: absolute;
+  z-index: 2;
   margin-top: 12px;
-  top: 100%;
-  right: -26%;
+  right: -10px;
   box-shadow: 0px 4px 16px 0px #1111111a;
 `;
 
