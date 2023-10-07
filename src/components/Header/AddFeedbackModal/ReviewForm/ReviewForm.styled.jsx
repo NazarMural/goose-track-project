@@ -120,3 +120,10 @@ export const CancelButton = styled.button`
     width: 198px;
   }
 `;
+
+export const EditButton = styled.button`
+`
+export const DeleteButton = styled.button`
+`;
+
+export const IconContainer = styled.div``;
