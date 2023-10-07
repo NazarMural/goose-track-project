@@ -1,16 +1,30 @@
 import styled from '@emotion/styled';
 import { desktop, min, tablet } from 'styles/media';
 
-export const ContainerListTasks = styled.div`
-  max-height: 280px;
+export const ListTasks = styled.ul`
+  padding: 0 6px 0 18px;
+  margin-right: 6px;
+  overflow-x: hidden;
   overflow-y: auto;
-  width: 103%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 328px;
+
+  & li:nth-last-child(-n + 1) {
+    margin-bottom: 32px;
+  }
   ${min(tablet)} {
-    max-height: 406px;
+    width: 334px;
+    gap: 18px;
+    padding: 0 8px 0 20px;
+    margin-right: 8px;
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
   }
   ${min(desktop)} {
-    max-height: 424px;
-    width: 105%;
+    width: 313px;
   }
   /* width*/
   &::-webkit-scrollbar {
@@ -35,23 +49,8 @@ export const ContainerListTasks = styled.div`
   }
 `;
 
-export const ListTasks = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 13px;
-  width: 291px;
-  ${min(tablet)} {
-    width: 299px;
-    gap: 18px;
-    margin-bottom: 17px;
-  }
-  ${min(desktop)} {
-    width: 281px;
-  }
-`;
-
 export const Task = styled.li`
+  position: relative;
   background-color: var(--page-bg-color);
   padding: 14px 14px 18px 14px;
   border: 1px solid var(--calendar-grid-border);

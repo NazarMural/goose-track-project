@@ -5,9 +5,11 @@ export const ContainerTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 18px 18px 0;
   margin-bottom: 24px;
   ${min(tablet)} {
     margin-bottom: 28px;
+    padding: 20px 20px 0;
   }
 `;
 
@@ -28,7 +30,6 @@ export const IconAddTask = styled.svg`
   height: 22px;
   width: 22px;
   stroke: var(--primary-text-color);
-  /* padding: 7px 0; */
   cursor: pointer;
   & use {
     fill: transparent;

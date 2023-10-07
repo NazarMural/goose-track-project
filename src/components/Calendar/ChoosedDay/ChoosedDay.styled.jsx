@@ -15,8 +15,6 @@ export const ContainerMain = styled.div`
   }
   ${min(desktop)} {
     gap: 27px;
-    /* justify-content: space-between; */
-    /* max-width: 1106px; */
   }
   /* width*/
   &::-webkit-scrollbar {
@@ -42,31 +40,22 @@ export const ContainerMain = styled.div`
 `;
 
 export const ContainerSecond = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
   position: relative;
-  padding: 18px;
-  /* width: 296px; */
-  flex: none;
   background-color: var(--primary-bg-color);
   border: 1px solid var(--calendar-grid-border);
   border-radius: 8px;
   scroll-snap-align: start;
-
-  ${min(tablet)} {
-    width: 344px;
-    padding: 20px;
-  }
-  ${min(desktop)} {
-    width: 323px;
-    /* flex-basis: 377px; */
-  }
 `;
 
 export const ContainerButtonAddTask = styled.div`
-  background-color: var(--primary-bg-color);
   border-radius: 8px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-bottom: 20px;
+  padding: 0 20px 20px 20px;
+  ${min(tablet)} {
+    padding: 0 18px 18px 18px;
+  }
 `;
 
 export const ButtonAddTask = styled.button`

@@ -24,11 +24,16 @@ const Tasks = ({ type, tasks, setTasks }) => {
   const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
   const avatarURL = useSelector(selectUserAvatar);
 
-  const toggleShowPopUpReplace = id => {
+  const toggleShowPopUpReplace = (id, e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    // console.log('x', x);
+    // console.log('y', y);
     isShowPopUpReplace === id
       ? setIsShowPopUpReplace(false)
       : setIsShowPopUpReplace(id);
   };
+
   const onEdit = () => {
     console.log('onEdit');
   };
@@ -45,60 +50,58 @@ const Tasks = ({ type, tasks, setTasks }) => {
     Notify.success('Task deleted successfully');
   };
   return (
-    <ContainerListTasks>
-      <ListTasks>
-        {tasks.map(
-          ({ _id, title, start, end, priority, date, category, owner }) => {
-            if (type !== category) {
-              return '';
-            }
-            return (
-              <Task key={_id}>
-                <TaskTitle>{title}</TaskTitle>
-                <ContainerButtonsTask>
-                  {avatarURL ? (
-                    <TaskImage src={avatarURL} alt="User avatar" />
-                  ) : (
-                    <TaskImagePlug>
-                      <use href={`${sprite}#icon-ph_user`}></use>
-                    </TaskImagePlug>
-                  )}
-                  <TaskButtonPriority priority={priority}>
-                    {priority.charAt(0).toUpperCase() + priority.slice(1)}
-                  </TaskButtonPriority>
-                  <ContainerIcons>
-                    <IconTask
-                      id="togglePopUp"
-                      onClick={() => toggleShowPopUpReplace(_id)}
-                    >
-                      <use
-                        id="togglePopUp"
-                        xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
-                      />
-                    </IconTask>
-                    <IconTask onClick={onEdit}>
-                      <use xlinkHref={sprite + '#icon-pencil'} />
-                    </IconTask>
-                    <IconTask onClick={() => onDelete(_id)}>
-                      <use xlinkHref={sprite + '#icon-trash'} />
-                    </IconTask>
-                  </ContainerIcons>
-                </ContainerButtonsTask>
-                {isShowPopUpReplace === _id && (
-                  <PopUpReplace
-                    type={type}
-                    tasks={tasks}
-                    setTasks={setTasks}
-                    setIsShowPopUpReplace={setIsShowPopUpReplace}
-                    _id={_id}
-                  ></PopUpReplace>
-                )}
-              </Task>
-            );
+    <ListTasks>
+      {tasks.map(
+        ({ _id, title, start, end, priority, date, category, owner }) => {
+          if (type !== category) {
+            return '';
           }
-        )}
-      </ListTasks>
-    </ContainerListTasks>
+          return (
+            <Task key={_id}>
+              <TaskTitle>{title}</TaskTitle>
+              <ContainerButtonsTask>
+                {avatarURL ? (
+                  <TaskImage src={avatarURL} alt="User avatar" />
+                ) : (
+                  <TaskImagePlug>
+                    <use href={`${sprite}#icon-ph_user`}></use>
+                  </TaskImagePlug>
+                )}
+                <TaskButtonPriority priority={priority}>
+                  {priority.charAt(0).toUpperCase() + priority.slice(1)}
+                </TaskButtonPriority>
+                <ContainerIcons>
+                  <IconTask
+                    id="togglePopUp"
+                    onClick={e => toggleShowPopUpReplace(_id, e)}
+                  >
+                    <use
+                      id="togglePopUp"
+                      xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
+                    />
+                  </IconTask>
+                  <IconTask onClick={onEdit}>
+                    <use xlinkHref={sprite + '#icon-pencil'} />
+                  </IconTask>
+                  <IconTask onClick={() => onDelete(_id)}>
+                    <use xlinkHref={sprite + '#icon-trash'} />
+                  </IconTask>
+                </ContainerIcons>
+              </ContainerButtonsTask>
+              {isShowPopUpReplace === _id && (
+                <PopUpReplace
+                  type={type}
+                  tasks={tasks}
+                  setTasks={setTasks}
+                  setIsShowPopUpReplace={setIsShowPopUpReplace}
+                  _id={_id}
+                ></PopUpReplace>
+              )}
+            </Task>
+          );
+        }
+      )}
+    </ListTasks>
   );
 };
 
