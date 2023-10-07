@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   ContainerButtonsTask,
   ContainerIcons,
-  ContainerListTasks,
   IconTask,
   ListTasks,
   Task,
@@ -24,11 +23,7 @@ const Tasks = ({ type, tasks, setTasks }) => {
   const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
   const avatarURL = useSelector(selectUserAvatar);
 
-  const toggleShowPopUpReplace = (id, e) => {
-    const x = e.clientX;
-    const y = e.clientY;
-    // console.log('x', x);
-    // console.log('y', y);
+  const toggleShowPopUpReplace = id => {
     isShowPopUpReplace === id
       ? setIsShowPopUpReplace(false)
       : setIsShowPopUpReplace(id);
@@ -73,7 +68,7 @@ const Tasks = ({ type, tasks, setTasks }) => {
                 <ContainerIcons>
                   <IconTask
                     id="togglePopUp"
-                    onClick={e => toggleShowPopUpReplace(_id, e)}
+                    onClick={() => toggleShowPopUpReplace(_id)}
                   >
                     <use
                       id="togglePopUp"
