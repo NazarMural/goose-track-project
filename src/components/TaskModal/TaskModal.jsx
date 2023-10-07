@@ -4,7 +4,7 @@ import { TaskForm } from 'components/TaskForm/TaskForm';
 
 export const TaskModal = ({ category, task, onClose }) => {
     return (
-        <Modal onClose={onClose}>
+        <Modal onClose={onClose} isOpen={isOpen} closeButtonPosition={closeButtonPosition}>
         <TaskForm onClose={onClose} category={category} task={task} />
         </Modal>
     );

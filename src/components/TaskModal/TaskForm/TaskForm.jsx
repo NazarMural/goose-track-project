@@ -235,7 +235,7 @@ export const TaskForm = ({ category='to-do', task, onClose =() =>{} }) => {
                         ) : (
                             <OperationButton type="submit">
                                 <AddIcon stroke="#fff">
-                                    <use href={icons + '#icon-icon-plus'}></use>
+                                    <use href={icons + '#icon-plus'}></use>
                                 </AddIcon>
                                 Add
                             </OperationButton>

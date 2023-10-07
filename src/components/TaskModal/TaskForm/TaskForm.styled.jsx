@@ -36,7 +36,7 @@ export const CloseIcon = styled.svg`
     stroke: rgba(17, 17, 17, 0.1);
 `;
 
-export const Label = styled`
+export const Label = styled.label`
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -52,6 +52,9 @@ export const TitleField = styled(Field)`
     flex-shrink: 0;
     padding: 12px 14px;
     margin-bottom: 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(246, 246, 246, 1);
     color: rgba(52, 52, 52, 1);
     font-size: 14px;
     font-weight: 600;
@@ -84,6 +87,9 @@ export const TimeField = styled(Field)`
     flex-shrink: 0;
     padding: 12px 14px;
     margin-bottom: 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(246, 246, 246, 1);
     color: rgba(52, 52, 52, 1);
     font-size: 14px;
     line-height: 1.28;
@@ -136,7 +142,6 @@ export const PriorityField = styled(Field)`
 export const Blue = styled.svg`
     width: 10px;
     height: 10px;
-    background-color: var(--task-priority-low-bg);
 `;
 export const BlueLine = styled.svg`
     width: 10px;
@@ -146,7 +151,6 @@ export const BlueLine = styled.svg`
 export const Orange = styled.svg`
     width: 10px;
     height: 10px;
-    background-color: var(--task-priority-medium-bg);
 `;
 
 export const OrangeLine = styled.svg`
@@ -157,7 +161,6 @@ export const OrangeLine = styled.svg`
 export const Red = styled.svg`
     width: 10px;
     height: 10px;
-    background-color: var(--task-priority-high-bg);
 `;
 
 export const RedLine = styled.svg`
