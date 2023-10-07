@@ -80,6 +80,10 @@ export const SaveButton = styled.button`
   line-height: 1.28;
   cursor: pointer;
   justify-content: center;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover {
+    background-color: var(--btn-bg-hover);
+  }
   ${max(mobile)} {
     width: 50%;
     padding: 12px 5px;
@@ -96,14 +100,18 @@ export const CancelButton = styled.button`
   padding: 12px 47.5px;
   margin-top: 14px;
   outline: none;
-  background-color: var(--btn-bg-color);
-  color: var(--btn-text-color);
+  background-color: var(--review-btn-cancel-bg);
+  color: var(--secondary-text-color);
   font-family: Inter;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.28;
   cursor: pointer;
   justify-content: center;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover {
+    background-color: var(--switch-type-bg-active);
+  }
   ${max(mobile)} {
     width: 50%;
     padding: 12px 5px;

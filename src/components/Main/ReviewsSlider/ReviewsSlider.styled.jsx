@@ -53,17 +53,17 @@ export const SliderCustom = styled.div`
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 291px;
-  height: 196px;
+  max-width: 335px;
+  height: 246px;
   padding: 24px 20px 24px;
   border-radius: 8px;
   border: 1px solid #1111111a;
   margin-left: auto;
   margin-right: auto;
   ${min(tablet)} {
-    max-width: 514px;
+    max-width: 580px;
     padding: 32px;
-    height: 156px;
+    height: 222px;
   }
   ${min(desktop)} {
     margin-right: 12px;
@@ -135,7 +135,7 @@ export const IconArrowRight = styled.svg`
   top: 27px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 30px;
+  padding-left: 12px;
 
   ${min(tablet)} {
     height: 61px;
