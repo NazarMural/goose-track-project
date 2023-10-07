@@ -55,7 +55,7 @@ export const LableText = styled.span`
 export const FieldContainer = styled.div`
   position: relative;
   width: 100%;
-  box-sizing: border-box;
+  box-sizing: content-box;
 `;
 
 export const FieldStyled = styled.input`

@@ -1,19 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  handleAddTaskFulfilled,
-  handleAddTaskRejected,
-  handleDeleteTaskFulfilled,
-  handleDeleteTaskRejected,
-  handleFetchTasksFulfilled,
-  handleFetchTasksRejected,
-  handleUpdateTaskFulfilled,
-  handleUpdateTaskRejected,
-  handleAddTaskPending,
-  handleDeleteTaskPending,
-  handleFetchTasksPending,
-  handleUpdateTaskPending,
-  handleLogoutInTasksFulfilled,
-} from 'utils/reduxActionHandlers/tasksActionHandlers';
+import * as tasksReducers from 'utils/reduxActionHandlers/tasksActionHandlers';
 import { fetchTasksOperation, addTaskOperation, deleteTaskOperation, updateTaskOperation } from './operations';
 import { logOutOperation } from 'redux/auth/operations';
 
@@ -33,19 +19,19 @@ const tasksSlice = createSlice({
   initialState,
   extraReducers: builder =>
     builder
-      .addCase(fetchTasksOperation.pending, handleFetchTasksPending)
-      .addCase(fetchTasksOperation.fulfilled, handleFetchTasksFulfilled)
-      .addCase(fetchTasksOperation.rejected, handleFetchTasksRejected)
-      .addCase(addTaskOperation.pending, handleAddTaskPending)
-      .addCase(addTaskOperation.fulfilled, handleAddTaskFulfilled)
-      .addCase(addTaskOperation.rejected, handleAddTaskRejected)
-      .addCase(deleteTaskOperation.pending, handleDeleteTaskPending)
-      .addCase(deleteTaskOperation.fulfilled, handleDeleteTaskFulfilled)
-      .addCase(deleteTaskOperation.rejected, handleDeleteTaskRejected)
-      .addCase(updateTaskOperation.pending, handleUpdateTaskPending)
-      .addCase(updateTaskOperation.fulfilled, handleUpdateTaskFulfilled)
-      .addCase(updateTaskOperation.rejected, handleUpdateTaskRejected)
-      .addCase(logOutOperation.fulfilled, handleLogoutInTasksFulfilled),
+      .addCase(fetchTasksOperation.pending, tasksReducers.handleFetchTasksPending)
+      .addCase(fetchTasksOperation.fulfilled, tasksReducers.handleFetchTasksFulfilled)
+      .addCase(fetchTasksOperation.rejected, tasksReducers.handleFetchTasksRejected)
+      .addCase(addTaskOperation.pending, tasksReducers.handleAddTaskPending)
+      .addCase(addTaskOperation.fulfilled, tasksReducers.handleAddTaskFulfilled)
+      .addCase(addTaskOperation.rejected, tasksReducers.handleAddTaskRejected)
+      .addCase(deleteTaskOperation.pending, tasksReducers.handleDeleteTaskPending)
+      .addCase(deleteTaskOperation.fulfilled, tasksReducers.handleDeleteTaskFulfilled)
+      .addCase(deleteTaskOperation.rejected, tasksReducers.handleDeleteTaskRejected)
+      .addCase(updateTaskOperation.pending, tasksReducers.handleUpdateTaskPending)
+      .addCase(updateTaskOperation.fulfilled, tasksReducers.handleUpdateTaskFulfilled)
+      .addCase(updateTaskOperation.rejected, tasksReducers.handleUpdateTaskRejected)
+      .addCase(logOutOperation.fulfilled, tasksReducers.handleLogoutInTasksFulfilled),
 });
 
 export const tasksReducer = tasksSlice.reducer;

@@ -1,4 +1,8 @@
-import { handleAddReviewFulfilled, handleAddReviewPending, handleAddReviewRejected } from './addReviewsActionHandlers';
+import {
+  handleAddReviewFulfilled,
+  handleAddReviewPending,
+  handleAddReviewRejected,
+} from './addReviewsActionHandlers';
 import {
   handleDeleteReviewFulfilled,
   handleDeleteReviewPending,
@@ -20,6 +24,7 @@ import {
   handleFetchReviewsRejected,
 } from './fetchReviewsActionHandlers';
 import { handleLogoutInReviewsFulfilled } from './logoutActionHandlersInReviews';
+import { handleLoginInReviewsFulfilled } from './loginActionHandlersInReviews';
 
 export {
   handleAddReviewFulfilled,
@@ -38,4 +43,5 @@ export {
   handleFetchReviewsPending,
   handleFetchReviewsRejected,
   handleLogoutInReviewsFulfilled,
+  handleLoginInReviewsFulfilled,
 };
