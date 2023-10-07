@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Notify } from 'notiflix';
 import Modal from '../../../Modal/Modal';
 import {
@@ -12,13 +12,18 @@ import {
   ButtonsBox,
 } from './ReviewForm.styled';
 import Rating from '../Rating/Rating';
-import { addReviewOperation } from '../../../../redux/reviews/operations';
+import { addReviewOperation, updateReviewOperation, deleteReviewOperation } from '../../../../redux/reviews/operations';
+import { selectReviews } from '../../../../redux/reviews/selectors';
 
 const ReviewForm = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     rating: '',
     comment: '',
   });
+
+   const [isEditing, setIsEditing] = useState(false);
+   const dispatch = useDispatch();
+   const reviews = useSelector(selectReviews);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -35,20 +40,27 @@ const ReviewForm = ({ isOpen, onClose }) => {
     });
   };
 
-  const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (formData.rating === '') {
-      Notify.warning('Please select a rating before submitting.');
+    const handleSubmit = e => {
+      e.preventDefault();
+      if (formData.rating === '') {
+        Notify.warning('Please select a rating before submitting.');
+        return;
+      }
 
-      return;
-    }
-    console.log(formData);
-    dispatch(addReviewOperation(formData));
-    onClose();
-  };
-
+      if (isEditing) {
+        dispatch(updateReviewOperation(formData)).then(() => {
+          setFormData({ rating: '', comment: '' });
+          setIsEditing(false);
+          onClose();
+        });
+      } else {
+        dispatch(addReviewOperation(formData)).then(() => {
+          setFormData({ rating: '', comment: '' });
+          onClose();
+        });
+      }
+    };
   const handleCancel = () => {
     setFormData({
       rating: '',
@@ -57,7 +69,20 @@ const ReviewForm = ({ isOpen, onClose }) => {
     onClose();
   };
 
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteReviewOperation()).then(() => {
+      setFormData({ rating: '', comment: '' });
+      onClose();
+    });
+  };
+
   const closeButtonPosition = { top: '16px', right: '16px' };
+
+  
 
   return (
     <Modal
