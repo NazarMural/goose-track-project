@@ -1,9 +1,11 @@
+import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { BurgerBtn } from './BurgerBtn/BurgerBtn';
 import { FeedbackBtn } from './FeedbackBtn.jsx/FeedbackBtn';
 import { UserInfo } from './UserInfo/UserInfo';
 import { HeaderSection, PageTitle } from './Header.styled';
 import { useLocation } from 'react-router-dom';
+import ReviewForm from './AddFeedbackModal/ReviewForm/ReviewForm';
 
 export const Header = ({ addSideBar, showSideBar }) => {
   const isDesktop = useMediaQuery({
@@ -18,6 +20,16 @@ export const Header = ({ addSideBar, showSideBar }) => {
   };
   const currentPageTitle = defineCurentPage();
 
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const openForm = () => {
+    setIsFormOpen(true);
+  };
+
+  const closeForm = () => {
+    setIsFormOpen(false);
+  };
+
   return (
     <HeaderSection showSideBar={showSideBar}>
       {isDesktop ? (
@@ -25,8 +37,9 @@ export const Header = ({ addSideBar, showSideBar }) => {
       ) : (
         <BurgerBtn addSideBar={addSideBar} />
       )}
-      <FeedbackBtn />
+      <FeedbackBtn openForm={openForm} />
       <UserInfo />
+      {isFormOpen && <ReviewForm isOpen={isFormOpen} onClose={closeForm} />}
     </HeaderSection>
   );
 };
