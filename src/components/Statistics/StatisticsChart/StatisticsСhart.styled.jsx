@@ -14,8 +14,8 @@ export const DatePickerStyle = styled(DatePicker)`
   padding: 6px 12px;
   max-width: 172px;
 
-  background-color: #3e85f3;
-  color: white;
+  background-color: var(--datepicker-bg-color);
+  color: var(--datepicker-text-color);
 
   border: 0;
   border-radius: 8px;
@@ -33,11 +33,18 @@ export const CalendarBox = styled.div`
 
   ${min(tablet)} {
     margin-bottom: 0;
-    gap: 8px;
   }
 
   .react-datepicker__input-container input {
     outline: none;
+    cursor: pointer;
+
+    margin-right: 8px;
+  }
+
+  .react-datepicker__input-container input:hover,
+  .react-datepicker__input-container input:focus {
+    background-color: var(--btn-bg-hover);
   }
 
   .react-datepicker__triangle {
@@ -64,7 +71,7 @@ export const CalendarBox = styled.div`
   }
 
   .react-datepicker__navigation-icon::before {
-    border-color: #fff;
+    border-color: var(--datepicker-arrow-color);
     border-width: 2px 2px 0 0;
     width: 4px;
     height: 4px;
@@ -87,17 +94,17 @@ export const CalendarBox = styled.div`
     font-weight: 500;
     letter-spacing: -0.28px;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid var(--datepicker-day-names-border);
 
     padding: 0 20px;
 
     .react-datepicker__day-name {
-      color: rgba(255, 255, 255, 0.5);
+      color: var(--datepicker-day-names-text-color);
     }
   }
 
   .react-datepicker__current-month {
-    color: #fff;
+    color: var(--datepicker-current-month-text-color);
     font-family: Inter;
     font-size: 16px;
     font-weight: 600;
@@ -126,7 +133,7 @@ export const CalendarBox = styled.div`
     justify-content: center;
     align-items: center;
 
-    color: #fff;
+    color: var(--datepicker-day-text-color);
     font-family: Inter;
     font-size: 14px;
     font-weight: 400;
@@ -139,15 +146,15 @@ export const CalendarBox = styled.div`
   }
 
   .react-datepicker .react-datepicker__day:hover {
-    background-color: #fff !important;
-    color: #3e85f3;
+    background-color: var(--datepicker-day-accent-bg-color) !important;
+    color: var(--datepicker-day-accent-text-color);
 
     border-radius: 50% !important;
   }
 
   .react-datepicker .react-datepicker__day--selected {
-    background-color: #fff !important;
-    color: #3e85f3;
+    background-color: var(--datepicker-day-accent-bg-color) !important;
+    color: var(--datepicker-day-accent-text-color);
 
     border-radius: 50% !important;
   }
@@ -172,6 +179,8 @@ export const Button = styled.button`
   height: 30px;
   width: 35px;
 
+  fill: var(--statistic-button-arrow-color);
+
   cursor: pointer;
 
   ${min(tablet)} {
@@ -179,7 +188,7 @@ export const Button = styled.button`
   }
 
   &:hover svg {
-    fill: #3e85f3;
+    fill: var(--accent-color);
   }
   & svg {
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -188,12 +197,12 @@ export const Button = styled.button`
 
 export const ButtonLeft = styled(Button)`
   border-radius: 8px 0 0 8px;
-  border: 1px solid rgba(220, 227, 229, 0.5);
+  border: 1px solid var(--statistic-button-border-color);
 `;
 
 export const ButtonRight = styled(Button)`
   border-radius: 0 8px 8px 0;
-  border: 1px solid rgba(220, 227, 229, 0.5);
+  border: 1px solid var(--statistic-button-border-color);
   border-left: none;
 `;
 
@@ -226,18 +235,22 @@ export const ChartContainer = styled.div`
 `;
 
 export const StatisticsContainer = styled.div`
-  padding: 28px 14px 0;
+  padding: 28px 14px;
   max-width: 335px;
   background-color: var(--primary-bg-color);
+  border-radius: 16px;
+  height: calc(100vh - 196px);
 
   ${min(tablet)} {
     min-width: 704px;
-    padding: 132px 32px 0;
+    padding: 132px 32px;
+    height: calc(100vh - 170px);
   }
 
   ${min(desktop)} {
     min-width: 1087px;
-    padding: 134px 113px 0;
+    padding: 134px 113px;
+    height: calc(100vh - 154px);
   }
 `;
 
@@ -270,9 +283,9 @@ export const Legend = styled.p`
 
   margin: 0;
 
-  color: var(--secondary-text-color);
+  color: var(--legend-text-color);
   font-size: 14px;
-  line-height: 1.28;
+  line-height: 1.12;
 
   ${min(tablet)} {
     font-size: 16px;
@@ -304,7 +317,7 @@ export const ChartTasks = styled.p`
   margin: 0;
   margin-bottom: 14px;
 
-  color: var(--secondary-text-color);
+  color: var(--statistic-tasks-text-color);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.5;

@@ -1,6 +1,6 @@
 import sprite from '../../../assets/images/icons/icons.svg';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   BarChart,
   Bar,
@@ -29,14 +29,20 @@ import {
   ButtonRight,
   NavContainer,
 } from './StatisticsСhart.styled';
+import { selectTheme } from 'redux/theme/selectors';
 
 const StatisticsСhart = () => {
   const dispatch = useDispatch();
+  const currentTheme = useSelector(selectTheme);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [sortTasks, setSortTasks] = useState({});
 
   const isMobile = useMediaQuery({ query: 'max-width: 768px' });
 
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [sortTasks, setSortTasks] = useState({});
+  const strokeColor =
+    currentTheme === 'dark' ? 'rgba(227, 243, 255, 0.15)' : '#e3f3ff';
+  const fillYXAxis = currentTheme === 'dark' ? '#ffffff' : '#343434';
+  const fillLabelList = currentTheme === 'dark' ? '#ffffff' : '#343434';
 
   useEffect(() => {
     (async () => {
@@ -67,7 +73,7 @@ const StatisticsСhart = () => {
         y={3}
         dy={0}
         textAnchor="middle"
-        fill="#343434"
+        fill={fillLabelList}
         fontSize={isMobile ? 12 : 16}
         fontWeight={400}
       >
@@ -114,14 +120,14 @@ const StatisticsСhart = () => {
             barSize={isMobile ? 22 : 27}
           >
             <CartesianGrid
-              stroke="#e3f3ff"
+              stroke={strokeColor}
               strokeWidth={1}
               strokeDasharray="none"
               vertical={false}
             />
             <XAxis
               dataKey="name"
-              tick={{ fontSize: isMobile ? 12 : 16, fill: '#343434' }}
+              tick={{ fontSize: isMobile ? 12 : 16, fill: fillYXAxis }}
               tickLine={false}
               tickMargin={10}
               axisLine={false}
@@ -134,7 +140,7 @@ const StatisticsСhart = () => {
               axisLine={false}
               tickLine={false}
               tickMargin={30}
-              tick={{ fill: '#343434' }}
+              tick={{ fill: fillYXAxis }}
             />
             <Bar
               dataKey="day"
@@ -145,7 +151,6 @@ const StatisticsСhart = () => {
                 dataKey="percentageDay"
                 content={<LabelListContent />}
                 position="top"
-                fill="#343434"
               />
             </Bar>
             <Bar
@@ -157,7 +162,6 @@ const StatisticsСhart = () => {
                 dataKey="percentageMonth"
                 content={<LabelListContent />}
                 position="top"
-                fill="#343434"
               />
             </Bar>
             <defs>
