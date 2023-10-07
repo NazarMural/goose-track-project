@@ -7,7 +7,6 @@ const LoginPage = () => {
   return (
     <AuthLayout login img={'goose_login.png'}>
       <AuthForm login />
-      <LinkStyled to={'/register'}>Sign up</LinkStyled>
     </AuthLayout>
   );
 };

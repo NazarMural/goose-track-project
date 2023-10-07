@@ -7,7 +7,6 @@ const RegisterPage = () => {
   return (
     <AuthLayout img={'goose_register.png'}>
       <AuthForm />
-      <LinkStyled to={'/login'}>Log In</LinkStyled>
     </AuthLayout>
   );
 };
