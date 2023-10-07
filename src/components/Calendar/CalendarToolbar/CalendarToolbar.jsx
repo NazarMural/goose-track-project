@@ -13,26 +13,96 @@ import {
   TypeWrapper,
 } from './CalendarToolbar.styled';
 import { TypeLink } from './CalendarToolbar.styled';
+import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { fetchTasksOperation } from 'redux/tasks/operations';
 
-const CalendarToolbar = ({
-  currentDate,
-  setCurrentDate,
-  format,
-  setFormat,
-}) => {
+// {
+//   // currentDate,
+//   // setCurrentDate,
+//   // format,
+//   // setFormat,
+// }
+const CalendarToolbar = () => {
+  const [currentDate, setCurrentDate] = useState(
+    localStorage.getItem('date') || moment().format('YYYY-MM-DD').toString()
+  );
+
+  // const [tasks, setTasks] = useState([]);
+
+  // const month = moment(currentDate).format('YYYY-MM');
+  // const day = moment(currentDate).format('YYYY-MM-DD');
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
+
+  // console.log(month);
+  // localStorage.getItem('date') || moment().format('YYYY-MM-DD').toString()
+  const [format, setFormat] = useState(localStorage.getItem('type')); //|| 'month');
+  // ;
+  // localStorage.getItem('type') || 'month';
   const month = moment(currentDate).format('YYYY-MM');
   const day = moment(currentDate).format('YYYY-MM-DD');
+  // useEffect(() => {
+  //   setCurrentDate(currentDate);
+  //   // localStorage.setItem('date', currentDate);
+  // }, [currentDate, setCurrentDate]);
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const month = moment(currentDate).format('YYYY-MM');
+  //     const day = moment(currentDate).format('YYYY-MM-DD');
+  //     const { payload } = await dispatch(fetchTasksOperation(month));
+  //     setTasks(payload);
+  //   })();
+
+  //   // month = moment(currentDate).format('YYYY-MM');
+  // }, [currentDate, dispatch]);
+
+  // useEffect(() => {
+  //   // Зчитуємо дані з localStorage
+  //   const storedDate = localStorage.getItem('date');
+  //   const storedType = localStorage.getItem('type');
+
+  //   // Встановлюємо значення лише після завершення зчитування
+  //   if (storedDate) {
+  //     setCurrentDate(storedDate);
+  //   } else {
+  //     // Якщо дані відсутні в localStorage, встановлюємо значення за замовчуванням
+  //     setCurrentDate(moment().format('YYYY-MM-DD'));
+  //   }
+
+  //   if (storedType) {
+  //     setFormat(storedType);
+  //   } else {
+  //     setFormat('month');
+  //   }
+  // }, []);
 
   const handleClick = format => {
+    console.log(currentDate);
+
+    localStorage.setItem('date', currentDate);
     const date = moment(currentDate).add(1, format).format('YYYY-MM-DD');
     setCurrentDate(date);
-    localStorage.setItem('date', date);
+    // setTimeout(() => {
+    //   localStorage.setItem('date', date);
+    // }, 1000);
+    console.log(currentDate);
+    console.log(date === currentDate);
+    // let address;
+    // console.log(month);
+    // if (format === 'month') {
+    //   address = `/calendar/month/${month}`;
+    // } else {
+    //   address = `day/${day}`;
+    // }
+    // navigate(address);
   };
 
   const handleClickBack = format => {
+    localStorage.setItem('date', currentDate);
     const date = moment(currentDate).subtract(1, format).format('YYYY-MM-DD');
     setCurrentDate(date);
-    localStorage.setItem('date', date);
   };
 
   const handleChangeType = e => {
@@ -55,7 +125,7 @@ const CalendarToolbar = ({
       <DateContainer>
         <DateWrapper>
           <Date>
-            {moment(currentDate).format(
+            {moment(localStorage.getItem('date')).format(
               format === 'day' ? 'DD MMM YYYY' : 'MMMM YYYY'
             )}
           </Date>
