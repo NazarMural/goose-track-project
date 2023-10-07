@@ -1,44 +1,53 @@
 import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 
-import { Container } from './Modal.styled';
+import { Backdrop, Container, IconClose, CloseButton } from './Modal.styled';
+import sprite from '../../assets/images/icons/icons.svg';
 
-const Modal = ({ isOpen, onClose, children }) => {
-    useEffect(() => {
-        const handleEscKeyPress = (event) => {
-            if (isOpen && event.key === 'Escape') {
-                onClose();
-            }
-        };
-      
-         const handleClickOutside = event => {
-           if (
-             isOpen &&
-             !document.getElementById('modal-container').contains(event.target)
-           ) {
-             onClose();
-           }
-         };
-    
-      window.addEventListener('keydown', handleEscKeyPress);
-       window.addEventListener('mousedown', handleClickOutside);
+const Modal = ({
+  isOpen,
+  onClose,
+  closeButtonPosition = { top: '14px', right: '14px' },
+  children,
+}) => {
+  const handleBackdropClick = event => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
 
-        return () => {
-          window.removeEventListener('keydown', handleEscKeyPress);
-            window.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [isOpen, onClose]);
+  useEffect(() => {
+    const handleEscKeyPress = event => {
+      if (isOpen && event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    window.addEventListener('keydown', handleEscKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscKeyPress);
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) {
     return null;
   }
-  return (
-    <Container id="modal-container">
-      <div>
-        
-        <button onClick={onClose}>X</button>
+  return ReactDOM.createPortal(
+    <Backdrop onClick={handleBackdropClick}>
+      <Container id="modal-container">
+        <CloseButton onClick={onClose} style={closeButtonPosition}>
+          <IconClose>
+            <use xlinkHref={`${sprite}#icon-x-close`} width={24} height={24} />
+          </IconClose>
+        </CloseButton>
+
         {children}
-      </div>
-    </Container>
+      </Container>
+    </Backdrop>,
+    document.getElementById('modal-root')
   );
 };
 
