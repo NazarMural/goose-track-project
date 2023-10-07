@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import sprite from '../../../../assets/images/icons/icons.svg';
 import {
@@ -9,6 +9,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { updateTaskOperation } from 'redux/tasks/operations';
 import { IconTask } from '../Tasks/Tasks.styled';
+import { Notify } from 'notiflix';
 
 const PopUpReplace = ({
   type,
@@ -18,6 +19,27 @@ const PopUpReplace = ({
   _id,
 }) => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    const onClickClose = ({ target }) => {
+      console.log(target.id);
+      if (target.id !== 'togglePopUp') {
+        setIsShowPopUpReplace(false);
+      }
+    };
+    const onEscClose = ({ code }) => {
+      if (code === 'Escape') {
+        setIsShowPopUpReplace(false);
+      }
+    };
+
+    document.addEventListener('click', onClickClose);
+    document.addEventListener('keydown', onEscClose);
+
+    return () => {
+      document.removeEventListener('click', onClickClose);
+      document.removeEventListener('keydown', onEscClose);
+    };
+  }, [setIsShowPopUpReplace]);
 
   const viewCategories = type => {
     let arrCategories = [];
@@ -57,12 +79,17 @@ const PopUpReplace = ({
   };
 
   const onReplace = async (id, typeCategory) => {
-    await dispatch(
+    const response = await dispatch(
       updateTaskOperation({
         taskId: id,
         updateTaskData: { category: typeCategory },
       })
     );
+
+    if (response.payload.status) {
+      Notify.failure('Task don`t replace. Try again');
+      return;
+    }
 
     const filteredTasks = tasks
       ? tasks.map(task => {
@@ -75,7 +102,7 @@ const PopUpReplace = ({
 
     setTasks(filteredTasks);
 
-    setIsShowPopUpReplace(false);
+    // setIsShowPopUpReplace(false);
   };
   return (
     <ContainerReplaceTask>

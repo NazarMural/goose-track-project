@@ -1,12 +1,30 @@
 import styled from '@emotion/styled';
 import { desktop, min, tablet } from 'styles/media';
 
-export const ContainerListTasks = styled.div`
-  max-height: 270px;
+export const ListTasks = styled.ul`
+  padding: 0 6px 0 18px;
+  margin-right: 6px;
+  overflow-x: hidden;
   overflow-y: auto;
-  width: 104%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 328px;
+
+  & li:nth-last-child(-n + 1) {
+    margin-bottom: 32px;
+  }
   ${min(tablet)} {
-    max-height: 395px;
+    width: 334px;
+    gap: 18px;
+    padding: 0 8px 0 20px;
+    margin-right: 8px;
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+  }
+  ${min(desktop)} {
+    width: 313px;
   }
   /* width*/
   &::-webkit-scrollbar {
@@ -31,25 +49,8 @@ export const ContainerListTasks = styled.div`
   }
 `;
 
-export const ListTasks = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  list-style: none;
-  margin: 0 0 13px 0;
-  padding: 0;
-  width: 296px;
-  ${min(tablet)} {
-    width: 299px;
-    gap: 18px;
-    margin: 0 0 17px 0;
-  }
-  ${min(desktop)} {
-    width: 306px;
-  }
-`;
-
 export const Task = styled.li`
+  position: relative;
   background-color: var(--page-bg-color);
   padding: 14px 14px 18px 14px;
   border: 1px solid var(--calendar-grid-border);
@@ -65,12 +66,7 @@ export const TaskTitle = styled.h3`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  padding: 0;
-  margin: 0 0 28px 0;
-  ${min(tablet)} {
-  }
-  ${min(desktop)} {
-  }
+  margin-bottom: 28px;
 `;
 
 export const ContainerButtonsTask = styled.div`
@@ -79,12 +75,22 @@ export const ContainerButtonsTask = styled.div`
 `;
 
 export const TaskImage = styled.img`
-  box-sizing: border-box;
   width: 32px;
   height: 32px;
   border: 1.8px solid var(--accent-color);
   border-radius: 50%;
   margin-right: 8px;
+`;
+export const TaskImagePlug = styled.svg`
+  width: 32px;
+  height: 32px;
+  border: 1.8px solid var(--accent-color);
+  border-radius: 50%;
+  margin-right: 8px;
+  fill: #3e85f32e;
+  .dark & {
+    fill: #ffffff2e;
+  }
 `;
 
 export const TaskButtonPriority = styled.button`
@@ -108,17 +114,10 @@ export const TaskButtonPriority = styled.button`
     }
   }};
   border: none;
-
   border-radius: 4px;
-  ${min(tablet)} {
-  }
-  ${min(desktop)} {
-  }
 `;
 
 export const ContainerIcons = styled.div`
-  position: relative;
-  z-index: 1;
   display: flex;
   gap: 10px;
   margin-left: auto;
@@ -135,7 +134,5 @@ export const IconTask = styled.svg`
   ${min(tablet)} {
     height: 16px;
     width: 16px;
-  }
-  ${min(desktop)} {
   }
 `;
