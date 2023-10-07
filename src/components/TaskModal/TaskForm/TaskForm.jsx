@@ -191,7 +191,7 @@ export const TaskForm = ({ category='to-do', task, onClose =() =>{} }) => {
                                 </BlueLine>
                             ) : (
                                 <Blue>
-                                    <use href={icons + '#icon-ellipse'}></use>
+                                    <use href={icons + '#icon-ellipse-blue'}></use>
                                 </Blue>
                             )}
                             Low
@@ -204,7 +204,7 @@ export const TaskForm = ({ category='to-do', task, onClose =() =>{} }) => {
                                 </OrangeLine>
                             ) : (
                                 <Orange>
-                                    <use href={icons + '#icon-ellipse'}></use>
+                                    <use href={icons + '#icon-ellipse-orange'}></use>
                                 </Orange>
                             )}
                             Medium
@@ -217,7 +217,7 @@ export const TaskForm = ({ category='to-do', task, onClose =() =>{} }) => {
                                 </RedLine>
                             ) : (
                                 <Red>
-                                    <use href={icons + '#icon-ellipse'}></use>
+                                    <use href={icons + '#icon-ellipse-pink'}></use>
                                 </Red>
                             )}
                             High

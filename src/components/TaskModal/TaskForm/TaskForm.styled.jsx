@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-// import { Field } from 'formik';
+import { Field } from 'formik';
 import { min, tablet } from 'styles/media';
 
 
@@ -46,7 +46,7 @@ export const Label = styled`
     line-height: 1.16;
 `;
 
-export const TitleField = styled.input`
+export const TitleField = styled(Field)`
     width: 267px;
     height: 42px;
     flex-shrink: 0;
@@ -78,7 +78,7 @@ export const FieldContainer = styled.div`
     gap: 14px;
 `;
 
-export const TimeField = styled.input`
+export const TimeField = styled(Field)`
     width: 126px;
     height: 42px;
     flex-shrink: 0;
@@ -125,7 +125,7 @@ export const PriorityLabel = styled.label`
     }
 `;
 
-export const PriorityField = styled.input`
+export const PriorityField = styled(Field)`
     opacity: 0;
     position: absolute;
     top: 0;
