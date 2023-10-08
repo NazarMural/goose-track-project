@@ -30,6 +30,7 @@ const ChoosedDay = () => {
   const { currentDay } = useParams();
   const dispatch = useDispatch();
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
 
   const isEditTask = useSelector(selectIsUpdating);
 
@@ -67,7 +68,13 @@ const ChoosedDay = () => {
               onAdd={onAdd}
               tasks={tasks.filter(({ category }) => category === type)}
             />
-            <Tasks type={type} tasks={tasks} setTasks={setTasks} />
+            <Tasks
+              type={type}
+              tasks={tasks}
+              setTasks={setTasks}
+              isShowPopUpReplace={isShowPopUpReplace}
+              setIsShowPopUpReplace={setIsShowPopUpReplace}
+            />
             <ContainerButtonAddTask>
               <ButtonAddTask onClick={onAdd}>
                 <IconButtonAddTask>

@@ -12,9 +12,7 @@ export const ListTasks = styled.ul`
   width: 328px;
   & #popUpReplace {
     ${({ tasks }) =>
-      tasks.length === 1
-        ? 'top: 16px !important; right: 81px; margin-right: 12px;'
-        : null}
+      tasks.length === 1 ? 'top: 16px !important; margin-right: 12px;' : null}
   }
 
   & li:nth-last-of-type(-n + 1) {

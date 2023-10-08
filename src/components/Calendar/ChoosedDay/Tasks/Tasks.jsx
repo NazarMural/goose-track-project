@@ -19,9 +19,15 @@ import { selectUserAvatar } from 'redux/auth/selectors';
 import { Notify } from 'notiflix';
 import { TaskModal } from 'components/TaskModal/TaskModal';
 
-const Tasks = ({ type, tasks, setTasks }) => {
+const Tasks = ({
+  type,
+  tasks,
+  setTasks,
+  isShowPopUpReplace,
+  setIsShowPopUpReplace,
+}) => {
   const dispatch = useDispatch();
-  const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
+
   const avatarURL = useSelector(selectUserAvatar);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [taskForForm, setTaskForForm] = useState({});
