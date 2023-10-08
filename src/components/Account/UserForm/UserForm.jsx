@@ -45,6 +45,8 @@ export const UserForm = () => {
     values,
     errors,
     touched,
+    dirty,
+    isSubmitting,
     resetForm,
     handleChange,
     handleBlur,
@@ -64,12 +66,10 @@ export const UserForm = () => {
       phone: values.phone,
       social: values.skype,
     };
-
     await dispatch(updateUserDataOperation(newData));
     Notify.success('Data update successfully');
     resetForm();
   }
-
   return (
     <Container>
       <UserInfo />
@@ -82,7 +82,7 @@ export const UserForm = () => {
                 type="text"
                 name="username"
                 placeholder="Enter your name"
-                value={values.username ?? ''}
+                value={values.username}
                 onChange={handleChange('username')}
                 onBlur={handleBlur('username')}
                 errors={errors.username}
@@ -112,7 +112,7 @@ export const UserForm = () => {
                 type="tel"
                 name="phone"
                 placeholder="Enter your phone number"
-                value={values.phone ?? ''}
+                value={values.phone}
                 onChange={handleChange('phone')}
                 onBlur={handleBlur('phone')}
                 errors={errors.phone}
@@ -143,7 +143,7 @@ export const UserForm = () => {
                   type="date"
                   name="birthday"
                   placeholder="YYYY - MM - DD"
-                  value={values.birthday ?? ''}
+                  value={values.birthday}
                   onChange={handleChange('birthday')}
                   onBlur={handleBlur('birthday')}
                   errors={errors.birthday}
@@ -177,7 +177,7 @@ export const UserForm = () => {
                 type="text"
                 name="skype"
                 placeholder="Add a skype number"
-                value={values.skype ?? ''}
+                value={values.skype}
                 onChange={handleChange('skype')}
                 onBlur={handleBlur('skype')}
                 errors={errors.skype}
@@ -209,7 +209,7 @@ export const UserForm = () => {
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                value={values.email ?? ''}
+                value={values.email}
                 onChange={handleChange('email')}
                 onBlur={handleBlur('email')}
                 errors={errors.email}
@@ -233,7 +233,9 @@ export const UserForm = () => {
             </Label>
           </FieldContainer>
           <ButtonContainer>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit" disabled={!dirty || isSubmitting}>
+              Save changes
+            </Button>
           </ButtonContainer>
         </AddUserForm>
       </Formik>
