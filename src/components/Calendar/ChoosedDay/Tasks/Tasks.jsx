@@ -24,6 +24,7 @@ const Tasks = ({ type, tasks, setTasks }) => {
   const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
   const avatarURL = useSelector(selectUserAvatar);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [taskForForm, setTaskForForm] = useState({});
 
   const toggleShowPopUpReplace = id => {
     isShowPopUpReplace === id
@@ -31,8 +32,8 @@ const Tasks = ({ type, tasks, setTasks }) => {
       : setIsShowPopUpReplace(id);
   };
 
-  const onEdit = () => {
-    // console.log('onEdit');
+  const onEdit = task => {
+    setTaskForForm(task);
     setIsFormOpen(true);
   };
 
@@ -50,6 +51,7 @@ const Tasks = ({ type, tasks, setTasks }) => {
   };
 
   const closeForm = () => {
+    setTaskForForm({});
     setIsFormOpen(false);
   };
 
@@ -84,7 +86,7 @@ const Tasks = ({ type, tasks, setTasks }) => {
                     xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
                   />
                 </IconTask>
-                <IconTask onClick={onEdit}>
+                <IconTask onClick={() => onEdit(task)}>
                   <use xlinkHref={sprite + '#icon-pencil'} />
                 </IconTask>
                 <IconTask onClick={() => onDelete(_id)}>
@@ -106,7 +108,7 @@ const Tasks = ({ type, tasks, setTasks }) => {
                 isOpen={isFormOpen}
                 onClose={closeForm}
                 category={category}
-                task={task}
+                task={taskForForm}
               />
             )}
           </Task>
