@@ -218,14 +218,14 @@ export const IconStatus = styled.svg`
     error ? 'var(--error-color)' : 'var(--success-color)'};
   height: 22px;
   width: 22px;
-  right: 14px;
+  right: ${({ birthday }) => (birthday ? '35px' : '14px')};
   top: 45px;
   transform: translateY(-50%);
 
   ${min(tablet)} {
     height: 24px;
     width: 24px;
-    right: 18px;
+    right: ${({ birthday }) => (birthday ? '39px' : '18px')};
   }
   ${min(desktop)} {
     top: 50px;

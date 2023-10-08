@@ -32,7 +32,6 @@ export const HeadCell = styled.div`
 
   & div {
     color: #343434;
-    /* opacity: 0; */
     background-color: var(--cell-background);
 
     border-radius: 6px;
@@ -63,6 +62,5 @@ export const DayWeekContainer = styled.div`
   font-weight: 700;
   width: 20px;
   height: 22px;
-  /* text-align: center; */
 `;
 export const DayWeekText = styled.span``;

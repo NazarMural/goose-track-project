@@ -11,11 +11,13 @@ import sprite from '../../../assets/images/icons/icons.svg';
 import Title from './Title/Title';
 import Tasks from './Tasks/Tasks';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchTasksOperation } from 'redux/tasks/operations';
 import { useParams } from 'react-router-dom';
 import Head from './Head/Head';
 import { TaskModal } from 'components/TaskModal/TaskModal';
+import { selectIsUpdating } from 'redux/tasks/selectors';
+import moment from 'moment';
 
 const categories = [
   { id: 1, type: 'to-do' },
@@ -29,51 +31,30 @@ const ChoosedDay = () => {
   const dispatch = useDispatch();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
+  const isEditTask = useSelector(selectIsUpdating);
+
   useEffect(() => {
     (async () => {
-      const formatedDate = currentDay.split('-').slice(0, 2).join('-');
+      const currentMonth = moment(currentDay).format('YYYY-MM');
 
-      const { payload } = await dispatch(fetchTasksOperation(formatedDate));
+      const { payload } = await dispatch(fetchTasksOperation(currentMonth));
 
       const filteredTasks = payload
-        ? payload.filter(({ date }) => date === currentDay)
+        ? payload
+            .filter(({ date }) => date === currentDay)
+            .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
         : [];
       setTasks(filteredTasks);
     })();
-    return () => {
-      setTasks([]);
-    };
-  }, [currentDay, dispatch]);
-
-  // useEffect(() => {
-  //   const onClickBody = ({ target }) => {
-  //     console.dir(target);
-  //     if (target.tagName !== 'use') {
-  //       setIsShowPopUpReplace(false);
-  //       return;
-  //     }
-  //   };
-  //   const body = document.querySelector('body');
-
-  //   if (isShowPopUpReplace) {
-  //     body.addEventListener('click', onClickBody);
-  //   } else {
-  //     body.removeEventListener('click', onClickBody);
-  //   }
-  // }, [isShowPopUpReplace]);
+  }, [currentDay, dispatch, isEditTask]);
 
   const onAdd = () => {
-    // console.log('onAdd', category);
     setIsFormOpen(true);
-    // console.log(category);
   };
 
   const closeForm = () => {
     setIsFormOpen(false);
   };
-  // const handleButtonClick = () => {
-  //   openForm();
-  // };
 
   return (
     <>
@@ -81,7 +62,11 @@ const ChoosedDay = () => {
       <ContainerMain>
         {categories.map(({ id, type }) => (
           <ContainerSecond key={id}>
-            <Title type={type} onAdd={onAdd} />
+            <Title
+              type={type}
+              onAdd={onAdd}
+              tasks={tasks.filter(({ category }) => category === type)}
+            />
             <Tasks type={type} tasks={tasks} setTasks={setTasks} />
             <ContainerButtonAddTask>
               <ButtonAddTask onClick={onAdd}>
@@ -96,7 +81,6 @@ const ChoosedDay = () => {
                 isOpen={isFormOpen}
                 onClose={closeForm}
                 category={type}
-                // task={}
               />
             )}
           </ContainerSecond>

@@ -6,14 +6,15 @@ export const ContainerMain = styled.div`
   gap: 30px;
   overflow-x: auto;
   overflow-y: hidden;
-  height: 432px;
+  padding-bottom: 34px;
   scroll-snap-type: x mandatory;
 
   ${min(tablet)} {
-    height: 568px;
+    padding-bottom: 150px;
     gap: 16px;
   }
   ${min(desktop)} {
+    padding-bottom: 0;
     gap: 27px;
   }
   /* width*/
@@ -42,12 +43,20 @@ export const ContainerMain = styled.div`
 export const ContainerSecond = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 100%;
+
+  max-height: 432px;
+  height: fit-content;
   position: relative;
   background-color: var(--primary-bg-color);
   border: 1px solid var(--calendar-grid-border);
   border-radius: 8px;
   scroll-snap-align: start;
+
+  ${min(tablet)} {
+    max-height: 568px;
+  }
+  ${min(desktop)} {
+  }
 `;
 
 export const ContainerButtonAddTask = styled.div`

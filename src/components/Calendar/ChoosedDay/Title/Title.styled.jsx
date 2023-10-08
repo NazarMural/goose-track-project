@@ -6,9 +6,9 @@ export const ContainerTitle = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 18px 18px 0;
-  margin-bottom: 24px;
+  margin-bottom: ${({ tasks }) => (tasks.length === 0 ? '35px' : '24px')};
   ${min(tablet)} {
-    margin-bottom: 28px;
+    margin-bottom: ${({ tasks }) => (tasks.length === 0 ? '35px' : '28px')};
     padding: 20px 20px 0;
   }
 `;
