@@ -34,7 +34,7 @@ const Head = () => {
   const onChangeDay = date => {
     const formatDate = date.format('YYYY-MM-DD');
     localStorage.setItem('date', formatDate);
-    navigate('../', { relative: `${formatDate}` });
+    navigate('././', { relative: `${formatDate}` });
   };
 
   return (
