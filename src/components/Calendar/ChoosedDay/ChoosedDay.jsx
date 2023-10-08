@@ -44,7 +44,6 @@ const ChoosedDay = () => {
             .filter(({ date }) => date === currentDay)
             .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
         : [];
-      console.log(filteredTasks);
       setTasks(filteredTasks);
     })();
   }, [currentDay, dispatch, isEditTask]);
@@ -63,7 +62,11 @@ const ChoosedDay = () => {
       <ContainerMain>
         {categories.map(({ id, type }) => (
           <ContainerSecond key={id}>
-            <Title type={type} onAdd={onAdd} />
+            <Title
+              type={type}
+              onAdd={onAdd}
+              tasks={tasks.filter(({ category }) => category === type)}
+            />
             <Tasks type={type} tasks={tasks} setTasks={setTasks} />
             <ContainerButtonAddTask>
               <ButtonAddTask onClick={onAdd}>

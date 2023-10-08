@@ -6,7 +6,6 @@ import {
   ListTasks,
   Task,
   TaskButtonPriority,
-  TaskContainer,
   TaskImage,
   TaskImagePlug,
   TaskTitle,
@@ -57,54 +56,44 @@ const Tasks = ({ type, tasks, setTasks }) => {
   };
 
   return (
-    <ListTasks>
+    <ListTasks tasks={tasks.filter(({ category }) => category === type)}>
       {tasks.map(task => {
         const { _id, title, priority, category } = task;
         if (type !== category) {
           return '';
         }
         return (
-          <TaskContainer>
-            <Task key={_id}>
-              <TaskTitle>{title}</TaskTitle>
-              <ContainerButtonsTask>
-                {avatarURL ? (
-                  <TaskImage src={avatarURL} alt="User avatar" />
-                ) : (
-                  <TaskImagePlug>
-                    <use href={`${sprite}#icon-ph_user`}></use>
-                  </TaskImagePlug>
-                )}
-                <TaskButtonPriority priority={priority}>
-                  {priority.charAt(0).toUpperCase() + priority.slice(1)}
-                </TaskButtonPriority>
-                <ContainerIcons>
-                  <IconTask
-                    id="togglePopUp"
-                    onClick={() => toggleShowPopUpReplace(_id)}
-                  >
-                    <use
-                      id="togglePopUp"
-                      xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
-                    />
-                  </IconTask>
-                  <IconTask onClick={() => onEdit(task)}>
-                    <use xlinkHref={sprite + '#icon-pencil'} />
-                  </IconTask>
-                  <IconTask onClick={() => onDelete(_id)}>
-                    <use xlinkHref={sprite + '#icon-trash'} />
-                  </IconTask>
-                </ContainerIcons>
-              </ContainerButtonsTask>
-              {isFormOpen && (
-                <TaskModal
-                  isOpen={isFormOpen}
-                  onClose={closeForm}
-                  category={category}
-                  task={taskForForm}
-                />
+          <Task key={_id}>
+            <TaskTitle>{title}</TaskTitle>
+            <ContainerButtonsTask>
+              {avatarURL ? (
+                <TaskImage src={avatarURL} alt="User avatar" />
+              ) : (
+                <TaskImagePlug>
+                  <use href={`${sprite}#icon-ph_user`}></use>
+                </TaskImagePlug>
               )}
-            </Task>
+              <TaskButtonPriority priority={priority}>
+                {priority.charAt(0).toUpperCase() + priority.slice(1)}
+              </TaskButtonPriority>
+              <ContainerIcons>
+                <IconTask
+                  id="togglePopUp"
+                  onClick={() => toggleShowPopUpReplace(_id)}
+                >
+                  <use
+                    id="togglePopUp"
+                    xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
+                  />
+                </IconTask>
+                <IconTask onClick={() => onEdit(task)}>
+                  <use xlinkHref={sprite + '#icon-pencil'} />
+                </IconTask>
+                <IconTask onClick={() => onDelete(_id)}>
+                  <use xlinkHref={sprite + '#icon-trash'} />
+                </IconTask>
+              </ContainerIcons>
+            </ContainerButtonsTask>
             {isShowPopUpReplace === _id && (
               <PopUpReplace
                 type={type}
@@ -114,7 +103,15 @@ const Tasks = ({ type, tasks, setTasks }) => {
                 _id={_id}
               ></PopUpReplace>
             )}
-          </TaskContainer>
+            {isFormOpen && (
+              <TaskModal
+                isOpen={isFormOpen}
+                onClose={closeForm}
+                category={category}
+                task={taskForForm}
+              />
+            )}
+          </Task>
         );
       })}
     </ListTasks>

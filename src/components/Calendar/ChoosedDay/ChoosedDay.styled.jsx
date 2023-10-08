@@ -6,7 +6,6 @@ export const ContainerMain = styled.div`
   gap: 30px;
   overflow-x: auto;
   overflow-y: hidden;
-  /* height: 432px; */
   padding-bottom: 34px;
   scroll-snap-type: x mandatory;
 

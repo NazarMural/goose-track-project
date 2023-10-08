@@ -21,7 +21,6 @@ const PopUpReplace = ({
   const dispatch = useDispatch();
   useEffect(() => {
     const onClickClose = ({ target }) => {
-      console.log(target.id);
       if (target.id !== 'togglePopUp') {
         setIsShowPopUpReplace(false);
       }
@@ -101,11 +100,9 @@ const PopUpReplace = ({
       : [];
 
     setTasks(filteredTasks);
-
-    // setIsShowPopUpReplace(false);
   };
   return (
-    <ContainerReplaceTask>
+    <ContainerReplaceTask id="popUpReplace">
       {viewCategories(type).map(({ id, typeCategory, typeForOnClick }) => (
         <ReplaceTaskContainerText
           key={id}

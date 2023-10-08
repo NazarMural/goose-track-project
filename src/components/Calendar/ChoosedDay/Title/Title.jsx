@@ -2,9 +2,9 @@ import React from 'react';
 import { ContainerTitle, IconAddTask, MainTitle } from './Title.styled';
 import sprite from '../../../../assets/images/icons/icons.svg';
 
-const Title = ({ type, onAdd }) => {
+const Title = ({ type, onAdd, tasks }) => {
   return (
-    <ContainerTitle>
+    <ContainerTitle tasks={tasks}>
       <MainTitle>
         {(() => {
           switch (type) {
