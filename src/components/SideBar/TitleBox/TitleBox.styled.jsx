@@ -15,7 +15,7 @@ export const TitleBoxEl = styled.div`
   h2 {
     display: block;
     margin: 0 0 0 6px;
-    color: var(--accent-color);
+    color: var(--sidebar-logo-color);
     text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
       0px 47px 355px rgba(0, 0, 0, 0.07);
     font-family: Inter;
@@ -32,7 +32,7 @@ export const TitleBoxEl = styled.div`
     }
 
     span {
-      color: var(--accent-color);
+      color: var(--sidebar-logo-color);
       font-family: Inter;
       font-size: 16px;
       font-style: italic;

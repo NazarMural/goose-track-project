@@ -9,7 +9,7 @@ import { tablet, min } from 'styles/media';
 
 export const NavTitle = styled.h3`
   margin: 0 0 24px 0;
-  color: var(--sidebar-text-color);
+  color: var(--sidebar-navTitle-color);
   font-family: Inter;
   font-size: 12px;
   font-style: normal;
