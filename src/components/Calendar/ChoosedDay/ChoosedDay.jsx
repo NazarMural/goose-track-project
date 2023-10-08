@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import { fetchTasksOperation } from 'redux/tasks/operations';
 import { useParams } from 'react-router-dom';
 import Head from './Head/Head';
+import { TaskModal } from 'components/TaskModal/TaskModal';
 
 const categories = [
   { id: 1, type: 'to-do' },
@@ -26,6 +27,7 @@ const ChoosedDay = () => {
   const [tasks, setTasks] = useState([]);
   const { currentDay } = useParams();
   const dispatch = useDispatch();
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -60,9 +62,18 @@ const ChoosedDay = () => {
   //   }
   // }, [isShowPopUpReplace]);
 
-  const onAdd = category => {
-    console.log('onAdd', category);
+  const onAdd = () => {
+    // console.log('onAdd', category);
+    setIsFormOpen(true);
+    // console.log(category);
   };
+
+  const closeForm = () => {
+    setIsFormOpen(false);
+  };
+  // const handleButtonClick = () => {
+  //   openForm();
+  // };
 
   return (
     <>
@@ -80,6 +91,14 @@ const ChoosedDay = () => {
                 <ButtonAddTaskText>Add task</ButtonAddTaskText>
               </ButtonAddTask>
             </ContainerButtonAddTask>
+            {isFormOpen && (
+              <TaskModal
+                isOpen={isFormOpen}
+                onClose={closeForm}
+                category={type}
+                // task={}
+              />
+            )}
           </ContainerSecond>
         ))}
       </ContainerMain>
