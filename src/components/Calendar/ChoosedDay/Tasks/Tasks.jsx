@@ -6,6 +6,7 @@ import {
   ListTasks,
   Task,
   TaskButtonPriority,
+  TaskContainer,
   TaskImage,
   TaskImagePlug,
   TaskTitle,
@@ -63,37 +64,47 @@ const Tasks = ({ type, tasks, setTasks }) => {
           return '';
         }
         return (
-          <Task key={_id}>
-            <TaskTitle>{title}</TaskTitle>
-            <ContainerButtonsTask>
-              {avatarURL ? (
-                <TaskImage src={avatarURL} alt="User avatar" />
-              ) : (
-                <TaskImagePlug>
-                  <use href={`${sprite}#icon-ph_user`}></use>
-                </TaskImagePlug>
-              )}
-              <TaskButtonPriority priority={priority}>
-                {priority.charAt(0).toUpperCase() + priority.slice(1)}
-              </TaskButtonPriority>
-              <ContainerIcons>
-                <IconTask
-                  id="togglePopUp"
-                  onClick={() => toggleShowPopUpReplace(_id)}
-                >
-                  <use
+          <TaskContainer>
+            <Task key={_id}>
+              <TaskTitle>{title}</TaskTitle>
+              <ContainerButtonsTask>
+                {avatarURL ? (
+                  <TaskImage src={avatarURL} alt="User avatar" />
+                ) : (
+                  <TaskImagePlug>
+                    <use href={`${sprite}#icon-ph_user`}></use>
+                  </TaskImagePlug>
+                )}
+                <TaskButtonPriority priority={priority}>
+                  {priority.charAt(0).toUpperCase() + priority.slice(1)}
+                </TaskButtonPriority>
+                <ContainerIcons>
+                  <IconTask
                     id="togglePopUp"
-                    xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
-                  />
-                </IconTask>
-                <IconTask onClick={() => onEdit(task)}>
-                  <use xlinkHref={sprite + '#icon-pencil'} />
-                </IconTask>
-                <IconTask onClick={() => onDelete(_id)}>
-                  <use xlinkHref={sprite + '#icon-trash'} />
-                </IconTask>
-              </ContainerIcons>
-            </ContainerButtonsTask>
+                    onClick={() => toggleShowPopUpReplace(_id)}
+                  >
+                    <use
+                      id="togglePopUp"
+                      xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
+                    />
+                  </IconTask>
+                  <IconTask onClick={() => onEdit(task)}>
+                    <use xlinkHref={sprite + '#icon-pencil'} />
+                  </IconTask>
+                  <IconTask onClick={() => onDelete(_id)}>
+                    <use xlinkHref={sprite + '#icon-trash'} />
+                  </IconTask>
+                </ContainerIcons>
+              </ContainerButtonsTask>
+              {isFormOpen && (
+                <TaskModal
+                  isOpen={isFormOpen}
+                  onClose={closeForm}
+                  category={category}
+                  task={taskForForm}
+                />
+              )}
+            </Task>
             {isShowPopUpReplace === _id && (
               <PopUpReplace
                 type={type}
@@ -103,15 +114,7 @@ const Tasks = ({ type, tasks, setTasks }) => {
                 _id={_id}
               ></PopUpReplace>
             )}
-            {isFormOpen && (
-              <TaskModal
-                isOpen={isFormOpen}
-                onClose={closeForm}
-                category={category}
-                task={taskForForm}
-              />
-            )}
-          </Task>
+          </TaskContainer>
         );
       })}
     </ListTasks>

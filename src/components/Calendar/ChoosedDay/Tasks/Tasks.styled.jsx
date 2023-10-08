@@ -49,7 +49,11 @@ export const ListTasks = styled.ul`
   }
 `;
 
-export const Task = styled.li`
+export const TaskContainer = styled.div`
+  position: relative;
+`;
+
+export const Task = styled.div`
   position: relative;
   background-color: var(--page-bg-color);
   padding: 14px 14px 18px 14px;
