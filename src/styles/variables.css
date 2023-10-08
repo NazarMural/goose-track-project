@@ -79,6 +79,7 @@
 --task-scrollbar-track: #f2f2f2;
 --task-scrollbar-thumb: #E7E5E5;
 --task-scrollbar-thumb-hover: #d4d2d2;
+--day-head-week-color-text: #343434;
 
 
 /* statistic-styles */
@@ -146,5 +147,8 @@ html.dark {
 --legend-text-color: #fff;
 --border-chart: rgba(227, 243, 255, 0.15);
 --statistic-tasks-text-color: #fff;
+
+--day-head-week-color-text: #FAFAFA4D;
+
 }
 
