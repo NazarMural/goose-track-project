@@ -44,7 +44,8 @@ export const UserForm = () => {
   const {
     values,
     errors,
-    touched,
+    dirty,
+    isSubmitting,
     resetForm,
     handleChange,
     handleBlur,
@@ -53,6 +54,7 @@ export const UserForm = () => {
     initialValues: initialValues,
     validationSchema: schema,
     validateOnChange: false,
+    enableReinitialize: true,
     onSubmit: onSubmit,
   });
 
@@ -64,12 +66,10 @@ export const UserForm = () => {
       phone: values.phone,
       social: values.skype,
     };
-
     await dispatch(updateUserDataOperation(newData));
     Notify.success('Data update successfully');
     resetForm();
   }
-
   return (
     <Container>
       <UserInfo />
@@ -82,13 +82,17 @@ export const UserForm = () => {
                 type="text"
                 name="username"
                 placeholder="Enter your name"
-                value={values.username ?? ''}
+                value={values.username}
                 onChange={handleChange('username')}
                 onBlur={handleBlur('username')}
                 errors={errors.username}
-                touched={touched.username ? touched.username.toString() : ''}
+                touched={
+                  values.username !== initialValues.username
+                    ? values.username
+                    : ''
+                }
               />
-              {touched.username && (
+              {values.username !== initialValues.username && (
                 <IconStatus error={errors.username}>
                   <use
                     xlinkHref={`${sprite}${
@@ -97,7 +101,7 @@ export const UserForm = () => {
                   />
                 </IconStatus>
               )}
-              {touched.username &&
+              {values.username !== initialValues.username &&
                 (errors.username ? (
                   <ErrorMessageText error>{errors.username}</ErrorMessageText>
                 ) : (
@@ -112,13 +116,15 @@ export const UserForm = () => {
                 type="tel"
                 name="phone"
                 placeholder="Enter your phone number"
-                value={values.phone ?? ''}
+                value={values.phone}
                 onChange={handleChange('phone')}
                 onBlur={handleBlur('phone')}
                 errors={errors.phone}
-                touched={touched.phone ? touched.phone.toString() : ''}
+                touched={
+                  values.phone !== initialValues.phone ? values.phone : ''
+                }
               />
-              {touched.phone && (
+              {values.phone !== initialValues.phone && (
                 <IconStatus error={errors.phone}>
                   <use
                     xlinkHref={`${sprite}${
@@ -127,7 +133,7 @@ export const UserForm = () => {
                   />
                 </IconStatus>
               )}
-              {touched.phone &&
+              {values.phone !== initialValues.phone &&
                 (errors.phone ? (
                   <ErrorMessageText error>{errors.phone}</ErrorMessageText>
                 ) : (
@@ -143,17 +149,21 @@ export const UserForm = () => {
                   type="date"
                   name="birthday"
                   placeholder="YYYY - MM - DD"
-                  value={values.birthday ?? ''}
+                  value={values.birthday}
                   onChange={handleChange('birthday')}
                   onBlur={handleBlur('birthday')}
                   errors={errors.birthday}
-                  touched={touched.birthday ? touched.birthday.toString() : ''}
+                  touched={
+                    values.birthday !== initialValues.birthday
+                      ? values.birthday
+                      : ''
+                  }
                 />
                 <ChevronDown>
                   <use href={`${sprite}#icon-chevron-down`}></use>
                 </ChevronDown>
-                {touched.birthday && (
-                  <IconStatus error={errors.birthday}>
+                {values.birthday !== initialValues.birthday && (
+                  <IconStatus error={errors.birthday} birthday>
                     <use
                       xlinkHref={`${sprite}${
                         errors.birthday ? '#icon-error' : '#icon-done'
@@ -161,7 +171,7 @@ export const UserForm = () => {
                     />
                   </IconStatus>
                 )}
-                {touched.birthday &&
+                {values.birthday !== initialValues.birthday &&
                   (errors.birthday ? (
                     <ErrorMessageText error>{errors.birthday}</ErrorMessageText>
                   ) : (
@@ -177,13 +187,15 @@ export const UserForm = () => {
                 type="text"
                 name="skype"
                 placeholder="Add a skype number"
-                value={values.skype ?? ''}
+                value={values.skype}
                 onChange={handleChange('skype')}
                 onBlur={handleBlur('skype')}
                 errors={errors.skype}
-                touched={touched.skype ? touched.skype.toString() : ''}
+                touched={
+                  values.skype !== initialValues.skype ? values.skype : ''
+                }
               />
-              {touched.skype && (
+              {values.skype !== initialValues.skype && (
                 <IconStatus error={errors.skype}>
                   <use
                     xlinkHref={`${sprite}${
@@ -192,7 +204,7 @@ export const UserForm = () => {
                   />
                 </IconStatus>
               )}
-              {touched.skype &&
+              {values.skype !== initialValues.skype &&
                 (errors.skype ? (
                   <ErrorMessageText error>{errors.skype}</ErrorMessageText>
                 ) : (
@@ -209,13 +221,15 @@ export const UserForm = () => {
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                value={values.email ?? ''}
+                value={values.email}
                 onChange={handleChange('email')}
                 onBlur={handleBlur('email')}
                 errors={errors.email}
-                touched={touched.email ? touched.email.toString() : ''}
+                touched={
+                  values.email !== initialValues.email ? values.email : ''
+                }
               />
-              {touched.email && (
+              {values.email !== initialValues.email && (
                 <IconStatus error={errors.email}>
                   <use
                     xlinkHref={`${sprite}${
@@ -224,7 +238,7 @@ export const UserForm = () => {
                   />
                 </IconStatus>
               )}
-              {touched.email &&
+              {values.email !== initialValues.email &&
                 (errors.email ? (
                   <ErrorMessageText error>{errors.email}</ErrorMessageText>
                 ) : (
@@ -233,7 +247,9 @@ export const UserForm = () => {
             </Label>
           </FieldContainer>
           <ButtonContainer>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit" disabled={!dirty || isSubmitting}>
+              Save changes
+            </Button>
           </ButtonContainer>
         </AddUserForm>
       </Formik>
