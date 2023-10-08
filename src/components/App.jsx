@@ -16,7 +16,7 @@ const CalendarPage = lazy(() => import('../pages/CalendarPage'));
 const ChoosedDay = lazy(() => import('./Calendar/ChoosedDay/ChoosedDay'));
 const ChoosedMonth = lazy(() => import('./Calendar/ChoosedMonth/ChoosedMonth'));
 const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
-const ErrorPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
+const ErrorPage = lazy(() => import('../pages/ErrorPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
