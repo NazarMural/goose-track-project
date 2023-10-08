@@ -133,11 +133,26 @@ export const ContainerIcons = styled.div`
   margin-left: auto;
 `;
 
+export const IconTaskButton = styled.button`
+  background-color: transparent;
+  border: none;
+  padding: 0;
+
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    & svg {
+      stroke: var(--accent-color);
+    }
+  }
+`;
+
 export const IconTask = styled.svg`
   height: 14px;
   width: 14px;
   stroke: var(--primary-text-color);
   cursor: pointer;
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
   & use {
     fill: transparent;
   }

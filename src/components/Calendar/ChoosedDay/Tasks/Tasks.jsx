@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   ContainerButtonsTask,
   ContainerIcons,
   IconTask,
+  IconTaskButton,
   ListTasks,
   Task,
   TaskButtonPriority,
@@ -27,15 +28,20 @@ const Tasks = ({
   setIsShowPopUpReplace,
 }) => {
   const dispatch = useDispatch();
+  
 
   const avatarURL = useSelector(selectUserAvatar);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [taskForForm, setTaskForForm] = useState({});
+  const togglePopUpRef = useRef({});
 
   const toggleShowPopUpReplace = id => {
-    isShowPopUpReplace === id
-      ? setIsShowPopUpReplace(false)
-      : setIsShowPopUpReplace(id);
+    if (isShowPopUpReplace === id) {
+      setIsShowPopUpReplace(false);
+      togglePopUpRef[id].blur();
+    } else {
+      setIsShowPopUpReplace(id);
+    }
   };
 
   const onEdit = task => {
@@ -83,21 +89,28 @@ const Tasks = ({
                 {priority.charAt(0).toUpperCase() + priority.slice(1)}
               </TaskButtonPriority>
               <ContainerIcons>
-                <IconTask
+                <IconTaskButton
                   id="togglePopUp"
+                  ref={ref => (togglePopUpRef[_id] = ref)}
                   onClick={() => toggleShowPopUpReplace(_id)}
                 >
-                  <use
-                    id="togglePopUp"
-                    xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
-                  />
-                </IconTask>
-                <IconTask onClick={() => onEdit(task)}>
-                  <use xlinkHref={sprite + '#icon-pencil'} />
-                </IconTask>
-                <IconTask onClick={() => onDelete(_id)}>
-                  <use xlinkHref={sprite + '#icon-trash'} />
-                </IconTask>
+                  <IconTask id="togglePopUp">
+                    <use
+                      id="togglePopUp"
+                      xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
+                    />
+                  </IconTask>
+                </IconTaskButton>
+                <IconTaskButton onClick={() => onEdit(task)}>
+                  <IconTask>
+                    <use xlinkHref={sprite + '#icon-pencil'} />
+                  </IconTask>
+                </IconTaskButton>
+                <IconTaskButton onClick={() => onDelete(_id)}>
+                  <IconTask>
+                    <use xlinkHref={sprite + '#icon-trash'} />
+                  </IconTask>
+                </IconTaskButton>
               </ContainerIcons>
             </ContainerButtonsTask>
             {isShowPopUpReplace === _id && (

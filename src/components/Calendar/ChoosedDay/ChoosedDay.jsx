@@ -18,6 +18,7 @@ import Head from './Head/Head';
 import { TaskModal } from 'components/TaskModal/TaskModal';
 import { selectIsUpdating } from 'redux/tasks/selectors';
 import moment from 'moment';
+import { selectTheme } from 'redux/theme/selectors';
 
 const categories = [
   { id: 1, type: 'to-do' },
@@ -31,6 +32,8 @@ const ChoosedDay = () => {
   const dispatch = useDispatch();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
+  const [isDisabledAddTask, setIsDisabledAddTask] = useState(false);
+  const currentTheme = useSelector(selectTheme);
 
   const isEditTask = useSelector(selectIsUpdating);
 
@@ -49,6 +52,19 @@ const ChoosedDay = () => {
     })();
   }, [currentDay, dispatch, isEditTask]);
 
+  useEffect(() => {
+    const nowDay = new Date();
+    const paramsDay = new Date(currentDay);
+    if (nowDay === paramsDay) {
+      setIsDisabledAddTask(false);
+      return;
+    } else if (nowDay > paramsDay) {
+      setIsDisabledAddTask(true);
+      return;
+    }
+    setIsDisabledAddTask(false);
+  }, [currentDay]);
+
   const onAdd = () => {
     setIsFormOpen(true);
   };
@@ -66,6 +82,7 @@ const ChoosedDay = () => {
             <Title
               type={type}
               onAdd={onAdd}
+              isDisabledAddTask={isDisabledAddTask}
               tasks={tasks.filter(({ category }) => category === type)}
             />
             <Tasks
@@ -76,7 +93,11 @@ const ChoosedDay = () => {
               setIsShowPopUpReplace={setIsShowPopUpReplace}
             />
             <ContainerButtonAddTask>
-              <ButtonAddTask onClick={onAdd}>
+              <ButtonAddTask
+                onClick={onAdd}
+                disabled={isDisabledAddTask}
+                currentTheme={currentTheme}
+              >
                 <IconButtonAddTask>
                   <use xlinkHref={sprite + '#icon-plus'} />
                 </IconButtonAddTask>
