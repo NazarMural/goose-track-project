@@ -40,7 +40,10 @@ const Head = () => {
   return (
     <HeadContainer isSelected={isSelected}>
       {[...Array(7)].map((_, idx) => (
-        <HeadCell onClick={() => onChangeDay(moment().day(idx + 1))} key={idx}>
+        <HeadCell
+          onClick={() => onChangeDay(moment(currentDay).day(idx + 1))}
+          key={idx}
+        >
           <NameWeek>
             {isMobile
               ? moment()
