@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-import { min, tablet } from 'styles/media';
+import { min, mobile, tablet } from 'styles/media';
 
 export const Toolbar = styled.div`
   margin-bottom: 24px;
@@ -54,6 +54,7 @@ export const Toggle = styled.div`
 `;
 
 export const ToggleIcon = styled.svg`
+  fill: var(--chevron-btn-color);
   &:hover {
     fill: var(--accent-color);
   }
@@ -64,15 +65,10 @@ export const TypeWrapper = styled.div`
   border-radius: 8px;
   overflow: hidden;
   height: 34px;
-`;
 
-export const Type = styled.div`
-  width: 76px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 0;
-  background-color: var(--switch-type-bg-active);
+  ${min(mobile)} {
+    max-width: 152px;
+  }
 `;
 
 export const TypeLink = styled(NavLink)`
@@ -82,6 +78,17 @@ export const TypeLink = styled(NavLink)`
   font-weight: 500;
   line-height: 18px;
   color: var(--switch-type-color);
+  width: 76px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  background-color: var(--switch-type-bg);
+
+  &.active {
+    color: var(--switch-type-color-active);
+    background-color: var(--switch-type-bg-active);
+  }
 `;
 
 

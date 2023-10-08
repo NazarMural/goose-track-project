@@ -1,5 +1,5 @@
 import sprite from '../../../assets/images/icons/icons.svg';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment';
 import {
   Date,
@@ -9,7 +9,6 @@ import {
   ToggleIcon,
   ToggleWrapper,
   Toolbar,
-  Type,
   TypeWrapper,
 } from './CalendarToolbar.styled';
 import { TypeLink } from './CalendarToolbar.styled';
@@ -127,16 +126,12 @@ const CalendarToolbar = () => {
         </ToggleWrapper>
       </DateContainer>
       <TypeWrapper>
-        <Type>
-          <TypeLink to={`month/${month}`} onClick={handleChangeType}>
-            Month
-          </TypeLink>
-        </Type>
-        <Type>
-          <Link to={`day/${day}`} onClick={handleChangeType}>
-            Day
-          </Link>
-        </Type>
+        <TypeLink to={`month/${month}`} onClick={handleChangeType}>
+          Month
+        </TypeLink>
+        <TypeLink to={`day/${day}`} onClick={handleChangeType}>
+          Day
+        </TypeLink>
       </TypeWrapper>
     </Toolbar>
   );
