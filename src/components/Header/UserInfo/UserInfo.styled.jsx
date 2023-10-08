@@ -14,7 +14,7 @@ export const UserInfoBox = styled.div`
 `;
 
 export const UserName = styled.p`
-  color: #343434;
+  color: var(--secondary-text-color);
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
