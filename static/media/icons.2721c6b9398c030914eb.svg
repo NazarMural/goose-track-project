@@ -101,5 +101,11 @@
 <symbol id="icon-chevron-left" viewBox="0 0 24 24">
 <path d="M15.707 17.293l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-6 6c-0.391 0.391-0.391 1.024 0 1.414l6 6c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414z"></path>
 </symbol>
+<symbol id="icon-ellipse-blue" viewBox="0 0 32 32"><path fill="#72c2f8" style="fill:var(--color4, #72c2f8)" d="M32 16c0 8.837-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0s16 7.163 16 16z"/></symbol>
+<symbol id="icon-ellipse-blue-stroke" viewBox="0 0 32 32"><path fill="none" stroke="#72c2f8" style="stroke:var(--color4, #72c2f8)" stroke-width="2.971" d="M30.514 16c0 8.016-6.498 14.514-14.514 14.514S1.486 24.016 1.486 16C1.486 7.984 7.984 1.486 16 1.486S30.514 7.984 30.514 16z"/><path fill="#72c2f8" style="fill:var(--color4, #72c2f8)" d="M27.429 16c0 6.312-5.117 11.429-11.429 11.429S4.571 22.312 4.571 16 9.688 4.571 16 4.571 27.429 9.688 27.429 16z"/></symbol>
+<symbol id="icon-ellipse-orange" viewBox="0 0 32 32"><path fill="#f3b249" style="fill:var(--color5, #f3b249)" d="M32 16c0 8.837-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0s16 7.163 16 16z"/></symbol>
+<symbol id="icon-ellipse-orange-stroke" viewBox="0 0 32 32"><path fill="none" stroke="#f3b249" style="stroke:var(--color5, #f3b249)" stroke-width="2.971" d="M30.514 16c0 8.016-6.498 14.514-14.514 14.514S1.486 24.016 1.486 16C1.486 7.984 7.984 1.486 16 1.486S30.514 7.984 30.514 16z"/><path fill="#f3b249" style="fill:var(--color5, #f3b249)" d="M27.429 16c0 6.312-5.117 11.429-11.429 11.429S4.571 22.312 4.571 16 9.688 4.571 16 4.571 27.429 9.688 27.429 16z"/></symbol>
+<symbol id="icon-ellipse-pink" viewBox="0 0 32 32"><path fill="#ea3d65" style="fill:var(--color6, #ea3d65)" d="M32 16c0 8.837-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0s16 7.163 16 16z"/></symbol>
+<symbol id="icon-ellipse-pink-stroke" viewBox="0 0 32 32"><path fill="none" stroke="#ea3d65" style="stroke:var(--color6, #ea3d65)" stroke-width="2.971" d="M30.514 16c0 8.016-6.498 14.514-14.514 14.514S1.486 24.016 1.486 16C1.486 7.984 7.984 1.486 16 1.486S30.514 7.984 30.514 16z"/><path fill="#ea3d65" style="fill:var(--color6, #ea3d65)" d="M27.429 16c0 6.312-5.117 11.429-11.429 11.429S4.571 22.312 4.571 16 9.688 4.571 16 4.571 27.429 9.688 27.429 16z"/></symbol>
 </defs>
 </svg>
