@@ -1,12 +1,8 @@
 import React from 'react';
-import {
-  Container,
-  Layout,
-  LinkLine,
-  LinkStyled,
-  Links,
-} from './AuthLayout.styled';
+import { Container, Layout } from './AuthLayout.styled';
+import PropTypes from 'prop-types';
 import useImage from './useImage';
+import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 
 const AuthLayout = ({ children, login, img }) => {
   const { image } = useImage('registerPage_loginPage/' + img);
@@ -14,18 +10,16 @@ const AuthLayout = ({ children, login, img }) => {
     <Layout img={image} login={login}>
       <Container>
         {children}
-        <Links>
-          <LinkStyled to={'/'}>Home</LinkStyled>
-          <LinkLine />
-          {login ? (
-            <LinkStyled to={'/register'}>Sign up</LinkStyled>
-          ) : (
-            <LinkStyled to={'/login'}>Log In</LinkStyled>
-          )}
-        </Links>
+        <AuthNavigate login={login} />
       </Container>
     </Layout>
   );
+};
+
+AuthLayout.propTypes = {
+  children: PropTypes.element,
+  login: PropTypes.bool,
+  img: PropTypes.string.isRequired,
 };
 
 export default AuthLayout;

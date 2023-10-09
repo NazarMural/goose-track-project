@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   ButtonIcon,
@@ -245,6 +246,10 @@ const AuthForm = ({ login }) => {
       </FormStyled>
     </ContainerForm>
   );
+};
+
+AuthForm.propTypes = {
+  login: PropTypes.bool,
 };
 
 export default AuthForm;
