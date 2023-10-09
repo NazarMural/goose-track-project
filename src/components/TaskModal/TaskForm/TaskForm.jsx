@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+} from 'react';
 import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import icons from '../../../assets/images/icons/icons.svg';
@@ -37,26 +40,41 @@ import { TaskValidateMessage } from '../TaskValidateMessage/TaskValidateMessage'
 
 const taskFormSchema = Yup.object().shape({
   title: Yup.string('Enter title')
-    .max(250, 'Text must be at most 250characters')
+    .max(
+      250,
+      'Text must be at most 250characters'
+    )
     .required('Title is required'),
   start: Yup.string('Enter start')
-    .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid start time')
+    .matches(
+      /^([01]\d|2[0-3]):([0-5]\d)$/,
+      'Invalid start time'
+    )
     .required('Start time is required'),
   end: Yup.string()
-    .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid end time')
+    .matches(
+      /^([01]\d|2[0-3]):([0-5]\d)$/,
+      'Invalid end time'
+    )
     .when('start', (start, schema) =>
       schema.test({
         test: function (end) {
           if (!start || !end) return true;
           return end > start;
         },
-        message: 'End time must be greater than start time',
+        message:
+          'End time must be greater than start time',
       })
     ),
 });
 
-export const TaskForm = ({ category, task = {}, onClose }) => {
-  const [operation, setOperation] = useState('create');
+export const TaskForm = ({
+  category,
+  task = {},
+  onClose,
+}) => {
+  const [operation, setOperation] =
+    useState('create');
 
   const dispatch = useDispatch();
 
@@ -84,7 +102,10 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
 
     if (operation === 'edit') {
       dispatch(
-        updateTaskOperation({ taskId, updateTaskData: taskData })
+        updateTaskOperation({
+          taskId,
+          updateTaskData: taskData,
+        })
       )
         .then(data => {
           if (data.error) {
@@ -102,7 +123,9 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
           if (data.error) {
             throw new Error(data.payload);
           }
-          Notify.success('Task has been successfully created.');
+          Notify.success(
+            'Task has been successfully created.'
+          );
           onClose();
         })
         .catch(error => {
@@ -113,7 +136,10 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
 
   return (
     <Formik
-      initialValues={{ ...initialValues, ...task }}
+      initialValues={{
+        ...initialValues,
+        ...task,
+      }}
       validationSchema={taskFormSchema}
       onSubmit={onSubmit}
     >
@@ -125,7 +151,9 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
             onClick={onClose}
           >
             <CloseIcon>
-              <use href={icons + '#icon-x-close'}></use>
+              <use
+                href={icons + '#icon-x-close'}
+              ></use>
             </CloseIcon>
           </CloseButton>
           <Form>
@@ -148,7 +176,10 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
             <FieldContainer>
               <Label>
                 Start
-                <TimeField type="time" name="start" />
+                <TimeField
+                  type="time"
+                  name="start"
+                />
                 <TaskValidateMessage
                   errors={errors.start}
                   touched={touched?.start}
@@ -157,7 +188,10 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
               </Label>
               <Label>
                 End
-                <TimeField type="time" name="end" />
+                <TimeField
+                  type="time"
+                  name="end"
+                />
                 <TaskValidateMessage
                   errors={errors.end}
                   touched={touched?.end}
@@ -176,12 +210,20 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
                 {values.priority === 'low' ? (
                   <BlueLine>
                     <use
-                      href={icons + '#icon-ellipse-blue-stroke'}
+                      href={
+                        icons +
+                        '#icon-ellipse-blue-stroke'
+                      }
                     ></use>
                   </BlueLine>
                 ) : (
                   <Blue>
-                    <use href={icons + '#icon-ellipse-blue'}></use>
+                    <use
+                      href={
+                        icons +
+                        '#icon-ellipse-blue'
+                      }
+                    ></use>
                   </Blue>
                 )}
                 Low
@@ -195,12 +237,20 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
                 {values.priority === 'medium' ? (
                   <OrangeLine>
                     <use
-                      href={icons + '#icon-ellipse-orange-stroke'}
+                      href={
+                        icons +
+                        '#icon-ellipse-orange-stroke'
+                      }
                     ></use>
                   </OrangeLine>
                 ) : (
                   <Orange>
-                    <use href={icons + '#icon-ellipse-orange'}></use>
+                    <use
+                      href={
+                        icons +
+                        '#icon-ellipse-orange'
+                      }
+                    ></use>
                   </Orange>
                 )}
                 Medium
@@ -214,12 +264,20 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
                 {values.priority === 'high' ? (
                   <RedLine>
                     <use
-                      href={icons + '#icon-ellipse-pink-stroke'}
+                      href={
+                        icons +
+                        '#icon-ellipse-pink-stroke'
+                      }
                     ></use>
                   </RedLine>
                 ) : (
                   <Red>
-                    <use href={icons + '#icon-ellipse-pink'}></use>
+                    <use
+                      href={
+                        icons +
+                        '#icon-ellipse-pink'
+                      }
+                    ></use>
                   </Red>
                 )}
                 High
@@ -229,21 +287,33 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
             <ButtonContainer>
               {operation === 'edit' ? (
                 <OperationButton type="submit">
-                  <EditIcon stroke="#fff" fill="none">
-                    <use href={icons + '#icon-pencil'}></use>
+                  <EditIcon
+                    stroke="#fff"
+                    fill="none"
+                  >
+                    <use
+                      href={
+                        icons + '#icon-pencil'
+                      }
+                    ></use>
                   </EditIcon>
                   Edit
                 </OperationButton>
               ) : (
                 <OperationButton type="submit">
                   <AddIcon stroke="#fff">
-                    <use href={icons + '#icon-plus'}></use>
+                    <use
+                      href={icons + '#icon-plus'}
+                    ></use>
                   </AddIcon>
                   Add
                 </OperationButton>
               )}
 
-              <CancelButton type="button" onClick={onClose}>
+              <CancelButton
+                type="button"
+                onClick={onClose}
+              >
                 Cancel
               </CancelButton>
             </ButtonContainer>
