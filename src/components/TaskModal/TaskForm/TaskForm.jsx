@@ -4,7 +4,10 @@ import { useDispatch } from 'react-redux';
 import icons from '../../../assets/images/icons/icons.svg';
 import * as Yup from 'yup';
 
-import { addTaskOperation, updateTaskOperation } from '../../../redux/tasks/operations';
+import {
+  addTaskOperation,
+  updateTaskOperation,
+} from '../../../redux/tasks/operations';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   OperationButton,
@@ -33,7 +36,9 @@ import {
 import { TaskValidateMessage } from '../TaskValidateMessage/TaskValidateMessage';
 
 const taskFormSchema = Yup.object().shape({
-  title: Yup.string('Enter title').max(250, 'Text must be at most 250characters').required('Title is required'),
+  title: Yup.string('Enter title')
+    .max(250, 'Text must be at most 250characters')
+    .required('Title is required'),
   start: Yup.string('Enter start')
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid start time')
     .required('Start time is required'),
@@ -120,7 +125,11 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
     >
       {({ values, errors, touched }) => (
         <FormContainer>
-          <CloseButton type="button" aria-label="close button" onClick={onClose}>
+          <CloseButton
+            type="button"
+            aria-label="close button"
+            onClick={onClose}
+          >
             <CloseIcon>
               <use href={icons + '#icon-x-close'}></use>
             </CloseIcon>
@@ -130,7 +139,11 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
               <Label>
                 Title
                 <TitleField type="text" name="title" placeholder="Enter text" />
-                <TaskValidateMessage errors={errors.title} touched={touched?.title} field="title" />
+                <TaskValidateMessage
+                  errors={errors.title}
+                  touched={touched?.title}
+                  field="title"
+                />
               </Label>
             </TitleFieldContainer>
 
@@ -138,12 +151,20 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
               <Label>
                 Start
                 <TimeField type="time" name="start" />
-                <TaskValidateMessage errors={errors.start} touched={touched?.start} field="start time" />
+                <TaskValidateMessage
+                  errors={errors.start}
+                  touched={touched?.start}
+                  field="start time"
+                />
               </Label>
               <Label>
                 End
                 <TimeField type="time" name="end" />
-                <TaskValidateMessage errors={errors.end} touched={touched?.end} field="end time" />
+                <TaskValidateMessage
+                  errors={errors.end}
+                  touched={touched?.end}
+                  field="end time"
+                />
               </Label>
             </FieldContainer>
 
