@@ -4,7 +4,10 @@ import { useDispatch } from 'react-redux';
 import icons from '../../../assets/images/icons/icons.svg';
 import * as Yup from 'yup';
 
-import { addTaskOperation, updateTaskOperation } from '../../../redux/tasks/operations';
+import {
+  addTaskOperation,
+  updateTaskOperation,
+} from '../../../redux/tasks/operations';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   OperationButton,
@@ -33,7 +36,9 @@ import {
 import { TaskValidateMessage } from '../TaskValidateMessage/TaskValidateMessage';
 
 const taskFormSchema = Yup.object().shape({
-  title: Yup.string('Enter title').max(250, 'Text must be at most 250characters').required('Title is required'),
+  title: Yup.string('Enter title')
+    .max(250, 'Text must be at most 250characters')
+    .required('Title is required'),
   start: Yup.string('Enter start')
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid start time')
     .required('Start time is required'),
@@ -78,7 +83,9 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
     };
 
     if (operation === 'edit') {
-      dispatch(updateTaskOperation({ taskId, updateTaskData: taskData }))
+      dispatch(
+        updateTaskOperation({ taskId, updateTaskData: taskData })
+      )
         .then(data => {
           if (data.error) {
             throw new Error(data.payload);
@@ -105,10 +112,18 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
   };
 
   return (
-    <Formik initialValues={{ ...initialValues, ...task }} validationSchema={taskFormSchema} onSubmit={onSubmit}>
+    <Formik
+      initialValues={{ ...initialValues, ...task }}
+      validationSchema={taskFormSchema}
+      onSubmit={onSubmit}
+    >
       {({ values, errors, touched }) => (
         <FormContainer>
-          <CloseButton type="button" aria-label="close button" onClick={onClose}>
+          <CloseButton
+            type="button"
+            aria-label="close button"
+            onClick={onClose}
+          >
             <CloseIcon>
               <use href={icons + '#icon-x-close'}></use>
             </CloseIcon>
@@ -117,8 +132,16 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
             <TitleFieldContainer>
               <Label>
                 Title
-                <TitleField type="text" name="title" placeholder="Enter text" />
-                <TaskValidateMessage errors={errors.title} touched={touched?.title} field="title" />
+                <TitleField
+                  type="text"
+                  name="title"
+                  placeholder="Enter text"
+                />
+                <TaskValidateMessage
+                  errors={errors.title}
+                  touched={touched?.title}
+                  field="title"
+                />
               </Label>
             </TitleFieldContainer>
 
@@ -126,21 +149,35 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
               <Label>
                 Start
                 <TimeField type="time" name="start" />
-                <TaskValidateMessage errors={errors.start} touched={touched?.start} field="start time" />
+                <TaskValidateMessage
+                  errors={errors.start}
+                  touched={touched?.start}
+                  field="start time"
+                />
               </Label>
               <Label>
                 End
                 <TimeField type="time" name="end" />
-                <TaskValidateMessage errors={errors.end} touched={touched?.end} field="end time" />
+                <TaskValidateMessage
+                  errors={errors.end}
+                  touched={touched?.end}
+                  field="end time"
+                />
               </Label>
             </FieldContainer>
 
             <PriorityContainer role="group">
               <PriorityLabel>
-                <PriorityField type="radio" name="priority" value="low" />
+                <PriorityField
+                  type="radio"
+                  name="priority"
+                  value="low"
+                />
                 {values.priority === 'low' ? (
                   <BlueLine>
-                    <use href={icons + '#icon-ellipse-blue-stroke'}></use>
+                    <use
+                      href={icons + '#icon-ellipse-blue-stroke'}
+                    ></use>
                   </BlueLine>
                 ) : (
                   <Blue>
@@ -150,10 +187,16 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
                 Low
               </PriorityLabel>
               <PriorityLabel>
-                <PriorityField type="radio" name="priority" value="medium" />
+                <PriorityField
+                  type="radio"
+                  name="priority"
+                  value="medium"
+                />
                 {values.priority === 'medium' ? (
                   <OrangeLine>
-                    <use href={icons + '#icon-ellipse-orange-stroke'}></use>
+                    <use
+                      href={icons + '#icon-ellipse-orange-stroke'}
+                    ></use>
                   </OrangeLine>
                 ) : (
                   <Orange>
@@ -163,10 +206,16 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
                 Medium
               </PriorityLabel>
               <PriorityLabel>
-                <PriorityField type="radio" name="priority" value="high" />
+                <PriorityField
+                  type="radio"
+                  name="priority"
+                  value="high"
+                />
                 {values.priority === 'high' ? (
                   <RedLine>
-                    <use href={icons + '#icon-ellipse-pink-stroke'}></use>
+                    <use
+                      href={icons + '#icon-ellipse-pink-stroke'}
+                    ></use>
                   </RedLine>
                 ) : (
                   <Red>
