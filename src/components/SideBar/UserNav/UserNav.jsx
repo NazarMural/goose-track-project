@@ -21,7 +21,7 @@ export const UserNavigation = ({ removeSideBar }) => {
         <NavList>
           <NavListItem page="account">
             <NavLinkSideBar to="account" onClick={handleChangeCurrentPage}>
-              <IconWithStroke>
+              <IconWithStroke page="account">
                 <use xlinkHref={`${sprite}#icon-user`} />
               </IconWithStroke>
               My account
@@ -29,7 +29,7 @@ export const UserNavigation = ({ removeSideBar }) => {
           </NavListItem>
           <NavListItem page="calendar">
             <NavLinkSideBar to="calendar" onClick={handleChangeCurrentPage}>
-              <IconWithStroke>
+              <IconWithStroke page="calendar">
                 <use xlinkHref={`${sprite}#icon-calendar`} />
               </IconWithStroke>
               Calendar
@@ -37,7 +37,7 @@ export const UserNavigation = ({ removeSideBar }) => {
           </NavListItem>
           <NavListItem page="statistics">
             <NavLinkSideBar to="statistics" onClick={handleChangeCurrentPage}>
-              <IconWithFill>
+              <IconWithFill page="statistics">
                 <use xlinkHref={`${sprite}#icon-chart`} />
               </IconWithFill>
               Statistics
