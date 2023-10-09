@@ -16,7 +16,7 @@ import { fetchTasksOperation } from 'redux/tasks/operations';
 import { useParams } from 'react-router-dom';
 import Head from './Head/Head';
 import { TaskModal } from 'components/TaskModal/TaskModal';
-import { selectIsUpdating } from 'redux/tasks/selectors';
+import { selectTasks } from 'redux/tasks/selectors';
 import moment from 'moment';
 import { selectTheme } from 'redux/theme/selectors';
 
@@ -33,24 +33,27 @@ const ChoosedDay = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
   const [isDisabledAddTask, setIsDisabledAddTask] = useState(false);
+  const [taskForForm, setTaskForForm] = useState({});
+  const [currentCategory, setCurrentCategory] = useState('');
   const currentTheme = useSelector(selectTheme);
-
-  const isEditTask = useSelector(selectIsUpdating);
+  const reduxTasks = useSelector(selectTasks);
 
   useEffect(() => {
     (async () => {
       const currentMonth = moment(currentDay).format('YYYY-MM');
 
-      const { payload } = await dispatch(fetchTasksOperation(currentMonth));
-
-      const filteredTasks = payload
-        ? payload
-            .filter(({ date }) => date === currentDay)
-            .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
-        : [];
-      setTasks(filteredTasks);
+      await dispatch(fetchTasksOperation(currentMonth));
     })();
-  }, [currentDay, dispatch, isEditTask]);
+  }, [currentDay, dispatch]);
+
+  useEffect(() => {
+    const filteredTasks = reduxTasks
+      ? reduxTasks
+          .filter(({ date }) => date === currentDay)
+          .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+      : [];
+    setTasks(filteredTasks);
+  }, [currentDay, reduxTasks]);
 
   useEffect(() => {
     const nowDay = new Date(moment().format('YYYY-MM-DD'));
@@ -65,11 +68,20 @@ const ChoosedDay = () => {
     setIsDisabledAddTask(false);
   }, [currentDay]);
 
-  const onAdd = () => {
+  const onAdd = category => {
     setIsFormOpen(true);
+    setCurrentCategory(category);
+  };
+
+  const onEdit = (task, category) => {
+    setTaskForForm(task);
+    setIsFormOpen(true);
+    setCurrentCategory(category);
   };
 
   const closeForm = () => {
+    setCurrentCategory('');
+    setTaskForForm({});
     setIsFormOpen(false);
   };
 
@@ -88,13 +100,13 @@ const ChoosedDay = () => {
             <Tasks
               type={type}
               tasks={tasks}
-              setTasks={setTasks}
+              onEdit={onEdit}
               isShowPopUpReplace={isShowPopUpReplace}
               setIsShowPopUpReplace={setIsShowPopUpReplace}
             />
             <ContainerButtonAddTask>
               <ButtonAddTask
-                onClick={onAdd}
+                onClick={() => onAdd(type)}
                 disabled={isDisabledAddTask}
                 currentTheme={currentTheme}
               >
@@ -104,15 +116,16 @@ const ChoosedDay = () => {
                 <ButtonAddTaskText>Add task</ButtonAddTaskText>
               </ButtonAddTask>
             </ContainerButtonAddTask>
-            {isFormOpen && (
-              <TaskModal
-                isOpen={isFormOpen}
-                onClose={closeForm}
-                category={type}
-              />
-            )}
           </ContainerSecond>
         ))}
+        {isFormOpen && (
+          <TaskModal
+            isOpen={isFormOpen}
+            onClose={closeForm}
+            category={currentCategory}
+            task={{ ...taskForForm, date: currentDay }}
+          />
+        )}
       </ContainerMain>
     </>
   );

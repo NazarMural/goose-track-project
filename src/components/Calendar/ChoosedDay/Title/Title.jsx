@@ -27,7 +27,10 @@ const Title = ({ type, onAdd, tasks, isDisabledAddTask }) => {
           }
         })()}
       </MainTitle>
-      <TitleButtonAddTask disabled={isDisabledAddTask} onClick={onAdd}>
+      <TitleButtonAddTask
+        disabled={isDisabledAddTask}
+        onClick={() => onAdd(type)}
+      >
         <IconAddTask>
           <use xlinkHref={sprite + '#icon-icon-plus'} />
         </IconAddTask>
