@@ -5,7 +5,8 @@ import { setDay } from 'helpers/setDay';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { fetchTasksOperation } from 'redux/tasks/operations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsUpdating } from 'redux/tasks/selectors';
 
 export const CalendarTable = () => {
   const { currentMonth } = useParams();
@@ -16,13 +17,14 @@ export const CalendarTable = () => {
   const date = moment(`${currentMonth}-01`, 'YYYY-MM-DD');
   const { startMonth, endMonth, weeks, daysArray } = setDay(date);
   const isCurrentDay = day => moment().isSame(day, 'day');
+  const editTask = useSelector(selectIsUpdating);
 
   useEffect(() => {
     (async () => {
       const { payload } = await dispatch(fetchTasksOperation(currentMonth));
       setTasks(payload);
     })();
-  }, [currentMonth, dispatch]);
+  }, [currentMonth, dispatch, editTask]);
 
   const handleNavigateToDay = date => {
     const day = moment(date).format('YYYY-MM-DD');
@@ -36,13 +38,13 @@ export const CalendarTable = () => {
       {daysArray.map((dayItem, idx) => (
         <Cell key={idx}>
           <WrapperDay
-            // to={`/calendar/day/${moment(dayItem).format('YYYY-MM-DD')}`}
             onClick={() => handleNavigateToDay(dayItem)}
+            // to={`/calendar/day/${moment(dayItem).format('YYYY-MM-DD')}`}
           >
             <Day
               color={`${
                 isCurrentDay(dayItem)
-                  ? 'var(--date-color-accent)'
+                  ? '#FFFFFF'
                   : `${
                       startMonth > dayItem || endMonth < dayItem
                         ? 'transparent'

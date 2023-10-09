@@ -127,8 +127,8 @@ html.dark {
   --calendar-grid-border: #FFFFFF26;
   --date-color: #ffffff;
   --date-color-accent: #22232D;
-  --chevron-btn-color: #FFFFFF26;
-    --chevron-btn-disabled-color: #FFFFFF;
+  --chevron-btn-color: #FFFFFF;
+    --chevron-btn-disabled-color: #FFFFFF26;
 --switch-type-color-active: #FFFFFF;
 --switch-type-bg: #21222C;
 --switch-type-bg-active: #3E85F3;
