@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
 import Modal from '../../../Modal/Modal';
 import {
@@ -120,7 +120,7 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
           <Rating
             onRatingChange={handleRatingChange}
             required
-            value={formData?.rating}
+            value={parseInt(formData?.rating)}
             disabled={isEditMode && !isEditing}
           ></Rating>
         </div>
@@ -192,9 +192,9 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
 };
 
 ReviewForm.propTypes = {
-  isOpen: PropTypes.bool.isRequired, 
-  onClose: PropTypes.func.isRequired, 
-  review: PropTypes.object, 
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  review: PropTypes.object,
 };
 
 export default ReviewForm;
