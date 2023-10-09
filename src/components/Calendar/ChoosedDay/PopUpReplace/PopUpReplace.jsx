@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import sprite from '../../../../assets/images/icons/icons.svg';
 import {
@@ -121,6 +122,14 @@ const PopUpReplace = ({
       ))}
     </ContainerReplaceTask>
   );
+};
+
+PopUpReplace.propTypes = {
+  type: PropTypes.oneOf(['to-do', 'in-progress', 'done']),
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func.isRequired,
+  setIsShowPopUpReplace: PropTypes.func.isRequired,
+  _id: PropTypes.string.isRequired,
 };
 
 export default PopUpReplace;

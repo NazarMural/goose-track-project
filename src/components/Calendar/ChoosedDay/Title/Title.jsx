@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ContainerTitle,
   IconAddTask,
@@ -33,6 +34,13 @@ const Title = ({ type, onAdd, tasks, isDisabledAddTask }) => {
       </TitleButtonAddTask>
     </ContainerTitle>
   );
+};
+
+Title.propTypes = {
+  type: PropTypes.oneOf(['to-do', 'in-progress', 'done']),
+  onAdd: PropTypes.func.isRequired,
+  tasks: PropTypes.array.isRequired,
+  isDisabledAddTask: PropTypes.bool.isRequired,
 };
 
 export default Title;
