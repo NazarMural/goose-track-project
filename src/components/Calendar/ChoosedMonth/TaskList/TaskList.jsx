@@ -1,19 +1,17 @@
 import { useState } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import { List, TaskItem, TaskLink } from './TaskList.styled';
-// import { useNavigate } from 'react-router';
 import { TaskModal } from 'components/TaskModal/TaskModal';
 
 export const TaskList = ({ tasks, currentDate }) => {
-  // const navigate = useNavigate();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [taskForForm, setTaskForForm] = useState({});
 
   const handleChangeTask = task => {
     setTaskForForm(task);
     setIsFormOpen(true);
-    // navigate(`/calendar/day/${day}`);
   };
 
   const closeForm = () => {
@@ -31,7 +29,7 @@ export const TaskList = ({ tasks, currentDate }) => {
             bg={`var(--calend-${task.priority}-bg-color)`}
             color={`var(--calend-${task.priority}-color)`}
           >
-            <div onClick={() => handleChangeTask(task)}>
+            <div onClick={() => handleChangeTask(task)} id="task-link">
               <TaskLink>{task.title}</TaskLink>
             </div>
             {isFormOpen && (
@@ -47,3 +45,9 @@ export const TaskList = ({ tasks, currentDate }) => {
     </List>
   );
 };
+
+TaskList.propTypes = {
+  tasks: PropTypes.array,
+  currentDate: PropTypes.object.isRequired,
+};
+

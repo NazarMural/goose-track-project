@@ -1,48 +1,93 @@
-// const { Link } = require("react-router-dom");
+import { useNavigate, useParams } from 'react-router';
+import sprite from 'assets/images/icons/icons.svg';
+import moment from 'moment';
+import { Date, DateContainer, DateWrapper, Toggle, ToggleIcon, ToggleWrapper } from './ChangeDate.styled';
 
-// const ChangeDate = () => {
-//     return (
-//       <div>
-//         <Link
-//           to={format === 'month' ? `month/${month}` : `day/${day}`}
-//           onClick={() => handleClickBack(format)}
-//         >
-//           <svg
-//             xmlns="http://www.w3.org/2000/svg"
-//             width="16"
-//             height="16"
-//             viewBox="0 0 16 16"
-//             fill="none"
-//           >
-//             <path
-//               d="M10 12L6 8L10 4"
-//               stroke="#DCE3E5"
-//               strokeWidth="1.5"
-//               strokeLinecap="round"
-//               strokeLinejoin="round"
-//             />
-//           </svg>
-//         </Link>
-//         <Link
-//           to={format === 'month' ? `month/${month}` : `day/${day}`}
-//           onClick={() => handleClick(format)}
-//         >
-//           <svg
-//             xmlns="http://www.w3.org/2000/svg"
-//             width="16"
-//             height="16"
-//             viewBox="0 0 16 16"
-//             fill="none"
-//           >
-//             <path
-//               d="M6 12L10 8L6 4"
-//               stroke="#343434"
-//               strokeWidth="1.5"
-//               strokeLinecap="round"
-//               strokeLinejoin="round"
-//             />
-//           </svg>
-//         </Link>
-//       </div>
-//     );
-// }
+// const {
+//   DateContainer,
+//   DateWrapper,
+//   Date,
+//   ToggleWrapper,
+//   Toggle,
+//   ToggleIcon,
+// } = require('./ChangeDate.styled');
+
+const ChangeDate = () => {
+  const params = useParams();
+  const navigate = useNavigate();
+
+  let paramsType;
+  let paramsDate;
+
+  if (params.currentDay) {
+    paramsType = 'day';
+    paramsDate = params.currentDay;
+    localStorage.setItem('type', 'day');
+  }
+  if (params.currentMonth) {
+    paramsType = 'month';
+    paramsDate = params.currentMonth;
+    localStorage.setItem('type', 'month');
+  }
+
+  const handleClick = () => {
+    const date = moment(paramsDate).add(1, paramsType).format('YYYY-MM-DD');
+    //   setCurrentDate(date);
+    localStorage.setItem('date', date);
+    const month = moment(date).format('YYYY-MM');
+    const day = moment(date).format('YYYY-MM-DD');
+    navigate(paramsType === 'month' ? `month/${month}` : `day/${day}`);
+    //   if (params.currentDay) {
+    //       localStorage.setItem('type', 'day')
+    //     // setFormat('day');
+    //   }
+  };
+
+  const handleClickBack = () => {
+    const date = moment(paramsDate)
+      .subtract(1, paramsType)
+      .format('YYYY-MM-DD');
+    localStorage.setItem('date', date);
+    //   setCurrentDate(date);
+    const month = moment(date).format('YYYY-MM');
+    navigate(paramsType === 'month' ? `month/${month}` : `day/${date}`);
+  };
+
+  return (
+    <DateContainer>
+      <DateWrapper>
+        <Date>
+          {moment(paramsDate).format(
+            paramsType === 'day' ? 'DD MMM YYYY' : 'MMMM YYYY'
+          )}
+        </Date>
+      </DateWrapper>
+      <ToggleWrapper>
+        <div onClick={handleClickBack}>
+          <Toggle>
+            <ToggleIcon width="16" height="16">
+              <use
+                xlinkHref={`${sprite}#icon-chevron-left`}
+                width={16}
+                height={16}
+              />
+            </ToggleIcon>
+          </Toggle>
+        </div>
+        <div onClick={handleClick}>
+          <Toggle>
+            <ToggleIcon width="16" height="16">
+              <use
+                xlinkHref={`${sprite}#icon-chevron-right`}
+                width={16}
+                height={16}
+              />
+            </ToggleIcon>
+          </Toggle>
+        </div>
+      </ToggleWrapper>
+    </DateContainer>
+  );
+};
+
+export default ChangeDate;
