@@ -19,6 +19,9 @@ const Head = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const day = setDay(currentDay).startWeek.day(7).format('D');
+    console.log(day);
+
     const currentDaySlice = currentDay.split('-').slice(2).join('');
     [...Array(7)].map((_, idx) => {
       const dayIdx = setDay(currentDay)
@@ -41,7 +44,7 @@ const Head = () => {
     <HeadContainer isSelected={isSelected}>
       {[...Array(7)].map((_, idx) => (
         <HeadCell
-          onClick={() => onChangeDay(moment(currentDay).day(idx + 1))}
+          onClick={() => onChangeDay(setDay(currentDay).startWeek.day(idx + 1))}
           key={idx}
         >
           <NameWeek>
