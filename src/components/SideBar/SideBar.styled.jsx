@@ -29,6 +29,6 @@ export const SideBarEl = styled.aside`
 
   ${max(desktop - 0.02)} {
     height: 100vh;
-    max-height: 900px;
+    /* max-height: 900px; */
   }
 `;
