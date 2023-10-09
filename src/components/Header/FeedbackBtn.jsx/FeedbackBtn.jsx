@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { FeedbackButton } from './FeedbackBtn.styled';
 
 export const FeedbackBtn = ({ openForm }) => {
@@ -11,4 +11,8 @@ export const FeedbackBtn = ({ openForm }) => {
       Feedback
     </FeedbackButton>
   );
+};
+
+FeedbackBtn.propTypes = {
+  openForm: PropTypes.func,
 };

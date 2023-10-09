@@ -1,5 +1,6 @@
 import sprite from '../../../assets/images/icons/icons.svg';
 import { BurgerButtonEl } from './BurgerBtn.styled';
+import PropTypes from 'prop-types';
 
 export const BurgerBtn = ({ addSideBar }) => {
   return (
@@ -9,4 +10,8 @@ export const BurgerBtn = ({ addSideBar }) => {
       </svg>
     </BurgerButtonEl>
   );
+};
+
+BurgerBtn.propTypes = {
+  addSideBar: PropTypes.func,
 };

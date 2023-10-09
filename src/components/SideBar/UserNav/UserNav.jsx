@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   NavTitle,
   NavList,
@@ -7,18 +8,12 @@ import {
   IconWithFill,
 } from './UserNav.styled';
 import sprite from '../../../assets/images/icons/icons.svg';
-// import { pages } from 'components/MainLayout/MainLayout';
 
-export const UserNavigation = ({
-  removeSideBar,
-  // currentPage,
-  // changeCurrentPage,
-}) => {
-  const handleChangeCurrentPage = page => {
+export const UserNavigation = ({ removeSideBar }) => {
+  const handleChangeCurrentPage = () => {
     removeSideBar();
-    // changeCurrentPage(page);
   };
-  // console.log(pages);
+
   return (
     <>
       <NavTitle>User panel</NavTitle>
@@ -52,4 +47,8 @@ export const UserNavigation = ({
       </nav>
     </>
   );
+};
+
+UserNavigation.propTypes = {
+  removeSideBar: PropTypes.func,
 };

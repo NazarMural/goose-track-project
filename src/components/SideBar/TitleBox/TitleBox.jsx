@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { CloseSideBarBtn } from '../CloseBtn/CloseBtn';
 import { GooseImage } from '../GooseImage/GooseImage';
 import { TitleBoxEl } from './TitleBox.styled';
@@ -12,4 +13,8 @@ export const TitleBox = ({ removeSideBar }) => {
       <CloseSideBarBtn removeSideBar={removeSideBar} />
     </TitleBoxEl>
   );
+};
+
+TitleBox.propTypes = {
+  removeSideBar: PropTypes.func,
 };

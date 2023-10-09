@@ -30,7 +30,11 @@
 --sidebar-text-color: #34343480;
 --sidebar-bg-color: #FFFFFF;
 --sidebar-accent-color: #E3F3FF;
+--sidebar-logo-color: #3E85F3;
+--sidebar-navTitle-color: #34343480;
 
+/* header-styles */
+--name-color: #343434;
 --burger-color: #343434;
 
 /* review-styles */
@@ -113,10 +117,12 @@ html.dark {
 --primary-bg-color: #21222C;
 --page-bg-color: #171820;
 
+--sidebar-logo-color: #E3F3FF;
+--sidebar-navTitle-color: #FAFAFA4D;
 --sidebar-text-color: #FFFFFF;
 --sidebar-bg-color: #13151A;
 --sidebar-accent-color: #3E85F3;
-
+--name-color: #FFFFFF;
 --burger-color: #FFFFFF;
 --star-color: #353647;
 --review-btn-cancel-color:#FFFFFF;
