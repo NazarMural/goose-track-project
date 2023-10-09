@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import { Backdrop, Container, IconClose, CloseButton } from './Modal.styled';
 import sprite from '../../assets/images/icons/icons.svg';
@@ -49,6 +50,13 @@ const Modal = ({
     </Backdrop>,
     document.getElementById('modal-root')
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired, 
+  onClose: PropTypes.func.isRequired,
+  closeButtonPosition: PropTypes.object,
+  children: PropTypes.node, 
 };
 
 export default Modal;

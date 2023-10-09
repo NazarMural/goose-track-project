@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types'; 
 import { StarContainer, Star, FilledStar } from './Rating.styled';
 import sprite from '../../../../assets/images/icons/icons.svg';
 
-const Rating = ({ onRatingChange }) => {
+const Rating = ({ value, onRatingChange, disabled }) => {
   const [rating, setRating] = useState(0);
 
   const handleStarClick = selectedRating => {
+    if (disabled) return;
     setRating(selectedRating);
     onRatingChange(selectedRating);
   };
+
+  useEffect(() => {
+    setRating(value);
+  }, [value]);
 
   return (
     <div>
@@ -29,6 +35,12 @@ const Rating = ({ onRatingChange }) => {
       </StarContainer>
     </div>
   );
+};
+
+Rating.propTypes = {
+  value: PropTypes.number.isRequired, 
+  onRatingChange: PropTypes.func.isRequired, 
+  disabled: PropTypes.bool,
 };
 
 export default Rating;

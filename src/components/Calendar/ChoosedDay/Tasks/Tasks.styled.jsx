@@ -10,9 +10,19 @@ export const ListTasks = styled.ul`
   flex-direction: column;
   gap: 14px;
   width: 328px;
+  & #popUpReplace {
+    ${({ tasks }) =>
+      tasks.length === 1 ? 'top: 16px !important; margin-right: 12px;' : null}
+  }
 
-  & li:nth-last-child(-n + 1) {
+  & li:nth-last-of-type(-n + 1) {
     margin-bottom: 32px;
+
+    & #popUpReplace {
+      margin-top: 0;
+      top: -12px;
+      ${({ tasks }) => (tasks.length === 1 ? '0' : '-12px')}
+    }
   }
   ${min(tablet)} {
     width: 334px;
@@ -123,11 +133,26 @@ export const ContainerIcons = styled.div`
   margin-left: auto;
 `;
 
+export const IconTaskButton = styled.button`
+  background-color: transparent;
+  border: none;
+  padding: 0;
+
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    & svg {
+      stroke: var(--accent-color);
+    }
+  }
+`;
+
 export const IconTask = styled.svg`
   height: 14px;
   width: 14px;
   stroke: var(--primary-text-color);
   cursor: pointer;
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
   & use {
     fill: transparent;
   }

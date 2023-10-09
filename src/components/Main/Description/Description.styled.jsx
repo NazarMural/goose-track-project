@@ -3,7 +3,7 @@ import { mobile, tablet, min, desktop, max } from 'styles/media';
 
 export const DescriptionBg = styled.div`
   width: 100%;
-  background-color: var(--primary-bg-color);
+  background-color: var(--public-page-bg);
 `;
 
 export const DescriptionContainer = styled.div`
@@ -18,7 +18,6 @@ export const DescriptionContainer = styled.div`
   ${min(desktop)} {
     max-width: 1440px;
   }
-
 `;
 
 export const DescriptionContent = styled.ul`
@@ -27,7 +26,7 @@ export const DescriptionContent = styled.ul`
   padding: 64px 20px 0;
   margin-top: 0;
   margin-bottom: 0;
-  background-color: var(--primary-bg-color);
+  background-color: var(--public-page-bg);
 
   & > li:nth-of-type(2) > :first-of-type {
     margin-left: auto;
@@ -37,9 +36,9 @@ export const DescriptionContent = styled.ul`
     padding: 64px 32px 0;
   }
   ${min(desktop)} {
-  padding: 64px 128px;
-  // margin-left: auto;
-  // margin-right: auto;
+    padding: 64px 128px;
+    // margin-left: auto;
+    // margin-right: auto;
   }
 `;
 

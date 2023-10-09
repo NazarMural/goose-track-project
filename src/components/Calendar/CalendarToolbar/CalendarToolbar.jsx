@@ -1,5 +1,5 @@
 import sprite from '../../../assets/images/icons/icons.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment';
 import {
   Date,
@@ -9,55 +9,40 @@ import {
   ToggleIcon,
   ToggleWrapper,
   Toolbar,
-  Type,
   TypeWrapper,
 } from './CalendarToolbar.styled';
 import { TypeLink } from './CalendarToolbar.styled';
 import { useEffect, useState } from 'react';
 
-const CalendarToolbar = ({ globalFormat }) => {
+const CalendarToolbar = () => {
   const [currentDate, setCurrentDate] = useState('');
-  //   localStorage.getItem('date') || moment().format('YYYY-MM-DD').toString()
-  // );
   const [format, setFormat] = useState('');
+  const params = useParams();
+
+  let paramsType;
+  let paramsDate;
+
+  if (params.currentDay) {
+    paramsType = 'day';
+    paramsDate = params.currentDay;
+  }
+  if (params.currentMonth) {
+    paramsType = 'month';
+    paramsDate = params.currentMonth;
+  }
 
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
 
-  // console.log(month);
-  // localStorage.getItem('date') || moment().format('YYYY-MM-DD').toString()
-  // const [format, setFormat] = useState(localStorage.getItem('type'));
-  //|| 'month');
-  // ;
-  // localStorage.getItem('type') || 'month';
   const month = moment(currentDate).format('YYYY-MM');
   const day = moment(currentDate).format('YYYY-MM-DD');
-  // useEffect(() => {
-  //   setCurrentDate(currentDate);
-  //   // localStorage.setItem('date', currentDate);
-  // }, [currentDate, setCurrentDate]);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const month = moment(currentDate).format('YYYY-MM');
-  //     const day = moment(currentDate).format('YYYY-MM-DD');
-  //     const { payload } = await dispatch(fetchTasksOperation(month));
-  //     setTasks(payload);
-  //   })();
-
-  //   // month = moment(currentDate).format('YYYY-MM');
-  // }, [currentDate, dispatch]);
 
   useEffect(() => {
-    // Зчитуємо дані з localStorage
     const storedDate = localStorage.getItem('date');
     const storedType = localStorage.getItem('type');
 
-    // Встановлюємо значення лише після завершення зчитування
     if (storedDate) {
       setCurrentDate(storedDate);
     } else {
-      // Якщо дані відсутні в localStorage, встановлюємо значення за замовчуванням
       setCurrentDate(moment().format('YYYY-MM-DD'));
     }
 
@@ -69,20 +54,25 @@ const CalendarToolbar = ({ globalFormat }) => {
   }, []);
 
   const handleClick = () => {
-    const date = moment(currentDate).add(1, format).format('YYYY-MM-DD');
+    const date = moment(paramsDate).add(1, paramsType).format('YYYY-MM-DD');
     setCurrentDate(date);
     localStorage.setItem('date', date);
     const month = moment(date).format('YYYY-MM');
     const day = moment(date).format('YYYY-MM-DD');
-    navigate(globalFormat === 'month' ? `month/${month}` : `day/${day}`);
+    navigate(paramsType === 'month' ? `month/${month}` : `day/${day}`);
+    if (params.currentDay) {
+      setFormat('day');
+    }
   };
 
   const handleClickBack = () => {
-    const date = moment(currentDate).subtract(1, format).format('YYYY-MM-DD');
+    const date = moment(paramsDate)
+      .subtract(1, paramsType)
+      .format('YYYY-MM-DD');
     localStorage.setItem('date', date);
     setCurrentDate(date);
     const month = moment(date).format('YYYY-MM');
-    navigate(globalFormat === 'month' ? `month/${month}` : `day/${date}`);
+    navigate(paramsType === 'month' ? `month/${month}` : `day/${date}`);
   };
 
   const handleChangeType = e => {
@@ -105,8 +95,8 @@ const CalendarToolbar = ({ globalFormat }) => {
       <DateContainer>
         <DateWrapper>
           <Date>
-            {moment(currentDate).format(
-              format === 'day' ? 'DD MMM YYYY' : 'MMMM YYYY'
+            {moment(paramsDate).format(
+              paramsType === 'day' ? 'DD MMM YYYY' : 'MMMM YYYY'
             )}
           </Date>
         </DateWrapper>
@@ -136,16 +126,12 @@ const CalendarToolbar = ({ globalFormat }) => {
         </ToggleWrapper>
       </DateContainer>
       <TypeWrapper>
-        <Type>
-          <TypeLink to={`month/${month}`} onClick={handleChangeType}>
-            Month
-          </TypeLink>
-        </Type>
-        <Type>
-          <Link to={`day/${day}`} onClick={handleChangeType}>
-            Day
-          </Link>
-        </Type>
+        <TypeLink to={`month/${month}`} onClick={handleChangeType}>
+          Month
+        </TypeLink>
+        <TypeLink to={`day/${day}`} onClick={handleChangeType}>
+          Day
+        </TypeLink>
       </TypeWrapper>
     </Toolbar>
   );

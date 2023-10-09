@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   ContainerButtonsTask,
   ContainerIcons,
   IconTask,
+  IconTaskButton,
   ListTasks,
   Task,
   TaskButtonPriority,
@@ -19,20 +20,32 @@ import { selectUserAvatar } from 'redux/auth/selectors';
 import { Notify } from 'notiflix';
 import { TaskModal } from 'components/TaskModal/TaskModal';
 
-const Tasks = ({ type, tasks, setTasks }) => {
+const Tasks = ({
+  type,
+  tasks,
+  setTasks,
+  isShowPopUpReplace,
+  setIsShowPopUpReplace,
+}) => {
   const dispatch = useDispatch();
-  const [isShowPopUpReplace, setIsShowPopUpReplace] = useState(false);
+  
+
   const avatarURL = useSelector(selectUserAvatar);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [taskForForm, setTaskForForm] = useState({});
+  const togglePopUpRef = useRef({});
 
   const toggleShowPopUpReplace = id => {
-    isShowPopUpReplace === id
-      ? setIsShowPopUpReplace(false)
-      : setIsShowPopUpReplace(id);
+    if (isShowPopUpReplace === id) {
+      setIsShowPopUpReplace(false);
+      togglePopUpRef[id].blur();
+    } else {
+      setIsShowPopUpReplace(id);
+    }
   };
 
-  const onEdit = () => {
-    // console.log('onEdit');
+  const onEdit = task => {
+    setTaskForForm(task);
     setIsFormOpen(true);
   };
 
@@ -50,11 +63,12 @@ const Tasks = ({ type, tasks, setTasks }) => {
   };
 
   const closeForm = () => {
+    setTaskForForm({});
     setIsFormOpen(false);
   };
 
   return (
-    <ListTasks>
+    <ListTasks tasks={tasks.filter(({ category }) => category === type)}>
       {tasks.map(task => {
         const { _id, title, priority, category } = task;
         if (type !== category) {
@@ -75,21 +89,28 @@ const Tasks = ({ type, tasks, setTasks }) => {
                 {priority.charAt(0).toUpperCase() + priority.slice(1)}
               </TaskButtonPriority>
               <ContainerIcons>
-                <IconTask
+                <IconTaskButton
                   id="togglePopUp"
+                  ref={ref => (togglePopUpRef[_id] = ref)}
                   onClick={() => toggleShowPopUpReplace(_id)}
                 >
-                  <use
-                    id="togglePopUp"
-                    xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
-                  />
-                </IconTask>
-                <IconTask onClick={onEdit}>
-                  <use xlinkHref={sprite + '#icon-pencil'} />
-                </IconTask>
-                <IconTask onClick={() => onDelete(_id)}>
-                  <use xlinkHref={sprite + '#icon-trash'} />
-                </IconTask>
+                  <IconTask id="togglePopUp">
+                    <use
+                      id="togglePopUp"
+                      xlinkHref={sprite + '#icon-arrow-circle-broken-right'}
+                    />
+                  </IconTask>
+                </IconTaskButton>
+                <IconTaskButton onClick={() => onEdit(task)}>
+                  <IconTask>
+                    <use xlinkHref={sprite + '#icon-pencil'} />
+                  </IconTask>
+                </IconTaskButton>
+                <IconTaskButton onClick={() => onDelete(_id)}>
+                  <IconTask>
+                    <use xlinkHref={sprite + '#icon-trash'} />
+                  </IconTask>
+                </IconTaskButton>
               </ContainerIcons>
             </ContainerButtonsTask>
             {isShowPopUpReplace === _id && (
@@ -106,7 +127,7 @@ const Tasks = ({ type, tasks, setTasks }) => {
                 isOpen={isFormOpen}
                 onClose={closeForm}
                 category={category}
-                task={task}
+                task={taskForForm}
               />
             )}
           </Task>

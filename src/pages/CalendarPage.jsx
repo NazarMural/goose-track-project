@@ -11,7 +11,12 @@ const CalendarPage = () => {
   // );
   // const [format, setFormat] = useState(localStorage.getItem('type') || 'month');
   // let format = ;
-  const format = localStorage.getItem('type');
+  useEffect(() => {
+    const month = moment().format('YYYY-MM').toString();
+    navigate(`/calendar/month/${month}`);
+  }, [navigate]);
+
+  const format = localStorage.getItem('type') || 'month';
   useEffect(() => {
     const date =
       localStorage.getItem('date') || moment().format('YYYY-MM-DD').toString();
@@ -54,10 +59,10 @@ const CalendarPage = () => {
   return (
     <MainContainer>
       <CalendarToolbar
-        // currentDate={currentDate}
-        // setCurrentDate={setCurrentDate}
-        globalFormat={format}
-        // setFormat={setFormat}
+      // currentDate={currentDate}
+      // setCurrentDate={setCurrentDate}
+      // globalFormat={format}
+      // setFormat={setFormat}
       />
       <Outlet />
     </MainContainer>

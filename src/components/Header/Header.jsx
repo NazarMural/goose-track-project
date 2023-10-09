@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchOwnReviewOperation } from 'redux/reviews/operations';
 import { useMediaQuery } from 'react-responsive';
 import { BurgerBtn } from './BurgerBtn/BurgerBtn';
 import { FeedbackBtn } from './FeedbackBtn.jsx/FeedbackBtn';
@@ -9,6 +10,7 @@ import ReviewForm from './AddFeedbackModal/ReviewForm/ReviewForm';
 import { useSelector } from 'react-redux';
 import { selectTasks } from 'redux/tasks/selectors';
 import { GooseImageWithTitle } from './GooseImageWithTitle/GooseImageWithTitle';
+import { useDispatch } from 'react-redux';
 
 export const Header = ({ addSideBar, showSideBar }) => {
   const isDesktop = useMediaQuery({
@@ -18,10 +20,9 @@ export const Header = ({ addSideBar, showSideBar }) => {
   const tasks = useSelector(selectTasks);
   const selectedDay = location.pathname.split('/');
   const tasksInProgress = tasks.filter(item => item.date === selectedDay[3]);
-  console.log(tasks);
-  console.log(location);
-  console.log(selectedDay);
-  console.log(tasksInProgress);
+
+  const dispatch = useDispatch();
+  const [review, setReview] = useState(null);
 
   const defineCurentPage = () => {
     if (location.pathname.includes('account')) return 'User profile';
@@ -40,6 +41,22 @@ export const Header = ({ addSideBar, showSideBar }) => {
     setIsFormOpen(false);
   };
 
+ 
+ 
+ 
+  useEffect(() => {
+    isFormOpen &&
+      (async () => {
+        const { payload } = await dispatch(fetchOwnReviewOperation());
+
+        setReview(
+          payload?.review && payload?.review?.length > 0
+            ? payload.review[0]
+            : undefined
+        );
+      })();
+  }, [isFormOpen, dispatch]);
+
   return (
     <HeaderSection showSideBar={showSideBar}>
       {isDesktop ? (
@@ -53,7 +70,9 @@ export const Header = ({ addSideBar, showSideBar }) => {
       )}
       <FeedbackBtn openForm={openForm} />
       <UserInfo />
-      {isFormOpen && <ReviewForm isOpen={isFormOpen} onClose={closeForm} />}
+      {isFormOpen && (
+        <ReviewForm isOpen={isFormOpen} onClose={closeForm} review={review} />
+      )}
     </HeaderSection>
   );
 };

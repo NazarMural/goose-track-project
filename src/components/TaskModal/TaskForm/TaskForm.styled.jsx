@@ -165,6 +165,7 @@ export const Red = styled.svg`
 
 export const RedLine = styled.svg`
     width: 10px;
+    height: 10px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -220,7 +221,7 @@ export const CancelButton = styled.button`
     gap: 10px;
     border-radius: 8px;
     border: none;
-    background: var(--btn-bg-color);
+    background-color: var(--task-btn-cancel);
     color: var(--primary-text-color);
     text-align: center;
     font-size: 14px;
@@ -229,7 +230,8 @@ export const CancelButton = styled.button`
 
 &:hover,
 &:focus {
-    background-color: var(--btn-text-color);
+    background-color: var(--btn-bg-hover);
+    color: var(--task-popup-bg);
 }
 
 ${min(tablet)} {
