@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
-import { min, tablet } from 'styles/media';
+// import { NavLink } from 'react-router-dom';
+import { desktop, min, tablet } from 'styles/media';
 
 export const CalendarGrid = styled.div`
   width: 100%;
@@ -23,14 +23,19 @@ export const Cell = styled.div`
   /* background-color: #ffffff; */
   background-color: var(--cell-background);
   padding: 8px 0;
-  height: 96px;
+  height: 94px;
 
   ${min(tablet)} {
     padding: 14px 0;
+    min-height: 144px;
+  }
+
+  ${min(desktop)} {
+    min-height: 125px;
   }
 `;
 
-export const WrapperDay = styled(NavLink)`
+export const WrapperDay = styled.div`
   display: flex;
   text-align: end;
   align-items: center;
@@ -38,15 +43,15 @@ export const WrapperDay = styled(NavLink)`
   align-self: flex-end;
   height: 22px;
   width: 22px;
-  /* padding: 4px 6px; */
   text-decoration: none;
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 14px;
-  padding-right: 4px;
+  margin-right: 4px;
+  cursor: pointer;
 
   ${min(tablet)} {
-    padding-right: 14px;
+    margin-right: 14px;
   }
 `;
 
@@ -56,6 +61,7 @@ export const Day = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 4px 6px;
   border-radius: 6px;
   color: ${props => props.color};
   background: ${props => props.background};

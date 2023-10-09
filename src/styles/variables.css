@@ -79,6 +79,7 @@
 --task-scrollbar-track: #f2f2f2;
 --task-scrollbar-thumb: #E7E5E5;
 --task-scrollbar-thumb-hover: #d4d2d2;
+--day-head-week-color-text: #343434;
 
 
 /* statistic-styles */
@@ -126,8 +127,8 @@ html.dark {
   --calendar-grid-border: #FFFFFF26;
   --date-color: #ffffff;
   --date-color-accent: #22232D;
-  --chevron-btn-color: #FFFFFF26;
-    --chevron-btn-disabled-color: #FFFFFF;
+  --chevron-btn-color: #FFFFFF;
+    --chevron-btn-disabled-color: #FFFFFF26;
 --switch-type-color-active: #FFFFFF;
 --switch-type-bg: #21222C;
 --switch-type-bg-active: #3E85F3;
@@ -146,5 +147,8 @@ html.dark {
 --legend-text-color: #fff;
 --border-chart: rgba(227, 243, 255, 0.15);
 --statistic-tasks-text-color: #fff;
+
+--day-head-week-color-text: #FAFAFA4D;
+
 }
 

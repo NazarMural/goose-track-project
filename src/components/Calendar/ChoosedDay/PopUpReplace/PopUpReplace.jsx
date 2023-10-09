@@ -6,10 +6,11 @@ import {
   ReplaceTaskContainerText,
   ReplaceTaskText,
 } from './PopUpReplace.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateTaskOperation } from 'redux/tasks/operations';
 import { IconTask } from '../Tasks/Tasks.styled';
 import { Notify } from 'notiflix';
+import { selectTheme } from 'redux/theme/selectors';
 
 const PopUpReplace = ({
   type,
@@ -19,9 +20,11 @@ const PopUpReplace = ({
   _id,
 }) => {
   const dispatch = useDispatch();
+
+  const currentTheme = useSelector(selectTheme);
+
   useEffect(() => {
     const onClickClose = ({ target }) => {
-      console.log(target.id);
       if (target.id !== 'togglePopUp') {
         setIsShowPopUpReplace(false);
       }
@@ -101,13 +104,12 @@ const PopUpReplace = ({
       : [];
 
     setTasks(filteredTasks);
-
-    // setIsShowPopUpReplace(false);
   };
   return (
-    <ContainerReplaceTask>
+    <ContainerReplaceTask id="popUpReplace" currentTheme={currentTheme}>
       {viewCategories(type).map(({ id, typeCategory, typeForOnClick }) => (
         <ReplaceTaskContainerText
+          currentTheme={currentTheme}
           key={id}
           onClick={() => onReplace(_id, typeForOnClick)}
         >

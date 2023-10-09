@@ -6,9 +6,9 @@ export const ContainerTitle = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 18px 18px 0;
-  margin-bottom: 24px;
+  margin-bottom: ${({ tasks }) => (tasks.length === 0 ? '35px' : '24px')};
   ${min(tablet)} {
-    margin-bottom: 28px;
+    margin-bottom: ${({ tasks }) => (tasks.length === 0 ? '35px' : '28px')};
     padding: 20px 20px 0;
   }
 `;
@@ -26,16 +26,38 @@ export const MainTitle = styled.h2`
   }
 `;
 
-export const IconAddTask = styled.svg`
+export const TitleButtonAddTask = styled.button`
   height: 22px;
   width: 22px;
-  stroke: var(--primary-text-color);
+  border: none;
+  background-color: transparent;
+  padding: 0;
   cursor: pointer;
-  & use {
-    fill: transparent;
+
+  &:hover:not([disabled]) {
+    & svg {
+      stroke: var(--accent-color);
+    }
+  }
+
+  &:disabled {
+    cursor: auto;
+    & svg {
+      /* stroke: var(--accent-color); */
+    }
   }
   ${min(tablet)} {
     height: 24px;
     width: 24px;
+  }
+`;
+
+export const IconAddTask = styled.svg`
+  height: 100%;
+  width: 100%;
+  stroke: var(--primary-text-color);
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
+  & use {
+    fill: transparent;
   }
 `;

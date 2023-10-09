@@ -42,6 +42,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--page-bg-color);
+overflow-y: overlay;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--task-scrollbar-track);
+  border-radius: 12px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--task-scrollbar-thumb);
+  border-radius: 12px;
 }
 /* Скидання базових властивостей для посилань (a або клас .link */
 a {

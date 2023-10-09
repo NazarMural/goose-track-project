@@ -1,10 +1,15 @@
 import React from 'react';
-import { ContainerTitle, IconAddTask, MainTitle } from './Title.styled';
+import {
+  ContainerTitle,
+  IconAddTask,
+  MainTitle,
+  TitleButtonAddTask,
+} from './Title.styled';
 import sprite from '../../../../assets/images/icons/icons.svg';
 
-const Title = ({ type, onAdd }) => {
+const Title = ({ type, onAdd, tasks, isDisabledAddTask }) => {
   return (
-    <ContainerTitle>
+    <ContainerTitle tasks={tasks}>
       <MainTitle>
         {(() => {
           switch (type) {
@@ -21,9 +26,11 @@ const Title = ({ type, onAdd }) => {
           }
         })()}
       </MainTitle>
-      <IconAddTask onClick={onAdd}>
-        <use xlinkHref={sprite + '#icon-icon-plus'} />
-      </IconAddTask>
+      <TitleButtonAddTask disabled={isDisabledAddTask} onClick={onAdd}>
+        <IconAddTask>
+          <use xlinkHref={sprite + '#icon-icon-plus'} />
+        </IconAddTask>
+      </TitleButtonAddTask>
     </ContainerTitle>
   );
 };
