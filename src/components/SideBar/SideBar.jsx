@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { LogoutBtn } from './LogoutBtn.jsx/LogoutBtn';
 import { SideBarEl } from './SideBar.styled';
 import { TitleBox } from './TitleBox/TitleBox';
@@ -19,4 +20,9 @@ export const SideBar = ({ removeSideBar, showSideBar }) => {
       <LogoutBtn />
     </SideBarEl>
   );
+};
+
+SideBar.propTypes = {
+  removeSideBar: PropTypes.func,
+  showSideBar: PropTypes.bool,
 };

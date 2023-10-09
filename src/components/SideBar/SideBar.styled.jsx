@@ -21,7 +21,7 @@ export const SideBarEl = styled.aside`
   }
   ${min(desktop)} {
     height: 100vh;
-    max-height: 900px;
+    /* max-height: 900px; */
     position: fixed;
     z-index: 1;
     transform: translateX(0%);
@@ -29,6 +29,6 @@ export const SideBarEl = styled.aside`
 
   ${max(desktop - 0.02)} {
     height: 100vh;
-    max-height: 900px;
+    /* max-height: 900px; */
   }
 `;
