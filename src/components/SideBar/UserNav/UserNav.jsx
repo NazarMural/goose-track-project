@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   NavTitle,
   NavList,
@@ -7,18 +8,12 @@ import {
   IconWithFill,
 } from './UserNav.styled';
 import sprite from '../../../assets/images/icons/icons.svg';
-// import { pages } from 'components/MainLayout/MainLayout';
 
-export const UserNavigation = ({
-  removeSideBar,
-  // currentPage,
-  // changeCurrentPage,
-}) => {
-  const handleChangeCurrentPage = page => {
+export const UserNavigation = ({ removeSideBar }) => {
+  const handleChangeCurrentPage = () => {
     removeSideBar();
-    // changeCurrentPage(page);
   };
-  // console.log(pages);
+
   return (
     <>
       <NavTitle>User panel</NavTitle>
@@ -26,7 +21,7 @@ export const UserNavigation = ({
         <NavList>
           <NavListItem page="account">
             <NavLinkSideBar to="account" onClick={handleChangeCurrentPage}>
-              <IconWithStroke>
+              <IconWithStroke page="account">
                 <use xlinkHref={`${sprite}#icon-user`} />
               </IconWithStroke>
               My account
@@ -34,7 +29,7 @@ export const UserNavigation = ({
           </NavListItem>
           <NavListItem page="calendar">
             <NavLinkSideBar to="calendar" onClick={handleChangeCurrentPage}>
-              <IconWithStroke>
+              <IconWithStroke page="calendar">
                 <use xlinkHref={`${sprite}#icon-calendar`} />
               </IconWithStroke>
               Calendar
@@ -42,7 +37,7 @@ export const UserNavigation = ({
           </NavListItem>
           <NavListItem page="statistics">
             <NavLinkSideBar to="statistics" onClick={handleChangeCurrentPage}>
-              <IconWithFill>
+              <IconWithFill page="statistics">
                 <use xlinkHref={`${sprite}#icon-chart`} />
               </IconWithFill>
               Statistics
@@ -52,4 +47,8 @@ export const UserNavigation = ({
       </nav>
     </>
   );
+};
+
+UserNavigation.propTypes = {
+  removeSideBar: PropTypes.func,
 };

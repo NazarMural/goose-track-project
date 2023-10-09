@@ -1,4 +1,5 @@
 import { CloseBtn } from './CloseBtn.styled';
+import PropTypes from 'prop-types';
 import sprite from '../../../assets/images/icons/icons.svg';
 
 export const CloseSideBarBtn = ({ removeSideBar }) => {
@@ -9,4 +10,8 @@ export const CloseSideBarBtn = ({ removeSideBar }) => {
       </svg>
     </CloseBtn>
   );
+};
+
+CloseSideBarBtn.propTypes = {
+  removeSideBar: PropTypes.func,
 };

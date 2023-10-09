@@ -13,13 +13,7 @@ import { IconTask } from '../Tasks/Tasks.styled';
 import { Notify } from 'notiflix';
 import { selectTheme } from 'redux/theme/selectors';
 
-const PopUpReplace = ({
-  type,
-  tasks,
-  setTasks,
-  setIsShowPopUpReplace,
-  _id,
-}) => {
+const PopUpReplace = ({ type, setIsShowPopUpReplace, _id }) => {
   const dispatch = useDispatch();
 
   const currentTheme = useSelector(selectTheme);
@@ -94,17 +88,6 @@ const PopUpReplace = ({
       Notify.failure('Task don`t replace. Try again');
       return;
     }
-
-    const filteredTasks = tasks
-      ? tasks.map(task => {
-          if (task._id === id) {
-            return { ...task, category: typeCategory };
-          }
-          return task;
-        })
-      : [];
-
-    setTasks(filteredTasks);
   };
   return (
     <ContainerReplaceTask id="popUpReplace" currentTheme={currentTheme}>

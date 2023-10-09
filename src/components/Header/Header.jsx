@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { fetchOwnReviewOperation } from 'redux/reviews/operations';
 import { useMediaQuery } from 'react-responsive';
 import { BurgerBtn } from './BurgerBtn/BurgerBtn';
 import { FeedbackBtn } from './FeedbackBtn.jsx/FeedbackBtn';
 import { UserInfo } from './UserInfo/UserInfo';
-import { HeaderSection, PageTitle } from './Header.styled';
-import { useLocation } from 'react-router-dom';
+import { HeaderSection } from './Header.styled';
 import ReviewForm from './AddFeedbackModal/ReviewForm/ReviewForm';
+import { GooseImageWithTitle } from './GooseImageWithTitle/GooseImageWithTitle';
 import { useDispatch } from 'react-redux';
 
 export const Header = ({ addSideBar, showSideBar }) => {
   const isDesktop = useMediaQuery({
     query: '(min-width: 1440px)',
   });
-  const location = useLocation();
   const dispatch = useDispatch();
   const [review, setReview] = useState(null);
-
-  // const reviews = useSelector(selectReviews);
-
-  const defineCurentPage = () => {
-    if (location.pathname.includes('account')) return 'User profile';
-    if (location.pathname.includes('calendar')) return 'Calendar';
-    if (location.pathname.includes('statistics')) return 'Statistics';
-  };
-  const currentPageTitle = defineCurentPage();
-
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const openForm = () => {
@@ -40,18 +30,18 @@ export const Header = ({ addSideBar, showSideBar }) => {
     isFormOpen &&
       (async () => {
         const { payload } = await dispatch(fetchOwnReviewOperation());
-        
-      setReview(
-        payload?.review && payload?.review?.length > 0 ?
-          payload.review[0] : undefined
-          );
+        setReview(
+          payload?.review && payload?.review?.length > 0
+            ? payload.review[0]
+            : undefined
+        );
       })();
   }, [isFormOpen, dispatch]);
 
   return (
     <HeaderSection showSideBar={showSideBar}>
       {isDesktop ? (
-        <PageTitle>{currentPageTitle}</PageTitle>
+        <GooseImageWithTitle />
       ) : (
         <BurgerBtn addSideBar={addSideBar} />
       )}
@@ -62,4 +52,9 @@ export const Header = ({ addSideBar, showSideBar }) => {
       )}
     </HeaderSection>
   );
+};
+
+Header.propTypes = {
+  addSideBar: PropTypes.func,
+  showSideBar: PropTypes.bool,
 };
