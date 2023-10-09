@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   ContainerButtonsTask,
   ContainerIcons,
@@ -28,7 +29,6 @@ const Tasks = ({
   setIsShowPopUpReplace,
 }) => {
   const dispatch = useDispatch();
-  
 
   const avatarURL = useSelector(selectUserAvatar);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -135,6 +135,14 @@ const Tasks = ({
       })}
     </ListTasks>
   );
+};
+
+Tasks.propTypes = {
+  type: PropTypes.oneOf(['to-do', 'in-progress', 'done']),
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func.isRequired,
+  isShowPopUpReplace: PropTypes.bool.isRequired,
+  setIsShowPopUpReplace: PropTypes.func.isRequired,
 };
 
 export default Tasks;

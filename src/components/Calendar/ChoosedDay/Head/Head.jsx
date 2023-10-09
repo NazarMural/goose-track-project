@@ -41,7 +41,7 @@ const Head = () => {
     <HeadContainer isSelected={isSelected}>
       {[...Array(7)].map((_, idx) => (
         <HeadCell
-          onClick={() => onChangeDay(moment(currentDay).day(idx + 1))}
+          onClick={() => onChangeDay(setDay(currentDay).startWeek.day(idx + 1))}
           key={idx}
         >
           <NameWeek>
