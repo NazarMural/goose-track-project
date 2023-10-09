@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types'; 
 import { StarContainer, Star, FilledStar } from './Rating.styled';
 import sprite from '../../../../assets/images/icons/icons.svg';
 
@@ -34,6 +35,12 @@ const Rating = ({ value, onRatingChange, disabled }) => {
       </StarContainer>
     </div>
   );
+};
+
+Rating.propTypes = {
+  value: PropTypes.number.isRequired, 
+  onRatingChange: PropTypes.func.isRequired, 
+  disabled: PropTypes.bool,
 };
 
 export default Rating;

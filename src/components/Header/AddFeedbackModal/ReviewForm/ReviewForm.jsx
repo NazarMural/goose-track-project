@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch} from 'react-redux';
 import { Notify } from 'notiflix';
 import Modal from '../../../Modal/Modal';
@@ -188,6 +189,12 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
       </FormContainer>
     </Modal>
   );
+};
+
+ReviewForm.propTypes = {
+  isOpen: PropTypes.bool.isRequired, 
+  onClose: PropTypes.func.isRequired, 
+  review: PropTypes.object, 
 };
 
 export default ReviewForm;

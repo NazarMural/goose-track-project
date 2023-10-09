@@ -48,8 +48,10 @@ export const CommentText = styled.textarea`
   resize: none;
   box-sizing: border-box;
   outline: none;
+  font-size: 14px;
   font-weight: 600;
-
+  line-height: 1.29;
+  color: var(--secondary-text-color);
   .dark & {
     border: 1px solid var(--calendar-grid-border);
     background: transparent;
