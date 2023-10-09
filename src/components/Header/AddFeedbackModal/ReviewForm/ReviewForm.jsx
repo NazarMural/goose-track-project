@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { Notify } from 'notiflix';
 import Modal from '../../../Modal/Modal';
 import {
@@ -10,18 +10,21 @@ import {
   SaveButton,
   CancelButton,
   EditButton,
-  DeleteButton,
   ButtonsBox,
+  ButtonEdit,
+  ButtonDel,
+  IconEditBox,
   IconContainer,
+  IconDel,
+  IconEdit,
 } from './ReviewForm.styled';
+import sprite from '../../../../assets/images/icons/icons.svg';
 import Rating from '../Rating/Rating';
 import {
   addReviewOperation,
   updateReviewOperation,
   deleteReviewOperation,
 } from '../../../../redux/reviews/operations';
-
-import { selectUser } from '../../../../redux/auth/selectors';
 
 const ReviewForm = ({ isOpen, onClose, review }) => {
   const [formData, setFormData] = useState({
@@ -30,22 +33,18 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  const [isEditingButtonsVisible, setIsEditingButtonsVisible] = useState(false);
 
-  const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (review) {
-      setFormData({
-        rating: review.rating,
-        comment: review.comment,
-      });
-      setIsEditing(false);
-    }
+    setFormData({
+      rating: review?.rating ?? '',
+      comment: review?.comment ?? '',
+    });
   }, [review]);
 
   const handleChange = e => {
+    // if (!isEditing || !review) return;
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -54,6 +53,7 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
   };
 
   const handleRatingChange = newRating => {
+    // if (!isEditing || !review) return;
     setFormData({
       ...formData,
       rating: newRating,
@@ -62,19 +62,21 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (formData.rating === '') {
+    // if (!isEditing) return;
+    if (formData?.rating === '') {
       Notify.warning('Please select a rating before submitting.');
       return;
     }
 
-    if (review) {
-      dispatch(
-        updateReviewOperation({
-          ...review,
-          rating: formData.rating,
-          comment: formData.comment,
-        })
-      );
+    if (isEditMode) {
+      (async () => {
+        await dispatch(
+          updateReviewOperation({
+            rating: formData?.rating,
+            comment: formData?.comment,
+          })
+        );
+      })();
     } else {
       dispatch(addReviewOperation(formData));
     }
@@ -87,9 +89,10 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
   };
 
   const handleDelete = () => {
-    if (review) {
-      dispatch(deleteReviewOperation(review._id));
-    }
+    (async () => {
+      await dispatch(deleteReviewOperation());
+    })();
+
     onClose();
   };
 
@@ -102,6 +105,7 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
   };
 
   const closeButtonPosition = { top: '16px', right: '16px' };
+  const isEditMode = review;
 
   return (
     <Modal
@@ -115,48 +119,72 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
           <Rating
             onRatingChange={handleRatingChange}
             required
-            value={formData.rating}
-            disabled={!isEditing}
+            value={formData?.rating}
+            disabled={isEditMode && !isEditing}
           ></Rating>
         </div>
-
-        <CommentBox>
-          <LabelText htmlFor="comment">Review</LabelText>
-
-          <div >
-            {isEditing ? (
+        <div>
+          {isEditMode ? (
+            <>
               <IconContainer>
-                <EditButton type="button" onClick={handleEdit}>
-                  Edit
-                </EditButton>
-                <DeleteButton type="button" onClick={handleDelete}>
-                  Delete
-                </DeleteButton>
+                <IconEditBox>
+                  <ButtonEdit type="button" onClick={handleEdit}>
+                    <IconEdit>
+                      <use xlinkHref={`${sprite}#icon-pencil`} width={16} />
+                    </IconEdit>
+                  </ButtonEdit>
+                </IconEditBox>
+                <ButtonDel type="button" onClick={handleDelete}>
+                  <IconDel>
+                    <use xlinkHref={`${sprite}#icon-trash`} width={16} />
+                  </IconDel>
+                </ButtonDel>
               </IconContainer>
-            ) : null}
-            <CommentText
-              id="comment"
-              name="comment"
-              value={formData.comment}
-              onChange={handleChange}
-              required
-              maxLength={300}
-              placeholder="Enter Text"
-              disabled={!isEditing}
-            />
-          </div>
-        </CommentBox>
-        <ButtonsBox>
-          {review && !isEditing ? (
-            <EditButton type="button" onClick={handleEdit}>
-              Edit
-            </EditButton>
-          ) : null}
-          <SaveButton type="submit">Save</SaveButton>
-          <CancelButton type="button" onClick={handleCancel}>
-            Cancel
-          </CancelButton>
-        </ButtonsBox>
+              <CommentBox>
+                <LabelText htmlFor="comment">Review</LabelText>
+                <CommentText
+                  id="comment"
+                  name="comment"
+                  value={formData?.comment}
+                  onChange={handleChange}
+                  required
+                  maxLength={300}
+                  placeholder="Enter Text"
+                  disabled={!isEditing}
+                />
+              </CommentBox>
+              {isEditing && (
+                <ButtonsBox>
+                  <EditButton type="submit">Edit</EditButton>
+                  <CancelButton type="button" onClick={handleCancel}>
+                    Cancel
+                  </CancelButton>
+                </ButtonsBox>
+              )}
+            </>
+          ) : (
+            <div>
+              <CommentBox>
+                <LabelText htmlFor="comment">Review</LabelText>
+                <CommentText
+                  id="comment"
+                  name="comment"
+                  value={formData?.comment}
+                  onChange={handleChange}
+                  required
+                  maxLength={300}
+                  placeholder="Enter Text"
+                />
+              </CommentBox>
+              <ButtonsBox>
+                <SaveButton type="submit">Save</SaveButton>
+                <CancelButton type="button" onClick={handleCancel}>
+                  Cancel
+                </CancelButton>
+              </ButtonsBox>
+            </div>
+          )}
+        </div>
       </FormContainer>
     </Modal>
   );
