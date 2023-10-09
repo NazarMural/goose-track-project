@@ -1,5 +1,5 @@
-import gooseHeader1x from 'assets/images/goosePageDay.png';
-import gooseHeader2x from 'assets/images/goosePageDay.png';
+import gooseHeader1x from 'assets/images/gooseHeader1x.png';
+import gooseHeader2x from 'assets/images/gooseHeader2x.png';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { selectTasks } from 'redux/tasks/selectors';
