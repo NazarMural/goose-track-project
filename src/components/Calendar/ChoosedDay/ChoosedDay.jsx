@@ -53,7 +53,7 @@ const ChoosedDay = () => {
   }, [currentDay, dispatch, isEditTask]);
 
   useEffect(() => {
-    const nowDay = new Date();
+    const nowDay = new Date(moment().format('YYYY-MM-DD'));
     const paramsDay = new Date(currentDay);
     if (nowDay === paramsDay) {
       setIsDisabledAddTask(false);
