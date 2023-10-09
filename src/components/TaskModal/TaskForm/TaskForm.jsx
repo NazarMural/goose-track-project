@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form} from 'formik';
 import { useDispatch} from 'react-redux';
 import icons from '../../../assets/images/icons/icons.svg';
 import * as Yup from 'yup';
@@ -27,8 +27,10 @@ import {
     RedLine,
     TimeField,
     TitleField,
+    TitleFieldContainer
 } from './TaskForm.styled';
 import { useParams } from 'react-router-dom';
+import { TaskValidateMessage } from '../TaskValidateMessage/TaskValidateMessage';
 
 const taskFormSchema = Yup.object().shape({
     title: Yup.string('Enter title')
@@ -111,7 +113,7 @@ export const TaskForm = ({ category, task, onClose }) => {
             validationSchema={taskFormSchema}
             onSubmit={onSubmit}
         >
-            {({ values }) => (
+            {({ values, errors, touched }) => (
             <FormContainer>
                 <CloseButton
                     type="button"
@@ -122,23 +124,24 @@ export const TaskForm = ({ category, task, onClose }) => {
                         <use href={icons + '#icon-x-close'}></use>
                     </CloseIcon>
                 </CloseButton>
-                <Form>
+                    <Form>
+                        <TitleFieldContainer>
                     <Label>
                         Title
-                        <ErrorMessage name="title" component="div" />
-                        <TitleField type="text" name="title" placeholder="Enter text" />
+                                <TitleField type="text" name="title" placeholder="Enter text" />
+                                <TaskValidateMessage errors={errors.title} touched={touched?.title} field="title" />
                     </Label>
-    
+    </TitleFieldContainer>
                     <FieldContainer>
                         <Label>
                             Start
-                            <ErrorMessage name="start" component="div" />
-                            <TimeField type="time" name="start" />
+                                <TimeField type="time" name="start" />
+                                <TaskValidateMessage errors={errors.start} touched={touched?.start} field="start time" />
                         </Label>
                         <Label>
                             End
-                            <ErrorMessage name="end" component="div" />
-                            <TimeField type="time" name="end" />
+                                <TimeField type="time" name="end" />
+                                <TaskValidateMessage errors={errors.end} touched={touched?.end} field="end time" />
                         </Label>
                     </FieldContainer>
     
