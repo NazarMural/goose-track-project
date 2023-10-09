@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   ContainerButtonsTask,
@@ -19,20 +19,18 @@ import { deleteTaskOperation } from 'redux/tasks/operations';
 import sprite from '../../../../assets/images/icons/icons.svg';
 import { selectUserAvatar } from 'redux/auth/selectors';
 import { Notify } from 'notiflix';
-import { TaskModal } from 'components/TaskModal/TaskModal';
 
 const Tasks = ({
   type,
   tasks,
-  setTasks,
+  onEdit,
   isShowPopUpReplace,
   setIsShowPopUpReplace,
 }) => {
   const dispatch = useDispatch();
 
   const avatarURL = useSelector(selectUserAvatar);
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const [taskForForm, setTaskForForm] = useState({});
+
   const togglePopUpRef = useRef({});
 
   const toggleShowPopUpReplace = id => {
@@ -44,27 +42,13 @@ const Tasks = ({
     }
   };
 
-  const onEdit = task => {
-    setTaskForForm(task);
-    setIsFormOpen(true);
-  };
-
   const onDelete = async taskId => {
     const response = await dispatch(deleteTaskOperation(taskId));
     if (response.payload.status) {
       Notify.failure('Task don`t delete. Try again');
       return;
     }
-    const filteredTasks = tasks
-      ? tasks.filter(({ _id }) => _id !== taskId)
-      : [];
-    setTasks(filteredTasks);
     Notify.success('Task deleted successfully');
-  };
-
-  const closeForm = () => {
-    setTaskForForm({});
-    setIsFormOpen(false);
   };
 
   return (
@@ -101,7 +85,7 @@ const Tasks = ({
                     />
                   </IconTask>
                 </IconTaskButton>
-                <IconTaskButton onClick={() => onEdit(task)}>
+                <IconTaskButton onClick={() => onEdit(task, category)}>
                   <IconTask>
                     <use xlinkHref={sprite + '#icon-pencil'} />
                   </IconTask>
@@ -117,18 +101,9 @@ const Tasks = ({
               <PopUpReplace
                 type={type}
                 tasks={tasks}
-                setTasks={setTasks}
                 setIsShowPopUpReplace={setIsShowPopUpReplace}
                 _id={_id}
               ></PopUpReplace>
-            )}
-            {isFormOpen && (
-              <TaskModal
-                isOpen={isFormOpen}
-                onClose={closeForm}
-                category={category}
-                task={taskForForm}
-              />
             )}
           </Task>
         );
