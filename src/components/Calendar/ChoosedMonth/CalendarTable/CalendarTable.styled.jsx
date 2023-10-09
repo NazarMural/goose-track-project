@@ -35,6 +35,12 @@ export const Cell = styled.div`
   }
 `;
 
+export const DayLink = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+`;
+
 export const WrapperDay = styled.div`
   display: flex;
   text-align: end;

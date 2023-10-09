@@ -1,5 +1,11 @@
 import moment from 'moment';
-import { CalendarGrid, Cell, Day, WrapperDay } from './CalendarTable.styled';
+import {
+  CalendarGrid,
+  Cell,
+  Day,
+  DayLink,
+  WrapperDay,
+} from './CalendarTable.styled';
 import { TaskList } from '../TaskList/TaskList';
 import { setDay } from 'helpers/setDay';
 import { useNavigate, useParams } from 'react-router';
@@ -37,27 +43,26 @@ export const CalendarTable = () => {
     <CalendarGrid rows={weeks}>
       {daysArray.map((dayItem, idx) => (
         <Cell key={idx}>
-          <WrapperDay
-            onClick={() => handleNavigateToDay(dayItem)}
-            // to={`/calendar/day/${moment(dayItem).format('YYYY-MM-DD')}`}
-          >
-            <Day
-              color={`${
-                isCurrentDay(dayItem)
-                  ? '#FFFFFF'
-                  : `${
-                      startMonth > dayItem || endMonth < dayItem
-                        ? 'transparent'
-                        : 'var(--date-color)'
-                    }`
-              }`}
-              background={`${
-                isCurrentDay(dayItem) ? 'var(--accent-color)' : 'transparent'
-              }`}
-            >
-              {dayItem.format('D')}
-            </Day>
-          </WrapperDay>
+          <DayLink onClick={() => handleNavigateToDay(dayItem)}>
+            <WrapperDay>
+              <Day
+                color={`${
+                  isCurrentDay(dayItem)
+                    ? '#FFFFFF'
+                    : `${
+                        startMonth > dayItem || endMonth < dayItem
+                          ? 'transparent'
+                          : 'var(--date-color)'
+                      }`
+                }`}
+                background={`${
+                  isCurrentDay(dayItem) ? 'var(--accent-color)' : 'transparent'
+                }`}
+              >
+                {dayItem.format('D')}
+              </Day>
+            </WrapperDay>
+          </DayLink>
           {startMonth < dayItem && endMonth > dayItem && (
             <TaskList currentDate={dayItem} tasks={tasks} />
           )}
