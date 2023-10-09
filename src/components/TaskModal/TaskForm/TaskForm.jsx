@@ -3,7 +3,6 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import { useDispatch} from 'react-redux';
 import icons from '../../../assets/images/icons/icons.svg';
 import * as Yup from 'yup';
-import moment from 'moment';
 import { addTaskOperation, updateTaskOperation } from '../../../redux/tasks/operations';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {  
@@ -27,7 +26,9 @@ import {
     Red,
     RedLine,
     TimeField,
-    TitleField, } from './TaskForm.styled';
+    TitleField,
+} from './TaskForm.styled';
+import { useParams } from 'react-router-dom';
 
 const taskFormSchema = Yup.object().shape({
     title: Yup.string('Enter title')
@@ -51,6 +52,7 @@ const taskFormSchema = Yup.object().shape({
 
 export const TaskForm = ({ category, task, onClose }) => {
     const [operation, setOperation] = useState('create');
+    const { currentDay } = useParams();
 
     const dispatch = useDispatch();
 
@@ -68,13 +70,13 @@ export const TaskForm = ({ category, task, onClose }) => {
     const onSubmit = values => {
         const taskId = task?._id;
         const taskData = {
-            title: values.title,
-            start: values.start,
-            end: values.end,
-            priority: values.priority,
-            date: task?.date || moment().format('YYYY-MM-DD'),
-            category: category,
-            };
+          title: values.title,
+          start: values.start,
+          end: values.end,
+          priority: values.priority,
+          date: task?.date || currentDay,
+          category: category,
+        };
 
         if (operation === 'edit') {
             dispatch(updateTaskOperation({ taskId, updateTaskData: taskData }))

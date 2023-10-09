@@ -44,6 +44,7 @@ export const Label = styled.label`
     font-weight: 500;
     font-size: 12px;
     line-height: 1.16;
+    position: relative;
 `;
 
 export const TitleField = styled(Field)`
@@ -51,7 +52,7 @@ export const TitleField = styled(Field)`
     height: 42px;
     flex-shrink: 0;
     padding: 12px 14px;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
     border-radius: 8px;
     border: none;
     background-color: rgba(246, 246, 246, 1);
@@ -65,7 +66,7 @@ export const TitleField = styled(Field)`
         height: 46px;
         width: 340px;
         padding: 14px 18px;
-        margin-bottom: 18px;
+        /* margin-bottom: 18px; */
     }
 
     &::placeholder {
@@ -79,6 +80,11 @@ export const TitleField = styled(Field)`
 export const FieldContainer = styled.div`
     display: flex;
     gap: 14px;
+    margin-bottom: 16px;
+
+  ${min(tablet)} {
+    margin-bottom: 28px;
+  }
 `;
 
 export const TimeField = styled(Field)`
@@ -86,7 +92,7 @@ export const TimeField = styled(Field)`
     height: 42px;
     flex-shrink: 0;
     padding: 12px 14px;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
     border-radius: 8px;
     border: none;
     background-color: rgba(246, 246, 246, 1);
@@ -103,7 +109,7 @@ export const TimeField = styled(Field)`
         width: 163px;
         height: 46px;
         padding: 14px 18px;
-        margin-bottom: 32px;
+        /* margin-bottom: 32px; */
         &::-webkit-calendar-picker-indicator {
         width: 60px;
     }
@@ -238,4 +244,12 @@ ${min(tablet)} {
     width: 144px;
     height: 48px;
     }
+`;
+
+export const TitleFieldContainer = styled.div`
+  margin-bottom: 16px;
+
+  ${min(tablet)} {
+    margin-bottom: 18px;
+  }
 `;
