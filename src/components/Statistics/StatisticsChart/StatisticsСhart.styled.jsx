@@ -239,18 +239,16 @@ export const StatisticsContainer = styled.div`
   max-width: 335px;
   background-color: var(--primary-bg-color);
   border-radius: 16px;
-  height: calc(100vh - 196px);
+  height: auto;
 
   ${min(tablet)} {
     min-width: 704px;
     padding: 132px 32px;
-    height: calc(100vh - 170px);
   }
 
   ${min(desktop)} {
     min-width: 1087px;
     padding: 134px 113px;
-    height: calc(100vh - 154px);
   }
 `;
 
