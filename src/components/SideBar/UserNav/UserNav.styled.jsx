@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
+import { selectTheme } from 'redux/theme/selectors';
 import { tablet, min } from 'styles/media';
-
 
 export const NavTitle = styled.h3`
   margin: 0 0 24px 0;
@@ -48,7 +49,14 @@ export const NavLinkSideBar = styled(NavLink)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: var(--sidebar-text-color);
+  color: ${props => {
+    const location = useLocation();
+    const curentTheme = useSelector(selectTheme);
+    if (curentTheme === 'dark') return 'var(--invert-text-color)';
+    if (location.pathname.includes(props.to)) return 'var(--accent-color)';
+    return 'var(--sidebar-text-color)';
+  }};
+
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
@@ -58,7 +66,6 @@ export const NavLinkSideBar = styled(NavLink)`
   ${min(tablet)} {
     font-size: 16px;
   }
-
   svg {
     width: 20px;
     height: 20px;
@@ -73,10 +80,22 @@ export const NavLinkSideBar = styled(NavLink)`
 
 export const IconWithFill = styled.svg`
   stroke: transparent;
-  fill: var(--sidebar-text-color);
+  fill: ${props => {
+    const location = useLocation();
+    const curentTheme = useSelector(selectTheme);
+    if (curentTheme === 'dark') return 'var(--invert-text-color)';
+    if (location.pathname.includes(props.page)) return 'var(--accent-color)';
+    return 'var(--sidebar-text-color)';
+  }};
 `;
 
 export const IconWithStroke = styled.svg`
-  stroke: var(--sidebar-text-color);
+  stroke: ${props => {
+    const location = useLocation();
+    const curentTheme = useSelector(selectTheme);
+    if (curentTheme === 'dark') return 'var(--invert-text-color)';
+    if (location.pathname.includes(props.page)) return 'var(--accent-color)';
+    return 'var(--sidebar-text-color)';
+  }};
   fill: transparent;
 `;
