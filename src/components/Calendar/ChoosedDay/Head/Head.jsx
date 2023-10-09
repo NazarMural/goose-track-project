@@ -19,9 +19,6 @@ const Head = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const day = setDay(currentDay).startWeek.day(7).format('D');
-    console.log(day);
-
     const currentDaySlice = currentDay.split('-').slice(2).join('');
     [...Array(7)].map((_, idx) => {
       const dayIdx = setDay(currentDay)
