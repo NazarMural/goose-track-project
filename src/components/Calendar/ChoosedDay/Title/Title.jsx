@@ -1,8 +1,13 @@
 import React from 'react';
-import { ContainerTitle, IconAddTask, MainTitle } from './Title.styled';
+import {
+  ContainerTitle,
+  IconAddTask,
+  MainTitle,
+  TitleButtonAddTask,
+} from './Title.styled';
 import sprite from '../../../../assets/images/icons/icons.svg';
 
-const Title = ({ type, onAdd, tasks }) => {
+const Title = ({ type, onAdd, tasks, isDisabledAddTask }) => {
   return (
     <ContainerTitle tasks={tasks}>
       <MainTitle>
@@ -21,9 +26,11 @@ const Title = ({ type, onAdd, tasks }) => {
           }
         })()}
       </MainTitle>
-      <IconAddTask onClick={onAdd}>
-        <use xlinkHref={sprite + '#icon-icon-plus'} />
-      </IconAddTask>
+      <TitleButtonAddTask disabled={isDisabledAddTask} onClick={onAdd}>
+        <IconAddTask>
+          <use xlinkHref={sprite + '#icon-icon-plus'} />
+        </IconAddTask>
+      </TitleButtonAddTask>
     </ContainerTitle>
   );
 };

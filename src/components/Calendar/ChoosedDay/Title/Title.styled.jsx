@@ -26,16 +26,38 @@ export const MainTitle = styled.h2`
   }
 `;
 
-export const IconAddTask = styled.svg`
+export const TitleButtonAddTask = styled.button`
   height: 22px;
   width: 22px;
-  stroke: var(--primary-text-color);
+  border: none;
+  background-color: transparent;
+  padding: 0;
   cursor: pointer;
-  & use {
-    fill: transparent;
+
+  &:hover:not([disabled]) {
+    & svg {
+      stroke: var(--accent-color);
+    }
+  }
+
+  &:disabled {
+    cursor: auto;
+    & svg {
+      /* stroke: var(--accent-color); */
+    }
   }
   ${min(tablet)} {
     height: 24px;
     width: 24px;
+  }
+`;
+
+export const IconAddTask = styled.svg`
+  height: 100%;
+  width: 100%;
+  stroke: var(--primary-text-color);
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
+  & use {
+    fill: transparent;
   }
 `;

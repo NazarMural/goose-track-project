@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { min, tablet } from 'styles/media';
 
 export const HeadContainer = styled.div`
   display: grid;
@@ -31,7 +32,6 @@ export const HeadCell = styled.div`
   background-color: var(--cell-background);
 
   & div {
-    color: #343434;
     background-color: var(--cell-background);
 
     border-radius: 6px;
@@ -52,6 +52,7 @@ export const HeadCell = styled.div`
 export const NameWeek = styled.span`
   font-size: 16px;
   font-weight: 600;
+  color: var(--day-head-week-color-text);
 `;
 
 export const DayWeekContainer = styled.div`
@@ -62,5 +63,11 @@ export const DayWeekContainer = styled.div`
   font-weight: 700;
   width: 20px;
   height: 22px;
+  color: var(--task-popup-color-text);
+  ${min(tablet)} {
+    font-size: 16px;
+    width: 27px;
+    height: 26px;
+  }
 `;
 export const DayWeekText = styled.span``;
