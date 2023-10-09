@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import icons from '../../../assets/images/icons/icons.svg';
 import * as Yup from 'yup';
-import moment from 'moment';
-import {
-  addTaskOperation,
-  updateTaskOperation,
-} from '../../../redux/tasks/operations';
+
+import { addTaskOperation, updateTaskOperation } from '../../../redux/tasks/operations';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   OperationButton,
@@ -31,12 +28,12 @@ import {
   RedLine,
   TimeField,
   TitleField,
+  TitleFieldContainer,
 } from './TaskForm.styled';
+import { TaskValidateMessage } from '../TaskValidateMessage/TaskValidateMessage';
 
 const taskFormSchema = Yup.object().shape({
-  title: Yup.string('Enter title')
-    .max(250, 'Text must be at most 250characters')
-    .required('Title is required'),
+  title: Yup.string('Enter title').max(250, 'Text must be at most 250characters').required('Title is required'),
   start: Yup.string('Enter start')
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid start time')
     .required('Start time is required'),
@@ -53,7 +50,7 @@ const taskFormSchema = Yup.object().shape({
     ),
 });
 
-export const TaskForm = ({ category, task, onClose }) => {
+export const TaskForm = ({ category, task = {}, onClose }) => {
   const [operation, setOperation] = useState('create');
 
   const dispatch = useDispatch();
@@ -76,7 +73,7 @@ export const TaskForm = ({ category, task, onClose }) => {
       start: values.start,
       end: values.end,
       priority: values.priority,
-      date: task?.date || moment().format('YYYY-MM-DD'),
+      date: task?.date,
       category: category,
     };
 
@@ -108,39 +105,33 @@ export const TaskForm = ({ category, task, onClose }) => {
   };
 
   return (
-    <Formik
-      initialValues={task || initialValues}
-      validationSchema={taskFormSchema}
-      onSubmit={onSubmit}
-    >
-      {({ values }) => (
+    <Formik initialValues={{ ...initialValues, ...task }} validationSchema={taskFormSchema} onSubmit={onSubmit}>
+      {({ values, errors, touched }) => (
         <FormContainer>
-          <CloseButton
-            type="button"
-            aria-label="close button"
-            onClick={onClose}
-          >
+          <CloseButton type="button" aria-label="close button" onClick={onClose}>
             <CloseIcon>
               <use href={icons + '#icon-x-close'}></use>
             </CloseIcon>
           </CloseButton>
           <Form>
-            <Label>
-              Title
-              <ErrorMessage name="title" component="div" />
-              <TitleField type="text" name="title" placeholder="Enter text" />
-            </Label>
+            <TitleFieldContainer>
+              <Label>
+                Title
+                <TitleField type="text" name="title" placeholder="Enter text" />
+                <TaskValidateMessage errors={errors.title} touched={touched?.title} field="title" />
+              </Label>
+            </TitleFieldContainer>
 
             <FieldContainer>
               <Label>
                 Start
-                <ErrorMessage name="start" component="div" />
                 <TimeField type="time" name="start" />
+                <TaskValidateMessage errors={errors.start} touched={touched?.start} field="start time" />
               </Label>
               <Label>
                 End
-                <ErrorMessage name="end" component="div" />
                 <TimeField type="time" name="end" />
+                <TaskValidateMessage errors={errors.end} touched={touched?.end} field="end time" />
               </Label>
             </FieldContainer>
 
