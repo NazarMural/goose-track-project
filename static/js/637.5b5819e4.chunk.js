@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgoose_track_project=self.webpackChunkgoose_track_project||[]).push([[637],{3637:function(e,o,n){n.r(o);var c=n(2010),r=n(8687),s=(n(2791),n(3329));o.default=function(){return(0,s.jsx)(r.Z,{login:!0,img:"goose_login.png",children:(0,s.jsx)(c.Z,{login:!0})})}}}]);
+//# sourceMappingURL=637.5b5819e4.chunk.js.map
