@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Layout } from './AuthLayout.styled';
 import PropTypes from 'prop-types';
-import useImage from './useImage';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
+import useImage from 'helpers/useImage';
 
 const AuthLayout = ({ children, login, img }) => {
   const { image } = useImage('registerPage_loginPage/' + img);

@@ -18,7 +18,7 @@ import { deleteTaskOperation } from 'redux/tasks/operations';
 
 import sprite from '../../../../assets/images/icons/icons.svg';
 import { selectUserAvatar } from 'redux/auth/selectors';
-import { Notify } from 'notiflix';
+import { Confirm, Notify } from 'notiflix';
 
 const Tasks = ({
   type,
@@ -42,13 +42,30 @@ const Tasks = ({
     }
   };
 
-  const onDelete = async taskId => {
-    const response = await dispatch(deleteTaskOperation(taskId));
-    if (response.payload.status) {
-      Notify.failure('Task don`t delete. Try again');
-      return;
-    }
-    Notify.success('Task deleted successfully');
+  const onDelete = taskId => {
+    Confirm.show(
+      'Confirm',
+      'Are you sure you want to delete this?',
+      'Delete',
+      'Cancel',
+      async () => {
+        const response = await dispatch(deleteTaskOperation(taskId));
+        if (response.payload.status) {
+          Notify.failure('Task don`t delete. Try again');
+          return;
+        }
+        Notify.success('Task deleted successfully', {
+          success: { background: 'var(--accent-color)' },
+        });
+      },
+      () => {},
+      {
+        messageColor: 'var(--primary-text-color);',
+        backgroundColor: 'var(--primary-bg-color)',
+        okButtonBackground: 'var(--accent-color)',
+        titleColor: 'var(--accent-color)',
+      }
+    );
   };
 
   return (
@@ -100,7 +117,6 @@ const Tasks = ({
             {isShowPopUpReplace === _id && (
               <PopUpReplace
                 type={type}
-                tasks={tasks}
                 setIsShowPopUpReplace={setIsShowPopUpReplace}
                 _id={_id}
               ></PopUpReplace>
@@ -115,8 +131,8 @@ const Tasks = ({
 Tasks.propTypes = {
   type: PropTypes.oneOf(['to-do', 'in-progress', 'done']),
   tasks: PropTypes.array.isRequired,
-  setTasks: PropTypes.func.isRequired,
-  isShowPopUpReplace: PropTypes.bool.isRequired,
+  isShowPopUpReplace: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  onEdit: PropTypes.func.isRequired,
   setIsShowPopUpReplace: PropTypes.func.isRequired,
 };
 

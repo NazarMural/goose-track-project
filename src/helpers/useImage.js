@@ -8,7 +8,7 @@ const useImage = fileName => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const response = await import(`../../assets/images/${fileName}`); // change relative path to suit your needs
+        const response = await import(`../assets/images/${fileName}`); // change relative path to suit your needs
         setImage(response.default);
       } catch (err) {
         setError(err);
