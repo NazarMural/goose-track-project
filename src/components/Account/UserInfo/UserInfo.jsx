@@ -16,16 +16,22 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserAvatarOperation } from 'redux/auth/operations';
 import { selectUser, selectUserAvatar } from 'redux/auth/selectors';
+import { optimizeImage } from 'helpers/optimizeImage';
 
 export const UserInfo = () => {
   const dispatch = useDispatch();
   const avatarCloud = useSelector(selectUserAvatar);
   const { name } = useSelector(selectUser);
 
-  const fileInputChange = e => {
+  const fileInputChange = async e => {
     const file = e.target.files[0];
+    console.log(file);
+
+    const optimizedImage = await optimizeImage(file);
+
     const formData = new FormData();
-    formData.append('avatar', file);
+    formData.append('avatar', optimizedImage);
+
     dispatch(updateUserAvatarOperation(formData));
   };
 
