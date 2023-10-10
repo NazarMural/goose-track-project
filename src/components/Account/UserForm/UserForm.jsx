@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik, useFormik } from 'formik';
 import { object, string, number, date } from 'yup';
 import sprite from '../../../assets/images/icons/icons.svg';
@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUserDataOperation } from 'redux/auth/operations';
 import { selectUser } from 'redux/auth/selectors';
 import { Notify } from 'notiflix';
+import moment from 'moment';
 
 const schema = object().shape({
   username: string().max(16).required(),
@@ -31,7 +32,6 @@ const schema = object().shape({
 });
 
 export const UserForm = () => {
-  const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
@@ -52,6 +52,7 @@ export const UserForm = () => {
     handleChange,
     handleBlur,
     handleSubmit,
+    setFieldValue,
   } = useFormik({
     initialValues: initialValues,
     validationSchema: schema,
@@ -64,7 +65,7 @@ export const UserForm = () => {
     const newData = {
       name: values.username,
       email: values.email,
-      birthday: values.birthday,
+      birthday: moment(values.birthday).format('YYYY-MM-DD'),
       phone: values.phone,
       social: values.skype,
     };
@@ -72,6 +73,12 @@ export const UserForm = () => {
     Notify.success('Data update successfully');
     resetForm();
   }
+
+  const isWeekend = date => {
+    const day = date.getDay();
+    return day === 0 || day === 6 ? 'weekend' : '';
+  };
+
   return (
     <Container>
       <UserInfo />
@@ -143,57 +150,27 @@ export const UserForm = () => {
                 ))}
             </Label>
           </FieldContainer>
-          {/* <Span>
-            <FieldContainer>
-              <Label>
-                Birthday
-                <FormField
-                  type="date"
-                  name="birthday"
-                  placeholder="YYYY - MM - DD"
-                  value={values.birthday}
-                  onChange={handleChange('birthday')}
-                  onBlur={handleBlur('birthday')}
-                  errors={errors.birthday}
-                  touched={
-                    values.birthday !== initialValues.birthday
-                      ? values.birthday
-                      : ''
-                  }
-                />
-                <ChevronDown>
-                  <use href={`${sprite}#icon-chevron-down`}></use>
-                </ChevronDown>
-                {values.birthday !== initialValues.birthday && (
-                  <IconStatus error={errors.birthday} birthday>
-                    <use
-                      xlinkHref={`${sprite}${
-                        errors.birthday ? '#icon-error' : '#icon-done'
-                      }`}
-                    />
-                  </IconStatus>
-                )}
-                {values.birthday !== initialValues.birthday &&
-                  (errors.birthday ? (
-                    <ErrorMessageText error>{errors.birthday}</ErrorMessageText>
-                  ) : (
-                    <ErrorMessageText>This is an CORRECT date</ErrorMessageText>
-                  ))}
-              </Label>
-            </FieldContainer>
-          </Span> */}
           <Span>
             <FieldContainer>
               <Label>
                 Birthday
                 <Wrapper
                   name="birthday"
-                  placeholderText="YYYY - MM - DD"
+                  placeholderText="YYYY-MM-DD"
                   value={values.birthday}
                   dateFormat="yyyy-MM-dd"
-                  selected={startDate}
-                  onChange={date => setStartDate(date)}
-                  weekStartsOn={1}
+                  selected={values.birthday ? new Date(values.birthday) : null}
+                  onChange={date => setFieldValue('birthday', date)}
+                  calendarStartDay={1}
+                  formatWeekDay={weekDay => weekDay.charAt(0)}
+                  minDate={new Date(1950, 0, 1)}
+                  maxDate={new Date()}
+                  onBlur={handleBlur('birthday')}
+                  showMonthDropdown
+                  showYearDropdown
+                  shouldCloseOnSelect
+                  dropdownMode="select"
+                  dayClassName={isWeekend}
                 />
                 <ChevronDown>
                   <use href={`${sprite}#icon-chevron-down`}></use>
