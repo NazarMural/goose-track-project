@@ -45,7 +45,7 @@ export const CloseButton = styled.button`
 export const IconClose = styled.svg`
   width: 24px;
   height: 24px;
-  stroke: var(--input-border-color-focus);
+  stroke: var(--close-color);
   transition: color 0.3s ease-in-out;
   &:hover {
     stroke: #84828a;

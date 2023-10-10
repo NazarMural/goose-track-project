@@ -53,6 +53,7 @@ export const UserForm = () => {
     handleBlur,
     handleSubmit,
     setFieldValue,
+    setFieldTouched,
   } = useFormik({
     initialValues: initialValues,
     validationSchema: schema,
@@ -160,17 +161,20 @@ export const UserForm = () => {
                   value={values.birthday}
                   dateFormat="yyyy-MM-dd"
                   selected={values.birthday ? new Date(values.birthday) : null}
+                  // selected={values.birthday}
                   onChange={date => setFieldValue('birthday', date)}
                   calendarStartDay={1}
                   formatWeekDay={weekDay => weekDay.charAt(0)}
                   minDate={new Date(1950, 0, 1)}
                   maxDate={new Date()}
-                  onBlur={handleBlur('birthday')}
+                  // onBlur={handleBlur('birthday')}
+                  onBlur={() => setFieldTouched('birthday', true)}
                   showMonthDropdown
                   showYearDropdown
                   shouldCloseOnSelect
                   dropdownMode="select"
                   dayClassName={isWeekend}
+                  enableTabLoop={false}
                 />
                 <ChevronDown>
                   <use href={`${sprite}#icon-chevron-down`}></use>

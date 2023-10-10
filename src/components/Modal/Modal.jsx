@@ -44,7 +44,6 @@ const Modal = ({
             <use xlinkHref={`${sprite}#icon-x-close`} width={24} height={24} />
           </IconClose>
         </CloseButton>
-
         {children}
       </Container>
     </Backdrop>,
