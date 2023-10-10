@@ -3,6 +3,7 @@ import { Container, Layout } from './AuthLayout.styled';
 import PropTypes from 'prop-types';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 import useImage from 'helpers/useImage';
+import AuthOther from 'components/AuthOther/AuthOther';
 
 const AuthLayout = ({ children, login, img }) => {
   const { image } = useImage('registerPage_loginPage/' + img);
@@ -11,13 +12,14 @@ const AuthLayout = ({ children, login, img }) => {
       <Container>
         {children}
         <AuthNavigate login={login} />
+        <AuthOther />
       </Container>
     </Layout>
   );
 };
 
 AuthLayout.propTypes = {
-  children: PropTypes.element,
+  // children: PropTypes.element,
   login: PropTypes.bool,
   img: PropTypes.string.isRequired,
 };

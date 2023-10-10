@@ -19,11 +19,16 @@ import {
 } from './AuthForm.styled';
 import { object, string } from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInOperation, signUpOperation } from 'redux/auth/operations';
+import {
+  googleAuthOperation,
+  signInOperation,
+  signUpOperation,
+} from 'redux/auth/operations';
 import sprite from '../../assets/images/icons/icons.svg';
 import { selectIsAuthLoading, selectIsLoggedIn } from 'redux/auth/selectors';
 import { useNavigate } from 'react-router';
 import { Notify } from 'notiflix';
+import { useSearchParams } from 'react-router-dom';
 
 const SignUpSchema = object().shape({
   name: string()
@@ -54,12 +59,37 @@ const AuthForm = ({ login }) => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const isLoading = useSelector(selectIsAuthLoading);
   const isLogIn = useSelector(selectIsLoggedIn);
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const params = {};
+
+    for (let entry of searchParams) {
+      params[entry[0]] = entry[1];
+    }
+    if (params.token) {
+      (async () => {
+        const { payload } = await dispatch(googleAuthOperation(params.token));
+
+        if (payload.status) {
+          switch (payload.status) {
+            case 401:
+              Notify.warning('Email or password is wrong!');
+
+              break;
+
+            default:
+              Notify.failure('Server ERROR, please try again.');
+              break;
+          }
+          return;
+        }
+      })();
+    }
     isLogIn && navigate('/calendar/month/');
-  }, [isLogIn, navigate]);
+  }, [dispatch, isLogIn, navigate, searchParams]);
 
   const {
     values,
