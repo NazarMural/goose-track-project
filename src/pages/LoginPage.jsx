@@ -6,6 +6,7 @@ const LoginPage = () => {
   return (
     <AuthLayout login img={'goose_login.png'}>
       <AuthForm login />
+      <a href="http://localhost:3001/api/auth/google">Click me!!!</a>
     </AuthLayout>
   );
 };
