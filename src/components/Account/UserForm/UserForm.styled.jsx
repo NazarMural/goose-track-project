@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
 import { min, tablet, desktop } from 'styles/media';
+import DatePicker from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
 export const Container = styled.div`
   max-width: 335px;
   height: 653px;
@@ -133,6 +136,63 @@ export const Label = styled.label`
 export const Span = styled.div`
   position: relative;
   max-width: 299px;
+
+  .react-datepicker__header {
+    text-align: center;
+    background-color: #3e85f3;
+    border-bottom: 1px solid #fff;
+    border-top-left-radius: 16px;
+    padding: 8px 0;
+    position: relative;
+  }
+  .react-datepicker__header:not(.react-datepicker__header--has-time-select) {
+    border-top-right-radius: 16px;
+  }
+  .react-datepicker {
+    background-color: #3e85f3;
+    color: #000;
+    border-radius: 16px;
+    display: inline-block;
+    position: relative;
+  }
+  .react-datepicker__navigation-icon::before {
+    border-color: #fff;
+  }
+  .react-datepicker__current-month {
+    margin-top: 0;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.944rem;
+  }
+  .react-datepicker__day-name {
+    color: #fff;
+    display: inline-block;
+    width: 1.7rem;
+    line-height: 1.7rem;
+    text-align: center;
+    margin: 0.166rem;
+  }
+  .react-datepicker__day {
+    cursor: pointer;
+    color: #fff;
+    display: inline-block;
+    width: 1.7rem;
+    line-height: 1.7rem;
+    text-align: center;
+    margin: 0.166rem;
+    &:hover {
+      border-radius: 50%;
+      background-color: #4b9de9;
+    }
+  }
+  .react-datepicker__day--selected {
+    border-radius: 50%;
+    background-color: #fff;
+    color: #3e85f3;
+  }
+  .react-datepicker__navigation {
+    border-color: #fff;
+  }
   ${min(tablet)} {
     max-width: 354px;
   }
@@ -244,5 +304,32 @@ export const ErrorMessageText = styled.span`
   }
   ${min(desktop)} {
     top: 80px;
+  }
+`;
+export const Wrapper = styled(DatePicker)`
+  width: 100%;
+  color: white;
+  padding: 12px 0 12px 14px;
+  margin-bottom: 18px;
+  border: 1px solid;
+  border-color: ${({ errors, touched }) =>
+    touched
+      ? errors
+        ? 'var(--error-color);'
+        : 'var(--success-color);'
+      : 'var(--input-border-color);'};
+  border-radius: 8px;
+  color: var(--primary-text-color);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  cursor: pointer;
+  &focus {
+    border-color: var(--input-border-color-focus);
+  }
+  .dark & {
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
+    border-color: var(--calendar-grid-border);
   }
 `;

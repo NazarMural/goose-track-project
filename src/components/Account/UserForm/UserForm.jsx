@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, useFormik } from 'formik';
 import { object, string, number, date } from 'yup';
 import sprite from '../../../assets/images/icons/icons.svg';
@@ -15,6 +15,7 @@ import {
   IconStatus,
   FieldContainer,
   ErrorMessageText,
+  Wrapper,
 } from './UserForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserDataOperation } from 'redux/auth/operations';
@@ -30,6 +31,7 @@ const schema = object().shape({
 });
 
 export const UserForm = () => {
+  const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
@@ -141,7 +143,7 @@ export const UserForm = () => {
                 ))}
             </Label>
           </FieldContainer>
-          <Span>
+          {/* <Span>
             <FieldContainer>
               <Label>
                 Birthday
@@ -158,6 +160,40 @@ export const UserForm = () => {
                       ? values.birthday
                       : ''
                   }
+                />
+                <ChevronDown>
+                  <use href={`${sprite}#icon-chevron-down`}></use>
+                </ChevronDown>
+                {values.birthday !== initialValues.birthday && (
+                  <IconStatus error={errors.birthday} birthday>
+                    <use
+                      xlinkHref={`${sprite}${
+                        errors.birthday ? '#icon-error' : '#icon-done'
+                      }`}
+                    />
+                  </IconStatus>
+                )}
+                {values.birthday !== initialValues.birthday &&
+                  (errors.birthday ? (
+                    <ErrorMessageText error>{errors.birthday}</ErrorMessageText>
+                  ) : (
+                    <ErrorMessageText>This is an CORRECT date</ErrorMessageText>
+                  ))}
+              </Label>
+            </FieldContainer>
+          </Span> */}
+          <Span>
+            <FieldContainer>
+              <Label>
+                Birthday
+                <Wrapper
+                  name="birthday"
+                  placeholderText="YYYY - MM - DD"
+                  value={values.birthday}
+                  dateFormat="yyyy-MM-dd"
+                  selected={startDate}
+                  onChange={date => setStartDate(date)}
+                  weekStartsOn={1}
                 />
                 <ChevronDown>
                   <use href={`${sprite}#icon-chevron-down`}></use>
