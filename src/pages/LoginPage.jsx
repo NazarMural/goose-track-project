@@ -6,6 +6,9 @@ const LoginPage = () => {
   return (
     <AuthLayout login img={'goose_login.png'}>
       <AuthForm login />
+      <a href="https://goose-track-project-backend.onrender.com/api/auth/google">
+        Click me!!!
+      </a>
     </AuthLayout>
   );
 };
