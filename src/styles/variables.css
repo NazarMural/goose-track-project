@@ -25,6 +25,8 @@
 --user-label-color: #111111;
 --placeholder-color: #DCE3E5;
 --textarea-background: #F6F6F6;
+--close-color: #111111;
+  --task-form-border: transparent;
 
 /* sidebar-styles */
 --sidebar-text-color: #34343480;
@@ -140,6 +142,9 @@ html.dark {
 --switch-type-bg-active: #3E85F3;
 
 --user-label-color: #FAFAFA4D;
+--close-color: #FFFFFF;
+  --textarea-background: transparent;
+  --task-form-border: #FFFFFF26;
 
 --add-task-bg: #3E85F3;
 

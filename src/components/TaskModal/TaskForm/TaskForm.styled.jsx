@@ -1,16 +1,20 @@
 import styled from '@emotion/styled';
 import { Field } from 'formik';
-import { min, tablet } from 'styles/media';
+import { min, mobile, tablet } from 'styles/media';
 
 export const FormContainer = styled.div`
   position: relative;
-  width: 303px;
+  /* width: 303px; */
+  max-width: 100%;
   padding: 48px 18px 40px;
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.8);
   background-color: var(--task-popup-bg);
   box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
 
+  ${min(mobile)} {
+    width: 303px;
+  }
   ${min(tablet)} {
     width: 396px;
     padding: 40px 28px;
@@ -27,6 +31,10 @@ export const CloseButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
+
+  & svg {
+    stroke: var(--close-color);
+  }
 
   &:hover {
     & svg {
@@ -46,7 +54,7 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  color: rgba(52, 52, 52, 1);
+  color: var(--sidebar-navTitle-color);
   font-weight: 500;
   font-size: 12px;
   line-height: 1.16;
@@ -60,8 +68,8 @@ export const TitleField = styled(Field)`
   padding: 12px 14px;
   /* margin-bottom: 16px; */
   border-radius: 8px;
-  border: none;
-  background-color: rgba(246, 246, 246, 1);
+  background-color: var(--textarea-background);
+  border: 1px solid var(--task-form-border);
   color: rgba(52, 52, 52, 1);
   font-size: 14px;
   font-weight: 600;
@@ -87,6 +95,7 @@ export const FieldContainer = styled.div`
   display: flex;
   gap: 14px;
   margin-bottom: 16px;
+  /* border: 1px solid var(--input-border-color); */
 
   ${min(tablet)} {
     margin-bottom: 28px;
@@ -100,9 +109,11 @@ export const TimeField = styled(Field)`
   padding: 12px 14px;
   /* margin-bottom: 16px; */
   border-radius: 8px;
-  border: none;
-  background-color: rgba(246, 246, 246, 1);
-  color: rgba(52, 52, 52, 1);
+  /* border: none; */
+  /* background-color: rgba(246, 246, 246, 1); */
+  background-color: var(--textarea-background);
+  border: 1px solid var(--task-form-border);
+  color: var(--task-popup-color-text);
   font-size: 14px;
   line-height: 1.28;
   &::-webkit-calendar-picker-indicator {
@@ -133,7 +144,7 @@ export const PriorityLabel = styled.label`
   display: flex;
   align-items: center;
   gap: 6px;
-  color: rgba(52, 52, 52, 1);
+  color: var(--task-popup-color-text);
   font-size: 12px;
   line-height: 1.16;
   cursor: pointer;
@@ -253,7 +264,7 @@ export const CancelButton = styled.button`
   border-radius: 8px;
   border: none;
   background-color: var(--task-btn-cancel);
-  color: var(--primary-text-color);
+  color: var(--input-border-color-focus);
   text-align: center;
   font-size: 14px;
   line-height: 1.28;

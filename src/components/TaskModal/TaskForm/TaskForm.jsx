@@ -120,7 +120,11 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
     >
       {({ values, errors, touched }) => (
         <FormContainer>
-          <CloseButton type="button" aria-label="close button" onClick={onClose}>
+          <CloseButton
+            type="button"
+            aria-label="close button"
+            onClick={onClose}
+          >
             <CloseIcon>
               <use href={icons + '#icon-x-close'}></use>
             </CloseIcon>
@@ -130,7 +134,11 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
               <Label>
                 Title
                 <TitleField type="text" name="title" placeholder="Enter text" />
-                <TaskValidateMessage errors={errors.title} touched={touched?.title} field="title" />
+                <TaskValidateMessage
+                  errors={errors.title}
+                  touched={touched?.title}
+                  field="title"
+                />
               </Label>
             </TitleFieldContainer>
 
@@ -138,12 +146,20 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
               <Label>
                 Start
                 <TimeField type="time" name="start" />
-                <TaskValidateMessage errors={errors.start} touched={touched?.start} field="start time" />
+                <TaskValidateMessage
+                  errors={errors.start}
+                  touched={touched?.start}
+                  field="start time"
+                />
               </Label>
               <Label>
                 End
                 <TimeField type="time" name="end" />
-                <TaskValidateMessage errors={errors.end} touched={touched?.end} field="end time" />
+                <TaskValidateMessage
+                  errors={errors.end}
+                  touched={touched?.end}
+                  field="end time"
+                />
               </Label>
             </FieldContainer>
 
