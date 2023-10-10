@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { Notify } from 'notiflix';
+import { Confirm, Notify } from 'notiflix';
 import Modal from '../../../Modal/Modal';
 import {
   FormContainer,
@@ -90,11 +90,23 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
   };
 
   const handleDelete = () => {
-    (async () => {
-      await dispatch(deleteReviewOperation());
-    })();
-
-    onClose();
+    Confirm.show(
+      'Confirm',
+      'Are you sure you want to delete this?',
+      'Delete',
+      'Cancel',
+      async () => {
+        await dispatch(deleteReviewOperation());
+        onClose();
+      },
+      () => {},
+      {
+        messageColor: 'var(--primary-text-color);',
+        backgroundColor: 'var(--primary-bg-color)',
+        okButtonBackground: 'var(--accent-color)',
+        titleColor: 'var(--accent-color)',
+      }
+    );
   };
 
   const handleCancel = () => {
