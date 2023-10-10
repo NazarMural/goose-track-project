@@ -109,8 +109,6 @@ const PopUpReplace = ({ type, setIsShowPopUpReplace, _id }) => {
 
 PopUpReplace.propTypes = {
   type: PropTypes.oneOf(['to-do', 'in-progress', 'done']),
-  tasks: PropTypes.array.isRequired,
-  setTasks: PropTypes.func.isRequired,
   setIsShowPopUpReplace: PropTypes.func.isRequired,
   _id: PropTypes.string.isRequired,
 };

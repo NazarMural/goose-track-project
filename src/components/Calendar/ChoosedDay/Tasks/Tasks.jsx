@@ -117,7 +117,6 @@ const Tasks = ({
             {isShowPopUpReplace === _id && (
               <PopUpReplace
                 type={type}
-                tasks={tasks}
                 setIsShowPopUpReplace={setIsShowPopUpReplace}
                 _id={_id}
               ></PopUpReplace>
@@ -132,8 +131,8 @@ const Tasks = ({
 Tasks.propTypes = {
   type: PropTypes.oneOf(['to-do', 'in-progress', 'done']),
   tasks: PropTypes.array.isRequired,
-  setTasks: PropTypes.func.isRequired,
-  isShowPopUpReplace: PropTypes.bool.isRequired,
+  isShowPopUpReplace: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  onEdit: PropTypes.func.isRequired,
   setIsShowPopUpReplace: PropTypes.func.isRequired,
 };
 
