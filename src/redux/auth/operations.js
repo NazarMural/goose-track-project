@@ -66,6 +66,14 @@ const updateUserAvatarOperation = createAsyncThunk('auth/updateAvatar', async (f
   }, thunkAPI);
 });
 
+const googleAuthOperation = createAsyncThunk('auth/googleAuth', async (token, thunkAPI) => {
+  return await handleErrorAsyncOperation(async () => {
+    setAuthHeader(token);
+    const { data } = await axios.get('/users/current');
+    return data;
+  }, thunkAPI);
+});
+
 export {
   signUpOperation,
   signInOperation,
@@ -73,4 +81,5 @@ export {
   updateUserDataOperation,
   logOutOperation,
   updateUserAvatarOperation,
+  googleAuthOperation,
 };

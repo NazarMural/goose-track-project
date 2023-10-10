@@ -7,6 +7,7 @@ import {
   refreshUserOperation,
   updateUserDataOperation,
   updateUserAvatarOperation,
+  googleAuthOperation,
 } from './operations';
 import * as authReducers from 'utils/reduxActionHandlers/authActionHandlers';
 import storage from 'redux-persist/lib/storage';
@@ -39,8 +40,8 @@ const authPersistConfig = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: build =>
-    build
+  extraReducers: builder =>
+    builder
       .addCase(signUpOperation.pending, authReducers.handleAuthActionPending)
       .addCase(signUpOperation.fulfilled, authReducers.handleRegisterFulfilled)
       .addCase(signUpOperation.rejected, authReducers.handleRegisterRejected)
@@ -58,7 +59,10 @@ const authSlice = createSlice({
       .addCase(updateUserDataOperation.rejected, authReducers.handleUpdateUserRejected)
       .addCase(updateUserAvatarOperation.pending, authReducers.handleUpdateAvatarPending)
       .addCase(updateUserAvatarOperation.fulfilled, authReducers.handleUpdateAvatarFulfilled)
-      .addCase(updateUserAvatarOperation.rejected, authReducers.handleUpdateAvatarRejected),
+      .addCase(updateUserAvatarOperation.rejected, authReducers.handleUpdateAvatarRejected)
+      .addCase(googleAuthOperation.pending, authReducers.handleRefreshUserPending)
+      .addCase(googleAuthOperation.fulfilled, authReducers.handleRefreshUserFulfilled)
+      .addCase(googleAuthOperation.rejected, authReducers.handleRefreshUserRejected),
 });
 
 const authReducer = authSlice.reducer;
