@@ -15,7 +15,8 @@ export const Header = ({ addSideBar, showSideBar }) => {
     query: '(min-width: 1440px)',
   });
   const dispatch = useDispatch();
-  const [review, setReview] = useState(null);
+  const [isEditMode, setIsEditMode] = useState(false);
+
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const openForm = () => {
@@ -27,15 +28,10 @@ export const Header = ({ addSideBar, showSideBar }) => {
   };
 
   useEffect(() => {
-    isFormOpen &&
-      (async () => {
-        const { payload } = await dispatch(fetchOwnReviewOperation());
-        setReview(
-          payload?.review && payload?.review?.length > 0
-            ? payload.review[0]
-            : undefined
-        );
-      })();
+    (async () => {
+      const { payload } = await dispatch(fetchOwnReviewOperation());
+      payload.review.length === 0 ? setIsEditMode(false) : setIsEditMode(true);
+    })();
   }, [isFormOpen, dispatch]);
 
   return (
@@ -48,7 +44,11 @@ export const Header = ({ addSideBar, showSideBar }) => {
       <FeedbackBtn openForm={openForm} />
       <UserInfo />
       {isFormOpen && (
-        <ReviewForm isOpen={isFormOpen} onClose={closeForm} review={review} />
+        <ReviewForm
+          isOpen={isFormOpen}
+          onClose={closeForm}
+          isEditMode={isEditMode}
+        />
       )}
     </HeaderSection>
   );
