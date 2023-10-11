@@ -43,7 +43,7 @@ export const TitleButtonAddTask = styled.button`
   &:disabled {
     cursor: auto;
     & svg {
-      /* stroke: var(--accent-color); */
+      stroke: var(--disabled-btn-color);
     }
   }
   ${min(tablet)} {

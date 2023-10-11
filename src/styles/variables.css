@@ -86,7 +86,8 @@
 --task-scrollbar-thumb: #E7E5E5;
 --task-scrollbar-thumb-hover: #d4d2d2;
 --day-head-week-color-text: #343434;
-
+--disabled-btn-bg-color: #dfdde4;
+  --disabled-btn-color: #84828a;
 
 /* statistic-styles */
 --gradient-red:  linear-gradient(0deg, #FFD2DD 0%, rgba(255, 210, 221, 0.00) 96.87%);
@@ -153,6 +154,7 @@ html.dark {
 --task-scrollbar-track: #2D3037;
 --task-scrollbar-thumb: #171820;
 --task-scrollbar-thumb-hover: #1a1b20;
+--disabled-btn-bg-color: #57555b;
 
 --statistic-button-arrow-color: #fff;
 --legend-text-color: #fff;

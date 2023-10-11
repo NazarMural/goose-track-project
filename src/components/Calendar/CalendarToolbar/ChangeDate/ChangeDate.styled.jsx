@@ -1,6 +1,4 @@
 import styled from '@emotion/styled';
-// import { NavLink } from 'react-router-dom';
-// import { min, mobile, tablet } from 'styles/media';
 
 export const DateContainer = styled.div`
   display: flex;
@@ -12,7 +10,6 @@ export const DateContainer = styled.div`
 export const DateWrapper = styled.div`
   background-color: var(--accent-color);
   width: 150px;
-  /* width: auto; */
   display: flex;
   padding: 6px 12px;
   justify-content: center;
@@ -30,13 +27,13 @@ export const Date = styled.span`
 `;
 
 export const ToggleWrapper = styled.div`
-  /* padding: 7px 10px; */
   display: flex;
   background: var(--calendar-grid-border);
   border: 1px solid var(--calendar-grid-border);
   border-radius: 8px;
   gap: 1px;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 export const Toggle = styled.div`

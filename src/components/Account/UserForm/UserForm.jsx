@@ -161,7 +161,6 @@ export const UserForm = () => {
                   value={values.birthday}
                   dateFormat="yyyy-MM-dd"
                   selected={values.birthday ? new Date(values.birthday) : null}
-                  // selected={values.birthday}
                   onChange={date => setFieldValue('birthday', date)}
                   calendarStartDay={1}
                   formatWeekDay={weekDay => weekDay.charAt(0)}

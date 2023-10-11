@@ -70,7 +70,7 @@ export const TitleField = styled(Field)`
   border-radius: 8px;
   background-color: var(--textarea-background);
   border: 1px solid var(--task-form-border);
-  color: rgba(52, 52, 52, 1);
+  color: var(--task-popup-color-text);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.28;
