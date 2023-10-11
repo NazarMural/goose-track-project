@@ -5,6 +5,7 @@ export const Main = styled.main`
   background-color: var(--page-bg-color);
   padding-top: 64px;
   padding-bottom: 40px;
+  min-height: 100vh;
 
   ${min(tablet)} {
     padding-bottom: 38px;

@@ -24,7 +24,7 @@ import { Notify } from 'notiflix';
 import moment from 'moment';
 
 const schema = object().shape({
-  username: string().max(16).required(),
+  username: string().max(30).required(),
   phone: number(),
   birthday: date(),
   skype: string().max(16),
