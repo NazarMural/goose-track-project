@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/goose-track-project/static/css/main.69c9f8f9.css",
-    "main.js": "/goose-track-project/static/js/main.105ae5a5.js",
+    "main.js": "/goose-track-project/static/js/main.c6200279.js",
     "static/js/432.f76fd7d6.chunk.js": "/goose-track-project/static/js/432.f76fd7d6.chunk.js",
     "static/js/637.5b5819e4.chunk.js": "/goose-track-project/static/js/637.5b5819e4.chunk.js",
-    "static/js/744.e2c6243c.chunk.js": "/goose-track-project/static/js/744.e2c6243c.chunk.js",
+    "static/js/744.98cd4f93.chunk.js": "/goose-track-project/static/js/744.98cd4f93.chunk.js",
     "static/js/666.c0aba9d8.chunk.js": "/goose-track-project/static/js/666.c0aba9d8.chunk.js",
     "static/js/707.4614142d.chunk.js": "/goose-track-project/static/js/707.4614142d.chunk.js",
     "static/js/19.34eeee01.chunk.js": "/goose-track-project/static/js/19.34eeee01.chunk.js",
@@ -83,10 +83,10 @@
     "static/media/slick.ttf": "/goose-track-project/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/goose-track-project/static/media/slick.295183786cd8a1389865.woff",
     "main.69c9f8f9.css.map": "/goose-track-project/static/css/main.69c9f8f9.css.map",
-    "main.105ae5a5.js.map": "/goose-track-project/static/js/main.105ae5a5.js.map",
+    "main.c6200279.js.map": "/goose-track-project/static/js/main.c6200279.js.map",
     "432.f76fd7d6.chunk.js.map": "/goose-track-project/static/js/432.f76fd7d6.chunk.js.map",
     "637.5b5819e4.chunk.js.map": "/goose-track-project/static/js/637.5b5819e4.chunk.js.map",
-    "744.e2c6243c.chunk.js.map": "/goose-track-project/static/js/744.e2c6243c.chunk.js.map",
+    "744.98cd4f93.chunk.js.map": "/goose-track-project/static/js/744.98cd4f93.chunk.js.map",
     "666.c0aba9d8.chunk.js.map": "/goose-track-project/static/js/666.c0aba9d8.chunk.js.map",
     "707.4614142d.chunk.js.map": "/goose-track-project/static/js/707.4614142d.chunk.js.map",
     "19.34eeee01.chunk.js.map": "/goose-track-project/static/js/19.34eeee01.chunk.js.map",
@@ -106,6 +106,6 @@
   },
   "entrypoints": [
     "static/css/main.69c9f8f9.css",
-    "static/js/main.105ae5a5.js"
+    "static/js/main.c6200279.js"
   ]
 }
