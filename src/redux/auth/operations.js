@@ -70,6 +70,7 @@ const googleAuthOperation = createAsyncThunk('auth/googleAuth', async (token, th
   return await handleErrorAsyncOperation(async () => {
     setAuthHeader(token);
     const { data } = await axios.get('/users/current');
+    data.token = token;
     return data;
   }, thunkAPI);
 });

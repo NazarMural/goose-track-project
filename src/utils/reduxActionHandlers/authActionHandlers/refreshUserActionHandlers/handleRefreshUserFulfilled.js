@@ -4,4 +4,5 @@ export const handleRefreshUserFulfilled = (state, { payload }) => {
   state.isAuthLoading = false;
   state.isRefreshingUser = false;
   state.error = null;
+  state.token = payload.token || state.token
 };
