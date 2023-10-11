@@ -25,7 +25,6 @@ export const UserInfo = () => {
 
   const fileInputChange = async e => {
     const file = e.target.files[0];
-    console.log(file);
 
     const optimizedImage = await optimizeImage(file);
 

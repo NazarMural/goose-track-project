@@ -95,6 +95,13 @@ export const ButtonAddTask = styled.button`
 
   &:disabled {
     cursor: auto;
+    background-color: var(--disabled-btn-bg-color);
+    color: var(--disabled-btn-color);
+    border: none;
+
+    svg {
+      stroke: var(--disabled-btn-color);
+    }
   }
 `;
 

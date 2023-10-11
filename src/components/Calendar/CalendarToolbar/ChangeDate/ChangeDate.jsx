@@ -3,15 +3,6 @@ import sprite from 'assets/images/icons/icons.svg';
 import moment from 'moment';
 import { Date, DateContainer, DateWrapper, Toggle, ToggleIcon, ToggleWrapper } from './ChangeDate.styled';
 
-// const {
-//   DateContainer,
-//   DateWrapper,
-//   Date,
-//   ToggleWrapper,
-//   Toggle,
-//   ToggleIcon,
-// } = require('./ChangeDate.styled');
-
 const ChangeDate = () => {
   const params = useParams();
   const navigate = useNavigate();
@@ -32,15 +23,11 @@ const ChangeDate = () => {
 
   const handleClick = () => {
     const date = moment(paramsDate).add(1, paramsType).format('YYYY-MM-DD');
-    //   setCurrentDate(date);
+
     localStorage.setItem('date', date);
     const month = moment(date).format('YYYY-MM');
     const day = moment(date).format('YYYY-MM-DD');
     navigate(paramsType === 'month' ? `month/${month}` : `day/${day}`);
-    //   if (params.currentDay) {
-    //       localStorage.setItem('type', 'day')
-    //     // setFormat('day');
-    //   }
   };
 
   const handleClickBack = () => {
@@ -48,7 +35,6 @@ const ChangeDate = () => {
       .subtract(1, paramsType)
       .format('YYYY-MM-DD');
     localStorage.setItem('date', date);
-    //   setCurrentDate(date);
     const month = moment(date).format('YYYY-MM');
     navigate(paramsType === 'month' ? `month/${month}` : `day/${date}`);
   };

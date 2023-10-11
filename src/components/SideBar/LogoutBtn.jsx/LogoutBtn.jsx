@@ -8,6 +8,7 @@ export const LogoutBtn = () => {
   const handleLogOut = () => {
     localStorage.removeItem('type');
     localStorage.removeItem('date');
+    document.body.style.overflow = 'auto';
     dispatch(logOutOperation());
   };
   return (
