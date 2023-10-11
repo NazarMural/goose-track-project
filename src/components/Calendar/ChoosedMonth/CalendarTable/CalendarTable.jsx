@@ -43,7 +43,12 @@ export const CalendarTable = () => {
     <CalendarGrid rows={weeks}>
       {daysArray.map((dayItem, idx) => (
         <Cell key={idx}>
-          <DayLink onClick={() => handleNavigateToDay(dayItem)}>
+          <DayLink
+            onClick={() => handleNavigateToDay(dayItem)}
+            display={`${
+              startMonth > dayItem || endMonth < dayItem ? 'none' : 'flex'
+            }`}
+          >
             <WrapperDay>
               <Day
                 color={`${

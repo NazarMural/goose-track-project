@@ -36,9 +36,16 @@ export const Cell = styled.div`
 `;
 
 export const DayLink = styled.div`
-  display: flex;
+  /* display: flex; */
   justify-content: flex-end;
   cursor: pointer;
+  display: ${props => props.display};
+
+  &:hover span {
+    background-color: #3e85f390;
+    color: #ffffff;
+    /* opacity: 0.6; */
+  }
 `;
 
 export const WrapperDay = styled.div`
@@ -61,7 +68,7 @@ export const WrapperDay = styled.div`
   }
 `;
 
-export const Day = styled.div`
+export const Day = styled.span`
   width: 100%;
   height: 100%;
   display: flex;

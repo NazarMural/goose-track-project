@@ -35,6 +35,7 @@ const CalendarToolbar = () => {
   useEffect(() => {
     if (params.currentDay) {
       typeDay?.classList.add('active');
+      typeMonth?.classList.remove('active');
     }
     if (params.currentMonth) {
       typeMonth?.classList.add('active');
