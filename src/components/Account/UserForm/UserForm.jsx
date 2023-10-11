@@ -66,7 +66,7 @@ export const UserForm = () => {
     const newData = {
       name: values.username,
       email: values.email,
-      birthday: moment(values.birthday).format('YYYY-MM-DD'),
+      birthday: values.birthday && moment(values.birthday).format('YYYY-MM-DD'),
       phone: values.phone,
       social: values.skype,
     };
