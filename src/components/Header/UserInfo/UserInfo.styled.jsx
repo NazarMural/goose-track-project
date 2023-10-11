@@ -22,6 +22,7 @@ export const UserName = styled.p`
   line-height: 18px;
   max-width: 92px;
   overflow: hidden;
+  text-overflow: ellipsis;
 
   ${max(mobile)} {
     max-width: 70px;
