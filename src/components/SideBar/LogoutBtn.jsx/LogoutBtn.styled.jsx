@@ -9,6 +9,7 @@ export const LogoutButtonEl = styled.button`
   flex-shrink: 0;
   border-radius: 16px;
   border: none;
+  cursor: pointer;
   background-color: var(--btn-bg-color);
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   justify-content: center;
