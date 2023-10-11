@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Confirm, Notify } from 'notiflix';
 import Modal from '../../../Modal/Modal';
 import {
@@ -26,12 +26,14 @@ import {
   updateReviewOperation,
   deleteReviewOperation,
 } from '../../../../redux/reviews/operations';
+import { selectReviews } from 'redux/reviews/selectors';
 
-const ReviewForm = ({ isOpen, onClose, review }) => {
+const ReviewForm = ({ isOpen, onClose, isEditMode }) => {
   const [formData, setFormData] = useState({
     rating: '',
     comment: '',
   });
+  const review = useSelector(selectReviews);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -39,13 +41,12 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
 
   useEffect(() => {
     setFormData({
-      rating: review?.rating ?? '',
-      comment: review?.comment ?? '',
+      rating: review[0]?.rating ?? '',
+      comment: review[0]?.comment ?? '',
     });
   }, [review]);
 
   const handleChange = e => {
-    // if (!isEditing || !review) return;
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -54,7 +55,6 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
   };
 
   const handleRatingChange = newRating => {
-    // if (!isEditing || !review) return;
     setFormData({
       ...formData,
       rating: newRating,
@@ -63,7 +63,6 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // if (!isEditing) return;
     if (formData?.rating === '') {
       Notify.warning('Please select a rating before submitting.');
       return;
@@ -81,6 +80,11 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
     } else {
       dispatch(addReviewOperation(formData));
     }
+
+    setFormData({
+      rating: '',
+      comment: '',
+    });
 
     onClose();
   };
@@ -118,7 +122,6 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
   };
 
   const closeButtonPosition = { top: '16px', right: '16px' };
-  const isEditMode = review;
 
   return (
     <Modal
@@ -206,7 +209,7 @@ const ReviewForm = ({ isOpen, onClose, review }) => {
 ReviewForm.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  review: PropTypes.object,
+  isEditMode: PropTypes.bool.isRequired,
 };
 
 export default ReviewForm;
