@@ -78,13 +78,13 @@
 
 ###** Backend:
  - **Назар Мураль** - [Github][15]
- ![Nazar Mural](/public/readme/Nazar.png)  - Backend Team-lead. Налаштування серверу, функціонал створення, редагування та видалення тасок.
+ ![Nazar Mural](/public/readme/Nazar.png)  - Backend Team-lead. Налаштування серверу, функціонал створення, редагування та видалення тасок. Налаштування Google-авторизації. Оформлення swagger
 
  - **Юрій Басюк** -  [Github][25]
  ![Yurii Basiuk](/public/readme/Yura.png)   - Функціонал створення, редагування та видалення відгуків
 
  - **Олексій Майок** -  [Github][24]
- ![Oleksii Maiok](/public/readme/Aleks.png)   - Функціонал авторизації, додавання аватарки через cloudinary
+ ![Oleksii Maiok](/public/readme/Aleks.png)   - Функціонал реєстрації, авторизації, зміни даних користувача, додавання аватарки через cloudinary
  
 
 [15]: https://github.com/NazarMural
