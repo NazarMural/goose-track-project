@@ -315,6 +315,8 @@ export const Button = styled.button`
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
+  overflow: hidden;
+  transform: translatez(0);
 
   &:hover {
     background-color: var(--btn-bg-hover);

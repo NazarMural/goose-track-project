@@ -9,6 +9,7 @@ const selectIsAuthLoading = state => state.auth.isAuthLoading;
 const selectIsRefreshingUser = state => state.auth.isRefreshingUser;
 const selectIsUpdatingUserData = state => state.auth.isUpdatingUserData;
 const selectAuthError = state => state.auth.error;
+const selectIsUpdatingUserAvatar = state => state.auth.isUpdatingAvatar;
 
 const selectAuthOperations = createSelector(
   [selectIsRefreshingUser, selectIsUpdatingUserData],
@@ -29,4 +30,5 @@ export {
   selectAuthState,
   selectAuthOperations,
   selectUserAvatar,
+  selectIsUpdatingUserAvatar,
 };

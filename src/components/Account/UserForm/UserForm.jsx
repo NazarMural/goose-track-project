@@ -19,9 +19,10 @@ import {
 } from './UserForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserDataOperation } from 'redux/auth/operations';
-import { selectUser } from 'redux/auth/selectors';
+import { selectIsUpdatingUserData, selectUser } from 'redux/auth/selectors';
 import { Notify } from 'notiflix';
 import moment from 'moment';
+import ButtonLoader from 'components/Loaders/ButtonLoader/ButtonLoader';
 
 const schema = object().shape({
   username: string().max(16).required(),
@@ -34,6 +35,7 @@ const schema = object().shape({
 export const UserForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const isLoading = useSelector(selectIsUpdatingUserData);
 
   const initialValues = {
     username: user.name,
@@ -264,6 +266,7 @@ export const UserForm = () => {
           </FieldContainer>
           <ButtonContainer>
             <Button type="submit" disabled={!dirty || isSubmitting}>
+              {isLoading && <ButtonLoader />}
               Save changes
             </Button>
           </ButtonContainer>

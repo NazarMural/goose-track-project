@@ -7,7 +7,7 @@ export const FormContainer = styled.form`
   .dark & {
     background-color: var(--main-page-title);
     border: 1px solid rgba(220, 227, 229, 0.8);
-   box-shadow: 0px 4px 57px 0px rgba(17, 17, 17, 0.05);
+    box-shadow: 0px 4px 57px 0px rgba(17, 17, 17, 0.05);
     border-radius: 8px;
   }
 
@@ -114,8 +114,8 @@ export const SaveButton = styled.button`
     padding: 12px 5px;
   }
   ${min(tablet)} {
-   
     width: 198px;
+  }
 `;
 
 export const CancelButton = styled.button`

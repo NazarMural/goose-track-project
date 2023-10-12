@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import icons from '../../../assets/images/icons/icons.svg';
 import * as Yup from 'yup';
 
-import { addTaskOperation, updateTaskOperation } from '../../../redux/tasks/operations';
+import {
+  addTaskOperation,
+  updateTaskOperation,
+} from '../../../redux/tasks/operations';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   OperationButton,
@@ -31,9 +34,13 @@ import {
   TitleFieldContainer,
 } from './TaskForm.styled';
 import { TaskValidateMessage } from '../TaskValidateMessage/TaskValidateMessage';
+import { selectIsTasksLoading } from 'redux/tasks/selectors';
+import ButtonLoader from 'components/Loaders/ButtonLoader/ButtonLoader';
 
 const taskFormSchema = Yup.object().shape({
-  title: Yup.string('Enter title').max(250, 'Text must be at most 250characters').required('Title is required'),
+  title: Yup.string('Enter title')
+    .max(250, 'Text must be at most 250characters')
+    .required('Title is required'),
   start: Yup.string('Enter start')
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid start time')
     .required('Start time is required'),
@@ -52,6 +59,7 @@ const taskFormSchema = Yup.object().shape({
 
 export const TaskForm = ({ category, task = {}, onClose }) => {
   const [operation, setOperation] = useState('create');
+  const isLoading = useSelector(selectIsTasksLoading);
 
   const dispatch = useDispatch();
 
@@ -208,6 +216,7 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
             <ButtonContainer>
               {operation === 'edit' ? (
                 <OperationButton type="submit">
+                  {isLoading && <ButtonLoader />}
                   <EditIcon stroke="#fff" fill="none">
                     <use href={icons + '#icon-pencil'}></use>
                   </EditIcon>
@@ -215,6 +224,7 @@ export const TaskForm = ({ category, task = {}, onClose }) => {
                 </OperationButton>
               ) : (
                 <OperationButton type="submit">
+                  {isLoading && <ButtonLoader />}
                   <AddIcon stroke="#fff">
                     <use href={icons + '#icon-plus'}></use>
                   </AddIcon>

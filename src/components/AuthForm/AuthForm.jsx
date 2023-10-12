@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
   Button,
   ButtonIcon,
-  ButtonLoader,
   ButtonText,
   ContainerForm,
   ErrorMessageText,
@@ -29,6 +28,7 @@ import { selectIsAuthLoading, selectIsLoggedIn } from 'redux/auth/selectors';
 import { useNavigate } from 'react-router';
 import { Notify } from 'notiflix';
 import { useSearchParams } from 'react-router-dom';
+import ButtonLoader from 'components/Loaders/ButtonLoader/ButtonLoader';
 
 const SignUpSchema = object().shape({
   name: string()

@@ -229,6 +229,9 @@ export const OperationButton = styled.button`
   text-align: center;
   font-size: 14px;
   line-height: 1.28;
+  overflow: hidden;
+  transform: translatez(0);
+
   transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
   cursor: pointer;
 
