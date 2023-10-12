@@ -15,12 +15,19 @@ import {
 } from './UserInfo.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserAvatarOperation } from 'redux/auth/operations';
-import { selectUser, selectUserAvatar } from 'redux/auth/selectors';
+import {
+  selectIsUpdatingUserAvatar,
+  selectUser,
+  selectUserAvatar,
+} from 'redux/auth/selectors';
 import { optimizeImage } from 'helpers/optimizeImage';
+import AvatarLoader from 'components/Loaders/AvatarLoader/AvatarLoader';
 
 export const UserInfo = () => {
   const dispatch = useDispatch();
   const avatarCloud = useSelector(selectUserAvatar);
+  const isLoading = useSelector(selectIsUpdatingUserAvatar);
+
   const { name } = useSelector(selectUser);
 
   const fileInputChange = async e => {
@@ -44,13 +51,15 @@ export const UserInfo = () => {
           </AddAvatar>
         </AddAvatarButton>
         <AvatarWrapper>
-          {avatarCloud ? (
-            <AvatarImage src={avatarCloud} alt="avatar" />
-          ) : (
-            <UserAvatar>
-              <use href={`${sprite}#icon-ph_user`}></use>
-            </UserAvatar>
-          )}
+          {isLoading && <AvatarLoader />}
+          {!isLoading &&
+            (avatarCloud ? (
+              <AvatarImage src={avatarCloud} alt="avatar" />
+            ) : (
+              <UserAvatar>
+                <use href={`${sprite}#icon-ph_user`}></use>
+              </UserAvatar>
+            ))}
         </AvatarWrapper>
       </UserWrapper>
       <UserName>{name}</UserName>
