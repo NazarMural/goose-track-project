@@ -2,7 +2,7 @@
 
 Ласкаво просимо до додатку для управління календарем подій!
 
-![Скріншот додатку](https://srv4.imgonline.com.ua/result_img/imgonline-com-ua-GIF-Animation-6vJqhJxQmjyrMou.gif)
+![Скріншот додатку](/public/readme/site-animation.gif)
 
 ## Опис
 
@@ -19,12 +19,12 @@
 ## Особливості
 
 - **Адаптивна Верстка**: Веб-сайт повністю адаптивний та оптимізований для відображення на різних пристроях, включаючи комп'ютери, планшети та смартфони.
-![adaptiv](https://www.imgonline.com.ua/result_img/imgonline-com-ua-GIF-Animation-skAl1xvHZQOt.gif)
+![adaptiv](/public/readme/adaptiv.gif)
 
 - **Інтуїтивний Інтерфейс**: Легкий у використанні інтерфейс дозволяє легко додавати та редагувати події без зайвих зусиль.
 
 - **Зміна теми додатку**: Для зручності реалізовано переключення теми зі світлої на темну і навпаки. Дані про обрану користувачем тему зберігаються і після виходу із додатку.
-![light-dark-theme](https://srv2.imgonline.com.ua/result_img/imgonline-com-ua-GIF-Animation-DoxpeyNRla0.gif)
+![light-dark-theme](/public/readme/theme-animation.gif)
 
 
 ## Технології, використані у Проекті
