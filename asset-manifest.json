@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/goose-track-project/static/css/main.af3a4f0f.css",
-    "main.js": "/goose-track-project/static/js/main.47890f92.js",
+    "main.js": "/goose-track-project/static/js/main.ebcedff6.js",
     "static/js/432.f76fd7d6.chunk.js": "/goose-track-project/static/js/432.f76fd7d6.chunk.js",
     "static/js/637.5b5819e4.chunk.js": "/goose-track-project/static/js/637.5b5819e4.chunk.js",
-    "static/js/744.829e3173.chunk.js": "/goose-track-project/static/js/744.829e3173.chunk.js",
-    "static/js/666.fd4fa025.chunk.js": "/goose-track-project/static/js/666.fd4fa025.chunk.js",
+    "static/js/744.7e697683.chunk.js": "/goose-track-project/static/js/744.7e697683.chunk.js",
+    "static/js/199.86f10f82.chunk.js": "/goose-track-project/static/js/199.86f10f82.chunk.js",
     "static/js/707.c2e2c181.chunk.js": "/goose-track-project/static/js/707.c2e2c181.chunk.js",
     "static/js/19.5277d594.chunk.js": "/goose-track-project/static/js/19.5277d594.chunk.js",
     "static/js/730.d3beb49b.chunk.js": "/goose-track-project/static/js/730.d3beb49b.chunk.js",
@@ -36,9 +36,9 @@
     "static/css/44.88ed314a.chunk.css": "/goose-track-project/static/css/44.88ed314a.chunk.css",
     "static/js/44.8e0cf1b0.chunk.js": "/goose-track-project/static/js/44.8e0cf1b0.chunk.js",
     "static/js/264.36eb8dbf.chunk.js": "/goose-track-project/static/js/264.36eb8dbf.chunk.js",
-    "static/js/304.bd177ce1.chunk.js": "/goose-track-project/static/js/304.bd177ce1.chunk.js",
-    "static/js/467.1dffe935.chunk.js": "/goose-track-project/static/js/467.1dffe935.chunk.js",
-    "static/js/120.a8774db3.chunk.js": "/goose-track-project/static/js/120.a8774db3.chunk.js",
+    "static/js/304.43e6b88b.chunk.js": "/goose-track-project/static/js/304.43e6b88b.chunk.js",
+    "static/js/227.87ffea37.chunk.js": "/goose-track-project/static/js/227.87ffea37.chunk.js",
+    "static/js/120.94bb978b.chunk.js": "/goose-track-project/static/js/120.94bb978b.chunk.js",
     "static/media/tablet_calendar@2x.png": "/goose-track-project/static/media/tablet_calendar@2x.57aba5fd5d6f28b3c53d.png",
     "static/media/desktop_calendar@2x.png": "/goose-track-project/static/media/desktop_calendar@2x.7abccac63fa642a6bb5f.png",
     "static/media/tablet_task_all@2x.png": "/goose-track-project/static/media/tablet_task_all@2x.81c07c5d397b256447d8.png",
@@ -83,11 +83,11 @@
     "static/media/slick.ttf": "/goose-track-project/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/goose-track-project/static/media/slick.295183786cd8a1389865.woff",
     "main.af3a4f0f.css.map": "/goose-track-project/static/css/main.af3a4f0f.css.map",
-    "main.47890f92.js.map": "/goose-track-project/static/js/main.47890f92.js.map",
+    "main.ebcedff6.js.map": "/goose-track-project/static/js/main.ebcedff6.js.map",
     "432.f76fd7d6.chunk.js.map": "/goose-track-project/static/js/432.f76fd7d6.chunk.js.map",
     "637.5b5819e4.chunk.js.map": "/goose-track-project/static/js/637.5b5819e4.chunk.js.map",
-    "744.829e3173.chunk.js.map": "/goose-track-project/static/js/744.829e3173.chunk.js.map",
-    "666.fd4fa025.chunk.js.map": "/goose-track-project/static/js/666.fd4fa025.chunk.js.map",
+    "744.7e697683.chunk.js.map": "/goose-track-project/static/js/744.7e697683.chunk.js.map",
+    "199.86f10f82.chunk.js.map": "/goose-track-project/static/js/199.86f10f82.chunk.js.map",
     "707.c2e2c181.chunk.js.map": "/goose-track-project/static/js/707.c2e2c181.chunk.js.map",
     "19.5277d594.chunk.js.map": "/goose-track-project/static/js/19.5277d594.chunk.js.map",
     "730.d3beb49b.chunk.js.map": "/goose-track-project/static/js/730.d3beb49b.chunk.js.map",
@@ -100,12 +100,12 @@
     "44.88ed314a.chunk.css.map": "/goose-track-project/static/css/44.88ed314a.chunk.css.map",
     "44.8e0cf1b0.chunk.js.map": "/goose-track-project/static/js/44.8e0cf1b0.chunk.js.map",
     "264.36eb8dbf.chunk.js.map": "/goose-track-project/static/js/264.36eb8dbf.chunk.js.map",
-    "304.bd177ce1.chunk.js.map": "/goose-track-project/static/js/304.bd177ce1.chunk.js.map",
-    "467.1dffe935.chunk.js.map": "/goose-track-project/static/js/467.1dffe935.chunk.js.map",
-    "120.a8774db3.chunk.js.map": "/goose-track-project/static/js/120.a8774db3.chunk.js.map"
+    "304.43e6b88b.chunk.js.map": "/goose-track-project/static/js/304.43e6b88b.chunk.js.map",
+    "227.87ffea37.chunk.js.map": "/goose-track-project/static/js/227.87ffea37.chunk.js.map",
+    "120.94bb978b.chunk.js.map": "/goose-track-project/static/js/120.94bb978b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.af3a4f0f.css",
-    "static/js/main.47890f92.js"
+    "static/js/main.ebcedff6.js"
   ]
 }
