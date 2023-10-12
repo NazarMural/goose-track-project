@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { tablet, min, desktop } from 'styles/media';
+import { tablet, min, desktop, max, mobile } from 'styles/media';
 
 export const UserInfoBox = styled.div`
   display: flex;
@@ -20,8 +20,16 @@ export const UserName = styled.p`
   font-style: normal;
   font-weight: 700;
   line-height: 18px;
+  max-width: 92px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  ${max(mobile)} {
+    max-width: 70px;
+  }
   ${min(tablet)} {
     font-size: 18px;
+    max-width: 160px;
   }
 `;
 

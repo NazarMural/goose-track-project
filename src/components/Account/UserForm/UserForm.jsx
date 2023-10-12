@@ -25,7 +25,7 @@ import moment from 'moment';
 import ButtonLoader from 'components/Loaders/ButtonLoader/ButtonLoader';
 
 const schema = object().shape({
-  username: string().max(16).required(),
+  username: string().max(25).required(),
   phone: number(),
   birthday: date(),
   skype: string().max(16),

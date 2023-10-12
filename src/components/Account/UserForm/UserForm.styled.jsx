@@ -231,6 +231,8 @@ export const Span = styled.div`
     color: var(--datepicker-day-text-color);
     outline: none;
     border: none;
+    scrollbar-width: thin !important;
+    scrollbar-color: #333 #fff !important;
 
     & option {
       margin-bottom: 2px;
@@ -247,6 +249,21 @@ export const Span = styled.div`
         background-color: var(--datepicker-day-accent-bg-color) !important;
         color: var(--datepicker-day-accent-text-color);
       }
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #a8c6f2;
+      width: 10px;
+      border-radius: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #2e7df4;
+      border-radius: 12px;
     }
   }
 
