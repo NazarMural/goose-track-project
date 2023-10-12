@@ -1,105 +1,114 @@
-# React homework template
+# Goose Track
 
-This project was created with
-[Create React App](https://github.com/facebook/create-react-app). To get
-acquainted and configure additional features
-[refer to documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Welcome to the event calendar management application!
 
-## Creating a repository by template
+![App Screenshot](/public/readme/site-animation.gif)
 
-Use this GoIT repository as a template for creating a repository
-of your project. To use it just tap the `«Use this template»` button and choose
-`«Create a new repository»` option, as you can see on the image below.
+## Description
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+Our application allows you to easily add and edit events to your calendar. Here is some of the functionality:
 
-The page for creating a new repository will open on the next step. Fill out
-the Name field and make sure the repository is public, then click
-`«Create repository from template»` button.
+- **User Authentication**: Secure and track your events by logging into your account. Google authentication is also available on the site.
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+- **Adding Events**: Easily add new events by providing a title, date, time, and description.
 
-You now have a personal project repository, having a repository-template file 
-and folder structure. After that, you can work with it as you would with any 
-other private repository: clone it on your computer, write code, commit, and 
-send it to GitHub.
+- **Editing Events**: Ability to edit and update existing events, as well as delete them if needed.
 
-## Preparing for coding
+- **Statistics**: Our website provides detailed statistics on task completion for different statuses: "To-Do," "In-Progress," and "Done." The statistics display the percentage of tasks in each status for the entire month and separately for the day. These data points help you track your progress by different statuses and improve your productivity.
 
-1. Make sure you have an LTS version of Node.js installed on your computer.
-   [Download and install](https://nodejs.org/en/) if needed.
-2. Install the project's base dependencies with the `npm install` command.
-3. Start development mode by running the `npm start` command.
-4. Go to [http://localhost:3000](http://localhost:3000) in your browser. This
-   page will automatically reload after saving changes to the project files.
+## Features
 
-## Deploy
+- **Responsive Design**: The website is fully responsive and optimized for display on various devices, including computers, tablets, and smartphones.
+![Responsive](/public/readme/adaptiv.gif)
 
-The production version of the project will automatically be linted, built, and
-deployed to GitHub Pages, in the `gh-pages` branch, every time the `main` branch
-is updated. For example, after a direct push or an accepted pull request. To do
-this, you need to edit the `homepage` field in the `package.json` file,
-replacing `your_username` and `your_repo_name` with your own, and submit the
-changes to GitHub.
+- **Intuitive Interface**: An easy-to-use interface allows you to add and edit events with ease.
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
+- **App Theme Switch**: Theme switching, from light to dark and vice versa, is implemented for user convenience. User-selected theme preferences are saved even after leaving the application.
+![Theme Switch](/public/readme/theme-animation.gif)
 
-Next, you need to go to the settings of the GitHub repository (`Settings` >
-`Pages`) and set the distribution of the production version of files from the
-`/root` folder of the `gh-pages` branch, if this was not done automatically.
+## Technologies Used in the Project
 
-![GitHub Pages settings](./assets/repo-settings.png)
+### **Frontend**:
+![Frontend: HTML, CSS, JS, React, Redux Toolkit, Axios](/public/readme/Front.png)
 
-### Deployment status
+### **Backend**:
+![Backend: Node.js, Express JS, MongoDB, Mongoose, Swagger](/public/readme/Backend-technology.png)
 
-The deployment status of the latest commit is displayed with an icon next to its
-ID.
+### **Utilities**:
+![Utilities: VSCode, GitHub, Git, Figma, Trello](/public/readme/Utilits.png)
 
-- **Yellow color** - the project is being built and deployed.
-- **Green color** - deployment completed successfully.
-- **Red color** - an error occurred during linting, build or deployment.
+## Links
 
-More detailed information about the status can be viewed by clicking on the
-icon, and in the drop-down window, follow the link `Details`.
+To start using our website, visit the [website link](https://nazarmural.github.io/goose-track-project/) and log in. Then you can add and edit events in your calendar.
 
-![Deployment status](./assets/deploy-status.png)
+[Backend Repository](https://github.com/NazarMural/goose-track-project-backend)
 
-### Live page
+[Swagger Documentation](https://goose-track-project-backend.onrender.com/api-docs/)
 
-After some time, usually a couple of minutes, the live page can be viewed at the
-address specified in the edited `homepage` property. For example, here is a link
-to a live version for this repository
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
+Backend Render: `https://goose-track-project-backend.onrender.com/`
 
-If a blank page opens, make sure there are no errors in the `Console` tab
-related to incorrect paths to the CSS and JS files of the project (**404**). You
-most likely have the wrong value for the `homepage` property in the
-`package.json` file.
+## Our "Localhost3000" Team
 
-### Routing
+### Frontend:
+ - **Alona Kuznietsova** - [Github][16]
 
-If your application uses the `react-router-dom` library for routing, you must
-additionally configure the `<BrowserRouter>` component by passing the exact name
-of your repository in the `basename` prop. Slashes at the beginning and end of
-the line are required.
+   ![Alona Kuznietsova](/public/readme/Alona.png) - Frontend Team-lead, Scrum Master. Project structure setup. Calendar layout and functionality by months.
 
-```jsx
-<BrowserRouter basename="/your_repo_name/">
-  <App />
-</BrowserRouter>
-```
+ - **Maksym Karalash** - [Github][17]
 
-## How it works
+   ![Maksym Karalash](/public/readme/MaksKar.png) - User registration and login pages. Calendar functionality by days and task management.
 
-![How it works](./assets/how-it-works.png)
+ - **Yaroslav Chaplinskyi** - [Github][19]
 
-1. After each push to the `main` branch of the GitHub repository, a special
-   script (GitHub Action) is launched from the `.github/workflows/deploy.yml`
-   file.
-2. All repository files are copied to the server, where the project is
-   initialized and linted and built before deployment.
-3. If all steps are successful, the built production version of the project
-   files is sent to the `gh-pages` branch. Otherwise, the script execution log
-   will indicate what the problem is.
+   ![Yaroslav Chaplinskyi](/public/readme/YarChap.png) - Redux Toolkit setup.
+
+ - **Maksym Pavliuchenko** - [Github][22]
+
+   ![Maksym Pavliuchenko](/public/readme/MaksPavl.png) - Routing setup for private and public routes.
+
+ - **Olha Tverdokhlib** - [Github][18]
+
+   ![Olha Tverdokhlib](/public/readme/Olga.png) - Homepage, slider, review submission functionality.
+
+ - **Nazar Mural** - [Github][15]
+
+   ![Nazar Mural](/public/readme/Nazar.png) - Project deployment. Statistics page.
+
+ - **Maksym Ponomarenko** - [Github][20]
+
+   ![Maksym Ponomarenko](/public/readme/MaksPon.png) - Main layout (header, sidebar).
+
+ - **Oleksandra Andrushchenko** - [Github][23]
+
+   ![Oleksandra Andrushchenko](/public/readme/Oleks.png) - Image optimization and upload, task add and edit functionality.
+
+ - **Yaroslav Protsiuk** - [Github][21]
+
+   ![Yaroslav Protsiuk](/public/readme/YarProci.png) - User data page.
+
+### Backend:
+ - **Nazar Mural** - [Github][15]
+
+   ![Nazar Mural](/public/readme/Nazar.png) - Backend Team-lead. Server setup, task creation, editing, and deletion functionality. Google authentication setup. Swagger documentation setup.
+
+ - **Yurii Basiuk** - [Github][25]
+ 
+   ![Yurii Basiuk](/public/readme/Yura.png) - Review creation
+
+ - **Oleksii Maiok** -  [Github][24]
+
+   ![Oleksii Maiok](/public/readme/Aleks.png)   - User registration, authentication, user data editing, avatar upload via Cloudinary.
+ 
+
+[15]: https://github.com/NazarMural
+[16]: https://github.com/acvetochka
+[17]: https://github.com/Kolokol2002
+[18]: https://github.com/OlhaTverdokhlib
+[19]: https://github.com/Yarzik7
+[20]: https://github.com/MaksymDpUa
+[21]: https://github.com/yarikgorpl
+[22]: https://github.com/MaksimPavlyuchenko
+[23]: https://github.com/Oleksandra83
+[24]: https://github.com/moses35
+[25]: https://github.com/Basiuk1
+
